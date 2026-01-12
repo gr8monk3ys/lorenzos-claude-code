@@ -1,0 +1,58 @@
+{
+  "name": "@gr8monk3ys/claude-code-plugin",
+  "version": "4.1.0",
+  "description": "Stack-focused Claude Code plugin for Next.js + React + Supabase. Scaffolds components, API routes, hooks, Supabase types, and Edge Functions. Composes with superpowers.",
+  "keywords": [
+    "claude-code",
+    "claude",
+    "ai",
+    "nextjs",
+    "react",
+    "typescript",
+    "supabase",
+    "productivity",
+    "agents",
+    "skills",
+    "hooks"
+  ],
+  "author": {
+    "name": "Lorenzo",
+    "email": "gr8monk3ys@gmail.com",
+    "url": "https://github.com/gr8monk3ys"
+  },
+  "license": "GPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gr8monk3ys/lorenzos-claude-code.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gr8monk3ys/lorenzos-claude-code/issues"
+  },
+  "homepage": "https://github.com/gr8monk3ys/lorenzos-claude-code#readme",
+  "main": "scripts/install.js",
+  "bin": {
+    "lorenzo-claude": "./bin/cli.js",
+    "lcc": "./bin/cli.js"
+  },
+  "files": [
+    "bin/",
+    "scripts/",
+    ".claude/",
+    ".claude-plugin/",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "test": "node tests/run-all.js && node --test tests/manifest-sync.test.js",
+    "sync": "node scripts/sync-manifest.js",
+    "sync:check": "node scripts/sync-manifest.js --check",
+    "install:local": "node bin/cli.js install",
+    "doctor": "node bin/cli.js doctor",
+    "prepublishOnly": "npm run sync:check && npm test"
+  },
+  "devDependencies": {},
+  "peerDependencies": {}
+}

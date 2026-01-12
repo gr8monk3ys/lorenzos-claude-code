@@ -1,0 +1,45 @@
+{
+  "recommendations": [
+    // Claude Code - Primary AI assistant
+    "anthropic.claude-code",
+
+    // Code Quality
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+
+    // TypeScript/JavaScript
+    "ms-vscode.vscode-typescript-next",
+
+    // Testing
+    "ms-playwright.playwright",
+    "vitest.explorer",
+
+    // Tailwind CSS
+    "bradlc.vscode-tailwindcss",
+
+    // Markdown
+    "yzhang.markdown-all-in-one",
+
+    // Git
+    "eamodio.gitlens",
+    "mhutchie.git-graph",
+
+    // Docker/DevContainers
+    "ms-vscode-remote.remote-containers",
+    "ms-azuretools.vscode-docker",
+
+    // Database
+    "cweijan.vscode-database-client2",
+
+    // REST API Testing
+    "humao.rest-client",
+
+    // Icons
+    "pkief.material-icon-theme"
+  ],
+  "unwantedRecommendations": [
+    // Avoid Copilot when using Claude Code
+    "github.copilot",
+    "github.copilot-chat"
+  ]
+}
