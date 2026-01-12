@@ -1,0 +1,21 @@
+{
+  "name": "lorenzos-claude-code",
+  "owner": {
+    "name": "Lorenzo",
+    "contact": "github.com/gr8monk3ys"
+  },
+  "description": "Lorenzo's curated Claude Code setup for productive development",
+  "plugins": [
+    {
+      "name": "lorenzos-claude-code",
+      "source": "./",
+      "description": "Personal Claude Code configuration with 18 productivity commands and 11 specialized AI agents for modern web development",
+      "version": "1.2.0",
+      "author": {
+        "name": "Lorenzo",
+        "email": "lorenzosca7@protonmail.ch"
+      },
+      "tags": ["productivity", "nextjs", "supabase", "typescript", "react", "development"]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Markdown files
+*.md text eol=lf
+
+# JSON files
+*.json text eol=lf
+
+# Configuration files
+.gitignore text eol=lf
+.gitattributes text eol=lf
+
+# Shell scripts
+*.sh text eol=lf
+
+# Force binary files to remain unchanged
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg binary
+*.webp binary
