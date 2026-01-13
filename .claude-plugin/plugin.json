@@ -1,7 +1,7 @@
 {
   "name": "lorenzos-claude-code",
-  "version": "1.5.1",
-  "description": "Lorenzo's personal Claude Code setup with 35 slash commands (22 unique + 13 aliases) and 14 specialized AI agents for modern web development",
+  "version": "1.6.0",
+  "description": "Lorenzo's personal Claude Code setup with 35 slash commands (22 unique + 13 aliases) and 19 specialized AI agents for modern web development",
   "author": "Lorenzo",
   "license": "GPL-3.0",
   "commands": [
@@ -251,6 +251,31 @@
       "name": "api-architect",
       "path": ".claude/agents/api-architect.md",
       "description": "Design RESTful and GraphQL APIs with focus on consistency, versioning, and developer experience"
+    },
+    {
+      "name": "code-reviewer",
+      "path": ".claude/agents/code-reviewer.md",
+      "description": "Multi-aspect code review for security, performance, quality, and maintainability"
+    },
+    {
+      "name": "test-strategist",
+      "path": ".claude/agents/test-strategist.md",
+      "description": "Plan comprehensive testing strategies, analyze coverage gaps, and design test architectures"
+    },
+    {
+      "name": "migration-planner",
+      "path": ".claude/agents/migration-planner.md",
+      "description": "Plan safe database schema migrations with zero-downtime strategies and rollback procedures"
+    },
+    {
+      "name": "accessibility-auditor",
+      "path": ".claude/agents/accessibility-auditor.md",
+      "description": "Audit web applications for WCAG compliance and provide accessibility remediation guidance"
+    },
+    {
+      "name": "performance-profiler",
+      "path": ".claude/agents/performance-profiler.md",
+      "description": "Profile application performance, analyze Core Web Vitals, and identify optimization opportunities"
     }
   ],
   "mcpServers": {

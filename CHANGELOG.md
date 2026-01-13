@@ -5,6 +5,27 @@ All notable changes to Lorenzo's Claude Code plugin will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.6.0] - 2026-01-12
+
+### Added
+- **code-reviewer** agent - Multi-aspect code review covering security, performance, quality, and maintainability with severity scoring
+- **test-strategist** agent - Plan comprehensive testing strategies, analyze coverage gaps, and design test architectures
+- **migration-planner** agent - Plan safe database schema migrations with zero-downtime strategies and rollback procedures
+- **accessibility-auditor** agent - Audit web applications for WCAG 2.1 compliance with detailed remediation guidance
+- **performance-profiler** agent - Profile application performance, analyze Core Web Vitals, and identify optimization opportunities
+
+### Changed
+- Updated plugin to 19 agents total (was 14)
+- Added STEROIDS roadmap to TODO.md with 50+ research-based improvements
+
+### Research
+- Hooks & Automation patterns from Claude Code Hooks Guide
+- Agent Skills System from official documentation
+- MCP Server expansion research (Notion, Linear, GitHub, MongoDB, AWS, etc.)
+- Multi-agent orchestration patterns
+- Context management techniques from Anthropic engineering blog
+- Aider and Cursor feature analysis
+
 ## [1.5.1] - 2026-01-12
 
 ### Added

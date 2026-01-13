@@ -128,11 +128,11 @@ Based on extensive research of Claude Code ecosystem, Cursor, Aider, and MCP ser
 - [x] Review agent model assignments (sonnet vs haiku) for cost optimization
 
 ### New Agents (Research-Based)
-- [ ] Add "code-reviewer" agent with multi-aspect review (security, perf, style)
-- [ ] Add "test-strategist" agent for test planning and coverage analysis
-- [ ] Add "migration-planner" agent for database schema evolution
-- [ ] Add "accessibility-auditor" agent for a11y compliance
-- [ ] Add "performance-profiler" agent for bottleneck detection
+- [x] Add "code-reviewer" agent with multi-aspect review (security, perf, style)
+- [x] Add "test-strategist" agent for test planning and coverage analysis
+- [x] Add "migration-planner" agent for database schema evolution
+- [x] Add "accessibility-auditor" agent for a11y compliance
+- [x] Add "performance-profiler" agent for bottleneck detection
 
 ### Developer Experience
 - [x] Add `.claude/settings.template.json` with recommended settings
@@ -261,6 +261,12 @@ Based on extensive research of Claude Code ecosystem, Cursor, Aider, and MCP ser
 - [x] Added `/wizard` command for interactive command selection (v1.5.1)
 - [x] Added interactive options tables to commands (v1.5.1)
 - [x] Comprehensive ecosystem research for STEROIDS roadmap (v1.5.1)
+- [x] Added code-reviewer agent with multi-aspect review (v1.6.0)
+- [x] Added test-strategist agent for test planning (v1.6.0)
+- [x] Added migration-planner agent for schema evolution (v1.6.0)
+- [x] Added accessibility-auditor agent for a11y compliance (v1.6.0)
+- [x] Added performance-profiler agent for bottleneck detection (v1.6.0)
+- [x] Updated plugin to 19 agents total (v1.6.0)
 
 ---
 
