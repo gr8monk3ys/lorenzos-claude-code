@@ -37,6 +37,61 @@
     "_comment": "CRITICAL: Prevents .env files in commits"
   },
 
+  "hooks": {
+    "_comment": "Pre-configured hooks for automation. See HOOKS.md for details.",
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/block-sensitive-files.sh",
+            "_comment": "Block modifications to .env, secrets, credentials"
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/validate-json.sh",
+            "_comment": "Validate JSON syntax before writing"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/auto-format.sh",
+            "_comment": "Auto-format with prettier/eslint/biome"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/typecheck.sh",
+            "_comment": "TypeScript type-check after edits"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/notify-completion.sh",
+            "_comment": "Desktop notification when Claude finishes"
+          }
+        ],
+        "_comment": "Optional: Add auto-commit.sh here if you want auto-commits"
+      }
+    ]
+  },
+
   "workspace": {
     "excludePatterns": [
       "node_modules/**",

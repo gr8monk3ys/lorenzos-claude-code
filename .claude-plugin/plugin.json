@@ -1,7 +1,7 @@
 {
   "name": "lorenzos-claude-code",
-  "version": "1.6.0",
-  "description": "Lorenzo's personal Claude Code setup with 35 slash commands (22 unique + 13 aliases) and 19 specialized AI agents for modern web development",
+  "version": "1.7.0",
+  "description": "Lorenzo's personal Claude Code setup with 35 commands, 19 agents, 6 MCP servers, and 6 automation hooks for modern web development",
   "author": "Lorenzo",
   "license": "GPL-3.0",
   "commands": [
@@ -318,6 +318,8 @@
     "react",
     "api",
     "development",
-    "mcp"
+    "mcp",
+    "hooks",
+    "automation"
   ]
 }

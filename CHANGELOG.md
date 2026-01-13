@@ -5,6 +5,28 @@ All notable changes to Lorenzo's Claude Code plugin will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.7.0] - 2026-01-12
+
+### Added
+- **Hooks & Automation System** - 6 pre-configured hook scripts for workflow automation
+  - `block-sensitive-files.sh` - PreToolUse hook to prevent edits to .env, credentials, secrets
+  - `auto-format.sh` - PostToolUse hook for auto-formatting with prettier/eslint/biome
+  - `typecheck.sh` - PostToolUse hook for TypeScript type-checking after edits
+  - `validate-json.sh` - PreToolUse hook to validate JSON syntax before writing
+  - `auto-commit.sh` - Stop hook for automatic git commits with descriptive messages
+  - `notify-completion.sh` - Stop hook for desktop notifications (macOS/Linux/Windows)
+- **HOOKS.md** - Comprehensive documentation for hooks configuration and usage
+- **Updated settings.template.json** - Now includes full hooks configuration
+
+### Changed
+- Plugin description now highlights hooks as a key feature
+- Added "hooks" and "automation" tags to plugin.json
+
+### Documentation
+- Complete hooks reference with configuration examples
+- Custom hook creation guide
+- Troubleshooting section for common hook issues
+
 ## [1.6.0] - 2026-01-12
 
 ### Added
