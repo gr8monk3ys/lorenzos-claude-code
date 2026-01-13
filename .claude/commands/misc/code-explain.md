@@ -1,4 +1,5 @@
 ---
+description: Generate detailed code explanations with visual diagrams and step-by-step breakdowns
 model: claude-opus-4-5
 ---
 

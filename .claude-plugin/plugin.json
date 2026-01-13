@@ -1,7 +1,7 @@
 {
   "name": "lorenzos-claude-code",
-  "version": "1.7.0",
-  "description": "Lorenzo's personal Claude Code setup with 35 commands, 19 agents, 6 MCP servers, and 6 automation hooks for modern web development",
+  "version": "1.9.0",
+  "description": "Lorenzo's personal Claude Code setup with 41 commands, 19 agents, 8 skills, 3 orchestrators, 15 MCP servers, and 6 automation hooks for modern web development",
   "author": "Lorenzo",
   "license": "GPL-3.0",
   "commands": [
@@ -179,6 +179,36 @@
       "name": "wizard",
       "path": ".claude/commands/misc/wizard.md",
       "description": "Interactive wizard to help choose commands and build specifications"
+    },
+    {
+      "name": "memory",
+      "path": ".claude/commands/misc/memory.md",
+      "description": "View, update, or manage Claude's persistent memory for this project"
+    },
+    {
+      "name": "context",
+      "path": ".claude/commands/misc/context.md",
+      "description": "Manage conversation context - summarize, compact, or load files just-in-time"
+    },
+    {
+      "name": "architect",
+      "path": ".claude/commands/misc/architect.md",
+      "description": "High-level architecture discussions without making code changes"
+    },
+    {
+      "name": "ask",
+      "path": ".claude/commands/misc/ask.md",
+      "description": "Ask questions about the codebase without making changes"
+    },
+    {
+      "name": "map",
+      "path": ".claude/commands/misc/map.md",
+      "description": "Generate a map of the codebase structure and dependencies"
+    },
+    {
+      "name": "rules",
+      "path": ".claude/commands/misc/rules.md",
+      "description": "View, edit, or create project-specific rules for Claude"
     }
   ],
   "agents": [
@@ -308,8 +338,112 @@
       "command": "npx",
       "args": ["-y", "@vercel/mcp"],
       "description": "Vercel deployment management and project operations"
+    },
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "description": "GitHub repository operations, issues, PRs, and search"
+    },
+    "notion": {
+      "command": "npx",
+      "args": ["-y", "@notionhq/notion-mcp-server"],
+      "description": "Notion workspace management and data source operations"
+    },
+    "linear": {
+      "command": "npx",
+      "args": ["-y", "@larryhudson/linear-mcp-server"],
+      "description": "Linear issue tracking and project management"
+    },
+    "slack": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-server-slack"],
+      "description": "Slack team communication and channel operations"
+    },
+    "postgres": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-postgres"],
+      "description": "PostgreSQL database operations and queries"
+    },
+    "sqlite": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sqlite"],
+      "description": "SQLite database operations for local development"
+    },
+    "redis": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-server-redis"],
+      "description": "Redis caching operations and key-value storage"
+    },
+    "sentry": {
+      "command": "npx",
+      "args": ["-y", "@sentry/mcp-server"],
+      "description": "Sentry error tracking and performance monitoring"
+    },
+    "puppeteer": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-server-puppeteer"],
+      "description": "Puppeteer browser automation and scraping"
     }
   },
+  "skills": [
+    {
+      "name": "api-creation",
+      "path": ".claude/skills/api/api-creation.md",
+      "description": "Auto-enhances API endpoint creation with Next.js 15 patterns, Zod validation, and consistent error handling"
+    },
+    {
+      "name": "api-testing",
+      "path": ".claude/skills/api/api-testing.md",
+      "description": "Auto-generates comprehensive API tests with edge cases, error scenarios, and integration patterns"
+    },
+    {
+      "name": "api-security",
+      "path": ".claude/skills/api/api-security.md",
+      "description": "Applies security best practices including authentication, rate limiting, and OWASP protections"
+    },
+    {
+      "name": "component-patterns",
+      "path": ".claude/skills/frontend/component-patterns.md",
+      "description": "Applies React/Vue/Angular/Svelte best practices including accessibility and performance"
+    },
+    {
+      "name": "state-management",
+      "path": ".claude/skills/frontend/state-management.md",
+      "description": "Guides state management decisions between local state, context, and global stores"
+    },
+    {
+      "name": "query-optimization",
+      "path": ".claude/skills/database/query-optimization.md",
+      "description": "Optimizes database queries with indexing suggestions, N+1 prevention, and efficient data fetching"
+    },
+    {
+      "name": "migration-safety",
+      "path": ".claude/skills/database/migration-safety.md",
+      "description": "Ensures database migrations are safe, reversible, and follow zero-downtime patterns"
+    },
+    {
+      "name": "ci-cd-patterns",
+      "path": ".claude/skills/devops/ci-cd-patterns.md",
+      "description": "Applies CI/CD best practices for GitHub Actions, testing pipelines, and deployment workflows"
+    }
+  ],
+  "orchestrators": [
+    {
+      "name": "fullstack-feature-workflow",
+      "path": ".claude/orchestrators/fullstack-feature.md",
+      "description": "Coordinates full-stack feature implementation from requirements through deployment"
+    },
+    {
+      "name": "code-review-workflow",
+      "path": ".claude/orchestrators/code-review.md",
+      "description": "Multi-perspective code review covering security, performance, quality, and accessibility"
+    },
+    {
+      "name": "refactoring-workflow",
+      "path": ".claude/orchestrators/refactoring.md",
+      "description": "Safe, systematic refactoring with analysis, planning, execution, and verification"
+    }
+  ],
   "tags": [
     "productivity",
     "nextjs",
@@ -320,6 +454,9 @@
     "development",
     "mcp",
     "hooks",
-    "automation"
+    "automation",
+    "skills",
+    "orchestration",
+    "multi-agent"
   ]
 }

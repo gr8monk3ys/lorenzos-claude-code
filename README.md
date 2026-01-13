@@ -1,6 +1,6 @@
 # Lorenzo's Claude Code Setup
 
-My personal Claude Code configuration for productive web development. This plugin provides **18 slash commands** and **14 specialized AI agents** to supercharge your development workflow.
+My personal Claude Code configuration for productive web development. This plugin provides **41 slash commands**, **19 specialized AI agents**, **8 auto-activating skills**, **3 multi-agent orchestrators**, and **15 MCP servers** to supercharge your development workflow.
 
 ## Quick Install
 
@@ -14,37 +14,49 @@ My personal Claude Code configuration for productive web development. This plugi
 
 ## What's Inside
 
-### 📋 Development Commands (11)
+### 📋 Development Commands (17)
 
 - `/new-task` - Analyze code for performance issues
-- `/code-explain` - Generate detailed explanations
-- `/code-optimize` - Performance optimization
-- `/code-cleanup` - Refactoring and cleanup
-- `/feature-plan` - Feature implementation planning
+- `/code-explain` (alias: `/explain`) - Generate detailed explanations
+- `/code-optimize` (alias: `/optimize`) - Performance optimization
+- `/code-cleanup` (alias: `/cleanup`) - Refactoring and cleanup
+- `/feature-plan` (alias: `/plan`) - Feature implementation planning
 - `/lint` - Linting and fixes
-- `/docs-generate` - Documentation generation
-- `/test-new` - Generate test files (Jest, Vitest, Playwright)
-- `/migration-new` - Create database migration files
-- `/hook-new` - Create custom React hooks
+- `/docs-generate` (alias: `/docs`) - Documentation generation
+- `/test-new` (alias: `/test`) - Generate test files (Jest, Vitest, Playwright)
+- `/migration-new` (alias: `/migration`) - Create database migration files
+- `/hook-new` (alias: `/hook`) - Create custom React hooks
 - `/deploy` - Generate deployment configurations and CI/CD workflows
+- `/wizard` - Interactive wizard to choose commands and build specs
+
+**Context & Memory (NEW)**
+- `/memory` - View/update Claude's persistent project memory
+- `/context` - Manage conversation context (summarize, load, focus)
+- `/architect` - High-level design discussions (no code changes)
+- `/ask` - Ask questions about codebase (no code changes)
+- `/map` - Generate codebase structure map
+- `/rules` - Manage project-specific rules for Claude
 
 ### 🔌 API Commands (3)
 
-- `/api-new` - Create new API endpoints
+- `/api-new` (alias: `/api`) - Create new API endpoints
 - `/api-test` - Test API endpoints
 - `/api-protect` - Add protection & validation
 
-### 🎨 UI Commands (2)
+### 🎨 UI Commands (5)
 
-- `/component-new` - Create React components
-- `/page-new` - Create Next.js pages
+- `/component-new` (alias: `/component`) - Create React components
+- `/page-new` (alias: `/page`) - Create Next.js pages
+- `/component-vue` - Create Vue 3 components with Composition API
+- `/component-angular` - Create Angular standalone components
+- `/component-svelte` - Create Svelte 5 components with runes
 
 ### 💾 Supabase Commands (2)
 
-- `/types-gen` - Generate TypeScript types
-- `/edge-function-new` - Create Edge Functions
+- `/types-gen` (alias: `/types`) - Generate TypeScript types
+- `/edge-function-new` (alias: `/edge`) - Create Edge Functions
 
-### 🤖 Specialized AI Agents (14)
+### 🤖 Specialized AI Agents (19)
 
 **Architecture & Planning**
 - **tech-stack-researcher** - Technology choice recommendations with trade-offs
@@ -58,15 +70,64 @@ My personal Claude Code configuration for productive web development. This plugi
 **Code Quality & Performance**
 - **refactoring-expert** - Systematic refactoring and clean code
 - **performance-engineer** - Measurement-driven optimization
+- **performance-profiler** - Profile performance and analyze Core Web Vitals
 - **security-engineer** - Vulnerability identification and security standards
+- **code-reviewer** - Multi-aspect code review for security, performance, quality
+
+**Testing & Quality**
+- **test-strategist** - Plan testing strategies and analyze coverage gaps
+- **accessibility-auditor** - Audit WCAG compliance and accessibility
 
 **Infrastructure & Operations**
 - **devops-engineer** - CI/CD pipelines and deployment strategies
+- **migration-planner** - Plan safe database schema migrations
 
 **Documentation & Research**
 - **technical-writer** - Clear, comprehensive documentation
 - **learning-guide** - Teaching programming concepts progressively
 - **deep-research-agent** - Comprehensive research with adaptive strategies
+
+### 🧠 Auto-Activating Skills (8)
+
+Skills automatically enhance your workflow based on context - no commands needed.
+
+**API Development**
+- **api-creation** - Auto-applies Next.js 15 patterns, Zod validation, consistent error handling
+- **api-testing** - Generates comprehensive tests with edge cases and error scenarios
+- **api-security** - Applies authentication, rate limiting, OWASP protections
+
+**Frontend Development**
+- **component-patterns** - React/Vue/Angular/Svelte best practices, accessibility, performance
+- **state-management** - Guides decisions between local state, context, and global stores
+
+**Database Operations**
+- **query-optimization** - N+1 prevention, indexing suggestions, efficient data fetching
+- **migration-safety** - Ensures migrations are safe, reversible, follow zero-downtime patterns
+
+**DevOps**
+- **ci-cd-patterns** - GitHub Actions best practices, testing pipelines, deployment workflows
+
+### 🔄 Multi-Agent Orchestrators (3)
+
+Orchestrators coordinate multiple agents for complex workflows.
+
+- **fullstack-feature-workflow** - End-to-end feature implementation
+  - Planning (requirements-analyst → system-architect)
+  - Build (api-architect + frontend-architect in parallel)
+  - Verify (test-strategist → code-reviewer → technical-writer)
+
+- **code-review-workflow** - Multi-perspective code review
+  - Security review (security-engineer)
+  - Performance review (performance-engineer)
+  - Quality review (code-reviewer)
+  - Accessibility review (accessibility-auditor)
+  - Results aggregated with scoring
+
+- **refactoring-workflow** - Safe, systematic refactoring
+  - Analyze (code-reviewer + performance-profiler)
+  - Plan (refactoring-expert + system-architect)
+  - Execute (incremental changes with tests)
+  - Verify (test-strategist + code-reviewer)
 
 ## Installation
 
@@ -98,8 +159,9 @@ cd lorenzos-claude-code
 - Next.js developers
 - TypeScript projects
 - Supabase users
-- React developers
+- React, Vue, Angular, Svelte developers
 - Full-stack engineers
+- Anyone who wants AI-powered development automation
 
 ## Usage Examples
 
@@ -206,29 +268,51 @@ This setup emphasizes:
 - Claude Code 2.0.13+
 - Works with any project (optimized for Next.js + Supabase)
 
+## Automation Hooks
+
+This plugin includes 6 pre-configured hooks to automate common workflows:
+
+1. **block-sensitive-files.sh** - Prevents editing .env, credentials, and secret files
+2. **auto-format.sh** - Auto-formats code with Prettier/Biome/ESLint after edits
+3. **typecheck.sh** - Runs TypeScript type checking after editing .ts/.tsx files
+4. **validate-json.sh** - Validates JSON syntax before writing
+5. **auto-commit.sh** - Auto-commits changes when Claude completes a task
+6. **notify-completion.sh** - Sends desktop notification on task completion
+
+To enable hooks, add them to your `.claude/settings.local.json`. See [HOOKS.md](HOOKS.md) for detailed configuration.
+
 ## Customization
 
 After installation, you can customize any command by editing files in `.claude/commands/` and `.claude/agents/`.
 
 ## MCP Server Configuration
 
-This plugin includes 3 pre-configured MCP (Model Context Protocol) servers that enhance Claude's capabilities:
+This plugin includes **15 pre-configured MCP** (Model Context Protocol) servers that enhance Claude's capabilities:
 
 ### Available MCP Servers
 
-1. **Context7** - Up-to-date library documentation
-   - Provides current docs for any npm package or library
-   - No configuration needed - works out of the box
+**Documentation & Testing**
+1. **Context7** - Up-to-date library documentation (no config needed)
+2. **Playwright** - Browser automation and E2E testing (no config needed)
+3. **Puppeteer** - Browser automation and scraping (no config needed)
+4. **Chrome DevTools** - Debugging and performance analysis (no config needed)
 
-2. **Playwright** - Browser automation and E2E testing
-   - Browser automation capabilities
-   - Web scraping and testing support
-   - No configuration needed
+**Databases**
+5. **Supabase** - Supabase database operations (**requires config**)
+6. **PostgreSQL** - PostgreSQL database queries (**requires config**)
+7. **SQLite** - SQLite local database (no config needed)
+8. **Redis** - Redis caching operations (**requires config**)
 
-3. **Supabase** - Database operations and management
-   - Direct database access and queries
-   - Schema inspection and management
-   - **Requires configuration** (see below)
+**Deployment & DevOps**
+9. **Vercel** - Deployment management (**requires config**)
+10. **Sentry** - Error tracking and monitoring (**requires config**)
+
+**Integrations**
+11. **GitHub** - Repository operations, issues, PRs (**requires config**)
+12. **Stripe** - Payment processing API (**requires config**)
+13. **Notion** - Workspace management (**requires config**)
+14. **Linear** - Issue tracking (**requires config**)
+15. **Slack** - Team communication (**requires config**)
 
 ### Configuring Supabase MCP Server
 
@@ -277,7 +361,7 @@ After configuration, verify MCP servers are running:
 # In Claude Code
 /mcp status
 
-# You should see all three servers listed as "active"
+# You should see all nine servers listed as "active"
 ```
 
 ### Troubleshooting MCP Servers
@@ -324,7 +408,7 @@ If MCP servers aren't working:
 
 ### MCP Servers Not Working
 
-**Issue**: Context7, Playwright, or Supabase MCP servers unavailable
+**Issue**: MCP servers unavailable (Context7, Playwright, Supabase, Stripe, Chrome DevTools, Vercel, GitHub, Notion, Linear)
 
 **Solutions**:
 - Restart Claude Code after plugin installation
@@ -332,6 +416,7 @@ If MCP servers aren't working:
 - Verify npm/npx is installed and accessible
 - Check MCP server logs for specific errors
 - Try manually: `npx -y @upstash/context7-mcp`
+- For servers requiring credentials (Supabase, Stripe, Vercel, GitHub, Notion, Linear): Verify API tokens/keys are correctly configured in settings
 
 ### Performance Issues
 

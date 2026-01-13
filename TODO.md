@@ -2,6 +2,8 @@
 
 This file tracks potential improvements and enhancements for lorenzos-claude-code plugin.
 
+**Latest Update (v1.9.0)**: Added Context Management, Aider/Cursor-inspired features, and expanded MCP servers to 15 total.
+
 ---
 
 ## STEROIDS ROADMAP (Research-Based Improvements)
@@ -19,22 +21,22 @@ Based on extensive research of Claude Code ecosystem, Cursor, Aider, and MCP ser
 - [x] Create hook templates for common automation patterns
 - [x] Document hook best practices in HOOKS.md
 
-### Agent Skills System (High Impact)
+### Agent Skills System (High Impact) ✅ COMPLETED (v1.8.0)
 *Source: [Agent Skills Documentation](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)*
 
-- [ ] Convert commands to Skills format for auto-invocation by context
-- [ ] Create skill bundles: API Development, Frontend, Database, DevOps
-- [ ] Add skill discovery based on conversation context
-- [ ] Create composite skills that combine multiple capabilities
-- [ ] Document skills vs commands vs subagents usage patterns
+- [x] Convert commands to Skills format for auto-invocation by context
+- [x] Create skill bundles: API Development, Frontend, Database, DevOps
+- [x] Add skill discovery based on conversation context
+- [x] Create composite skills that combine multiple capabilities
+- [x] Document skills vs commands vs subagents usage patterns
 
 ### MCP Server Expansion (High Impact)
 *Sources: [awesome-mcp-servers](https://github.com/wong2/awesome-mcp-servers), [mcpservers.org](https://mcpservers.org/)*
 
 **Productivity & Project Management:**
-- [ ] Add Notion MCP server (`@makenotion/notion-mcp-server`) - workspace management
-- [ ] Add Linear MCP server - issue tracking integration
-- [ ] Add GitHub MCP server (`@github/mcp`) - issues, PRs, discussions
+- [x] Add Notion MCP server (`@notionhq/notion-mcp-server`) - workspace management (v1.7.2)
+- [x] Add Linear MCP server (`@larryhudson/linear-mcp-server`) - issue tracking integration (v1.7.2)
+- [x] Add GitHub MCP server (`@modelcontextprotocol/server-github`) - issues, PRs, discussions (v1.7.2)
 - [ ] Add Slack MCP server - team communication
 
 **Database & Backend:**
@@ -55,41 +57,41 @@ Based on extensive research of Claude Code ecosystem, Cursor, Aider, and MCP ser
 - [ ] Add Figma MCP server - design-to-code workflows
 - [ ] Add XcodeBuildMCP server - iOS/macOS development
 
-### Multi-Agent Orchestration (Medium-High Impact)
+### Multi-Agent Orchestration (Medium-High Impact) ✅ COMPLETED (v1.8.0)
 *Source: [VoltAgent/awesome-claude-code-subagents](https://github.com/VoltAgent/awesome-claude-code-subagents)*
 
-- [ ] Create workflow orchestrators for common patterns:
-  - [ ] Full-stack feature workflow (plan → API → tests → frontend → docs)
-  - [ ] Code review workflow (security → performance → style → summary)
-  - [ ] Refactoring workflow (analyze → plan → execute → verify)
-- [ ] Add confidence-based agent scoring (like official PR review plugin)
-- [ ] Create agent handoff protocols for complex tasks
-- [ ] Implement parallel agent execution for independent tasks
+- [x] Create workflow orchestrators for common patterns:
+  - [x] Full-stack feature workflow (plan → API → tests → frontend → docs)
+  - [x] Code review workflow (security → performance → style → summary)
+  - [x] Refactoring workflow (analyze → plan → execute → verify)
+- [x] Add confidence-based agent scoring (like official PR review plugin)
+- [x] Create agent handoff protocols for complex tasks
+- [x] Implement parallel agent execution for independent tasks
 
-### Context Management (Medium Impact)
+### Context Management (Medium Impact) ✅ COMPLETED (v1.9.0)
 *Source: [Anthropic Context Engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)*
 
-- [ ] Implement structured note-taking for persistent memory
-- [ ] Create just-in-time context loading with file references
-- [ ] Add auto-compact summarization for long sessions
-- [ ] Create memory types: semantic (facts), episodic (actions), procedural (rules)
-- [ ] Add context budget management and optimization
+- [x] Implement structured note-taking for persistent memory (`/memory` command)
+- [x] Create just-in-time context loading with file references (`/context load`)
+- [x] Add auto-compact summarization for long sessions (`/context summarize`)
+- [x] Create memory types: semantic (facts), episodic (actions), procedural (rules)
+- [x] Add context budget management and optimization (`/context budget`)
 
-### Aider-Inspired Features (Medium Impact)
+### Aider-Inspired Features (Medium Impact) ✅ COMPLETED (v1.9.0)
 *Source: [Aider](https://aider.chat/)*
 
-- [ ] Add multi-file coordinated editing patterns
-- [ ] Create codebase mapping/indexing command
-- [ ] Add `/architect` mode for high-level design discussions
-- [ ] Add `/ask` mode for questions without code changes
+- [x] Add multi-file coordinated editing patterns (via orchestrators)
+- [x] Create codebase mapping/indexing command (`/map`)
+- [x] Add `/architect` mode for high-level design discussions
+- [x] Add `/ask` mode for questions without code changes
 - [ ] Implement prompt caching for cost savings
 - [ ] Add voice input support documentation
 
-### Cursor-Inspired Features (Medium Impact)
+### Cursor-Inspired Features (Medium Impact) ✅ PARTIALLY COMPLETE (v1.9.0)
 *Source: [Cursor Features](https://cursor.com/features)*
 
 - [ ] Create autonomy levels documentation (Tab → Cmd+K → Full Agent)
-- [ ] Add `.cursorrules`-like project rules support
+- [x] Add `.cursorrules`-like project rules support (`/rules`, PROJECT-RULES.md)
 - [ ] Create codebase understanding/embedding patterns
 - [ ] Add real-time error detection patterns
 - [ ] Document multi-model selection strategies
@@ -104,6 +106,10 @@ Based on extensive research of Claude Code ecosystem, Cursor, Aider, and MCP ser
 - [ ] Add "Getting Started" video or tutorial
 - [x] Include example use cases for each command with before/after code samples
 - [x] Add troubleshooting section to README.md
+- [x] Update README.md to reflect 35 commands and 19 agents
+- [x] Update CLAUDE.md to include hooks system and all 6 MCP servers
+- [x] Document all command aliases in README.md
+- [x] Add Automation Hooks section to README.md
 
 ### Plugin Quality
 - [x] Review and generalize tech-stack-researcher.md agent (remove app-specific references to YouTube/credit system)
@@ -273,6 +279,37 @@ Based on extensive research of Claude Code ecosystem, Cursor, Aider, and MCP ser
 - [x] Created Stop hooks for auto-commit and notifications (v1.7.0)
 - [x] Created HOOKS.md documentation (v1.7.0)
 - [x] Updated settings.template.json with hooks configuration (v1.7.0)
+- [x] Updated README.md to reflect 35 commands and 19 agents (v1.7.1)
+- [x] Updated CLAUDE.md to include hooks system and all 6 MCP servers (v1.7.1)
+- [x] Documented all command aliases in README.md (v1.7.1)
+- [x] Added Automation Hooks section to README.md (v1.7.1)
+- [x] Updated MCP server counts and descriptions throughout docs (v1.7.1)
+- [x] Fixed code-explain.md frontmatter description (v1.7.2)
+- [x] Added GitHub MCP server (`@modelcontextprotocol/server-github`) (v1.7.2)
+- [x] Added Notion MCP server (`@notionhq/notion-mcp-server`) (v1.7.2)
+- [x] Added Linear MCP server (`@larryhudson/linear-mcp-server`) (v1.7.2)
+- [x] Updated plugin to 9 MCP servers total (v1.7.2)
+- [x] Updated all documentation to reflect 9 MCP servers (v1.7.2)
+- [x] Implemented Agent Skills System with 8 skills (v1.8.0)
+- [x] Created skill bundles: API (3), Frontend (2), Database (2), DevOps (1) (v1.8.0)
+- [x] Documented skills vs commands vs agents patterns (v1.8.0)
+- [x] Implemented 3 multi-agent orchestrators (v1.8.0)
+- [x] Created fullstack-feature-workflow orchestrator (v1.8.0)
+- [x] Created code-review-workflow orchestrator with parallel agents (v1.8.0)
+- [x] Created refactoring-workflow orchestrator (v1.8.0)
+- [x] Added confidence-based agent scoring system (v1.8.0)
+- [x] Documented agent handoff protocols (v1.8.0)
+- [x] Created comprehensive AGENT-SKILLS-RESEARCH.md (v1.8.0)
+- [x] Added `/memory` command for persistent project memory (v1.9.0)
+- [x] Added `/context` command for context management (v1.9.0)
+- [x] Added `/architect` mode for design discussions (v1.9.0)
+- [x] Added `/ask` mode for read-only questions (v1.9.0)
+- [x] Added `/map` command for codebase mapping (v1.9.0)
+- [x] Added `/rules` command with PROJECT-RULES.md template (v1.9.0)
+- [x] Created `.claude/memory/MEMORY.md` for persistent memory (v1.9.0)
+- [x] Added 6 new MCP servers (Slack, Postgres, SQLite, Redis, Sentry, Puppeteer) (v1.9.0)
+- [x] Updated plugin to 15 MCP servers total (v1.9.0)
+- [x] Updated plugin to 41 commands total (v1.9.0)
 
 ---
 

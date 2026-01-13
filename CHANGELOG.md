@@ -5,6 +5,133 @@ All notable changes to Lorenzo's Claude Code plugin will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.9.0] - 2026-01-13
+
+### Added
+- **Context Management System** - Persistent memory and context optimization
+  - `/memory` command - View, update, or manage Claude's persistent project memory
+  - `/context` command - Summarize, compact, or load files just-in-time
+  - `.claude/memory/MEMORY.md` - Structured memory file with semantic, episodic, and procedural sections
+
+- **Aider-Inspired Features** - High-level design and exploration modes
+  - `/architect` command - Architecture discussions without code changes
+  - `/ask` command - Ask questions about codebase without modifications
+  - `/map` command - Generate codebase structure and dependency maps
+
+- **Cursor-Inspired Features** - Project rules and customization
+  - `/rules` command - View, edit, or create project-specific rules
+  - `.claude/rules/PROJECT-RULES.md` - Comprehensive rules template (like .cursorrules)
+
+- **6 New MCP Servers** (15 total)
+  - **Slack** (`@anthropic/mcp-server-slack`) - Team communication
+  - **PostgreSQL** (`@modelcontextprotocol/server-postgres`) - Database queries
+  - **SQLite** (`@modelcontextprotocol/server-sqlite`) - Local database
+  - **Redis** (`@anthropic/mcp-server-redis`) - Caching operations
+  - **Sentry** (`@sentry/mcp-server`) - Error tracking
+  - **Puppeteer** (`@anthropic/mcp-server-puppeteer`) - Browser automation
+
+### Changed
+- Updated plugin to **41 commands** (was 35)
+- Updated plugin to **15 MCP servers** (was 9)
+- Updated all documentation to reflect new features
+
+### Architecture
+- New `.claude/memory/` directory for persistent memory
+- New `.claude/rules/` directory for project rules
+- 6 new command files in `.claude/commands/misc/`
+
+## [1.8.0] - 2026-01-13
+
+### Added
+- **Agent Skills System** - 8 auto-activating context-aware skills
+  - **API Bundle (3 skills)**:
+    - `api-creation` - Auto-applies Next.js 15 patterns, Zod validation, consistent error handling
+    - `api-testing` - Generates comprehensive tests with edge cases, error scenarios, integration patterns
+    - `api-security` - Applies authentication, rate limiting, input sanitization, OWASP protections
+  - **Frontend Bundle (2 skills)**:
+    - `component-patterns` - React/Vue/Angular/Svelte best practices, accessibility, performance
+    - `state-management` - Guides state decisions between local, context, and global stores
+  - **Database Bundle (2 skills)**:
+    - `query-optimization` - N+1 prevention, indexing suggestions, efficient data fetching
+    - `migration-safety` - Safe, reversible migrations with zero-downtime patterns
+  - **DevOps Bundle (1 skill)**:
+    - `ci-cd-patterns` - GitHub Actions best practices, testing pipelines, deployment workflows
+
+- **Multi-Agent Orchestrators** - 3 workflow orchestrators for complex tasks
+  - `fullstack-feature-workflow` - End-to-end feature implementation
+    - Planning stage (requirements-analyst → system-architect)
+    - Build stage (api-architect + frontend-architect in parallel)
+    - Verify stage (test-strategist → code-reviewer → technical-writer)
+  - `code-review-workflow` - Multi-perspective code review
+    - Parallel execution: security-engineer, performance-engineer, code-reviewer, accessibility-auditor
+    - Aggregated scoring system (A-F grades, weighted by category)
+    - Unified report with action items
+  - `refactoring-workflow` - Safe, systematic refactoring
+    - Analysis stage (code-reviewer + performance-profiler)
+    - Planning stage (refactoring-expert + system-architect)
+    - Execution stage (incremental changes with test verification)
+    - Verification stage (test-strategist + code-reviewer)
+
+- **Research Documentation** - `.claude/docs/AGENT-SKILLS-RESEARCH.md`
+  - Comprehensive comparison of Skills vs Commands vs Agents
+  - SKILL.md format specification
+  - Progressive disclosure patterns
+  - Agent scoring algorithms
+  - Implementation roadmap
+
+### Changed
+- Updated plugin version to 1.8.0
+- Updated plugin description to include skills and orchestrators
+- Added `skills`, `orchestrators`, `multi-agent` tags to plugin.json
+- Updated [CLAUDE.md](CLAUDE.md) with Skills and Orchestrators documentation
+- Updated [README.md](README.md) with new features section
+
+### Architecture
+- New `.claude/skills/` directory structure (api/, frontend/, database/, devops/)
+- New `.claude/orchestrators/` directory for workflow definitions
+- New `.claude/docs/` directory for research and design documents
+- Skills use priority-based activation (higher priority checked first)
+- Orchestrators define multi-stage workflows with agent handoff protocols
+
+## [1.7.2] - 2026-01-13
+
+### Added
+- **GitHub MCP Server** (`@modelcontextprotocol/server-github`) - Repository operations, issues, PRs, and search functionality
+- **Notion MCP Server** (`@notionhq/notion-mcp-server`) - Workspace management and data source operations
+- **Linear MCP Server** (`@larryhudson/linear-mcp-server`) - Issue tracking and project management integration
+- **Command Template Test Suite** (`scripts/test-commands.js`) - Comprehensive automated testing for command markdown files
+  - Validates frontmatter structure and required fields
+  - Checks for $ARGUMENTS placeholders
+  - Tests content structure and quality
+  - Validates model assignments
+  - Quality checks for TODO markers, broken links, and formatting
+
+### Changed
+- Updated plugin to **9 MCP servers** total (was 6)
+- Updated all documentation to reflect 9 MCP servers
+- Fixed missing `description` field in [code-explain.md](.claude/commands/misc/code-explain.md)
+
+### Documentation
+- Updated [CLAUDE.md](CLAUDE.md) with all 9 MCP servers
+- Updated [README.md](README.md) with detailed descriptions of new MCP servers
+- Updated troubleshooting section to cover all 9 servers
+- Added configuration requirements for GitHub, Notion, and Linear servers
+
+### Testing
+- Added automated command template validation
+- 102 test assertions passing across 22 command files
+- Validates command structure, frontmatter, placeholders, and quality
+
+## [1.7.1] - 2026-01-13
+
+### Documentation
+- Comprehensive documentation overhaul
+- Updated README.md to accurately reflect 35 commands and 19 agents
+- Updated CLAUDE.md to include hooks system and MCP servers
+- Documented all command aliases throughout documentation
+- Added Automation Hooks section to README.md
+- Updated MCP server counts and descriptions
+
 ## [1.7.0] - 2026-01-12
 
 ### Added
