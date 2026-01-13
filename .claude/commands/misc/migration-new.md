@@ -9,6 +9,18 @@ Generate a database migration for the specified schema change.
 
 $ARGUMENTS
 
+## Options (if not specified above, ask or use defaults)
+
+| Option | Choices | Default |
+|--------|---------|---------|
+| **ORM/Tool** | Prisma, Drizzle, Supabase, Knex, Raw SQL | Auto-detect from project |
+| **Database** | PostgreSQL, MySQL, SQLite | PostgreSQL |
+| **Include RLS** | Yes (Supabase), No | Yes for Supabase |
+| **Include Indexes** | Yes, No | Yes for foreign keys |
+| **Include Rollback** | Yes, No | Yes |
+
+If the ORM is unclear, ask: "Which database tool are you using: Prisma, Drizzle, Supabase, or Knex?"
+
 ## Migration Framework Detection
 
 Auto-detect or specify the migration tool:

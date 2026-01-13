@@ -5,6 +5,16 @@ All notable changes to Lorenzo's Claude Code plugin will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.1] - 2026-01-12
+
+### Added
+- **Wizard command** (`/wizard`) - Interactive guide to choose commands and build specifications
+- **Interactive options tables** - Added to `/component-new`, `/test-new`, `/migration-new` to prompt for preferences
+
+### Changed
+- Updated plugin to 35 commands (22 unique + 13 aliases)
+- Commands now prompt for clarification when options are unclear
+
 ## [1.5.0] - 2026-01-12
 
 ### Added

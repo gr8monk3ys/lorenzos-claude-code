@@ -9,6 +9,18 @@ Generate a new React component following 2025 best practices.
 
 $ARGUMENTS
 
+## Options (if not specified above, ask or use defaults)
+
+| Option | Choices | Default |
+|--------|---------|---------|
+| **Component Type** | Server Component, Client Component | Server (unless needs interactivity) |
+| **Styling** | Tailwind, CSS Modules, Styled Components | Tailwind |
+| **Include Tests** | Yes, No | No (unless requested) |
+| **State Management** | useState, useReducer, Zustand, Context | useState for local |
+| **Include Storybook** | Yes, No | No |
+
+If the specification above is vague, ask: "What styling approach? Should I include tests?"
+
 ## Modern React + TypeScript Standards
 
 ### 1. **Function Components Only**

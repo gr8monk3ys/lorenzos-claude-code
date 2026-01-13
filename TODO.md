@@ -35,7 +35,7 @@ This file tracks potential improvements and enhancements for lorenzos-claude-cod
 - [x] Add `.claude/settings.template.json` with recommended settings
 - [x] Create example project template using the plugin
 - [x] Add command aliases (e.g., `/api` → `/api-new`)
-- [ ] Add interactive prompts for commands with multiple options
+- [x] Add interactive prompts for commands with multiple options
 
 ### MCP Servers
 - [x] Research and add Vercel MCP server when available
@@ -46,8 +46,7 @@ This file tracks potential improvements and enhancements for lorenzos-claude-cod
 ## Low Priority
 
 ### Community & Marketing
-- [ ] Submit to Claude Code Plugins Marketplace (https://claudecodemarketplace.com/)
-- [ ] Submit to CC Plugins Curated Marketplace (https://github.com/ccplugins/marketplace)
+- [ ] Submit to CC Plugins Marketplace via PR (https://github.com/ccplugins/marketplace)
 - [ ] Create Twitter/X announcement thread with examples
 - [ ] Create blog post explaining the plugin's architecture
 - [ ] Add "Showcase" section to README with community examples
@@ -56,7 +55,7 @@ This file tracks potential improvements and enhancements for lorenzos-claude-cod
 - [x] Add plugin settings/preferences file for user customization
 - [x] Support for multiple framework presets (Vue, Angular, Svelte)
 - [ ] Add command history and favorites
-- [ ] Create interactive command builder/wizard
+- [x] Create interactive command builder/wizard
 - [ ] Add telemetry (opt-in) to understand command usage
 
 ### Testing & Quality Assurance
@@ -141,6 +140,8 @@ This file tracks potential improvements and enhancements for lorenzos-claude-cod
 - [x] Created research doc for alternative approaches (v1.5.0)
 - [x] Created project type detection script `scripts/detect-project.js` (v1.5.0)
 - [x] Added "Next Steps" suggestions to API commands (v1.5.0)
+- [x] Added `/wizard` command for interactive command selection (v1.5.1)
+- [x] Added interactive options tables to commands (v1.5.1)
 
 ---
 

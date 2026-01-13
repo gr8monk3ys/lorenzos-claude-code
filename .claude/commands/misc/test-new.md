@@ -9,6 +9,17 @@ Generate a comprehensive test file for the specified code.
 
 $ARGUMENTS
 
+## Options (if not specified above, ask or use defaults)
+
+| Option | Choices | Default |
+|--------|---------|---------|
+| **Framework** | Jest, Vitest, Playwright | Auto-detect from project |
+| **Test Type** | Unit, Integration, E2E | Unit for functions, Integration for components |
+| **Coverage** | Happy path only, Full coverage | Full coverage |
+| **Mocking** | Mock externals, Use real implementations | Mock externals |
+
+If the test framework is unclear, ask: "Which testing framework should I use: Jest, Vitest, or Playwright?"
+
 ## Testing Framework Selection
 
 Automatically detect or ask which framework to use:
