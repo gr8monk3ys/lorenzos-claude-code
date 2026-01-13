@@ -1,6 +1,8 @@
 # Lorenzo's Claude Code Setup
 
-My personal Claude Code configuration for productive web development. This plugin provides **41 slash commands**, **19 specialized AI agents**, **8 auto-activating skills**, **3 multi-agent orchestrators**, and **15 MCP servers** to supercharge your development workflow.
+My personal Claude Code configuration for productive web development. This plugin provides **28 slash commands**, **19 specialized AI agents**, and **15 MCP servers** to supercharge your development workflow.
+
+> **Note**: This plugin also includes 8 auto-activating skills, 3 multi-agent orchestrators, and 6 automation hooks as bonus content in the `.claude/` directory.
 
 ## Quick Install
 
