@@ -2,6 +2,100 @@
 
 This file tracks potential improvements and enhancements for lorenzos-claude-code plugin.
 
+---
+
+## STEROIDS ROADMAP (Research-Based Improvements)
+
+Based on extensive research of Claude Code ecosystem, Cursor, Aider, and MCP servers.
+
+### Hooks & Automation (High Impact)
+*Source: [Claude Code Hooks Guide](https://code.claude.com/docs/en/hooks-guide)*
+
+- [ ] Add `.claude/hooks/` directory with pre-configured hook scripts
+- [ ] Create PreToolUse hook to block sensitive file modifications (.env, secrets)
+- [ ] Create PostToolUse hook for auto-formatting after edits (prettier, eslint)
+- [ ] Create PostToolUse hook for TypeScript type-checking after .ts edits
+- [ ] Add hook for automatic git commits after Claude edits (with descriptive messages)
+- [ ] Create hook templates for common automation patterns
+- [ ] Document hook best practices in HOOKS.md
+
+### Agent Skills System (High Impact)
+*Source: [Agent Skills Documentation](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)*
+
+- [ ] Convert commands to Skills format for auto-invocation by context
+- [ ] Create skill bundles: API Development, Frontend, Database, DevOps
+- [ ] Add skill discovery based on conversation context
+- [ ] Create composite skills that combine multiple capabilities
+- [ ] Document skills vs commands vs subagents usage patterns
+
+### MCP Server Expansion (High Impact)
+*Sources: [awesome-mcp-servers](https://github.com/wong2/awesome-mcp-servers), [mcpservers.org](https://mcpservers.org/)*
+
+**Productivity & Project Management:**
+- [ ] Add Notion MCP server (`@makenotion/notion-mcp-server`) - workspace management
+- [ ] Add Linear MCP server - issue tracking integration
+- [ ] Add GitHub MCP server (`@github/mcp`) - issues, PRs, discussions
+- [ ] Add Slack MCP server - team communication
+
+**Database & Backend:**
+- [ ] Add MongoDB MCP server - document database operations
+- [ ] Add MySQL MCP server - relational database operations
+- [ ] Add Prisma MCP server - ORM operations and migrations
+- [ ] Add Redis MCP server - caching operations
+
+**Cloud & Infrastructure:**
+- [ ] Add AWS MCP suite (DynamoDB, Aurora, Neptune, S3)
+- [ ] Add Terraform MCP server - infrastructure as code
+- [ ] Add Kubernetes MCP server - cluster management
+- [ ] Add Docker MCP server - container operations
+
+**Development Tools:**
+- [ ] Add Sentry MCP server - error tracking
+- [ ] Add Datadog MCP server - monitoring and observability
+- [ ] Add Figma MCP server - design-to-code workflows
+- [ ] Add XcodeBuildMCP server - iOS/macOS development
+
+### Multi-Agent Orchestration (Medium-High Impact)
+*Source: [VoltAgent/awesome-claude-code-subagents](https://github.com/VoltAgent/awesome-claude-code-subagents)*
+
+- [ ] Create workflow orchestrators for common patterns:
+  - [ ] Full-stack feature workflow (plan → API → tests → frontend → docs)
+  - [ ] Code review workflow (security → performance → style → summary)
+  - [ ] Refactoring workflow (analyze → plan → execute → verify)
+- [ ] Add confidence-based agent scoring (like official PR review plugin)
+- [ ] Create agent handoff protocols for complex tasks
+- [ ] Implement parallel agent execution for independent tasks
+
+### Context Management (Medium Impact)
+*Source: [Anthropic Context Engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)*
+
+- [ ] Implement structured note-taking for persistent memory
+- [ ] Create just-in-time context loading with file references
+- [ ] Add auto-compact summarization for long sessions
+- [ ] Create memory types: semantic (facts), episodic (actions), procedural (rules)
+- [ ] Add context budget management and optimization
+
+### Aider-Inspired Features (Medium Impact)
+*Source: [Aider](https://aider.chat/)*
+
+- [ ] Add multi-file coordinated editing patterns
+- [ ] Create codebase mapping/indexing command
+- [ ] Add `/architect` mode for high-level design discussions
+- [ ] Add `/ask` mode for questions without code changes
+- [ ] Implement prompt caching for cost savings
+- [ ] Add voice input support documentation
+
+### Cursor-Inspired Features (Medium Impact)
+*Source: [Cursor Features](https://cursor.com/features)*
+
+- [ ] Create autonomy levels documentation (Tab → Cmd+K → Full Agent)
+- [ ] Add `.cursorrules`-like project rules support
+- [ ] Create codebase understanding/embedding patterns
+- [ ] Add real-time error detection patterns
+- [ ] Document multi-model selection strategies
+
+---
+
 ## High Priority
 
 ### Documentation Enhancements
@@ -23,6 +117,8 @@ This file tracks potential improvements and enhancements for lorenzos-claude-cod
 - [x] Add `/hook-new` command for custom React hooks
 - [x] Consider `/deploy` command for deployment workflows
 
+---
+
 ## Medium Priority
 
 ### Agent Enhancements
@@ -31,17 +127,26 @@ This file tracks potential improvements and enhancements for lorenzos-claude-cod
 - [x] Add "api-architect" agent focused on REST/GraphQL design
 - [x] Review agent model assignments (sonnet vs haiku) for cost optimization
 
+### New Agents (Research-Based)
+- [ ] Add "code-reviewer" agent with multi-aspect review (security, perf, style)
+- [ ] Add "test-strategist" agent for test planning and coverage analysis
+- [ ] Add "migration-planner" agent for database schema evolution
+- [ ] Add "accessibility-auditor" agent for a11y compliance
+- [ ] Add "performance-profiler" agent for bottleneck detection
+
 ### Developer Experience
 - [x] Add `.claude/settings.template.json` with recommended settings
 - [x] Create example project template using the plugin
 - [x] Add command aliases (e.g., `/api` → `/api-new`)
 - [x] Add interactive prompts for commands with multiple options
 
-### MCP Servers
+### MCP Servers (Completed)
 - [x] Research and add Vercel MCP server when available
 - [x] Research and add Stripe MCP server when available
 - [x] Add Chrome DevTools MCP server when available
 - [x] Document how to configure MCP server environment variables
+
+---
 
 ## Low Priority
 
@@ -50,6 +155,7 @@ This file tracks potential improvements and enhancements for lorenzos-claude-cod
 - [ ] Create Twitter/X announcement thread with examples
 - [ ] Create blog post explaining the plugin's architecture
 - [ ] Add "Showcase" section to README with community examples
+- [ ] Submit to [awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code)
 
 ### Advanced Features
 - [x] Add plugin settings/preferences file for user customization
@@ -69,6 +175,8 @@ This file tracks potential improvements and enhancements for lorenzos-claude-cod
 - [ ] Add support for multiple languages in command descriptions
 - [ ] Translate README.md to Spanish, French, German, Japanese
 - [ ] Consider multi-language agent responses
+
+---
 
 ## Ideas & Research
 
@@ -90,6 +198,16 @@ This file tracks potential improvements and enhancements for lorenzos-claude-cod
 - [ ] Optimize MCP server startup times
 - [ ] Cache frequently used command templates
 - [ ] Lazy-load agent prompts
+
+### Headless/CI Integration
+*Source: [Claude Code Best Practices](https://skywork.ai/blog/claude-code-plugin-best-practices-large-codebases-2025/)*
+
+- [ ] Create read-only mode for code analysis in CI
+- [ ] Add PR comment integration for automated reviews
+- [ ] Create artifact generation for CI pipelines
+- [ ] Document headless operation best practices
+
+---
 
 ## Completed ✅
 
@@ -142,6 +260,22 @@ This file tracks potential improvements and enhancements for lorenzos-claude-cod
 - [x] Added "Next Steps" suggestions to API commands (v1.5.0)
 - [x] Added `/wizard` command for interactive command selection (v1.5.1)
 - [x] Added interactive options tables to commands (v1.5.1)
+- [x] Comprehensive ecosystem research for STEROIDS roadmap (v1.5.1)
+
+---
+
+## Research Sources
+
+Key resources that informed the STEROIDS roadmap:
+
+- [Claude Code Plugins Documentation](https://code.claude.com/docs/en/plugins)
+- [Claude Code Hooks Guide](https://code.claude.com/docs/en/hooks-guide)
+- [awesome-mcp-servers](https://github.com/wong2/awesome-mcp-servers)
+- [awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code)
+- [Aider - AI Pair Programming](https://aider.chat/)
+- [Cursor IDE Features](https://cursor.com/features)
+- [Anthropic Context Engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)
+- [VoltAgent Subagents Collection](https://github.com/VoltAgent/awesome-claude-code-subagents)
 
 ---
 
