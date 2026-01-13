@@ -1,0 +1,43 @@
+# Pre-commit hooks for lorenzos-claude-code
+# Install: pip install pre-commit && pre-commit install
+
+repos:
+  # JSON validation
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: check-json
+        files: \.(json)$
+      - id: pretty-format-json
+        args: [--autofix, --indent, "2"]
+        files: ^\.claude-plugin/.*\.json$
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+      - id: check-merge-conflict
+      - id: check-yaml
+
+  # Markdown linting
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.38.0
+    hooks:
+      - id: markdownlint
+        args: [--fix]
+        exclude: ^node_modules/
+
+  # Custom plugin validation
+  - repo: local
+    hooks:
+      - id: validate-plugin-paths
+        name: Validate plugin.json paths
+        entry: node -e "
+          const plugin = JSON.parse(require('fs').readFileSync('.claude-plugin/plugin.json', 'utf8'));
+          const fs = require('fs');
+          let ok = true;
+          plugin.commands.forEach(c => { if (!fs.existsSync(c.path)) { console.error('Missing:', c.path); ok = false; }});
+          plugin.agents.forEach(a => { if (!fs.existsSync(a.path)) { console.error('Missing:', a.path); ok = false; }});
+          process.exit(ok ? 0 : 1);
+          "
+        language: system
+        files: ^\.claude-plugin/plugin\.json$
+        pass_filenames: false

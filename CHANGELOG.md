@@ -5,6 +5,61 @@ All notable changes to Lorenzo's Claude Code plugin will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.0] - 2026-01-12
+
+### Added
+- **Vue 3 component command** (`/component-vue`) - Create Vue 3 components with Composition API and TypeScript
+- **Angular component command** (`/component-angular`) - Create Angular 17+ standalone components with signals
+- **Svelte 5 component command** (`/component-svelte`) - Create Svelte 5 components with runes
+- **Plugin settings system** (`plugin-settings.json`) - User preferences for framework, styling, testing, deployment
+- **13 command aliases** for shorter command invocation (e.g., `/api` → `/api-new`)
+
+### Changed
+- Updated plugin to 34 commands total (21 unique + 13 aliases)
+- Plugin now supports Vue, Angular, and Svelte in addition to React/Next.js
+- API commands now include "Next Steps" suggestions for command chaining
+
+### Research & Documentation
+- **Alternative approaches research** ([RESEARCH-alternative-approaches.md](.claude/docs/RESEARCH-alternative-approaches.md)) exploring:
+  - Command composition patterns (workflow commands, suggestions, compound arguments)
+  - Plugin extension system for community commands
+  - Stack presets for Vue/Nuxt, Angular, SvelteKit, Remix
+  - Agent specialization based on project type detection
+- **Project detection script** (`scripts/detect-project.js`) - Detects framework, database, testing, styling, and state management
+
+## [1.4.0] - 2026-01-12
+
+### Added
+- **Stripe MCP server** (`@stripe/mcp`) - Payment processing and Stripe API operations
+- **Chrome DevTools MCP server** (`chrome-devtools-mcp`) - Browser debugging and performance analysis
+- **Vercel MCP server** (`@vercel/mcp`) - Deployment management and project operations
+- GitHub Actions CI workflow for automated validation (JSON syntax, path verification, frontmatter checks)
+- Pre-commit hooks configuration (`.pre-commit-config.yaml`) for local quality checks
+- Markdownlint configuration (`.markdownlint.json`) for consistent markdown formatting
+- Example project template (`examples/nextjs-starter/`) with workflow demonstrations
+- Plugin validation script (`scripts/validate-plugin.js`) for comprehensive checks
+- Agent quality test suite (`scripts/test-agents.js`) for prompt validation
+
+### Changed
+- Updated plugin to 6 MCP servers total (was 3)
+- Enhanced MCP-SERVERS.md with comprehensive documentation for all 6 servers
+- CI workflow now includes test script execution
+
+## [1.3.0] - 2026-01-12
+
+### Added
+- **database-architect** agent - Design optimal database schemas with focus on scalability, performance, and data integrity
+- **devops-engineer** agent - Design CI/CD pipelines, infrastructure as code, and deployment strategies
+- **api-architect** agent - Design RESTful and GraphQL APIs with focus on consistency and developer experience
+- MCP server environment variable configuration documentation in MCP-SERVERS.md
+
+### Changed
+- Updated plugin to 14 agents total (was 11)
+- Improved CLAUDE.md with concise development guidance
+
+### Fixed
+- Registered previously unregistered database-architect agent in plugin.json
+
 ## [1.2.0] - 2025-01-12
 
 ### Added

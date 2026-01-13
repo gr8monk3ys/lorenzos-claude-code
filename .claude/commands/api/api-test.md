@@ -114,3 +114,10 @@ describe('API Endpoint', () => {
    - Concurrent requests
 
 Generate production-ready tests I can run immediately with `npm test`.
+
+## Next Steps
+
+After generating tests, consider running:
+- `/api-protect` - Add authentication and security if not already done
+- `/lint` - Run linting to ensure test code quality
+- `/docs` - Generate or update API documentation

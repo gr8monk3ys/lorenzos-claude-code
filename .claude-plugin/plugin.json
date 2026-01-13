@@ -1,7 +1,7 @@
 {
   "name": "lorenzos-claude-code",
-  "version": "1.2.0",
-  "description": "Lorenzo's personal Claude Code setup with 18 productivity commands and 11 specialized AI agents for modern web development",
+  "version": "1.5.0",
+  "description": "Lorenzo's personal Claude Code setup with 34 slash commands (21 unique + 13 aliases) and 14 specialized AI agents for modern web development",
   "author": "Lorenzo",
   "license": "GPL-3.0",
   "commands": [
@@ -16,9 +16,19 @@
       "description": "Generate detailed code explanations"
     },
     {
+      "name": "explain",
+      "path": ".claude/commands/misc/code-explain.md",
+      "description": "[Alias] Explain code (alias for /code-explain)"
+    },
+    {
       "name": "code-optimize",
       "path": ".claude/commands/misc/code-optimize.md",
       "description": "Optimize code for performance"
+    },
+    {
+      "name": "optimize",
+      "path": ".claude/commands/misc/code-optimize.md",
+      "description": "[Alias] Optimize code (alias for /code-optimize)"
     },
     {
       "name": "code-cleanup",
@@ -26,9 +36,19 @@
       "description": "Clean up and refactor code"
     },
     {
+      "name": "cleanup",
+      "path": ".claude/commands/misc/code-cleanup.md",
+      "description": "[Alias] Clean up code (alias for /code-cleanup)"
+    },
+    {
       "name": "feature-plan",
       "path": ".claude/commands/misc/feature-plan.md",
       "description": "Plan new feature implementation"
+    },
+    {
+      "name": "plan",
+      "path": ".claude/commands/misc/feature-plan.md",
+      "description": "[Alias] Plan feature (alias for /feature-plan)"
     },
     {
       "name": "lint",
@@ -41,9 +61,19 @@
       "description": "Generate documentation"
     },
     {
+      "name": "docs",
+      "path": ".claude/commands/misc/docs-generate.md",
+      "description": "[Alias] Generate docs (alias for /docs-generate)"
+    },
+    {
       "name": "api-new",
       "path": ".claude/commands/api/api-new.md",
       "description": "Create new API endpoint"
+    },
+    {
+      "name": "api",
+      "path": ".claude/commands/api/api-new.md",
+      "description": "[Alias] Create API endpoint (alias for /api-new)"
     },
     {
       "name": "api-test",
@@ -61,9 +91,34 @@
       "description": "Create new React component"
     },
     {
+      "name": "component",
+      "path": ".claude/commands/ui/component-new.md",
+      "description": "[Alias] Create component (alias for /component-new)"
+    },
+    {
       "name": "page-new",
       "path": ".claude/commands/ui/page-new.md",
       "description": "Create new Next.js page"
+    },
+    {
+      "name": "page",
+      "path": ".claude/commands/ui/page-new.md",
+      "description": "[Alias] Create page (alias for /page-new)"
+    },
+    {
+      "name": "component-vue",
+      "path": ".claude/commands/frameworks/component-vue.md",
+      "description": "Create new Vue 3 component with Composition API"
+    },
+    {
+      "name": "component-angular",
+      "path": ".claude/commands/frameworks/component-angular.md",
+      "description": "Create new Angular component with standalone components"
+    },
+    {
+      "name": "component-svelte",
+      "path": ".claude/commands/frameworks/component-svelte.md",
+      "description": "Create new Svelte 5 component with runes"
     },
     {
       "name": "types-gen",
@@ -71,9 +126,19 @@
       "description": "Generate Supabase TypeScript types"
     },
     {
+      "name": "types",
+      "path": ".claude/commands/supabase/types-gen.md",
+      "description": "[Alias] Generate types (alias for /types-gen)"
+    },
+    {
       "name": "edge-function-new",
       "path": ".claude/commands/supabase/edge-function-new.md",
       "description": "Create new Supabase Edge Function"
+    },
+    {
+      "name": "edge",
+      "path": ".claude/commands/supabase/edge-function-new.md",
+      "description": "[Alias] Create edge function (alias for /edge-function-new)"
     },
     {
       "name": "test-new",
@@ -81,14 +146,29 @@
       "description": "Generate test files for Jest, Vitest, or Playwright"
     },
     {
+      "name": "test",
+      "path": ".claude/commands/misc/test-new.md",
+      "description": "[Alias] Generate tests (alias for /test-new)"
+    },
+    {
       "name": "migration-new",
       "path": ".claude/commands/misc/migration-new.md",
       "description": "Create database migration files for schema changes"
     },
     {
+      "name": "migration",
+      "path": ".claude/commands/misc/migration-new.md",
+      "description": "[Alias] Create migration (alias for /migration-new)"
+    },
+    {
       "name": "hook-new",
       "path": ".claude/commands/misc/hook-new.md",
       "description": "Create custom React hooks with TypeScript"
+    },
+    {
+      "name": "hook",
+      "path": ".claude/commands/misc/hook-new.md",
+      "description": "[Alias] Create hook (alias for /hook-new)"
     },
     {
       "name": "deploy",
@@ -151,6 +231,21 @@
       "name": "technical-writer",
       "path": ".claude/agents/technical-writer.md",
       "description": "Create clear, comprehensive technical documentation tailored to specific audiences with focus on usability"
+    },
+    {
+      "name": "database-architect",
+      "path": ".claude/agents/database-architect.md",
+      "description": "Design optimal database schemas and data models with focus on scalability, performance, and data integrity"
+    },
+    {
+      "name": "devops-engineer",
+      "path": ".claude/agents/devops-engineer.md",
+      "description": "Design CI/CD pipelines, infrastructure as code, and deployment strategies for reliable software delivery"
+    },
+    {
+      "name": "api-architect",
+      "path": ".claude/agents/api-architect.md",
+      "description": "Design RESTful and GraphQL APIs with focus on consistency, versioning, and developer experience"
     }
   ],
   "mcpServers": {
@@ -168,6 +263,21 @@
       "command": "npx",
       "args": ["-y", "@supabase/mcp-server-supabase"],
       "description": "Supabase database operations and management"
+    },
+    "stripe": {
+      "command": "npx",
+      "args": ["-y", "@stripe/mcp", "--tools=all"],
+      "description": "Stripe payment processing and API operations"
+    },
+    "chrome-devtools": {
+      "command": "npx",
+      "args": ["-y", "chrome-devtools-mcp@latest"],
+      "description": "Chrome DevTools debugging and performance analysis"
+    },
+    "vercel": {
+      "command": "npx",
+      "args": ["-y", "@vercel/mcp"],
+      "description": "Vercel deployment management and project operations"
     }
   },
   "tags": [

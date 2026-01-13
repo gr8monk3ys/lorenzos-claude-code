@@ -1,0 +1,196 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    name: Validate Plugin
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Validate plugin.json
+        run: |
+          echo "Validating plugin.json syntax..."
+          node -e "JSON.parse(require('fs').readFileSync('.claude-plugin/plugin.json', 'utf8'))"
+          echo "plugin.json is valid JSON"
+
+      - name: Validate marketplace.json
+        run: |
+          echo "Validating marketplace.json syntax..."
+          node -e "JSON.parse(require('fs').readFileSync('.claude-plugin/marketplace.json', 'utf8'))"
+          echo "marketplace.json is valid JSON"
+
+      - name: Check command paths exist
+        run: |
+          echo "Checking all command paths exist..."
+          node -e "
+            const plugin = JSON.parse(require('fs').readFileSync('.claude-plugin/plugin.json', 'utf8'));
+            const fs = require('fs');
+            let errors = [];
+
+            plugin.commands.forEach(cmd => {
+              if (!fs.existsSync(cmd.path)) {
+                errors.push('Missing command file: ' + cmd.path);
+              }
+            });
+
+            plugin.agents.forEach(agent => {
+              if (!fs.existsSync(agent.path)) {
+                errors.push('Missing agent file: ' + agent.path);
+              }
+            });
+
+            if (errors.length > 0) {
+              console.error(errors.join('\n'));
+              process.exit(1);
+            }
+
+            console.log('All ' + plugin.commands.length + ' command paths exist');
+            console.log('All ' + plugin.agents.length + ' agent paths exist');
+          "
+
+      - name: Validate frontmatter in commands
+        run: |
+          echo "Validating command frontmatter..."
+          node -e "
+            const fs = require('fs');
+            const path = require('path');
+
+            function validateFrontmatter(filePath, requiredFields) {
+              const content = fs.readFileSync(filePath, 'utf8');
+              const match = content.match(/^---\n([\s\S]*?)\n---/);
+
+              if (!match) {
+                return 'Missing frontmatter';
+              }
+
+              const frontmatter = match[1];
+              const missing = requiredFields.filter(field => !frontmatter.includes(field + ':'));
+
+              if (missing.length > 0) {
+                return 'Missing fields: ' + missing.join(', ');
+              }
+
+              return null;
+            }
+
+            const plugin = JSON.parse(fs.readFileSync('.claude-plugin/plugin.json', 'utf8'));
+            let errors = [];
+
+            plugin.commands.forEach(cmd => {
+              const error = validateFrontmatter(cmd.path, ['description']);
+              if (error) {
+                errors.push(cmd.path + ': ' + error);
+              }
+            });
+
+            plugin.agents.forEach(agent => {
+              const error = validateFrontmatter(agent.path, ['name', 'description']);
+              if (error) {
+                errors.push(agent.path + ': ' + error);
+              }
+            });
+
+            if (errors.length > 0) {
+              console.error('Frontmatter validation errors:');
+              console.error(errors.join('\n'));
+              process.exit(1);
+            }
+
+            console.log('All frontmatter validated successfully');
+          "
+
+  lint-markdown:
+    name: Lint Markdown
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install markdownlint-cli
+        run: npm install -g markdownlint-cli
+
+      - name: Lint Markdown files
+        run: markdownlint '**/*.md' --ignore node_modules
+        continue-on-error: true # Warning only for now
+
+  count-check:
+    name: Verify Counts
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify command and agent counts match description
+        run: |
+          node -e "
+            const plugin = JSON.parse(require('fs').readFileSync('.claude-plugin/plugin.json', 'utf8'));
+            const commandCount = plugin.commands.length;
+            const agentCount = plugin.agents.length;
+
+            const descMatch = plugin.description.match(/(\d+)\s+productivity\s+commands.*?(\d+)\s+specialized\s+AI\s+agents/i);
+
+            if (!descMatch) {
+              console.log('Could not parse counts from description');
+              process.exit(0);
+            }
+
+            const descCommands = parseInt(descMatch[1]);
+            const descAgents = parseInt(descMatch[2]);
+
+            let errors = [];
+
+            if (commandCount !== descCommands) {
+              errors.push('Command count mismatch: description says ' + descCommands + ', actually ' + commandCount);
+            }
+
+            if (agentCount !== descAgents) {
+              errors.push('Agent count mismatch: description says ' + descAgents + ', actually ' + agentCount);
+            }
+
+            if (errors.length > 0) {
+              console.error(errors.join('\n'));
+              process.exit(1);
+            }
+
+            console.log('Counts verified: ' + commandCount + ' commands, ' + agentCount + ' agents');
+          "
+
+  test-scripts:
+    name: Run Test Scripts
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Run plugin validation
+        run: node scripts/validate-plugin.js
+
+      - name: Run agent tests
+        run: node scripts/test-agents.js
+        continue-on-error: true # Quality metrics, not blocking

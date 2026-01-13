@@ -1,6 +1,6 @@
 # Lorenzo's Claude Code Setup
 
-My personal Claude Code configuration for productive web development. This plugin provides **18 slash commands** and **11 specialized AI agents** to supercharge your development workflow.
+My personal Claude Code configuration for productive web development. This plugin provides **18 slash commands** and **14 specialized AI agents** to supercharge your development workflow.
 
 ## Quick Install
 
@@ -44,7 +44,7 @@ My personal Claude Code configuration for productive web development. This plugi
 - `/types-gen` - Generate TypeScript types
 - `/edge-function-new` - Create Edge Functions
 
-### 🤖 Specialized AI Agents (11)
+### 🤖 Specialized AI Agents (14)
 
 **Architecture & Planning**
 - **tech-stack-researcher** - Technology choice recommendations with trade-offs
@@ -52,11 +52,16 @@ My personal Claude Code configuration for productive web development. This plugi
 - **backend-architect** - Backend systems with data integrity & security
 - **frontend-architect** - Performant, accessible UI architecture
 - **requirements-analyst** - Transform ideas into concrete specifications
+- **database-architect** - Optimal database schemas and data models
+- **api-architect** - RESTful and GraphQL API design
 
 **Code Quality & Performance**
 - **refactoring-expert** - Systematic refactoring and clean code
 - **performance-engineer** - Measurement-driven optimization
 - **security-engineer** - Vulnerability identification and security standards
+
+**Infrastructure & Operations**
+- **devops-engineer** - CI/CD pipelines and deployment strategies
 
 **Documentation & Research**
 - **technical-writer** - Clear, comprehensive documentation

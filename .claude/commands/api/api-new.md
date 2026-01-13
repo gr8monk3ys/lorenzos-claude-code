@@ -69,3 +69,10 @@ Create a complete API route with:
 - L No inline business logic (extract to services)
 
 Generate production-ready code that I can immediately use in my Next.js project.
+
+## Next Steps
+
+After creating your API endpoint, consider running:
+- `/api-test` - Generate comprehensive tests for this endpoint
+- `/api-protect` - Add authentication, rate limiting, and security
+- `/docs` - Generate API documentation

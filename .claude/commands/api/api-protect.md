@@ -145,3 +145,10 @@ if (!user || !hasRole(user, 'admin')) {
 ```
 
 Generate production-ready, secure code that follows the principle of least privilege.
+
+## Next Steps
+
+After securing your API endpoint, consider running:
+- `/api-test` - Generate security-focused tests for auth/authz
+- `/docs` - Document authentication requirements
+- `/deploy` - Set up secure deployment configuration
