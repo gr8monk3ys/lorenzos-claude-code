@@ -1,30 +1,9 @@
 {
   "name": "lorenzos-claude-code",
-  "version": "1.9.0",
+  "version": "1.9.1",
   "description": "Lorenzo's personal Claude Code setup with 41 commands, 19 agents, 8 skills, 15 MCP servers, and 6 automation hooks for modern web development",
   "author": {
     "name": "Lorenzo",
-    "email": "lorenzosca7@protonmail.ch",
-    "url": "https://github.com/gr8monk3ys"
-  },
-  "license": "GPL-3.0",
-  "repository": "https://github.com/gr8monk3ys/lorenzos-claude-code",
-  "keywords": [
-    "productivity",
-    "nextjs",
-    "supabase",
-    "typescript",
-    "react",
-    "api",
-    "development",
-    "mcp",
-    "hooks",
-    "automation",
-    "skills",
-    "multi-agent"
-  ],
-  "commands": "./.claude/commands",
-  "agents": "./.claude/agents",
-  "hooks": "./.claude/hooks/hooks.json",
-  "mcpServers": "./.mcp.json"
+    "email": "lorenzosca7@protonmail.ch"
+  }
 }

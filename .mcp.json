@@ -1,79 +1,77 @@
 {
-  "mcpServers": {
-    "context7": {
-      "command": "npx",
-      "args": ["-y", "@upstash/context7-mcp"],
-      "description": "Access up-to-date documentation for any library"
-    },
-    "playwright": {
-      "command": "npx",
-      "args": ["@playwright/mcp@latest"],
-      "description": "Browser automation and web testing capabilities"
-    },
-    "supabase": {
-      "command": "npx",
-      "args": ["-y", "@supabase/mcp-server-supabase"],
-      "description": "Supabase database operations and management"
-    },
-    "stripe": {
-      "command": "npx",
-      "args": ["-y", "@stripe/mcp", "--tools=all"],
-      "description": "Stripe payment processing and API operations"
-    },
-    "chrome-devtools": {
-      "command": "npx",
-      "args": ["-y", "chrome-devtools-mcp@latest"],
-      "description": "Chrome DevTools debugging and performance analysis"
-    },
-    "vercel": {
-      "command": "npx",
-      "args": ["-y", "@vercel/mcp"],
-      "description": "Vercel deployment management and project operations"
-    },
-    "github": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-github"],
-      "description": "GitHub repository operations, issues, PRs, and search"
-    },
-    "notion": {
-      "command": "npx",
-      "args": ["-y", "@notionhq/notion-mcp-server"],
-      "description": "Notion workspace management and data source operations"
-    },
-    "linear": {
-      "command": "npx",
-      "args": ["-y", "@larryhudson/linear-mcp-server"],
-      "description": "Linear issue tracking and project management"
-    },
-    "slack": {
-      "command": "npx",
-      "args": ["-y", "@anthropic/mcp-server-slack"],
-      "description": "Slack team communication and channel operations"
-    },
-    "postgres": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-postgres"],
-      "description": "PostgreSQL database operations and queries"
-    },
-    "sqlite": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-sqlite"],
-      "description": "SQLite database operations for local development"
-    },
-    "redis": {
-      "command": "npx",
-      "args": ["-y", "@anthropic/mcp-server-redis"],
-      "description": "Redis caching operations and key-value storage"
-    },
-    "sentry": {
-      "command": "npx",
-      "args": ["-y", "@sentry/mcp-server"],
-      "description": "Sentry error tracking and performance monitoring"
-    },
-    "puppeteer": {
-      "command": "npx",
-      "args": ["-y", "@anthropic/mcp-server-puppeteer"],
-      "description": "Puppeteer browser automation and scraping"
-    }
+  "context7": {
+    "command": "npx",
+    "args": ["-y", "@upstash/context7-mcp"],
+    "description": "Access up-to-date documentation for any library"
+  },
+  "playwright": {
+    "command": "npx",
+    "args": ["@playwright/mcp@latest"],
+    "description": "Browser automation and web testing capabilities"
+  },
+  "supabase": {
+    "command": "npx",
+    "args": ["-y", "@supabase/mcp-server-supabase"],
+    "description": "Supabase database operations and management"
+  },
+  "stripe": {
+    "command": "npx",
+    "args": ["-y", "@stripe/mcp", "--tools=all"],
+    "description": "Stripe payment processing and API operations"
+  },
+  "chrome-devtools": {
+    "command": "npx",
+    "args": ["-y", "chrome-devtools-mcp@latest"],
+    "description": "Chrome DevTools debugging and performance analysis"
+  },
+  "vercel": {
+    "command": "npx",
+    "args": ["-y", "@vercel/mcp"],
+    "description": "Vercel deployment management and project operations"
+  },
+  "github": {
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-github"],
+    "description": "GitHub repository operations, issues, PRs, and search"
+  },
+  "notion": {
+    "command": "npx",
+    "args": ["-y", "@notionhq/notion-mcp-server"],
+    "description": "Notion workspace management and data source operations"
+  },
+  "linear": {
+    "command": "npx",
+    "args": ["-y", "@larryhudson/linear-mcp-server"],
+    "description": "Linear issue tracking and project management"
+  },
+  "slack": {
+    "command": "npx",
+    "args": ["-y", "@anthropic/mcp-server-slack"],
+    "description": "Slack team communication and channel operations"
+  },
+  "postgres": {
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-postgres"],
+    "description": "PostgreSQL database operations and queries"
+  },
+  "sqlite": {
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-sqlite"],
+    "description": "SQLite database operations for local development"
+  },
+  "redis": {
+    "command": "npx",
+    "args": ["-y", "@anthropic/mcp-server-redis"],
+    "description": "Redis caching operations and key-value storage"
+  },
+  "sentry": {
+    "command": "npx",
+    "args": ["-y", "@sentry/mcp-server"],
+    "description": "Sentry error tracking and performance monitoring"
+  },
+  "puppeteer": {
+    "command": "npx",
+    "args": ["-y", "@anthropic/mcp-server-puppeteer"],
+    "description": "Puppeteer browser automation and scraping"
   }
 }
