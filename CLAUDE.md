@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Overview
 
-This is a Claude Code plugin repository providing **51 slash commands**, **24 specialized AI agents**, **8 auto-activating skills**, **3 multi-agent orchestrators**, and **6 MCP servers** for modern web development (Next.js 15, TypeScript, React, Vue, Angular, Svelte, Supabase). Current version: **1.11.1**.
+This is a Claude Code plugin repository providing **59 slash commands**, **24 specialized AI agents**, **14 auto-activating skills**, **3 multi-agent orchestrators**, and **15 MCP servers** for modern web development (Next.js 15, TypeScript, React, Vue, Angular, Svelte, Supabase). Current version: **1.13.0**.
 
 ## Key Files
 
@@ -85,14 +85,26 @@ triggers:
 - **code-review-workflow** - Multi-perspective review (security, performance, quality in parallel)
 - **refactoring-workflow** - Safe refactoring (analyze → plan → execute → verify)
 
-### MCP Servers (6 configured)
+### MCP Servers (11 configured)
 Pre-configured in [plugin.json](.claude-plugin/plugin.json) under `mcpServers`:
 
+**Documentation & AI:**
 - **context7** - Up-to-date library documentation (no config needed)
+- **sequential-thinking** - Structured problem-solving with step-by-step reasoning (no config needed)
+
+**Testing & Debugging:**
 - **playwright** - Browser automation and E2E testing (no config needed)
-- **supabase** - Database operations (**requires credentials**)
+- **chrome-devtools** - Browser debugging and performance analysis (no config needed)
+
+**Databases:**
+- **supabase** - Supabase database operations (**requires credentials**)
+- **postgres** - PostgreSQL read-only access (**requires connection string**)
+- **mongodb** - MongoDB operations and Atlas (**requires connection string**)
+- **redis** - Redis key-value operations (**requires connection URL**)
+
+**Development & Deployment:**
+- **github** - Repository operations, PRs, issues (**requires GITHUB_PERSONAL_ACCESS_TOKEN**)
 - **stripe** - Payment processing (**requires API key**)
-- **chrome-devtools** - Browser debugging and performance analysis
 - **vercel** - Deployment management (**requires token**)
 
 See README.md for credential configuration.

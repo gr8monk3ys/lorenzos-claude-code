@@ -1,8 +1,8 @@
 # Lorenzo's Claude Code Setup
 
-My personal Claude Code configuration for productive web development. This plugin provides **28 slash commands**, **19 specialized AI agents**, and **15 MCP servers** to supercharge your development workflow.
+My personal Claude Code configuration for productive web development. This plugin provides **59 slash commands**, **24 specialized AI agents**, and **15 MCP servers** to supercharge your development workflow.
 
-> **Note**: This plugin also includes 8 auto-activating skills, 3 multi-agent orchestrators, and 6 automation hooks as bonus content in the `.claude/` directory.
+> **Note**: This plugin also includes 14 auto-activating skills, 3 multi-agent orchestrators, and 6 automation hooks as bonus content in the `.claude/` directory.
 
 ## Quick Install
 
@@ -31,13 +31,27 @@ My personal Claude Code configuration for productive web development. This plugi
 - `/deploy` - Generate deployment configurations and CI/CD workflows
 - `/wizard` - Interactive wizard to choose commands and build specs
 
-**Context & Memory (NEW)**
+**Context & Memory**
 - `/memory` - View/update Claude's persistent project memory
 - `/context` - Manage conversation context (summarize, load, focus)
 - `/architect` - High-level design discussions (no code changes)
 - `/ask` - Ask questions about codebase (no code changes)
 - `/map` - Generate codebase structure map
 - `/rules` - Manage project-specific rules for Claude
+
+**Session Management**
+- `/handoff` - Create session transfer document for context handoff
+- `/resume` - Load previous session context from handoff
+- `/ledger` - View/update session progress ledger
+
+**RIPER Workflow**
+- `/riper` - Full 5-phase workflow: Research → Innovate → Plan → Execute → Review
+- `/research` - Phase 1: Deeply understand the problem
+- `/innovate` - Phase 2: Explore multiple solutions
+- `/review` - Phase 5: Quality gates before completion
+
+**Autonomous Development** (NEW)
+- `/wiggum` - Ralph Wiggum Pattern: Autonomous iterative loops with safety guardrails
 
 ### 🔌 API Commands (3)
 
@@ -58,7 +72,7 @@ My personal Claude Code configuration for productive web development. This plugi
 - `/types-gen` (alias: `/types`) - Generate TypeScript types
 - `/edge-function-new` (alias: `/edge`) - Create Edge Functions
 
-### 🤖 Specialized AI Agents (19)
+### 🤖 Specialized AI Agents (24)
 
 **Architecture & Planning**
 - **tech-stack-researcher** - Technology choice recommendations with trade-offs
@@ -89,25 +103,42 @@ My personal Claude Code configuration for productive web development. This plugi
 - **learning-guide** - Teaching programming concepts progressively
 - **deep-research-agent** - Comprehensive research with adaptive strategies
 
-### 🧠 Auto-Activating Skills (8)
+**AI & Advanced Systems**
+- **llm-architect** - Design LLM applications, RAG systems, and agent workflows
+- **mcp-developer** - Build MCP servers to extend Claude with custom tools
+- **chaos-engineer** - Design chaos experiments for system resilience testing
+- **competitive-analyst** - Market research, competitor analysis, strategic insights
+- **fintech-engineer** - Payment systems, compliance (PCI-DSS, KYC/AML), fraud detection
+
+### 🧠 Auto-Activating Skills (14)
 
 Skills automatically enhance your workflow based on context - no commands needed.
 
 **API Development**
-- **api-creation** - Auto-applies Next.js 15 patterns, Zod validation, consistent error handling
-- **api-testing** - Generates comprehensive tests with edge cases and error scenarios
-- **api-security** - Applies authentication, rate limiting, OWASP protections
+- **api-development** - Next.js 15 patterns, Zod validation, consistent error handling
 
 **Frontend Development**
-- **component-patterns** - React/Vue/Angular/Svelte best practices, accessibility, performance
-- **state-management** - Guides decisions between local state, context, and global stores
+- **frontend-development** - React/Vue/Angular/Svelte best practices, accessibility, performance
 
 **Database Operations**
-- **query-optimization** - N+1 prevention, indexing suggestions, efficient data fetching
-- **migration-safety** - Ensures migrations are safe, reversible, follow zero-downtime patterns
+- **database-operations** - N+1 prevention, indexing, safe migrations, efficient queries
 
-**DevOps**
-- **ci-cd-patterns** - GitHub Actions best practices, testing pipelines, deployment workflows
+**DevOps & Testing**
+- **devops-automation** - GitHub Actions, CI/CD pipelines, Docker, deployment workflows
+- **webapp-testing** - Browser automation, E2E testing with Playwright
+- **code-quality** - Code review, testing, refactoring, and optimization patterns
+
+**MCP & Skills Development**
+- **mcp-builder** - Build Model Context Protocol servers to extend Claude
+- **skill-creator** - Create new Claude Code skills and auto-invoked behaviors
+
+**Workflow Enhancement** (NEW)
+- **verification-first** - Verify work is complete before claiming completion
+- **micro-tasking** - Break work into small, verifiable 2-5 minute tasks
+- **root-cause-analysis** - 4-phase debugging methodology for finding true causes
+- **git-worktree** - Isolated branch workflows for parallel development
+- **parallel-dispatch** - Coordinate concurrent agent work and multi-agent workflows
+- **spec-compliance** - Verify implementation matches specifications and requirements
 
 ### 🔄 Multi-Agent Orchestrators (3)
 
@@ -293,28 +324,30 @@ This plugin includes **15 pre-configured MCP** (Model Context Protocol) servers 
 
 ### Available MCP Servers
 
-**Documentation & Testing**
+**Documentation & AI**
 1. **Context7** - Up-to-date library documentation (no config needed)
-2. **Playwright** - Browser automation and E2E testing (no config needed)
-3. **Puppeteer** - Browser automation and scraping (no config needed)
+2. **Sequential Thinking** - Structured problem-solving with step-by-step reasoning (no config needed)
+
+**Testing & Debugging**
+3. **Playwright** - Browser automation and E2E testing (no config needed)
 4. **Chrome DevTools** - Debugging and performance analysis (no config needed)
 
 **Databases**
 5. **Supabase** - Supabase database operations (**requires config**)
-6. **PostgreSQL** - PostgreSQL database queries (**requires config**)
-7. **SQLite** - SQLite local database (no config needed)
-8. **Redis** - Redis caching operations (**requires config**)
+6. **PostgreSQL** - Read-only PostgreSQL access and schema inspection (**requires connection string**)
+7. **MongoDB** - MongoDB operations and Atlas management (**requires config**)
+8. **Redis** - Redis key-value store operations (**requires connection URL**)
 
-**Deployment & DevOps**
-9. **Vercel** - Deployment management (**requires config**)
-10. **Sentry** - Error tracking and monitoring (**requires config**)
+**Development & Deployment**
+9. **GitHub** - Repository operations, issues, PRs, CI/CD (**requires GITHUB_PERSONAL_ACCESS_TOKEN**)
+10. **Vercel** - Deployment management (**requires config**)
+11. **Stripe** - Payment processing API (**requires config**)
 
-**Integrations**
-11. **GitHub** - Repository operations, issues, PRs (**requires config**)
-12. **Stripe** - Payment processing API (**requires config**)
-13. **Notion** - Workspace management (**requires config**)
-14. **Linear** - Issue tracking (**requires config**)
-15. **Slack** - Team communication (**requires config**)
+**Collaboration & Design** (NEW)
+12. **Figma** - Design file access and component inspection (**requires FIGMA_ACCESS_TOKEN**)
+13. **Notion** - Workspace access for docs and knowledge bases (**requires NOTION_API_KEY**)
+14. **Linear** - Issue tracking and project management (**requires LINEAR_API_KEY**)
+15. **Slack** - Workspace access for channel and message operations (**requires SLACK_BOT_TOKEN**)
 
 ### Configuring Supabase MCP Server
 
@@ -363,7 +396,7 @@ After configuration, verify MCP servers are running:
 # In Claude Code
 /mcp status
 
-# You should see all nine servers listed as "active"
+# You should see all eleven servers listed as "active"
 ```
 
 ### Troubleshooting MCP Servers
@@ -410,7 +443,7 @@ If MCP servers aren't working:
 
 ### MCP Servers Not Working
 
-**Issue**: MCP servers unavailable (Context7, Playwright, Supabase, Stripe, Chrome DevTools, Vercel, GitHub, Notion, Linear)
+**Issue**: MCP servers unavailable (Context7, Playwright, Supabase, Stripe, Chrome DevTools, Vercel, GitHub, PostgreSQL, MongoDB, Redis, Sequential Thinking)
 
 **Solutions**:
 - Restart Claude Code after plugin installation
@@ -418,7 +451,7 @@ If MCP servers aren't working:
 - Verify npm/npx is installed and accessible
 - Check MCP server logs for specific errors
 - Try manually: `npx -y @upstash/context7-mcp`
-- For servers requiring credentials (Supabase, Stripe, Vercel, GitHub, Notion, Linear): Verify API tokens/keys are correctly configured in settings
+- For servers requiring credentials (Supabase, Stripe, Vercel, GitHub, PostgreSQL, MongoDB, Redis): Verify API tokens/keys and connection strings are correctly configured in settings
 
 ### Performance Issues
 

@@ -5,6 +5,64 @@ All notable changes to Lorenzo's Claude Code plugin will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.13.0] - 2026-01-14
+
+### Added
+- **Ralph Wiggum Pattern** - Autonomous iterative development
+  - `/wiggum` - Autonomous development loops with stateless resampling and safety guardrails
+  - State management via `.claude/wiggum/` directory (TASK.md, PROGRESS.md, DONE.md, STATUS)
+  - Principal Skinner Harness for safety limits (iterations, time, file changes, protected paths)
+
+- **6 New Skills** (14 total)
+  - `verification-first` - Verify work is complete before claiming completion
+  - `micro-tasking` - Break work into small, verifiable 2-5 minute tasks
+  - `root-cause-analysis` - 4-phase debugging methodology (Observe, Hypothesize, Test, Fix)
+  - `git-worktree` - Isolated branch workflows for parallel development
+  - `parallel-dispatch` - Coordinate concurrent agent work and multi-agent workflows
+  - `spec-compliance` - Verify implementation matches specifications and requirements
+
+- **4 New MCP Servers** (15 total)
+  - **Figma** (`@anthropic/mcp-server-figma`) - Design file access and component inspection
+  - **Notion** (`@anthropic/mcp-server-notion`) - Workspace access for docs and knowledge bases
+  - **Linear** (`@linear/mcp-server`) - Issue tracking and project management
+  - **Slack** (`@anthropic/mcp-server-slack`) - Workspace access for channel and message operations
+
+### Changed
+- Updated plugin to **59 commands** (was 58)
+- Updated plugin to **14 skills** (was 8)
+- Updated plugin to **15 MCP servers** (was 11)
+- Updated all documentation to reflect new counts
+
+## [1.12.0] - 2026-01-14
+
+### Added
+- **5 New MCP Servers** (11 total)
+  - **GitHub** (`@modelcontextprotocol/server-github`) - Repository operations, issues, PRs, CI/CD workflows
+  - **Sequential Thinking** (`@modelcontextprotocol/server-sequential-thinking`) - Structured problem-solving with step-by-step reasoning
+  - **PostgreSQL** (`@modelcontextprotocol/server-postgres`) - Read-only database access and schema inspection
+  - **Redis** (`@modelcontextprotocol/server-redis`) - Key-value store operations
+  - **MongoDB** (`@mongodb-js/mongodb-mcp-server`) - MongoDB operations and Atlas management
+
+- **Session Management Commands** (3 new commands)
+  - `/handoff` - Create YAML session transfer document for context handoff
+  - `/resume` - Load previous session context from handoff document
+  - `/ledger` - View/update session progress ledger with task tracking
+
+- **RIPER Workflow Commands** (4 new commands)
+  - `/riper` - Full 5-phase structured development workflow
+  - `/research` - Phase 1: Deeply understand the problem before solving
+  - `/innovate` - Phase 2: Explore multiple solutions before committing
+  - `/review` - Phase 5: Quality gates before considering work complete
+
+- **New Directories**
+  - `.claude/handoffs/` - Session handoff documents
+  - `.claude/ledger/` - Session progress ledger
+
+### Changed
+- Updated plugin to **58 commands** (was 51)
+- Updated plugin to **11 MCP servers** (was 6)
+- Updated all documentation to reflect new counts
+
 ## [1.11.1] - 2026-01-13
 
 ### Fixed
@@ -105,17 +163,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `/rules` command - View, edit, or create project-specific rules
   - `.claude/rules/PROJECT-RULES.md` - Comprehensive rules template (like .cursorrules)
 
-- **6 New MCP Servers** (15 total)
-  - **Slack** (`@anthropic/mcp-server-slack`) - Team communication
-  - **PostgreSQL** (`@modelcontextprotocol/server-postgres`) - Database queries
-  - **SQLite** (`@modelcontextprotocol/server-sqlite`) - Local database
-  - **Redis** (`@anthropic/mcp-server-redis`) - Caching operations
-  - **Sentry** (`@sentry/mcp-server`) - Error tracking
-  - **Puppeteer** (`@anthropic/mcp-server-puppeteer`) - Browser automation
-
 ### Changed
 - Updated plugin to **41 commands** (was 35)
-- Updated plugin to **15 MCP servers** (was 9)
 - Updated all documentation to reflect new features
 
 ### Architecture
@@ -179,9 +228,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.7.2] - 2026-01-13
 
 ### Added
-- **GitHub MCP Server** (`@modelcontextprotocol/server-github`) - Repository operations, issues, PRs, and search functionality
-- **Notion MCP Server** (`@notionhq/notion-mcp-server`) - Workspace management and data source operations
-- **Linear MCP Server** (`@larryhudson/linear-mcp-server`) - Issue tracking and project management integration
 - **Command Template Test Suite** (`scripts/test-commands.js`) - Comprehensive automated testing for command markdown files
   - Validates frontmatter structure and required fields
   - Checks for $ARGUMENTS placeholders
@@ -189,16 +235,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Validates model assignments
   - Quality checks for TODO markers, broken links, and formatting
 
-### Changed
-- Updated plugin to **9 MCP servers** total (was 6)
-- Updated all documentation to reflect 9 MCP servers
+### Fixed
 - Fixed missing `description` field in [code-explain.md](.claude/commands/misc/code-explain.md)
-
-### Documentation
-- Updated [CLAUDE.md](CLAUDE.md) with all 9 MCP servers
-- Updated [README.md](README.md) with detailed descriptions of new MCP servers
-- Updated troubleshooting section to cover all 9 servers
-- Added configuration requirements for GitHub, Notion, and Linear servers
 
 ### Testing
 - Added automated command template validation

@@ -1,7 +1,7 @@
 {
   "name": "lorenzos-claude-code",
-  "version": "1.11.1",
-  "description": "Lorenzo's Claude Code setup: 51 commands, 24 agents, 8 auto-invoked skills, 6 MCP servers, 6 hooks",
+  "version": "1.13.0",
+  "description": "Lorenzo's Claude Code setup: 59 commands, 24 agents, 14 auto-invoked skills, 15 MCP servers, 6 hooks",
   "author": "Lorenzo",
   "license": "GPL-3.0",
   "commands": [
@@ -259,6 +259,118 @@
       "name": "ask",
       "path": ".claude/commands/misc/ask.md",
       "description": "Ask questions about codebase without making any changes"
+    },
+    {
+      "name": "handoff",
+      "path": ".claude/commands/misc/handoff.md",
+      "description": "Create session transfer document for seamless context handoff"
+    },
+    {
+      "name": "resume",
+      "path": ".claude/commands/misc/resume.md",
+      "description": "Load previous session context from a handoff document"
+    },
+    {
+      "name": "ledger",
+      "path": ".claude/commands/misc/ledger.md",
+      "description": "View, update, or manage session progress ledger"
+    },
+    {
+      "name": "riper",
+      "path": ".claude/commands/misc/riper.md",
+      "description": "RIPER Workflow - 5-phase structured development (Research, Innovate, Plan, Execute, Review)"
+    },
+    {
+      "name": "research",
+      "path": ".claude/commands/misc/research.md",
+      "description": "RIPER Research Phase - Deeply understand the problem before solving"
+    },
+    {
+      "name": "innovate",
+      "path": ".claude/commands/misc/innovate.md",
+      "description": "RIPER Innovate Phase - Explore multiple solutions before committing"
+    },
+    {
+      "name": "review",
+      "path": ".claude/commands/misc/review.md",
+      "description": "RIPER Review Phase - Quality gates before considering work complete"
+    },
+    {
+      "name": "wiggum",
+      "path": ".claude/commands/misc/wiggum.md",
+      "description": "Ralph Wiggum Pattern - Autonomous iterative development with safety guardrails"
+    }
+  ],
+  "skills": [
+    {
+      "name": "api-development",
+      "path": ".claude/skills/api-development/SKILL.md",
+      "description": "API endpoint creation patterns, validation, and error handling"
+    },
+    {
+      "name": "devops-automation",
+      "path": ".claude/skills/devops-automation/SKILL.md",
+      "description": "CI/CD pipelines, Docker, and infrastructure automation"
+    },
+    {
+      "name": "code-quality",
+      "path": ".claude/skills/code-quality/SKILL.md",
+      "description": "Code review, testing, refactoring, and optimization patterns"
+    },
+    {
+      "name": "database-operations",
+      "path": ".claude/skills/database-operations/SKILL.md",
+      "description": "Database schema design, migrations, and query optimization"
+    },
+    {
+      "name": "webapp-testing",
+      "path": ".claude/skills/webapp-testing/SKILL.md",
+      "description": "Browser automation and E2E testing with Playwright"
+    },
+    {
+      "name": "skill-creator",
+      "path": ".claude/skills/skill-creator/SKILL.md",
+      "description": "Create new Claude Code skills and auto-invoked behaviors"
+    },
+    {
+      "name": "frontend-development",
+      "path": ".claude/skills/frontend-development/SKILL.md",
+      "description": "React/Next.js component patterns and state management"
+    },
+    {
+      "name": "mcp-builder",
+      "path": ".claude/skills/mcp-builder/SKILL.md",
+      "description": "Build Model Context Protocol servers for Claude extensions"
+    },
+    {
+      "name": "verification-first",
+      "path": ".claude/skills/verification-first/SKILL.md",
+      "description": "Verify work is complete before claiming completion"
+    },
+    {
+      "name": "micro-tasking",
+      "path": ".claude/skills/micro-tasking/SKILL.md",
+      "description": "Break work into small, verifiable 2-5 minute tasks"
+    },
+    {
+      "name": "root-cause-analysis",
+      "path": ".claude/skills/root-cause-analysis/SKILL.md",
+      "description": "4-phase debugging methodology for finding true causes"
+    },
+    {
+      "name": "git-worktree",
+      "path": ".claude/skills/git-worktree/SKILL.md",
+      "description": "Isolated branch workflows for parallel development"
+    },
+    {
+      "name": "parallel-dispatch",
+      "path": ".claude/skills/parallel-dispatch/SKILL.md",
+      "description": "Coordinate concurrent agent work and multi-agent workflows"
+    },
+    {
+      "name": "spec-compliance",
+      "path": ".claude/skills/spec-compliance/SKILL.md",
+      "description": "Verify implementation matches specifications and requirements"
     }
   ],
   "agents": [
@@ -413,6 +525,51 @@
       "command": "npx",
       "args": ["-y", "@vercel/mcp"],
       "description": "Vercel deployment management and project operations"
+    },
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "description": "GitHub repository operations, issues, PRs, and CI/CD (requires GITHUB_PERSONAL_ACCESS_TOKEN)"
+    },
+    "sequential-thinking": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"],
+      "description": "Structured problem-solving with step-by-step reasoning and hypothesis verification"
+    },
+    "postgres": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-postgres", "postgresql://localhost/mydb"],
+      "description": "PostgreSQL read-only database access and schema inspection (update connection string)"
+    },
+    "redis": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-redis", "redis://localhost:6379"],
+      "description": "Redis key-value store operations (update connection URL)"
+    },
+    "mongodb": {
+      "command": "npx",
+      "args": ["-y", "@mongodb-js/mongodb-mcp-server"],
+      "description": "MongoDB database operations and Atlas management (requires MDB_MCP_CONNECTION_STRING)"
+    },
+    "figma": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-server-figma"],
+      "description": "Figma design file access and component inspection (requires FIGMA_ACCESS_TOKEN)"
+    },
+    "notion": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-server-notion"],
+      "description": "Notion workspace access for docs and knowledge bases (requires NOTION_API_KEY)"
+    },
+    "linear": {
+      "command": "npx",
+      "args": ["-y", "@linear/mcp-server"],
+      "description": "Linear issue tracking and project management (requires LINEAR_API_KEY)"
+    },
+    "slack": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-server-slack"],
+      "description": "Slack workspace access for channel and message operations (requires SLACK_BOT_TOKEN)"
     }
   }
 }
