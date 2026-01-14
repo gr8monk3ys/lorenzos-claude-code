@@ -5,6 +5,27 @@ All notable changes to Lorenzo's Claude Code plugin will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.8.0] - 2026-01-13
+
+### Added
+- **Agent Skills System** - 5 auto-invoked skills that Claude uses based on context
+  - `api-development` - REST API creation, testing, authentication, rate limiting
+  - `frontend-development` - React/Vue/Angular/Svelte components, pages, accessibility
+  - `database-operations` - Schema design, migrations, Supabase/Prisma/Drizzle
+  - `devops-automation` - CI/CD, Docker, deployment, infrastructure
+  - `code-quality` - Code review, testing, refactoring, optimization
+- **SKILLS.md** - Documentation for skills vs commands vs agents
+- **Skills Directory** - `.claude/skills/` with 5 skill bundles
+
+### Changed
+- Removed unsupported "tags" field from plugin.json (schema compliance)
+- Plugin description updated to highlight skills feature
+
+### Documentation
+- Complete skills guide with usage examples
+- Comparison table: Skills vs Commands vs Agents
+- Custom skill creation guide
+
 ## [1.9.0] - 2026-01-13
 
 ### Added
