@@ -24,8 +24,6 @@ fi
 SENSITIVE_PATTERNS=(
   "\.env$"
   "\.env\..*"
-  "\.env\.local$"
-  "\.env\.production$"
   "secrets\."
   "credentials\."
   "\.pem$"

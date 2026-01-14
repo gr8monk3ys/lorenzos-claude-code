@@ -5,6 +5,16 @@ All notable changes to Lorenzo's Claude Code plugin will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.11.1] - 2026-01-13
+
+### Fixed
+- Registered 6 missing commands in plugin.json (`/map`, `/architect`, `/context`, `/memory`, `/rules`, `/ask`)
+- Fixed "L" prefix typo in `.claude/commands/api/api-new.md`
+- Removed redundant `.env.local` and `.env.production` patterns in `block-sensitive-files.sh` hook
+
+### Changed
+- Updated command count from 45 to 51 in plugin description and documentation
+
 ## [1.11.0] - 2026-01-13
 
 ### Added

@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Overview
 
-This is a Claude Code plugin repository providing **41 slash commands**, **19 specialized AI agents**, **8 auto-activating skills**, **3 multi-agent orchestrators**, and **15 MCP servers** for modern web development (Next.js 15, TypeScript, React, Vue, Angular, Svelte, Supabase).
+This is a Claude Code plugin repository providing **51 slash commands**, **24 specialized AI agents**, **8 auto-activating skills**, **3 multi-agent orchestrators**, and **6 MCP servers** for modern web development (Next.js 15, TypeScript, React, Vue, Angular, Svelte, Supabase). Current version: **1.11.1**.
 
 ## Key Files
 
@@ -85,15 +85,17 @@ triggers:
 - **code-review-workflow** - Multi-perspective review (security, performance, quality in parallel)
 - **refactoring-workflow** - Safe refactoring (analyze → plan → execute → verify)
 
-### MCP Servers (15 configured)
+### MCP Servers (6 configured)
 Pre-configured in [plugin.json](.claude-plugin/plugin.json) under `mcpServers`:
 
-**Documentation & Testing**: context7, playwright, puppeteer, chrome-devtools
-**Databases**: supabase, postgres, sqlite, redis
-**Deployment & DevOps**: vercel, sentry
-**Integrations**: github, stripe, notion, linear, slack
+- **context7** - Up-to-date library documentation (no config needed)
+- **playwright** - Browser automation and E2E testing (no config needed)
+- **supabase** - Database operations (**requires credentials**)
+- **stripe** - Payment processing (**requires API key**)
+- **chrome-devtools** - Browser debugging and performance analysis
+- **vercel** - Deployment management (**requires token**)
 
-Most require credentials - see README.md for configuration.
+See README.md for credential configuration.
 
 ### Hooks System (6 pre-configured)
 Located in `.claude/hooks/`:
@@ -106,16 +108,38 @@ Located in `.claude/hooks/`:
 
 See [HOOKS.md](HOOKS.md) for detailed hook configuration.
 
-## Development Commands
+## Development Workflow
 
+### Testing Locally
 ```bash
-# Test locally
+# Add as local marketplace and install
 /plugin marketplace add /path/to/lorenzos-claude-code
 /plugin install lorenzos-claude-code
-/api-new users endpoint  # test a command
-/plugin uninstall lorenzos-claude-code
 
-# Publish (requires public GitHub repo)
+# Test a command
+/api-new users endpoint
+
+# Uninstall when done
+/plugin uninstall lorenzos-claude-code
+```
+
+### Validation Scripts
+```bash
+# Validate plugin.json syntax and paths
+node scripts/validate-plugin.js
+
+# Test command markdown files (frontmatter, placeholders)
+node scripts/test-commands.js
+
+# Test agent prompt quality
+node scripts/test-agents.js
+
+# Detect project type (framework, database, testing)
+node scripts/detect-project.js
+```
+
+### Publishing
+```bash
 git push -u origin main
 # Users install: /plugin install gr8monk3ys/lorenzos-claude-code
 ```
@@ -170,6 +194,32 @@ Add to `mcpServers` in [plugin.json](.claude-plugin/plugin.json):
    { "name": "workflow-name", "path": ".claude/orchestrators/workflow-name.md", "description": "..." }
    ```
 3. Document agent handoff protocols and stage outputs
+
+## Command & Agent Inventory
+
+### Commands by Category (51 total, 36 unique + 15 aliases)
+- **API** (3): `/api-new`, `/api-test`, `/api-protect`
+- **UI** (2): `/component-new`, `/page-new`
+- **Frameworks** (3): `/component-vue`, `/component-angular`, `/component-svelte`
+- **Supabase** (2): `/types-gen`, `/edge-function-new`
+- **Context & Memory** (6): `/memory`, `/context`, `/architect`, `/ask`, `/map`, `/rules`
+- **Planning** (5): `/feature-plan`, `/write-plan`, `/execute-plan`, `/create-prd`, `/brainstorm`
+- **Code Quality** (5): `/code-explain`, `/code-optimize`, `/code-cleanup`, `/lint`, `/new-task`
+- **Testing & TDD** (3): `/test-new`, `/tdd`, `/fix-issue`
+- **Generation** (5): `/hook-new`, `/migration-new`, `/deploy`, `/docs-generate`, `/context-prime`
+- **Workflow** (2): `/wizard`, `/fix-pr`
+
+### Agents by Domain (24 total)
+- **Architecture** (4): system-architect, backend-architect, frontend-architect, api-architect
+- **Planning** (3): tech-stack-researcher, requirements-analyst, database-architect
+- **Quality** (4): code-reviewer, refactoring-expert, performance-engineer, performance-profiler
+- **Security** (2): security-engineer, accessibility-auditor
+- **Testing** (2): test-strategist, migration-planner
+- **DevOps** (2): devops-engineer, chaos-engineer
+- **AI/ML** (2): llm-architect, mcp-developer
+- **Documentation** (2): technical-writer, learning-guide
+- **Research** (2): deep-research-agent, competitive-analyst
+- **Domain** (1): fintech-engineer
 
 ## Design Philosophy
 

@@ -1,7 +1,7 @@
 {
   "name": "lorenzos-claude-code",
-  "version": "1.11.0",
-  "description": "Lorenzo's Claude Code setup: 45 commands, 24 agents, 8 auto-invoked skills, 6 MCP servers, 6 hooks",
+  "version": "1.11.1",
+  "description": "Lorenzo's Claude Code setup: 51 commands, 24 agents, 8 auto-invoked skills, 6 MCP servers, 6 hooks",
   "author": "Lorenzo",
   "license": "GPL-3.0",
   "commands": [
@@ -229,6 +229,36 @@
       "name": "execute-plan",
       "path": ".claude/commands/misc/execute-plan.md",
       "description": "Execute implementation plan step by step with verification"
+    },
+    {
+      "name": "map",
+      "path": ".claude/commands/misc/map.md",
+      "description": "Generate codebase structure map showing files and dependencies"
+    },
+    {
+      "name": "architect",
+      "path": ".claude/commands/misc/architect.md",
+      "description": "High-level architecture discussions without making code changes"
+    },
+    {
+      "name": "context",
+      "path": ".claude/commands/misc/context.md",
+      "description": "Manage conversation context - summarize, compact, or load files"
+    },
+    {
+      "name": "memory",
+      "path": ".claude/commands/misc/memory.md",
+      "description": "View, update, or manage Claude's persistent project memory"
+    },
+    {
+      "name": "rules",
+      "path": ".claude/commands/misc/rules.md",
+      "description": "View, edit, or create project-specific rules for Claude"
+    },
+    {
+      "name": "ask",
+      "path": ".claude/commands/misc/ask.md",
+      "description": "Ask questions about codebase without making any changes"
     }
   ],
   "agents": [
