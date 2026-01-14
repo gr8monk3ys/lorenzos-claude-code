@@ -1,7 +1,7 @@
 {
   "name": "lorenzos-claude-code",
-  "version": "1.10.0",
-  "description": "Lorenzo's Claude Code setup: 42 commands, 23 agents, 6 auto-invoked skills, 6 MCP servers, 6 hooks",
+  "version": "1.11.0",
+  "description": "Lorenzo's Claude Code setup: 45 commands, 24 agents, 8 auto-invoked skills, 6 MCP servers, 6 hooks",
   "author": "Lorenzo",
   "license": "GPL-3.0",
   "commands": [
@@ -214,6 +214,21 @@
       "name": "prd",
       "path": ".claude/commands/misc/create-prd.md",
       "description": "[Alias] Create PRD (alias for /create-prd)"
+    },
+    {
+      "name": "brainstorm",
+      "path": ".claude/commands/misc/brainstorm.md",
+      "description": "Collaborative brainstorming session to explore ideas and approaches"
+    },
+    {
+      "name": "write-plan",
+      "path": ".claude/commands/misc/write-plan.md",
+      "description": "Create detailed implementation plan with actionable steps"
+    },
+    {
+      "name": "execute-plan",
+      "path": ".claude/commands/misc/execute-plan.md",
+      "description": "Execute implementation plan step by step with verification"
     }
   ],
   "agents": [
@@ -331,6 +346,11 @@
       "name": "competitive-analyst",
       "path": ".claude/agents/competitive-analyst.md",
       "description": "Research competitors, market positioning, and industry trends for strategic decisions"
+    },
+    {
+      "name": "fintech-engineer",
+      "path": ".claude/agents/fintech-engineer.md",
+      "description": "Design financial technology systems with focus on payments, compliance, security, and regulations"
     }
   ],
   "mcpServers": {

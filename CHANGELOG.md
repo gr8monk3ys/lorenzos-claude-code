@@ -5,6 +5,26 @@ All notable changes to Lorenzo's Claude Code plugin will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.11.0] - 2026-01-13
+
+### Added
+- **Fintech Specialist** - New agent for financial technology
+  - `fintech-engineer` - Payment systems, compliance (PCI-DSS, KYC/AML), fraud detection
+
+- **New Skills (2)**
+  - `webapp-testing` - Playwright/E2E testing patterns, visual regression, accessibility automation
+  - `skill-creator` - Create custom Claude Code skills with proper structure and frontmatter
+
+- **obra/superpowers-Inspired Commands (3)**
+  - `/brainstorm` - Collaborative brainstorming with divergent/convergent thinking
+  - `/write-plan` - Create detailed implementation plans with phases and checkpoints
+  - `/execute-plan` - Step-by-step execution with verification at each stage
+
+### Changed
+- Plugin now includes 45 commands (was 42)
+- Plugin now includes 24 agents (was 23)
+- Plugin now includes 8 skills (was 6)
+
 ## [1.10.0] - 2026-01-13
 
 ### Added
