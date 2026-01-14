@@ -1,7 +1,7 @@
 {
   "name": "lorenzos-claude-code",
-  "version": "1.8.0",
-  "description": "Lorenzo's Claude Code setup: 35 commands, 19 agents, 5 auto-invoked skills, 6 MCP servers, 6 hooks",
+  "version": "1.10.0",
+  "description": "Lorenzo's Claude Code setup: 42 commands, 23 agents, 6 auto-invoked skills, 6 MCP servers, 6 hooks",
   "author": "Lorenzo",
   "license": "GPL-3.0",
   "commands": [
@@ -179,6 +179,41 @@
       "name": "wizard",
       "path": ".claude/commands/misc/wizard.md",
       "description": "Interactive wizard to help choose commands and build specifications"
+    },
+    {
+      "name": "context-prime",
+      "path": ".claude/commands/misc/context-prime.md",
+      "description": "Load comprehensive project context to prime Claude"
+    },
+    {
+      "name": "prime",
+      "path": ".claude/commands/misc/context-prime.md",
+      "description": "[Alias] Prime context (alias for /context-prime)"
+    },
+    {
+      "name": "tdd",
+      "path": ".claude/commands/misc/tdd.md",
+      "description": "Test-Driven Development workflow (Red-Green-Refactor)"
+    },
+    {
+      "name": "fix-issue",
+      "path": ".claude/commands/misc/fix-issue.md",
+      "description": "Analyze GitHub issue and implement complete fix"
+    },
+    {
+      "name": "fix-pr",
+      "path": ".claude/commands/misc/fix-pr.md",
+      "description": "Address PR reviewer feedback and resolve changes"
+    },
+    {
+      "name": "create-prd",
+      "path": ".claude/commands/misc/create-prd.md",
+      "description": "Generate Product Requirements Document"
+    },
+    {
+      "name": "prd",
+      "path": ".claude/commands/misc/create-prd.md",
+      "description": "[Alias] Create PRD (alias for /create-prd)"
     }
   ],
   "agents": [
@@ -276,6 +311,26 @@
       "name": "performance-profiler",
       "path": ".claude/agents/performance-profiler.md",
       "description": "Profile application performance, analyze Core Web Vitals, and identify optimization opportunities"
+    },
+    {
+      "name": "chaos-engineer",
+      "path": ".claude/agents/chaos-engineer.md",
+      "description": "Design chaos engineering experiments to test system resilience and improve fault tolerance"
+    },
+    {
+      "name": "mcp-developer",
+      "path": ".claude/agents/mcp-developer.md",
+      "description": "Build Model Context Protocol servers to extend Claude with custom tools and integrations"
+    },
+    {
+      "name": "llm-architect",
+      "path": ".claude/agents/llm-architect.md",
+      "description": "Design LLM-powered applications, RAG systems, and agent workflows for production"
+    },
+    {
+      "name": "competitive-analyst",
+      "path": ".claude/agents/competitive-analyst.md",
+      "description": "Research competitors, market positioning, and industry trends for strategic decisions"
     }
   ],
   "mcpServers": {

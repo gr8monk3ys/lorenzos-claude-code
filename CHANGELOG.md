@@ -5,6 +5,38 @@ All notable changes to Lorenzo's Claude Code plugin will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.10.0] - 2026-01-13
+
+### Added
+- **Community-Inspired Features** - Based on awesome-claude ecosystem research
+
+**New Specialized Agents (4):**
+- `chaos-engineer` - System resilience testing, failure injection, gameday planning
+- `mcp-developer` - Build MCP servers to extend Claude with custom tools
+- `llm-architect` - Design LLM applications, RAG systems, agent workflows
+- `competitive-analyst` - Market research, competitor analysis, strategic insights
+
+**New Workflow Commands (7):**
+- `/context-prime` (+ `/prime` alias) - Load comprehensive project context
+- `/tdd` - Test-Driven Development workflow (Red-Green-Refactor)
+- `/fix-issue` - Analyze GitHub issue and implement complete fix
+- `/fix-pr` - Address PR reviewer feedback and resolve changes
+- `/create-prd` (+ `/prd` alias) - Generate Product Requirements Document
+
+**New Skills:**
+- `mcp-builder` - Create MCP servers for API integration
+
+### Changed
+- Plugin now includes 42 commands (was 35)
+- Plugin now includes 23 agents (was 19)
+- Plugin now includes 6 skills (was 5)
+
+### Sources
+- [awesome-claude](https://github.com/tonysurfly/awesome-claude)
+- [VoltAgent/awesome-claude-code-subagents](https://github.com/VoltAgent/awesome-claude-code-subagents)
+- [awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code)
+- [awesome-claude-skills](https://github.com/travisvn/awesome-claude-skills)
+
 ## [1.8.0] - 2026-01-13
 
 ### Added

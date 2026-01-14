@@ -96,6 +96,33 @@ Based on extensive research of Claude Code ecosystem, Cursor, Aider, and MCP ser
 - [ ] Add real-time error detection patterns
 - [ ] Document multi-model selection strategies
 
+### Community-Inspired Features (High Impact) ✅ PARTIALLY COMPLETE (v1.10.0)
+*Sources: [awesome-claude](https://github.com/tonysurfly/awesome-claude), [VoltAgent](https://github.com/VoltAgent/awesome-claude-code-subagents), [awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code), [awesome-claude-skills](https://github.com/travisvn/awesome-claude-skills)*
+
+**New Specialized Agents:**
+- [x] Add `chaos-engineer` agent - System resilience and failure testing (v1.10.0)
+- [x] Add `mcp-developer` agent - MCP server creation specialist (v1.10.0)
+- [x] Add `llm-architect` agent - LLM/AI system design (v1.10.0)
+- [x] Add `competitive-analyst` agent - Market/competitor research (v1.10.0)
+- [ ] Add `fintech-engineer` agent - Financial technology specialist
+
+**New Commands (Workflow):**
+- [x] Add `/context-prime` command - Load comprehensive project context (v1.10.0)
+- [x] Add `/tdd` command - Test-Driven Development workflow (Red-Green-Refactor) (v1.10.0)
+- [x] Add `/fix-issue` command - GitHub issue analysis and implementation (v1.10.0)
+- [x] Add `/fix-pr` command - Address PR reviewer feedback (v1.10.0)
+- [x] Add `/create-prd` command - Generate product requirement documents (v1.10.0)
+
+**New Skills:**
+- [x] Add `mcp-builder` skill - Create MCP servers for API integration (v1.10.0)
+- [ ] Add `webapp-testing` skill - Playwright browser automation patterns
+- [ ] Add `skill-creator` skill - Interactive Q&A to build custom skills
+
+**Advanced Workflow Patterns:**
+- [ ] Implement Ralph Wiggum Pattern - Autonomous iterative loops with safety guardrails
+- [ ] Implement RIPER Workflow - Research→Innovate→Plan→Execute→Review phases
+- [ ] Add `/brainstorm`, `/write-plan`, `/execute-plan` command trio (obra/superpowers)
+
 ---
 
 ## High Priority
