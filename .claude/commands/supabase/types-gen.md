@@ -5,6 +5,8 @@ model: claude-opus-4-5
 
 Generate TypeScript types from the Supabase database schema.
 
+**Arguments:** $ARGUMENTS (optional: project-id, --local, or output path)
+
 ## Command
 
 Run the following command to generate types:
