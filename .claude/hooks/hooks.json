@@ -41,6 +41,19 @@
       "event": "Stop",
       "command": "./.claude/hooks/notify-completion.sh",
       "description": "Desktop notification on completion"
+    },
+    {
+      "event": "PreToolUse",
+      "matcher": {
+        "tool_name": ["Bash"]
+      },
+      "command": "./.claude/hooks/test-gate.sh",
+      "description": "Blocks git commits until tests pass"
+    },
+    {
+      "event": "UserPromptSubmit",
+      "command": "./.claude/hooks/skill-activator.sh",
+      "description": "Injects skill activation hints based on trigger words"
     }
   ]
 }

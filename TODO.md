@@ -2,7 +2,7 @@
 
 This file tracks potential improvements and enhancements for lorenzos-claude-code plugin.
 
-**Current Version**: v1.17.0 | **56 commands** | **24 agents** | **14 skills** | **4 orchestrators** | **22 MCP servers** | **8 hooks**
+**Current Version**: v1.17.0 | **55 commands** | **24 agents** | **14 skills** | **4 orchestrators** | **22 MCP servers** | **8 hooks**
 
 ---
 

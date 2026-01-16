@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Overview
 
-This is a Claude Code plugin repository providing **59 slash commands**, **24 specialized AI agents**, **14 auto-activating skills**, **3 multi-agent orchestrators**, and **15 MCP servers** for modern web development (Next.js 15, TypeScript, React, Vue, Angular, Svelte, Supabase). Current version: **1.13.0**.
+This is a Claude Code plugin repository providing **55 slash commands**, **24 specialized AI agents**, **14 auto-activating skills**, **4 multi-agent orchestrators**, and **22 MCP servers** for modern web development (Next.js 15, TypeScript, React, Vue, Angular, Svelte, Supabase). Current version: **1.17.0**.
 
 ## Key Files
 
@@ -13,7 +13,7 @@ This is a Claude Code plugin repository providing **59 slash commands**, **24 sp
 - `.claude/agents/` - Specialized AI agent prompt files
 - `.claude/skills/` - Auto-activating skill files organized by category (api/, frontend/, database/, devops/)
 - `.claude/orchestrators/` - Multi-agent workflow orchestrators
-- `.claude/hooks/` - Pre-configured automation hooks (6 total)
+- `.claude/hooks/` - Pre-configured automation hooks (8 total)
 - `.claude/docs/` - Research and design documentation
 - `.claude/plugin-settings.json` - User preference schema for framework, styling, testing, database, API style, deployment platform
 
@@ -42,7 +42,7 @@ color: green   # optional
 
 **Agent activation descriptions** are critical - they determine when agents automatically engage. Write clear, specific activation criteria with examples.
 
-### Skill Format (8 skills)
+### Skill Format (14 skills)
 Skills are auto-activating context-aware enhancements in `.claude/skills/`:
 ```yaml
 ---
@@ -85,12 +85,13 @@ triggers:
 - **code-review-workflow** - Multi-perspective review (security, performance, quality in parallel)
 - **refactoring-workflow** - Safe refactoring (analyze → plan → execute → verify)
 
-### MCP Servers (11 configured)
+### MCP Servers (22 configured)
 Pre-configured in [plugin.json](.claude-plugin/plugin.json) under `mcpServers`:
 
 **Documentation & AI:**
 - **context7** - Up-to-date library documentation (no config needed)
 - **sequential-thinking** - Structured problem-solving with step-by-step reasoning (no config needed)
+- **memory** - Persistent knowledge graph for cross-session context (set MEMORY_FILE_PATH)
 
 **Testing & Debugging:**
 - **playwright** - Browser automation and E2E testing (no config needed)
@@ -107,16 +108,34 @@ Pre-configured in [plugin.json](.claude-plugin/plugin.json) under `mcpServers`:
 - **stripe** - Payment processing (**requires API key**)
 - **vercel** - Deployment management (**requires token**)
 
+**Design & Project Management:**
+- **figma** - Design file access (**requires FIGMA_ACCESS_TOKEN**)
+- **notion** - Workspace access (**requires NOTION_API_KEY**)
+- **linear** - Issue tracking (**requires LINEAR_API_KEY**)
+- **slack** - Channel operations (**requires SLACK_BOT_TOKEN**)
+
+**Infrastructure & DevOps:**
+- **terraform** - Infrastructure as code (**requires TERRAFORM_CLOUD_TOKEN**)
+- **kubernetes** - Cluster management (uses kubeconfig)
+- **docker** - Container management (requires Docker daemon)
+- **aws** - S3, Lambda, DynamoDB, CloudWatch (uses AWS credentials)
+
+**Monitoring:**
+- **sentry** - Error tracking (**requires SENTRY_AUTH_TOKEN**)
+- **datadog** - Observability (**requires DD_API_KEY**)
+
 See README.md for credential configuration.
 
-### Hooks System (6 pre-configured)
+### Hooks System (8 pre-configured)
 Located in `.claude/hooks/`:
 - **block-sensitive-files.sh** (PreToolUse) - Prevents editing .env, credentials, keys
+- **validate-json.sh** (PreToolUse) - Validates JSON syntax before write
 - **auto-format.sh** (PostToolUse) - Auto-formats with Prettier/Biome/ESLint
 - **typecheck.sh** (PostToolUse) - Runs TypeScript type checking
-- **validate-json.sh** (PreToolUse) - Validates JSON syntax before write
 - **auto-commit.sh** (Stop) - Auto-commits changes when task completes
 - **notify-completion.sh** (Stop) - Desktop notification on completion
+- **test-gate.sh** (PreToolUse) - Blocks git commits until tests pass
+- **skill-activator.sh** (UserPromptSubmit) - Injects skill activation hints
 
 See [HOOKS.md](HOOKS.md) for detailed hook configuration.
 
