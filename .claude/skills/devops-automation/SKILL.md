@@ -1,6 +1,8 @@
 ---
 name: devops-automation
-description: Use this skill for deployment, CI/CD, Docker, and infrastructure tasks. Activates for GitHub Actions, Vercel, containerization, and environment management.
+description: |
+  WHEN to auto-invoke: Creating CI/CD pipelines, GitHub Actions workflows, Docker/containerization, Vercel/Netlify deployment, infrastructure as code, environment variables, deployment configurations.
+  WHEN NOT to invoke: Application code changes, UI development, database schema design, testing application logic.
 ---
 
 # DevOps Automation Skill

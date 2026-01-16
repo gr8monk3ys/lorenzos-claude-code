@@ -1,6 +1,8 @@
 ---
 name: root-cause-analysis
-description: Use this skill for debugging and problem investigation. Activates when encountering bugs, errors, unexpected behavior, or when asked to fix issues.
+description: |
+  WHEN to auto-invoke: Debugging issues, fixing bugs, investigating errors, "not working" problems, unexpected behavior, stack traces, error messages, troubleshooting, "why is this happening".
+  WHEN NOT to invoke: Building new features from scratch, documentation, refactoring working code, adding tests to working code.
 ---
 
 # Root Cause Analysis Skill

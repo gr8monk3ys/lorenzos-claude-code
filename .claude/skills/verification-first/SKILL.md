@@ -1,6 +1,8 @@
 ---
 name: verification-first
-description: Use this skill to ensure work is verified before claiming completion. Activates when finishing tasks, making claims about code working, or before marking work as done.
+description: |
+  WHEN to auto-invoke: Finishing tasks, claiming "done" or "complete", before marking work finished, when asserting code works, wrapping up implementations.
+  WHEN NOT to invoke: During active development, exploration phases, planning discussions, research tasks.
 ---
 
 # Verification-First Skill

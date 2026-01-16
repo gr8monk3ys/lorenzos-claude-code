@@ -1,6 +1,8 @@
 ---
 name: code-quality
-description: Use this skill for code review, testing, refactoring, and optimization. Activates for security review, test generation, performance analysis, and code cleanup tasks.
+description: |
+  WHEN to auto-invoke: Code review requests, refactoring code, cleaning up code, performance optimization, security audits, linting issues, reducing technical debt.
+  WHEN NOT to invoke: Building new features (use domain-specific skills), initial implementation, documentation-only work.
 ---
 
 # Code Quality Skill

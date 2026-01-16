@@ -1,6 +1,8 @@
 ---
 name: frontend-development
-description: Use this skill when creating UI components, pages, or frontend features. Activates for React components, Next.js pages, styling, state management, and accessibility tasks.
+description: |
+  WHEN to auto-invoke: Creating UI components, building React/Vue/Svelte components, Next.js pages, styling with Tailwind/CSS, state management setup, form handling, accessibility improvements, client-side interactivity.
+  WHEN NOT to invoke: API-only work, database operations, backend logic, DevOps/deployment, pure testing without UI.
 ---
 
 # Frontend Development Skill

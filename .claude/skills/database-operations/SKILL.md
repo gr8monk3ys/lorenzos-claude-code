@@ -1,6 +1,8 @@
 ---
 name: database-operations
-description: Use this skill for database schema design, migrations, queries, and optimization. Activates for Supabase, Prisma, Drizzle, and PostgreSQL tasks.
+description: |
+  WHEN to auto-invoke: Database schema design, creating migrations, writing SQL queries, query optimization, Supabase operations, Prisma/Drizzle schema changes, PostgreSQL tasks, RLS policies, indexes.
+  WHEN NOT to invoke: Pure frontend work, API logic without database, styling, React components, deployment tasks.
 ---
 
 # Database Operations Skill

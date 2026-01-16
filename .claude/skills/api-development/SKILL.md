@@ -1,6 +1,8 @@
 ---
 name: api-development
-description: Use this skill when creating, testing, or securing API endpoints. Activates for REST API routes, authentication, rate limiting, and API documentation tasks.
+description: |
+  WHEN to auto-invoke: Creating API routes, building endpoints, adding route.ts files, implementing REST/GraphQL APIs, adding authentication to APIs, rate limiting, API validation with Zod, handling HTTP methods (GET/POST/PUT/DELETE).
+  WHEN NOT to invoke: Pure frontend work, styling, React components without API calls, documentation-only tasks, database migrations without API changes.
 ---
 
 # API Development Skill

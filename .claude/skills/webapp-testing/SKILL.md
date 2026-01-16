@@ -1,6 +1,8 @@
 ---
 name: webapp-testing
-description: Use this skill for browser automation, E2E testing, visual regression testing, and web application testing with Playwright or similar tools.
+description: |
+  WHEN to auto-invoke: Writing E2E tests, browser automation, Playwright tests, visual regression testing, integration testing, test file creation (*.test.ts, *.spec.ts), testing user flows.
+  WHEN NOT to invoke: Unit tests for pure functions, API-only testing, database testing, documentation, non-testing implementation work.
 ---
 
 # Web Application Testing Skill
