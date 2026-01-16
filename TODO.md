@@ -2,7 +2,7 @@
 
 This file tracks potential improvements and enhancements for lorenzos-claude-code plugin.
 
-**Current Version**: v1.16.0 | **50 commands** | **24 agents** | **14 skills** | **4 orchestrators** | **22 MCP servers** | **8 hooks**
+**Current Version**: v1.17.0 | **56 commands** | **24 agents** | **14 skills** | **4 orchestrators** | **22 MCP servers** | **8 hooks**
 
 ---
 
@@ -18,7 +18,7 @@ The official repo has a complete DevContainer setup for sandboxed development:
 - [x] Create `.devcontainer/Dockerfile` - Node.js 20 base with Claude Code pre-installed
 - [x] Create `.devcontainer/init-firewall.sh` - Security: whitelist-only network access (GitHub, Anthropic, npm, statsig, sentry)
 - [x] Add Docker volume for `~/.claude` persistence across container rebuilds
-- [ ] Document DevContainer benefits (sandboxed file access, network restrictions)
+- [x] Document DevContainer benefits (sandboxed file access, network restrictions) - see `.claude/docs/DEVCONTAINER.md`
 
 ### GitHub Actions CI/CD ✅ COMPLETED
 *Sources: [claude-code-action](https://github.com/anthropics/claude-code-action), [claude-code-security-review](https://github.com/anthropics/claude-code-security-review)*
@@ -26,8 +26,8 @@ The official repo has a complete DevContainer setup for sandboxed development:
 - [x] Create `.github/workflows/claude-pr-review.yml` - Automated PR reviews on @claude mention
 - [x] Create `.github/workflows/claude-security-scan.yml` - Security vulnerability scanning on PRs
 - [x] Create `.github/workflows/ci.yml` - Standard CI pipeline (lint, test, build, validate)
-- [ ] Document GitHub App installation via `/install-github-app`
-- [ ] Add model configuration (default: Sonnet, optional: Opus 4.5)
+- [x] Document GitHub App installation via `/github-setup` command
+- [x] Add model configuration documentation (default: Sonnet, optional: Opus 4.5)
 
 ### VS Code Configuration ✅ COMPLETED
 *Source: [VS Code Integration Docs](https://code.claude.com/docs/en/vs-code)*
@@ -150,9 +150,9 @@ Based on research from [obra/superpowers](https://github.com/obra/superpowers), 
 
 ### Workflow Commands
 
-**Autonomous Development:** ✅ COMPLETED (v1.16.0)
+**Autonomous Development:** ✅ COMPLETED (v1.17.0)
 - [x] Add `/wiggum` command - Start autonomous development loop
-- [ ] Add `/harness` command - Configure safety guardrails (future)
+- [x] Add `/harness` command - Configure safety guardrails (Principal Skinner Harness)
 - [x] Add `/worktree` command - Git worktree management
 
 **Session Management:** ✅ COMPLETED (v1.12.0)

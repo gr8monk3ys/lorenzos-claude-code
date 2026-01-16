@@ -5,6 +5,23 @@ All notable changes to Lorenzo's Claude Code plugin will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.17.0] - 2026-01-15
+
+### Added
+- **6 New Commands** (56 total)
+  - `/harness` - Configure safety guardrails for autonomous development (Principal Skinner Harness)
+  - `/chain` - Chain multiple commands together for automated workflows
+  - `/suggest` - Get AI-powered command suggestions based on current context
+  - `/summarize` - Intelligently summarize files/directories to reduce token usage
+  - `/github-setup` - Set up GitHub integration for PR reviews and security scans
+
+- **Documentation**
+  - `DEVCONTAINER.md` - Comprehensive guide for DevContainer benefits and usage
+
+### Changed
+- Updated plugin to **56 commands** (was 50)
+- Marked several TODO items as complete
+
 ## [1.16.0] - 2026-01-15
 
 ### Added

@@ -1,7 +1,7 @@
 {
   "name": "lorenzos-claude-code",
-  "version": "1.16.0",
-  "description": "Lorenzo's Claude Code setup: 50 commands, 24 agents, 14 skills, 4 orchestrators, 22 MCP servers, 8 hooks for 10x end-to-end development",
+  "version": "1.17.0",
+  "description": "Lorenzo's Claude Code setup: 56 commands, 24 agents, 14 skills, 4 orchestrators, 22 MCP servers, 8 hooks for 10x end-to-end development",
   "author": {
     "name": "Lorenzo",
     "email": "gr8monk3ys@gmail.com",
