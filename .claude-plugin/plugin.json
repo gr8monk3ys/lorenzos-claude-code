@@ -1,7 +1,7 @@
 {
   "name": "lorenzos-claude-code",
-  "version": "1.14.0",
-  "description": "Lorenzo's Claude Code setup: 46 commands, 24 agents, 14 skills, 4 orchestrators, 15 MCP servers, 8 hooks for 10x end-to-end development",
+  "version": "1.15.0",
+  "description": "Lorenzo's Claude Code setup: 46 commands, 24 agents, 14 skills, 4 orchestrators, 16 MCP servers, 8 hooks for 10x end-to-end development",
   "author": {
     "name": "Lorenzo",
     "email": "gr8monk3ys@gmail.com",
@@ -94,6 +94,11 @@
       "command": "npx",
       "args": ["-y", "@anthropic/mcp-server-slack"],
       "description": "Slack workspace access for channel and message operations (requires SLACK_BOT_TOKEN)"
+    },
+    "memory": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-memory"],
+      "description": "Persistent knowledge graph for cross-session context retention (set MEMORY_FILE_PATH env var)"
     }
   }
 }

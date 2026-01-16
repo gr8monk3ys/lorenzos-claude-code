@@ -1,0 +1,82 @@
+# Claude Code Automated PR Review
+# Source: https://github.com/anthropics/claude-code-action
+#
+# This workflow enables Claude to review PRs when mentioned with @claude
+# or automatically on PR open/sync.
+#
+# SETUP:
+# 1. Run `/install-github-app` in Claude Code to set up the GitHub App
+# 2. Add required secrets:
+#    - ANTHROPIC_API_KEY: Your Anthropic API key
+# 3. The GitHub App will automatically provide GITHUB_TOKEN
+
+name: Claude PR Review
+
+on:
+  # Trigger on @claude mentions in comments
+  issue_comment:
+    types: [created]
+  # Trigger on PR opened or updated
+  pull_request:
+    types: [opened, synchronize]
+
+# Prevent concurrent runs on the same PR
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.event.issue.number }}
+  cancel-in-progress: true
+
+jobs:
+  review:
+    # Only run on PRs (not issues) and when @claude is mentioned or on PR events
+    if: |
+      (github.event_name == 'pull_request') ||
+      (github.event_name == 'issue_comment' &&
+       github.event.issue.pull_request &&
+       contains(github.event.comment.body, '@claude'))
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run Claude Code Review
+        uses: anthropics/claude-code-action@v1
+        with:
+          # Use Sonnet by default (faster, cheaper)
+          # Change to claude-opus-4-5-20251101 for complex reviews
+          model: claude-sonnet-4-5-20251101
+
+          # Review instructions
+          prompt: |
+            Review this PR with focus on:
+            1. Code quality and best practices
+            2. TypeScript type safety (no any types)
+            3. Next.js 15 App Router patterns
+            4. Security vulnerabilities (OWASP Top 10)
+            5. Performance implications
+            6. Accessibility concerns
+
+            For each issue found, provide:
+            - Severity (Critical/High/Medium/Low)
+            - Location (file:line)
+            - Problem description
+            - Suggested fix with code example
+
+            Be constructive and actionable. Praise good patterns too.
+
+          # Allow Claude to suggest code changes
+          allow_edits: false
+
+          # Timeout for review (5 minutes)
+          timeout_minutes: 5
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -2,8 +2,14 @@
 .DS_Store
 
 # Editor
-.vscode/
 .idea/
+# Include VS Code settings for consistent dev experience
+# but exclude workspace-specific files
+!.vscode/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json
 
 # Local settings (users should not commit these)
 .claude/settings.local.json

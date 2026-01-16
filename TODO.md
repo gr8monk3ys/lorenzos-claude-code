@@ -2,7 +2,48 @@
 
 This file tracks potential improvements and enhancements for lorenzos-claude-code plugin.
 
-**Current Version**: v1.13.0 | **59 commands** | **24 agents** | **14 skills** | **15 MCP servers**
+**Current Version**: v1.15.0 | **46 commands** | **24 agents** | **14 skills** | **4 orchestrators** | **16 MCP servers** | **8 hooks**
+
+---
+
+## IMMEDIATE PRIORITIES - Missing from Official anthropics/claude-code
+
+Based on deep research comparing with [anthropics/claude-code](https://github.com/anthropics/claude-code), [anthropics/devcontainer-features](https://github.com/anthropics/devcontainer-features), and [anthropics/claude-code-action](https://github.com/anthropics/claude-code-action).
+
+### DevContainer Configuration ✅ COMPLETED
+*Source: [Official DevContainer Config](https://github.com/anthropics/claude-code/tree/main/.devcontainer)*
+
+The official repo has a complete DevContainer setup for sandboxed development:
+- [x] Create `.devcontainer/devcontainer.json` - Container configuration with claude-code feature
+- [x] Create `.devcontainer/Dockerfile` - Node.js 20 base with Claude Code pre-installed
+- [x] Create `.devcontainer/init-firewall.sh` - Security: whitelist-only network access (GitHub, Anthropic, npm, statsig, sentry)
+- [x] Add Docker volume for `~/.claude` persistence across container rebuilds
+- [ ] Document DevContainer benefits (sandboxed file access, network restrictions)
+
+### GitHub Actions CI/CD ✅ COMPLETED
+*Sources: [claude-code-action](https://github.com/anthropics/claude-code-action), [claude-code-security-review](https://github.com/anthropics/claude-code-security-review)*
+
+- [x] Create `.github/workflows/claude-pr-review.yml` - Automated PR reviews on @claude mention
+- [x] Create `.github/workflows/claude-security-scan.yml` - Security vulnerability scanning on PRs
+- [x] Create `.github/workflows/ci.yml` - Standard CI pipeline (lint, test, build, validate)
+- [ ] Document GitHub App installation via `/install-github-app`
+- [ ] Add model configuration (default: Sonnet, optional: Opus 4.5)
+
+### VS Code Configuration ✅ COMPLETED
+*Source: [VS Code Integration Docs](https://code.claude.com/docs/en/vs-code)*
+
+- [x] Create `.vscode/settings.json` - Recommended editor settings for this repo
+- [x] Create `.vscode/extensions.json` - Recommended extensions (Claude Code, ESLint, Prettier)
+- [x] Create `.vscode/launch.json` - Debug configurations
+- [ ] Add `claude-code.environmentVariables` documentation
+
+### Memory MCP Server ✅ CONFIGURED
+*Source: [MCP Memory Service](https://github.com/doobidoo/mcp-memory-service)*
+
+- [x] Add `@modelcontextprotocol/server-memory` to plugin.json for persistent knowledge graph
+- [ ] Document memory file location best practices
+- [ ] Create `/memory-init` command to initialize project memory
+- [ ] Add cross-session context preservation patterns
 
 ---
 

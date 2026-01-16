@@ -5,6 +5,39 @@ All notable changes to Lorenzo's Claude Code plugin will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.15.0] - 2026-01-15
+
+### Added
+- **DevContainer Configuration** - Sandboxed development environment matching official anthropics/claude-code
+  - `.devcontainer/devcontainer.json` - Container config with Claude Code feature, VS Code extensions
+  - `.devcontainer/Dockerfile` - Node.js 20 base with Claude Code, TypeScript, Playwright pre-installed
+  - `.devcontainer/init-firewall.sh` - Security: whitelist-only network access script
+  - Docker volume persistence for `~/.claude` configuration
+
+- **GitHub Actions CI/CD** - Automated workflows for quality and security
+  - `.github/workflows/claude-pr-review.yml` - AI-powered PR reviews on @claude mention
+  - `.github/workflows/claude-security-scan.yml` - Security vulnerability scanning using Claude Opus
+  - `.github/workflows/ci.yml` - Plugin validation, structure checks, markdown linting
+
+- **VS Code Configuration** - Editor settings for optimal development experience
+  - `.vscode/settings.json` - Recommended editor, TypeScript, ESLint, Prettier settings
+  - `.vscode/extensions.json` - Recommended extensions (Claude Code, ESLint, Prettier, Playwright, etc.)
+  - `.vscode/launch.json` - Debug configurations for plugin validation and tests
+
+- **Memory MCP Server** - Persistent knowledge graph for cross-session context
+  - Added `@modelcontextprotocol/server-memory` to plugin.json
+
+### Changed
+- Updated plugin to **16 MCP servers** (was 15)
+- Updated TODO.md with research from official anthropics/claude-code repository
+
+### Sources
+- [anthropics/claude-code DevContainer](https://github.com/anthropics/claude-code/tree/main/.devcontainer)
+- [anthropics/devcontainer-features](https://github.com/anthropics/devcontainer-features)
+- [anthropics/claude-code-action](https://github.com/anthropics/claude-code-action)
+- [anthropics/claude-code-security-review](https://github.com/anthropics/claude-code-security-review)
+- [@modelcontextprotocol/server-memory](https://github.com/modelcontextprotocol/servers)
+
 ## [1.13.0] - 2026-01-14
 
 ### Added
