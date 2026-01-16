@@ -1,7 +1,7 @@
 {
   "name": "lorenzos-claude-code",
-  "version": "1.15.0",
-  "description": "Lorenzo's Claude Code setup: 46 commands, 24 agents, 14 skills, 4 orchestrators, 16 MCP servers, 8 hooks for 10x end-to-end development",
+  "version": "1.16.0",
+  "description": "Lorenzo's Claude Code setup: 50 commands, 24 agents, 14 skills, 4 orchestrators, 22 MCP servers, 8 hooks for 10x end-to-end development",
   "author": {
     "name": "Lorenzo",
     "email": "gr8monk3ys@gmail.com",
@@ -99,6 +99,36 @@
       "command": "npx",
       "args": ["-y", "@modelcontextprotocol/server-memory"],
       "description": "Persistent knowledge graph for cross-session context retention (set MEMORY_FILE_PATH env var)"
+    },
+    "terraform": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-server-terraform"],
+      "description": "Terraform infrastructure as code operations (requires TERRAFORM_CLOUD_TOKEN for Terraform Cloud)"
+    },
+    "kubernetes": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-server-kubernetes"],
+      "description": "Kubernetes cluster management and kubectl operations (uses current kubeconfig context)"
+    },
+    "docker": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-server-docker"],
+      "description": "Docker container and image management operations (requires Docker daemon access)"
+    },
+    "sentry": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-server-sentry"],
+      "description": "Sentry error tracking and performance monitoring (requires SENTRY_AUTH_TOKEN)"
+    },
+    "datadog": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-server-datadog"],
+      "description": "Datadog observability, metrics, and log analysis (requires DD_API_KEY and DD_APP_KEY)"
+    },
+    "aws": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-server-aws"],
+      "description": "AWS services including S3, Lambda, DynamoDB, and CloudWatch (uses AWS credentials from environment)"
     }
   }
 }

@@ -5,6 +5,27 @@ All notable changes to Lorenzo's Claude Code plugin will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.16.0] - 2026-01-15
+
+### Added
+- **4 New Commands** (50 total)
+  - `/ci-review` - Run Claude Code in headless mode for CI/CD automated code review
+  - `/worktree` - Git worktree management for isolated parallel development
+  - `/memory-init` - Initialize persistent memory/knowledge graph for cross-session context
+  - `/context-budget` - Monitor and optimize context/token usage for efficient sessions
+
+- **6 New MCP Servers** (22 total)
+  - **Terraform** (`@anthropic/mcp-server-terraform`) - Infrastructure as code operations
+  - **Kubernetes** (`@anthropic/mcp-server-kubernetes`) - Cluster management and kubectl operations
+  - **Docker** (`@anthropic/mcp-server-docker`) - Container and image management
+  - **Sentry** (`@anthropic/mcp-server-sentry`) - Error tracking and performance monitoring
+  - **Datadog** (`@anthropic/mcp-server-datadog`) - Observability, metrics, and log analysis
+  - **AWS** (`@anthropic/mcp-server-aws`) - S3, Lambda, DynamoDB, CloudWatch operations
+
+### Changed
+- Updated plugin to **50 commands** (was 46)
+- Updated plugin to **22 MCP servers** (was 16)
+
 ## [1.15.0] - 2026-01-15
 
 ### Added

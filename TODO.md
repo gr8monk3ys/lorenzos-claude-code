@@ -2,7 +2,7 @@
 
 This file tracks potential improvements and enhancements for lorenzos-claude-code plugin.
 
-**Current Version**: v1.15.0 | **46 commands** | **24 agents** | **14 skills** | **4 orchestrators** | **16 MCP servers** | **8 hooks**
+**Current Version**: v1.16.0 | **50 commands** | **24 agents** | **14 skills** | **4 orchestrators** | **22 MCP servers** | **8 hooks**
 
 ---
 
@@ -42,7 +42,7 @@ The official repo has a complete DevContainer setup for sandboxed development:
 
 - [x] Add `@modelcontextprotocol/server-memory` to plugin.json for persistent knowledge graph
 - [ ] Document memory file location best practices
-- [ ] Create `/memory-init` command to initialize project memory
+- [x] Create `/memory-init` command to initialize project memory
 - [ ] Add cross-session context preservation patterns
 
 ---
@@ -81,17 +81,17 @@ Based on research from [obra/superpowers](https://github.com/obra/superpowers), 
 **Token Efficiency:**
 - [ ] Implement TLDR code analysis (AST → CallGraph → CFG → DFG → Slicing)
 - [ ] Add intelligent file summarization to reduce token usage
-- [ ] Create context budget monitoring and optimization
+- [x] Create context budget monitoring and optimization (`/context-budget`)
 - [ ] Add lazy-loading for large codebases
 
 ### obra/superpowers Integration (High Impact) - Partially Complete
 *Source: [obra/superpowers](https://github.com/obra/superpowers)*
 
-**Git Worktree Workflow:** (Skill Added v1.13.0)
+**Git Worktree Workflow:** ✅ COMPLETED (v1.16.0)
 - [x] Add `git-worktree` skill for isolated development branches
-- [ ] Add `/worktree` command (future CLI integration)
-- [ ] Create verified test baseline before feature work
-- [ ] Implement automatic branch cleanup after merge
+- [x] Add `/worktree` command for CLI integration
+- [x] Document verified test baseline before feature work
+- [x] Document automatic branch cleanup after merge
 
 **Enhanced Planning:** (Skills Added v1.13.0)
 - [x] Add `micro-tasking` skill - Break work into 2-5 minute micro-tasks
@@ -132,17 +132,17 @@ Based on research from [obra/superpowers](https://github.com/obra/superpowers), 
 - [x] Add Linear MCP server (`@linear/mcp-server`)
 - [x] Add Slack MCP server - team communication
 
-### Priority 3 - Infrastructure
+### Priority 3 - Infrastructure ✅ COMPLETED (v1.16.0)
 
 **Cloud & DevOps:**
-- [ ] Add Terraform MCP server - infrastructure as code
-- [ ] Add Kubernetes MCP server - cluster management
-- [ ] Add Docker MCP server - container operations
-- [ ] Add AWS MCP suite (S3, DynamoDB, Lambda)
+- [x] Add Terraform MCP server - infrastructure as code
+- [x] Add Kubernetes MCP server - cluster management
+- [x] Add Docker MCP server - container operations
+- [x] Add AWS MCP server (S3, DynamoDB, Lambda, CloudWatch)
 
 **Monitoring:**
-- [ ] Add Sentry MCP server - error tracking
-- [ ] Add Datadog MCP server - observability
+- [x] Add Sentry MCP server - error tracking
+- [x] Add Datadog MCP server - observability
 
 ---
 
@@ -150,10 +150,10 @@ Based on research from [obra/superpowers](https://github.com/obra/superpowers), 
 
 ### Workflow Commands
 
-**Autonomous Development:** ✅ COMPLETED (v1.13.0)
+**Autonomous Development:** ✅ COMPLETED (v1.16.0)
 - [x] Add `/wiggum` command - Start autonomous development loop
 - [ ] Add `/harness` command - Configure safety guardrails (future)
-- [ ] Add `/worktree` command - Git worktree management (future)
+- [x] Add `/worktree` command - Git worktree management
 
 **Session Management:** ✅ COMPLETED (v1.12.0)
 - [x] Add `/handoff` command - Create session transfer document
