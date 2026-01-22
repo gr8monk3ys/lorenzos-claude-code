@@ -1,6 +1,11 @@
 {
   "hooks": [
     {
+      "event": "SessionStart",
+      "command": "./.claude/hooks/session-start.sh",
+      "description": "Restores previous context when sessions begin (memory persistence)"
+    },
+    {
       "event": "PreToolUse",
       "matcher": {
         "tool_name": ["Edit", "Write"]
@@ -17,6 +22,14 @@
       "description": "Validates JSON syntax before writing JSON files"
     },
     {
+      "event": "PreToolUse",
+      "matcher": {
+        "tool_name": ["Edit", "Write"]
+      },
+      "command": "./.claude/hooks/strategic-compact.sh",
+      "description": "Monitors edit operations and suggests compaction at natural breakpoints"
+    },
+    {
       "event": "PostToolUse",
       "matcher": {
         "tool_name": ["Edit", "Write"]
@@ -31,6 +44,16 @@
       },
       "command": "./.claude/hooks/typecheck.sh",
       "description": "Runs TypeScript type checking after code changes"
+    },
+    {
+      "event": "Stop",
+      "command": "./.claude/hooks/session-end.sh",
+      "description": "Persists session state when sessions complete (memory persistence)"
+    },
+    {
+      "event": "Stop",
+      "command": "./.claude/hooks/continuous-learning.sh",
+      "description": "Analyzes session patterns and extracts reusable skills"
     },
     {
       "event": "Stop",
