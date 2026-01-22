@@ -50,8 +50,19 @@ My personal Claude Code configuration for productive web development. This plugi
 - `/innovate` - Phase 2: Explore multiple solutions
 - `/review` - Phase 5: Quality gates before completion
 
-**Autonomous Development** (NEW)
+**Verification & Quality**
+- `/verify` - 6-phase verification loop (Build, Types, Lint, Tests, Security, Diff)
+- `/eval` - Run eval-driven development checks with pass@k metrics
+- `/learn` - Extract learnable patterns from current session
+
+**Context Modes**
+- `/context-mode dev` - Development mode: code-first, rapid iteration
+- `/context-mode review` - Review mode: quality-focused, thorough analysis
+- `/context-mode research` - Research mode: exploration, investigation
+
+**Autonomous Development**
 - `/wiggum` - Ralph Wiggum Pattern: Autonomous iterative loops with safety guardrails
+- `/harness` - Configure safety guardrails for autonomous development
 
 ### 🔌 API Commands (3)
 
@@ -110,37 +121,39 @@ My personal Claude Code configuration for productive web development. This plugi
 - **competitive-analyst** - Market research, competitor analysis, strategic insights
 - **fintech-engineer** - Payment systems, compliance (PCI-DSS, KYC/AML), fraud detection
 
-### 🧠 Auto-Activating Skills (14)
+### 🧠 Auto-Activating Skills (18)
 
 Skills automatically enhance your workflow based on context - no commands needed.
 
-**API Development**
+**Development**
 - **api-development** - Next.js 15 patterns, Zod validation, consistent error handling
-
-**Frontend Development**
 - **frontend-development** - React/Vue/Angular/Svelte best practices, accessibility, performance
-
-**Database Operations**
 - **database-operations** - N+1 prevention, indexing, safe migrations, efficient queries
-
-**DevOps & Testing**
 - **devops-automation** - GitHub Actions, CI/CD pipelines, Docker, deployment workflows
-- **webapp-testing** - Browser automation, E2E testing with Playwright
+
+**Quality**
 - **code-quality** - Code review, testing, refactoring, and optimization patterns
-
-**MCP & Skills Development**
-- **mcp-builder** - Build Model Context Protocol servers to extend Claude
-- **skill-creator** - Create new Claude Code skills and auto-invoked behaviors
-
-**Workflow Enhancement** (NEW)
 - **verification-first** - Verify work is complete before claiming completion
+- **spec-compliance** - Verify implementation matches specifications and requirements
+- **eval-harness** - Eval-driven development with pass@k quality metrics
+
+**Workflow**
 - **micro-tasking** - Break work into small, verifiable 2-5 minute tasks
 - **root-cause-analysis** - 4-phase debugging methodology for finding true causes
 - **git-worktree** - Isolated branch workflows for parallel development
 - **parallel-dispatch** - Coordinate concurrent agent work and multi-agent workflows
-- **spec-compliance** - Verify implementation matches specifications and requirements
 
-### 🔄 Multi-Agent Orchestrators (3)
+**Session Management**
+- **memory-persistence** - Cross-session context continuity and state restoration
+- **strategic-compact** - User-controlled context compaction at natural breakpoints
+- **continuous-learning** - Learn patterns from sessions for future improvement
+
+**Tooling**
+- **mcp-builder** - Build Model Context Protocol servers to extend Claude
+- **skill-creator** - Create new Claude Code skills and auto-invoked behaviors
+- **webapp-testing** - Browser automation, E2E testing with Playwright
+
+### 🔄 Multi-Agent Orchestrators (4)
 
 Orchestrators coordinate multiple agents for complex workflows.
 
@@ -161,6 +174,11 @@ Orchestrators coordinate multiple agents for complex workflows.
   - Plan (refactoring-expert + system-architect)
   - Execute (incremental changes with tests)
   - Verify (test-strategist + code-reviewer)
+
+- **parallel-build-workflow** - Concurrent development with git worktrees
+  - Spawn multiple Claude agents on separate branches
+  - Coordinate work across isolated worktrees
+  - Merge results when complete
 
 ## Installation
 
@@ -354,11 +372,24 @@ This plugin includes **22 pre-configured MCP** (Model Context Protocol) servers 
 10. **Vercel** - Deployment management (**requires config**)
 11. **Stripe** - Payment processing API (**requires config**)
 
-**Collaboration & Design** (NEW)
+**Collaboration & Design**
 12. **Figma** - Design file access and component inspection (**requires FIGMA_ACCESS_TOKEN**)
 13. **Notion** - Workspace access for docs and knowledge bases (**requires NOTION_API_KEY**)
 14. **Linear** - Issue tracking and project management (**requires LINEAR_API_KEY**)
 15. **Slack** - Workspace access for channel and message operations (**requires SLACK_BOT_TOKEN**)
+
+**Memory & Context**
+16. **Memory** - Persistent knowledge graph for cross-session context (**set MEMORY_FILE_PATH**)
+
+**Infrastructure & DevOps**
+17. **Terraform** - Infrastructure as code operations (**requires TERRAFORM_CLOUD_TOKEN**)
+18. **Kubernetes** - Cluster management and kubectl operations (uses kubeconfig)
+19. **Docker** - Container and image management (requires Docker daemon)
+20. **AWS** - S3, Lambda, DynamoDB, CloudWatch (uses AWS credentials)
+
+**Monitoring & Observability**
+21. **Sentry** - Error tracking and performance monitoring (**requires SENTRY_AUTH_TOKEN**)
+22. **Datadog** - Observability, metrics, and log analysis (**requires DD_API_KEY**)
 
 ### Configuring Supabase MCP Server
 
