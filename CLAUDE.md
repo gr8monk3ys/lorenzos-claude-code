@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Overview
 
-This is a Claude Code plugin repository providing **55 slash commands**, **24 specialized AI agents**, **14 auto-activating skills**, **4 multi-agent orchestrators**, and **22 MCP servers** for modern web development (Next.js 15, TypeScript, React, Vue, Angular, Svelte, Supabase). Current version: **1.17.0**.
+This is a Claude Code plugin repository providing **59 slash commands**, **24 specialized AI agents**, **18 auto-activating skills**, **4 multi-agent orchestrators**, **22 MCP servers**, **12 hooks**, and **3 context modes** for modern web development (Next.js 15, TypeScript, React, Vue, Angular, Svelte, Supabase). Current version: **1.18.0**.
 
 ## Key Files
 
@@ -13,7 +13,8 @@ This is a Claude Code plugin repository providing **55 slash commands**, **24 sp
 - `.claude/agents/` - Specialized AI agent prompt files
 - `.claude/skills/` - Auto-activating skill files organized by category (api/, frontend/, database/, devops/)
 - `.claude/orchestrators/` - Multi-agent workflow orchestrators
-- `.claude/hooks/` - Pre-configured automation hooks (8 total)
+- `.claude/hooks/` - Pre-configured automation hooks (12 total)
+- `.claude/contexts/` - Dynamic system prompts for different work modes (dev, review, research)
 - `.claude/docs/` - Research and design documentation
 - `.claude/plugin-settings.json` - User preference schema for framework, styling, testing, database, API style, deployment platform
 
@@ -42,7 +43,7 @@ color: green   # optional
 
 **Agent activation descriptions** are critical - they determine when agents automatically engage. Write clear, specific activation criteria with examples.
 
-### Skill Format (14 skills)
+### Skill Format (18 skills)
 Skills are auto-activating context-aware enhancements in `.claude/skills/`:
 ```yaml
 ---
@@ -64,8 +65,19 @@ triggers:  # optional activation hints
 - **Frontend** (`component-patterns`, `state-management`) - Component and state best practices
 - **Database** (`query-optimization`, `migration-safety`) - Query performance, safe migrations
 - **DevOps** (`ci-cd-patterns`) - CI/CD best practices
+- **Session Management** (`memory-persistence`, `strategic-compact`, `continuous-learning`) - Cross-session continuity, context management, pattern learning
+- **Quality** (`eval-harness`) - Eval-driven development with pass@k metrics
 
 Skills differ from commands: **Commands are explicit** (`/api-new`), **Skills are implicit** (auto-activate based on context).
+
+### Context Modes (3 modes)
+Dynamic system prompts that optimize Claude's behavior for different work types in `.claude/contexts/`:
+
+- **dev.md** - Development mode: code-first, rapid iteration, pragmatic solutions
+- **review.md** - Review mode: quality-focused, thorough analysis, standards enforcement
+- **research.md** - Research mode: exploration, investigation, understanding
+
+Switch modes with `/context-mode dev|review|research`.
 
 ### Orchestrator Format (3 orchestrators)
 Orchestrators coordinate multi-agent workflows in `.claude/orchestrators/`:
@@ -126,15 +138,27 @@ Pre-configured in [plugin.json](.claude-plugin/plugin.json) under `mcpServers`:
 
 See README.md for credential configuration.
 
-### Hooks System (8 pre-configured)
+### Hooks System (12 pre-configured)
 Located in `.claude/hooks/`:
+
+**Session Management:**
+- **session-start.sh** (SessionStart) - Restores previous context when sessions begin
+- **session-end.sh** (Stop) - Persists session state when sessions complete
+- **continuous-learning.sh** (Stop) - Analyzes sessions for learnable patterns
+
+**Context Management:**
+- **strategic-compact.sh** (PreToolUse) - Suggests compaction at natural workflow breakpoints
+
+**Code Quality:**
 - **block-sensitive-files.sh** (PreToolUse) - Prevents editing .env, credentials, keys
 - **validate-json.sh** (PreToolUse) - Validates JSON syntax before write
 - **auto-format.sh** (PostToolUse) - Auto-formats with Prettier/Biome/ESLint
 - **typecheck.sh** (PostToolUse) - Runs TypeScript type checking
+- **test-gate.sh** (PreToolUse) - Blocks git commits until tests pass
+
+**Workflow:**
 - **auto-commit.sh** (Stop) - Auto-commits changes when task completes
 - **notify-completion.sh** (Stop) - Desktop notification on completion
-- **test-gate.sh** (PreToolUse) - Blocks git commits until tests pass
 - **skill-activator.sh** (UserPromptSubmit) - Injects skill activation hints
 
 See [HOOKS.md](HOOKS.md) for detailed hook configuration.

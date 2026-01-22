@@ -5,6 +5,69 @@ All notable changes to Lorenzo's Claude Code plugin will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.18.0] - 2026-01-22
+
+### Added
+- **Memory Persistence System** (HIGH VALUE) - Cross-session continuity
+  - `session-start.sh` hook - Restores previous context when sessions begin
+  - `session-end.sh` hook - Persists session state when sessions complete
+  - `memory-persistence` skill - Guidelines for using the memory system
+  - Sessions stored in `~/.claude/sessions/` with 7-day retention
+  - Learned skills persist in `~/.claude/skills/learned/`
+
+- **Strategic Compaction System** (HIGH VALUE) - Intelligent context management
+  - `strategic-compact.sh` hook - Monitors Edit/Write operations, suggests compaction at natural breakpoints
+  - `strategic-compact` skill - Guidelines for user-controlled context management
+  - Prevents auto-compaction from triggering mid-task
+
+- **Verification Loop Command** (HIGH VALUE) - `/verify`
+  - 6-phase comprehensive quality checks: Build, Types, Lint, Tests, Security, Diff
+  - Structured pass/fail reporting
+  - PR readiness assessment
+  - Recommended cadence: every 15 minutes during extended sessions
+
+- **Continuous Learning System** (MEDIUM-HIGH VALUE)
+  - `continuous-learning.sh` hook - Analyzes sessions for learnable patterns
+  - `continuous-learning` skill - Framework for pattern extraction
+  - `/learn` command - Manually trigger learning analysis
+  - Extracts: error resolutions, user corrections, workarounds, debugging techniques
+
+- **Context Modes** (MEDIUM VALUE) - Dynamic behavior switching
+  - `.claude/contexts/dev.md` - Development mode (code-first, rapid iteration)
+  - `.claude/contexts/review.md` - Review mode (quality-focused, thorough analysis)
+  - `.claude/contexts/research.md` - Research mode (exploration, investigation)
+  - `/context-mode` command - Switch between modes
+
+- **Eval Harness** (MEDIUM VALUE) - Eval-driven development
+  - `eval-harness` skill - EDD framework with grader types
+  - `/eval` command - Run eval checks with pass@k metrics
+  - Three grader types: Code-based, Model-based, Human
+  - Metrics: pass@k (at least one success), pass^k (all succeed)
+
+- **Competitive Analysis** - Research on everything-claude-code repository
+  - `.claude/docs/competitive-analysis-everything-claude-code.md`
+  - Identified key differentiators and implementation roadmap
+  - Source: Anthropic x Forum Ventures Hackathon Winner (Sep 2025)
+
+### Changed
+- Updated plugin to **59 commands** (was 55) - Added: /verify, /learn, /eval, /context-mode
+- Updated plugin to **18 skills** (was 14) - Added: memory-persistence, strategic-compact, continuous-learning, eval-harness
+- Updated plugin to **12 hooks** (was 8) - Added: session-start, session-end, strategic-compact, continuous-learning
+- Added **3 context modes** - dev, review, research
+- Bumped version to 1.18.0
+
+### Architecture
+- New `.claude/contexts/` directory for dynamic system prompts
+- New hooks in `.claude/hooks/`: session-start.sh, session-end.sh, strategic-compact.sh, continuous-learning.sh
+- New skills: memory-persistence, strategic-compact, continuous-learning, eval-harness
+- New commands: verify.md, learn.md, eval.md, context-mode.md
+
+### Sources
+- [everything-claude-code](https://github.com/affaan-m/everything-claude-code) - Anthropic Hackathon Winner
+- Memory persistence patterns from hackathon-winning implementation
+- Strategic compaction from workflow optimization research
+- Eval-driven development from AI quality assurance research
+
 ## [1.17.0] - 2026-01-15
 
 ### Added
