@@ -60,13 +60,12 @@ triggers:  # optional activation hints
 ---
 ```
 
-**Skill bundles:**
-- **API** (`api-creation`, `api-testing`, `api-security`) - Endpoint patterns, testing, security
-- **Frontend** (`component-patterns`, `state-management`) - Component and state best practices
-- **Database** (`query-optimization`, `migration-safety`) - Query performance, safe migrations
-- **DevOps** (`ci-cd-patterns`) - CI/CD best practices
-- **Session Management** (`memory-persistence`, `strategic-compact`, `continuous-learning`) - Cross-session continuity, context management, pattern learning
-- **Quality** (`eval-harness`) - Eval-driven development with pass@k metrics
+**Skills by category (18 total):**
+- **Development**: `api-development`, `frontend-development`, `database-operations`, `devops-automation`
+- **Quality**: `code-quality`, `verification-first`, `spec-compliance`, `eval-harness`
+- **Workflow**: `micro-tasking`, `root-cause-analysis`, `git-worktree`, `parallel-dispatch`
+- **Session**: `memory-persistence`, `strategic-compact`, `continuous-learning`
+- **Tooling**: `mcp-builder`, `skill-creator`, `webapp-testing`
 
 Skills differ from commands: **Commands are explicit** (`/api-new`), **Skills are implicit** (auto-activate based on context).
 
@@ -79,7 +78,7 @@ Dynamic system prompts that optimize Claude's behavior for different work types 
 
 Switch modes with `/context-mode dev|review|research`.
 
-### Orchestrator Format (3 orchestrators)
+### Orchestrator Format (4 orchestrators)
 Orchestrators coordinate multi-agent workflows in `.claude/orchestrators/`:
 ```yaml
 ---
@@ -96,6 +95,7 @@ triggers:
 - **fullstack-feature-workflow** - End-to-end feature implementation (requirements → API → frontend → tests → docs)
 - **code-review-workflow** - Multi-perspective review (security, performance, quality in parallel)
 - **refactoring-workflow** - Safe refactoring (analyze → plan → execute → verify)
+- **parallel-build-workflow** - Concurrent development using git worktrees with multiple Claude agents
 
 ### MCP Servers (22 configured)
 Pre-configured in [plugin.json](.claude-plugin/plugin.json) under `mcpServers`:
@@ -252,17 +252,20 @@ Add to `mcpServers` in [plugin.json](.claude-plugin/plugin.json):
 
 ## Command & Agent Inventory
 
-### Commands by Category (51 total, 36 unique + 15 aliases)
+### Commands by Category (59 total)
 - **API** (3): `/api-new`, `/api-test`, `/api-protect`
 - **UI** (2): `/component-new`, `/page-new`
 - **Frameworks** (3): `/component-vue`, `/component-angular`, `/component-svelte`
 - **Supabase** (2): `/types-gen`, `/edge-function-new`
-- **Context & Memory** (6): `/memory`, `/context`, `/architect`, `/ask`, `/map`, `/rules`
-- **Planning** (5): `/feature-plan`, `/write-plan`, `/execute-plan`, `/create-prd`, `/brainstorm`
-- **Code Quality** (5): `/code-explain`, `/code-optimize`, `/code-cleanup`, `/lint`, `/new-task`
-- **Testing & TDD** (3): `/test-new`, `/tdd`, `/fix-issue`
-- **Generation** (5): `/hook-new`, `/migration-new`, `/deploy`, `/docs-generate`, `/context-prime`
-- **Workflow** (2): `/wizard`, `/fix-pr`
+- **Context & Memory** (9): `/memory`, `/memory-init`, `/context`, `/context-prime`, `/context-budget`, `/context-mode`, `/architect`, `/ask`, `/map`
+- **Planning & RIPER** (8): `/feature-plan`, `/write-plan`, `/execute-plan`, `/create-prd`, `/brainstorm`, `/riper`, `/research`, `/innovate`
+- **Code Quality** (6): `/code-explain`, `/code-optimize`, `/code-cleanup`, `/lint`, `/new-task`, `/review`
+- **Testing & TDD** (4): `/test-new`, `/tdd`, `/fix-issue`, `/verify`
+- **Generation** (5): `/hook-new`, `/migration-new`, `/deploy`, `/docs-generate`, `/scaffold`
+- **Workflow & Session** (8): `/wizard`, `/fix-pr`, `/handoff`, `/resume`, `/ledger`, `/chain`, `/harness`, `/wiggum`
+- **DevOps & CI** (3): `/ci-review`, `/worktree`, `/parallel-spawn`
+- **Learning & Eval** (2): `/learn`, `/eval`
+- **Utility** (4): `/rules`, `/suggest`, `/summarize`, `/github-setup`
 
 ### Agents by Domain (24 total)
 - **Architecture** (4): system-architect, backend-architect, frontend-architect, api-architect

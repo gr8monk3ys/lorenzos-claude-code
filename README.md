@@ -1,8 +1,8 @@
 # Lorenzo's Claude Code Setup
 
-My personal Claude Code configuration for productive web development. This plugin provides **59 slash commands**, **24 specialized AI agents**, and **15 MCP servers** to supercharge your development workflow.
+My personal Claude Code configuration for productive web development. This plugin provides **59 slash commands**, **24 specialized AI agents**, and **22 MCP servers** to supercharge your development workflow.
 
-> **Note**: This plugin also includes 14 auto-activating skills, 3 multi-agent orchestrators, and 6 automation hooks as bonus content in the `.claude/` directory.
+> **Note**: This plugin also includes 18 auto-activating skills, 4 multi-agent orchestrators, 12 automation hooks, and 3 context modes as bonus content in the `.claude/` directory.
 
 ## Quick Install
 
@@ -303,14 +303,25 @@ This setup emphasizes:
 
 ## Automation Hooks
 
-This plugin includes 6 pre-configured hooks to automate common workflows:
+This plugin includes 12 pre-configured hooks to automate common workflows:
 
-1. **block-sensitive-files.sh** - Prevents editing .env, credentials, and secret files
-2. **auto-format.sh** - Auto-formats code with Prettier/Biome/ESLint after edits
-3. **typecheck.sh** - Runs TypeScript type checking after editing .ts/.tsx files
-4. **validate-json.sh** - Validates JSON syntax before writing
-5. **auto-commit.sh** - Auto-commits changes when Claude completes a task
-6. **notify-completion.sh** - Sends desktop notification on task completion
+**Session Management:**
+- **session-start.sh** - Restores previous context when sessions begin
+- **session-end.sh** - Persists session state when sessions complete
+- **continuous-learning.sh** - Analyzes sessions for learnable patterns
+
+**Code Quality:**
+- **block-sensitive-files.sh** - Prevents editing .env, credentials, and secret files
+- **validate-json.sh** - Validates JSON syntax before writing
+- **auto-format.sh** - Auto-formats code with Prettier/Biome/ESLint after edits
+- **typecheck.sh** - Runs TypeScript type checking after editing .ts/.tsx files
+- **test-gate.sh** - Blocks git commits until tests pass
+
+**Workflow:**
+- **strategic-compact.sh** - Suggests context compaction at natural breakpoints
+- **auto-commit.sh** - Auto-commits changes when Claude completes a task
+- **notify-completion.sh** - Sends desktop notification on task completion
+- **skill-activator.sh** - Injects skill activation hints based on context
 
 To enable hooks, add them to your `.claude/settings.local.json`. See [HOOKS.md](HOOKS.md) for detailed configuration.
 
@@ -320,7 +331,7 @@ After installation, you can customize any command by editing files in `.claude/c
 
 ## MCP Server Configuration
 
-This plugin includes **15 pre-configured MCP** (Model Context Protocol) servers that enhance Claude's capabilities:
+This plugin includes **22 pre-configured MCP** (Model Context Protocol) servers that enhance Claude's capabilities:
 
 ### Available MCP Servers
 
