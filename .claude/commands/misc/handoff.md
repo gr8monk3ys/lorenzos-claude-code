@@ -140,6 +140,39 @@ To continue from a handoff, use:
 /resume .claude/handoffs/HANDOFF-{timestamp}.yaml
 ```
 
+## Teleport Integration (v2.1.0+)
+
+Use `/teleport` to move your session to claude.ai/code while preserving context:
+
+### When to Teleport vs Handoff
+
+| Scenario | Use |
+|----------|-----|
+| Continuing on same machine | `/resume` |
+| Moving to web interface | `/teleport` |
+| Handing off to teammate | `/handoff` |
+| Switching devices | `/teleport` then `/resume` |
+
+### Teleport Workflow
+
+```bash
+# 1. Create handoff first (recommended)
+/handoff
+
+# 2. Teleport session to web
+/teleport
+
+# 3. On web, load handoff context
+/resume .claude/handoffs/HANDOFF-{timestamp}.yaml
+```
+
+### Teleport Limitations
+
+- Session state moves, but local files don't
+- MCP servers won't be available on web
+- Custom hooks don't apply on web
+- Best for continuation, not file-heavy work
+
 ## Handoff Locations
 
 | Type | Location |

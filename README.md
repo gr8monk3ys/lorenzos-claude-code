@@ -1,8 +1,8 @@
 # Lorenzo's Claude Code Setup
 
-My personal Claude Code configuration for productive web development. This plugin provides **59 slash commands**, **24 specialized AI agents**, and **22 MCP servers** to supercharge your development workflow.
+My personal Claude Code configuration for productive web development. This plugin provides **60 slash commands**, **26 specialized AI agents**, and **29 MCP servers** to supercharge your development workflow.
 
-> **Note**: This plugin also includes 18 auto-activating skills, 4 multi-agent orchestrators, 12 automation hooks, and 3 context modes as bonus content in the `.claude/` directory.
+> **Note**: This plugin also includes 19 auto-activating skills, 4 multi-agent orchestrators, 14 automation hooks, and 3 context modes as bonus content in the `.claude/` directory.
 
 ## Quick Install
 
@@ -72,7 +72,7 @@ My personal Claude Code configuration for productive web development. This plugi
 - `/types-gen` (alias: `/types`) - Generate TypeScript types
 - `/edge-function-new` (alias: `/edge`) - Create Edge Functions
 
-### 🤖 Specialized AI Agents (24)
+### 🤖 Specialized AI Agents (26)
 
 **Architecture & Planning**
 - **tech-stack-researcher** - Technology choice recommendations with trade-offs
@@ -110,7 +110,11 @@ My personal Claude Code configuration for productive web development. This plugi
 - **competitive-analyst** - Market research, competitor analysis, strategic insights
 - **fintech-engineer** - Payment systems, compliance (PCI-DSS, KYC/AML), fraud detection
 
-### 🧠 Auto-Activating Skills (14)
+**Build & Testing** (NEW)
+- **build-error-resolver** - Fix TypeScript/build errors with minimal diffs
+- **e2e-runner** - Playwright/Cypress testing with flaky test management
+
+### 🧠 Auto-Activating Skills (19)
 
 Skills automatically enhance your workflow based on context - no commands needed.
 
@@ -127,18 +131,25 @@ Skills automatically enhance your workflow based on context - no commands needed
 - **devops-automation** - GitHub Actions, CI/CD pipelines, Docker, deployment workflows
 - **webapp-testing** - Browser automation, E2E testing with Playwright
 - **code-quality** - Code review, testing, refactoring, and optimization patterns
+- **eval-harness** - Evaluation-driven development with pass@k metrics
 
 **MCP & Skills Development**
 - **mcp-builder** - Build Model Context Protocol servers to extend Claude
 - **skill-creator** - Create new Claude Code skills and auto-invoked behaviors
 
-**Workflow Enhancement** (NEW)
-- **verification-first** - Verify work is complete before claiming completion
+**Workflow Enhancement**
+- **verification-first** - 5-step verification gate before claiming completion
 - **micro-tasking** - Break work into small, verifiable 2-5 minute tasks
 - **root-cause-analysis** - 4-phase debugging methodology for finding true causes
+- **systematic-debugging** - Evidence-based debugging with hypothesis testing (NEW)
 - **git-worktree** - Isolated branch workflows for parallel development
 - **parallel-dispatch** - Coordinate concurrent agent work and multi-agent workflows
 - **spec-compliance** - Verify implementation matches specifications and requirements
+
+**Session & Context** (NEW)
+- **memory-persistence** - Restore and preserve session context
+- **strategic-compact** - Intelligent compaction at natural breakpoints
+- **continuous-learning** - Extract reusable patterns from sessions
 
 ### 🔄 Multi-Agent Orchestrators (3)
 
@@ -331,7 +342,9 @@ After installation, you can customize any command by editing files in `.claude/c
 
 ## MCP Server Configuration
 
-This plugin includes **22 pre-configured MCP** (Model Context Protocol) servers that enhance Claude's capabilities:
+This plugin includes **29 pre-configured MCP** (Model Context Protocol) servers that enhance Claude's capabilities.
+
+> **Context Window Warning**: Don't enable all MCP servers simultaneously. Your 200k context window can shrink to ~70k with too many tools enabled. **Recommendation**: Keep under 10 MCP servers enabled per project, with fewer than 80 active tools total. Disable servers you're not actively using.
 
 ### Available MCP Servers
 
