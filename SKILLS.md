@@ -1,6 +1,6 @@
 # Claude Code Skills Guide
 
-This plugin includes 5 auto-invoked skills that Claude automatically uses based on your task context. Unlike slash commands which you type explicitly, skills are activated by Claude when your request matches their description.
+This plugin includes **19 auto-invoked skills** that Claude automatically uses based on your task context. Unlike slash commands which you type explicitly, skills are activated by Claude when your request matches their description.
 
 ## How Skills Work
 
@@ -9,9 +9,11 @@ This plugin includes 5 auto-invoked skills that Claude automatically uses based 
 3. **Auto-invocation**: Claude loads the full skill context when needed
 4. **Execution**: The skill's expertise guides Claude's response
 
-## Available Skills
+## Available Skills (19 Total)
 
-### 1. API Development (`api-development`)
+### Core Development Skills
+
+#### 1. API Development (`api-development`)
 
 **Auto-activates for:**
 - Creating REST API endpoints
@@ -28,14 +30,9 @@ This plugin includes 5 auto-invoked skills that Claude automatically uses based 
 - Authentication patterns
 - Rate limiting with Upstash
 
-**Example triggers:**
-- "Create a POST endpoint for user registration"
-- "Add authentication to my API"
-- "Generate tests for the users endpoint"
-
 ---
 
-### 2. Frontend Development (`frontend-development`)
+#### 2. Frontend Development (`frontend-development`)
 
 **Auto-activates for:**
 - React/Vue/Angular/Svelte components
@@ -51,14 +48,9 @@ This plugin includes 5 auto-invoked skills that Claude automatically uses based 
 - WCAG accessibility guidelines
 - Performance optimization
 
-**Example triggers:**
-- "Create a user profile component"
-- "Build a dashboard page with sidebar"
-- "Make this form accessible"
-
 ---
 
-### 3. Database Operations (`database-operations`)
+#### 3. Database Operations (`database-operations`)
 
 **Auto-activates for:**
 - Schema design
@@ -74,14 +66,9 @@ This plugin includes 5 auto-invoked skills that Claude automatically uses based 
 - Index strategies
 - Migration safety patterns
 
-**Example triggers:**
-- "Design the schema for a blog"
-- "Create a migration to add user roles"
-- "Optimize this query for performance"
-
 ---
 
-### 4. DevOps Automation (`devops-automation`)
+#### 4. DevOps Automation (`devops-automation`)
 
 **Auto-activates for:**
 - Deployment configuration
@@ -97,14 +84,9 @@ This plugin includes 5 auto-invoked skills that Claude automatically uses based 
 - Health checks
 - Secrets management
 
-**Example triggers:**
-- "Set up GitHub Actions for CI/CD"
-- "Create a Dockerfile for my Next.js app"
-- "Configure environment variables for production"
-
 ---
 
-### 5. Code Quality (`code-quality`)
+#### 5. Code Quality (`code-quality`)
 
 **Auto-activates for:**
 - Code review
@@ -120,10 +102,187 @@ This plugin includes 5 auto-invoked skills that Claude automatically uses based 
 - Bundle size optimization
 - React performance patterns
 
-**Example triggers:**
-- "Review this code for security issues"
-- "Write tests for the auth service"
-- "Refactor this function to be more maintainable"
+---
+
+### Testing & Validation Skills
+
+#### 6. Webapp Testing (`webapp-testing`)
+
+**Auto-activates for:**
+- Browser automation
+- E2E testing with Playwright
+- Visual regression testing
+- Cross-browser testing
+- Test infrastructure setup
+
+---
+
+#### 7. Eval Harness (`eval-harness`)
+
+**Auto-activates for:**
+- Evaluation-driven development
+- Pass@k metrics calculation
+- Model-based grading
+- Human evaluation workflows
+- Quality benchmarking
+
+---
+
+### MCP & Skills Development
+
+#### 8. MCP Builder (`mcp-builder`)
+
+**Auto-activates for:**
+- Building Model Context Protocol servers
+- Extending Claude with custom tools
+- MCP server configuration
+- Tool integration patterns
+
+---
+
+#### 9. Skill Creator (`skill-creator`)
+
+**Auto-activates for:**
+- Creating new Claude Code skills
+- Defining auto-invocation triggers
+- Skill testing and refinement
+- Documentation patterns
+
+---
+
+### Workflow Enhancement Skills
+
+#### 10. Verification First (`verification-first`)
+
+**Auto-activates for:**
+- Finishing tasks and claiming completion
+- Before marking work as done
+- When asserting code works
+- Wrapping up implementations
+
+**Key Features:**
+- 5-step verification gate process
+- Red flags detection
+- Evidence-based completion claims
+- Anti-pattern identification
+
+---
+
+#### 11. Micro-Tasking (`micro-tasking`)
+
+**Auto-activates for:**
+- Breaking down large tasks
+- Estimating task complexity
+- Creating verifiable checkpoints
+- Maintaining momentum
+
+**Key Features:**
+- 2-5 minute task chunks
+- Clear completion criteria
+- Progress tracking patterns
+
+---
+
+#### 12. Root Cause Analysis (`root-cause-analysis`)
+
+**Auto-activates for:**
+- Debugging issues
+- Investigating errors
+- Troubleshooting "not working" problems
+- Stack trace analysis
+
+**Key Features:**
+- 4-phase methodology (Observe → Hypothesize → Test → Fix)
+- Hypothesis ranking by probability
+- Evidence-based conclusions
+
+---
+
+#### 13. Systematic Debugging (`systematic-debugging`) - NEW
+
+**Auto-activates for:**
+- Implementing fixes after root cause identified
+- Applying debugging methodology
+- Verifying bug fixes work
+
+**Key Features:**
+- Iron Law of verification (5-step process)
+- Rationalization counters
+- Red flag detection
+- Evidence before claims
+
+---
+
+#### 14. Git Worktree (`git-worktree`)
+
+**Auto-activates for:**
+- Parallel development workflows
+- Isolated branch work
+- Multi-feature development
+- Safe experimentation
+
+---
+
+#### 15. Parallel Dispatch (`parallel-dispatch`)
+
+**Auto-activates for:**
+- Coordinating multiple agents
+- Concurrent task execution
+- Multi-agent workflows
+- Work distribution
+
+---
+
+#### 16. Spec Compliance (`spec-compliance`)
+
+**Auto-activates for:**
+- Verifying implementation matches specs
+- Requirements validation
+- Acceptance criteria checking
+- Contract testing
+
+---
+
+### Session & Context Skills
+
+#### 17. Memory Persistence (`memory-persistence`)
+
+**Auto-activates for:**
+- Session start (context restoration)
+- Session end (state persistence)
+- Cross-session continuity
+- Context handoffs
+
+---
+
+#### 18. Strategic Compact (`strategic-compact`)
+
+**Auto-activates for:**
+- Context window management
+- Natural breakpoint detection
+- Edit operation tracking
+- Compaction timing suggestions
+
+**Key Features:**
+- Tracks edit operations
+- Suggests compaction at milestones
+- Preserves critical context
+
+---
+
+#### 19. Continuous Learning (`continuous-learning`)
+
+**Auto-activates for:**
+- End of productive sessions
+- After solving difficult problems
+- After user corrections
+- After discovering workarounds
+
+**Key Features:**
+- Pattern extraction from sessions
+- Skill creation from learnings
+- Circuit breaker for stuck states
+- Quality gates for extracted knowledge
 
 ---
 
@@ -167,7 +326,35 @@ Claude automatically discovers skills in `.claude/skills/` directories. Each ski
 │   └── SKILL.md
 ├── devops-automation/
 │   └── SKILL.md
-└── code-quality/
+├── code-quality/
+│   └── SKILL.md
+├── webapp-testing/
+│   └── SKILL.md
+├── eval-harness/
+│   └── SKILL.md
+├── mcp-builder/
+│   └── SKILL.md
+├── skill-creator/
+│   └── SKILL.md
+├── verification-first/
+│   └── SKILL.md
+├── micro-tasking/
+│   └── SKILL.md
+├── root-cause-analysis/
+│   └── SKILL.md
+├── systematic-debugging/
+│   └── SKILL.md
+├── git-worktree/
+│   └── SKILL.md
+├── parallel-dispatch/
+│   └── SKILL.md
+├── spec-compliance/
+│   └── SKILL.md
+├── memory-persistence/
+│   └── SKILL.md
+├── strategic-compact/
+│   └── SKILL.md
+└── continuous-learning/
     └── SKILL.md
 ```
 
@@ -179,7 +366,10 @@ Claude automatically discovers skills in `.claude/skills/` directories. Each ski
 ```markdown
 ---
 name: your-skill-name
-description: When to use this skill (helps Claude decide to activate it)
+description: |
+  WHEN to auto-invoke: [specific triggering conditions]
+  WHEN NOT to invoke: [conditions to skip this skill]
+priority: 50  # Higher = checked first (default: 50)
 ---
 
 # Your Skill Name
@@ -188,6 +378,18 @@ Instructions and expertise for Claude to use when this skill is activated.
 ```
 
 3. The skill will be auto-discovered on next Claude Code startup
+
+## Skill Priority System
+
+Skills have configurable priority (default: 50):
+
+| Priority | Use Case |
+|----------|----------|
+| 90+ | Critical workflow skills (verification-first) |
+| 70-89 | Core development skills |
+| 50-69 | Standard skills |
+| 30-49 | Supplementary skills |
+| <30 | Low-priority enhancements |
 
 ## Disabling Auto-Invocation
 

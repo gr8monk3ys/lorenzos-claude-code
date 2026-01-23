@@ -3,6 +3,7 @@ name: verification-first
 description: |
   WHEN to auto-invoke: Finishing tasks, claiming "done" or "complete", before marking work finished, when asserting code works, wrapping up implementations.
   WHEN NOT to invoke: During active development, exploration phases, planning discussions, research tasks.
+priority: 90
 ---
 
 # Verification-First Skill
@@ -12,6 +13,52 @@ Never claim completion without evidence. Verify before asserting.
 ## Core Principle
 
 **"Trust, but verify"** - Don't assume code works; prove it works.
+
+## The Iron Law: 5-Step Gate Process
+
+Before making ANY claim about code working, you MUST complete all 5 steps:
+
+### Step 1: IDENTIFY
+**Question:** What command proves this claim?
+- Identify the exact command that will verify your claim
+- Must be a concrete, runnable command
+- Not "check the file" but `npm test path/to/file.test.ts`
+
+### Step 2: RUN
+**Action:** Execute the FULL command fresh
+- Run it NOW, not "I ran it earlier"
+- Run the complete command, not a partial version
+- No skipping "because it probably works"
+
+### Step 3: READ
+**Action:** Read FULL output and check exit code
+- Read every line of output
+- Check the exit code (0 = success)
+- Don't skim - actually read it
+
+### Step 4: VERIFY
+**Question:** Does output ACTUALLY confirm the claim?
+- Does it say what you think it says?
+- Are there hidden warnings or deprecations?
+- Is "0 tests found" really a pass?
+
+### Step 5: ONLY THEN
+**Action:** Make the claim with evidence
+- Quote the actual output
+- Reference specific line numbers
+- Show the evidence, don't just assert
+
+## Red Flags (STOP Before Proceeding)
+
+If you notice yourself doing ANY of these, STOP immediately:
+
+- Using hedging language ("should," "probably," "seems to")
+- Expressing satisfaction BEFORE running verification
+- About to commit/push/PR without verification
+- Trusting success reports without reading output
+- Rationalizing "just this once" or "it's a small change"
+- Saying "I already tested this mentally"
+- Relying on memory of a previous run
 
 ## Verification Protocol
 

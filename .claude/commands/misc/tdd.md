@@ -235,6 +235,34 @@ After running `/tdd`, you should have:
    - Clear naming
    - Proper abstractions
 
+## Rationalization Counters
+
+When tempted to skip TDD, recognize these excuses for what they are:
+
+| Excuse | Reality |
+|--------|---------|
+| "It's too simple to test" | Simple code breaks too; tests take 30 seconds to write |
+| "I'll write tests after" | Tests-after serve a different purpose than tests-first |
+| "I already tested manually" | Ad-hoc testing != systematic testing |
+| "The deadline is too tight" | Bugs from untested code cost more time than TDD |
+| "It's just a prototype" | Prototypes become production code; tests help refactoring |
+| "I know this works" | You don't until you prove it with tests |
+| "Tests slow me down" | Tests speed you up by catching bugs early |
+| "This part is trivial" | Trivial code causes non-trivial bugs |
+| "I'll refactor later" | Later never comes; tests enable safe refactoring |
+| "Tests are for QA" | TDD is a design tool, not just quality assurance |
+
+### Red Flags (Stop Yourself)
+
+If you catch yourself:
+- Writing implementation before a failing test exists
+- Saying "I'll add tests after I verify it works"
+- Skipping tests because "it's obvious what it does"
+- Adding features beyond what tests require
+- Commenting out failing tests "temporarily"
+
+**STOP.** Return to RED phase. Write the failing test first.
+
 ## TDD Mantras
 
 1. **"Red, Green, Refactor"** - Never skip a phase
@@ -242,3 +270,5 @@ After running `/tdd`, you should have:
 3. **"Make it work, make it right, make it fast"** - In that order
 4. **"Test behavior, not implementation"** - Tests shouldn't break when refactoring
 5. **"If you can't test it, you can't ship it"** - Untested code is broken code
+6. **"The test is the first user of your code"** - Tests reveal API issues early
+7. **"A test that can't fail is worthless"** - Verify tests fail before implementing

@@ -1,7 +1,7 @@
 {
   "name": "lorenzos-claude-code",
-  "version": "1.18.0",
-  "description": "Lorenzo's Claude Code setup: 59 commands, 24 agents, 18 skills, 4 orchestrators, 22 MCP servers, 12 hooks, 3 context modes for 10x end-to-end development",
+  "version": "1.19.0",
+  "description": "Lorenzo's Claude Code setup: 60 commands, 26 agents, 19 skills, 4 orchestrators, 29 MCP servers, 14 hooks, 3 context modes for 10x end-to-end development",
   "author": {
     "name": "Lorenzo",
     "email": "gr8monk3ys@gmail.com",
@@ -129,6 +129,36 @@
       "command": "npx",
       "args": ["-y", "@anthropic/mcp-server-aws"],
       "description": "AWS services including S3, Lambda, DynamoDB, and CloudWatch (uses AWS credentials from environment)"
+    },
+    "atlassian": {
+      "command": "npx",
+      "args": ["-y", "@atlassian/mcp-server"],
+      "description": "Jira and Confluence integration via OAuth 2.0 for issue tracking and documentation (requires Atlassian Cloud account)"
+    },
+    "firecrawl": {
+      "command": "npx",
+      "args": ["-y", "@firecrawl/mcp"],
+      "description": "Web scraping and crawling with LLM-powered extraction for research tasks (requires FIRECRAWL_API_KEY)"
+    },
+    "semgrep": {
+      "command": "npx",
+      "args": ["-y", "@semgrep/mcp"],
+      "description": "Security vulnerability scanning with 5000+ rules for SAST analysis"
+    },
+    "tavily": {
+      "command": "npx",
+      "args": ["-y", "@tavily/mcp"],
+      "description": "AI-optimized web search for RAG workflows and research (requires TAVILY_API_KEY)"
+    },
+    "duckdb": {
+      "command": "npx",
+      "args": ["-y", "@motherduckdb/mcp-server-motherduck"],
+      "description": "Local analytics engine for CSV, Parquet, and SQL analysis without external database"
+    },
+    "gitlab": {
+      "command": "npx",
+      "args": ["-y", "@gitlab/mcp-server"],
+      "description": "GitLab merge requests, pipelines, and issue tracking (requires GITLAB_TOKEN)"
     }
   }
 }

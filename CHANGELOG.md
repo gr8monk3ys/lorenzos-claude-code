@@ -5,6 +5,106 @@ All notable changes to Lorenzo's Claude Code plugin will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.19.0] - 2026-01-23
+
+### Added
+
+#### New Agents (2)
+- **build-error-resolver** - TypeScript/build error specialist with minimal-diff approach
+  - Categorizes errors by type (inference, imports, config, dependencies)
+  - Applies <5% line change constraint per file
+  - Prohibited from architectural changes during fixes
+  - Source: [everything-claude-code](https://github.com/affaan-m/everything-claude-code)
+
+- **e2e-runner** - Playwright/Cypress E2E testing specialist
+  - Flaky test detection with `--repeat-each=10` methodology
+  - Quarantine tactics using `test.fixme()` for unstable tests
+  - Page Object Model enforcement
+  - Artifact collection strategy (screenshots, videos, traces)
+  - Target metrics: 95%+ pass rate, <5% flaky rate
+  - Source: [everything-claude-code](https://github.com/affaan-m/everything-claude-code)
+
+#### New Skills (1)
+- **systematic-debugging** - Evidence-based debugging methodology
+  - Iron Law: 5-step verification before any claim (IDENTIFY → RUN → READ → VERIFY → CLAIM)
+  - Rationalization counters table for common debugging excuses
+  - Red flags detection (hedging language, premature satisfaction)
+  - Integrates with root-cause-analysis for full debugging workflow
+  - Source: [obra/superpowers](https://github.com/obra/superpowers)
+
+#### New Hooks (2)
+- **pre-compact.sh** (PreCompact event) - Saves critical context before compaction
+  - Archives recent file changes and git status
+  - Preserves working context to `~/.claude/memory/pre-compact-context.md`
+  - Enables context restoration after compaction
+
+- **subagent-logger.sh** (SubagentStop event) - Logs subagent completions
+  - Records completions to `~/.claude/logs/subagent-completions.jsonl`
+  - Useful for debugging orchestrator workflows
+  - Special handling for review and test agents
+
+#### New MCP Servers (7)
+- **Atlassian** (`@atlassian/mcp-server`) - Jira/Confluence integration via OAuth 2.0
+- **Firecrawl** (`@firecrawl/mcp`) - Web scraping with LLM-powered extraction
+- **Semgrep** (`@semgrep/mcp`) - SAST security scanning with 5000+ rules
+- **Tavily** (`@tavily/mcp`) - AI-optimized web search for RAG workflows
+- **DuckDB** (`@motherduckdb/mcp-server-motherduck`) - Local analytics for CSV/Parquet/SQL
+- **GitLab** (`@gitlab/mcp-server`) - GitLab MRs, pipelines, and issues
+- Source: [awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers)
+
+#### New Command (1)
+- `/docs-codemap` - Generate structured CODEMAPS documentation
+  - Creates INDEX.md, frontend.md, backend.md, database.md, integrations.md, workers.md
+  - ASCII architecture diagrams
+  - Uses ts-morph and madge for analysis
+  - Source: [everything-claude-code](https://github.com/affaan-m/everything-claude-code)
+
+### Enhanced
+
+- **verification-first skill** - Added 5-step iron law verification gate
+  - Step-by-step process: IDENTIFY → RUN → READ → VERIFY → ONLY THEN
+  - Red flags section for detecting premature completion
+  - Increased priority to 90 for critical workflow enforcement
+  - Source: [obra/superpowers](https://github.com/obra/superpowers)
+
+- **TDD command** - Added rationalization counters
+  - Table of common TDD excuses with rebuttals
+  - Red flags for detecting TDD violations
+  - Additional mantras for discipline
+  - Source: [obra/superpowers](https://github.com/obra/superpowers)
+
+- **continuous-learning skill** - Added circuit breaker pattern
+  - Detection triggers: no file changes, identical errors, declining output
+  - Recovery actions for stuck states
+  - Manual reset options
+  - Source: [Continuous-Claude-v3](https://github.com/parcadei/Continuous-Claude-v3)
+
+### Documentation
+
+- **README.md** - Added context window warning for MCP servers
+  - Warning: 200k context can shrink to ~70k with too many tools
+  - Recommendation: Keep under 10 MCP servers enabled per project
+
+- **SKILLS.md** - Complete rewrite with all 19 skills documented
+  - Previously showed 5 skills, now accurately lists all 19
+  - Added skill priority system documentation
+  - Added Session & Context skills section
+
+### Changed
+- Updated plugin to **60 commands** (was 59) - Added: /docs-codemap
+- Updated plugin to **26 agents** (was 24) - Added: build-error-resolver, e2e-runner
+- Updated plugin to **19 skills** (was 18) - Added: systematic-debugging
+- Updated plugin to **29 MCP servers** (was 22) - Added: atlassian, firecrawl, semgrep, tavily, duckdb, gitlab
+- Updated plugin to **14 hooks** (was 12) - Added: pre-compact, subagent-logger
+- Bumped version to 1.19.0
+
+### Research Sources
+- [everything-claude-code](https://github.com/affaan-m/everything-claude-code) - Build error resolver, E2E runner, CODEMAPS
+- [obra/superpowers](https://github.com/obra/superpowers) - Verification gates, rationalization counters, systematic debugging
+- [Continuous-Claude-v3](https://github.com/parcadei/Continuous-Claude-v3) - Circuit breaker pattern
+- [awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers) - New MCP server recommendations
+- Claude Code plugin ecosystem research - Best practices and patterns
+
 ## [1.18.0] - 2026-01-22
 
 ### Added

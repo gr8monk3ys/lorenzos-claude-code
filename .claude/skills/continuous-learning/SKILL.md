@@ -240,12 +240,46 @@ Skills with clear triggers activate automatically when relevant context appears.
 - Update skills with test results
 - Document edge cases found
 
+## Circuit Breaker Pattern
+
+The learning hook implements a circuit breaker to prevent stuck states and wasteful processing:
+
+### Detection Triggers
+| Condition | Threshold | Action |
+|-----------|-----------|--------|
+| No file changes | 3 loops | Skip learning extraction |
+| Identical errors | 5 occurrences | Mark session as stuck |
+| Declining output | >70% reduction | Suggest session reset |
+| Session too short | <10 messages | Skip analysis entirely |
+
+### Recovery Actions
+
+```bash
+# When stuck state detected:
+1. Log the stuck condition
+2. Skip learning extraction for this session
+3. Suggest user intervention or session restart
+4. Preserve partial learnings if any
+```
+
+### Manual Reset
+
+```bash
+# Reset circuit breaker state
+rm ~/.claude/.learning_state
+
+# Force learning extraction despite circuit breaker
+FORCE_LEARNING=1 claude
+```
+
 ## Configuration
 
 ### In `continuous-learning.sh`:
 
 ```bash
 MIN_MESSAGES=10  # Minimum session length for analysis
+STUCK_THRESHOLD=5  # Identical errors before marking stuck
+OUTPUT_DECLINE_THRESHOLD=0.7  # 70% decline triggers warning
 ```
 
 ### Disable for Session:
