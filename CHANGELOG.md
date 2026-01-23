@@ -5,6 +5,70 @@ All notable changes to Lorenzo's Claude Code plugin will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.20.0] - 2026-01-23
+
+### Added - Claude Code v2.1 Features
+
+#### New Commands (4)
+- **/checkpoint** - Named checkpoint management for save/restore workflows
+  - `save`, `list`, `restore`, `delete` actions
+  - Complements built-in `/rewind` and `Esc+Esc`
+  - Stores in `~/.claude/checkpoints/[project-hash]/`
+
+- **/think** - Explicit thinking mode triggers
+  - Four levels: standard, think (~4K), megathink (~10K), ultrathink (~32K)
+  - Token budget allocation for complex problems
+  - Guidelines for when to use each level
+
+- **/plan-init** - Initialize `plansDirectory` for version-controlled plans
+  - Creates `.claude/plans/` structure
+  - Adds templates for feature and refactor plans
+  - Integrates with `/feature-plan` and `/write-plan`
+
+- **/mcp-init** - Initialize project-scoped `.mcp.json`
+  - Team-shareable MCP configurations
+  - Environment variable templates
+  - Security best practices for credentials
+
+#### New Hook (1)
+- **input-modifier.sh** (PreToolUse) - Input modification hook example
+  - Demonstrates modifying tool inputs before execution
+  - Auto-approves documentation files
+  - Adds timeouts to curl commands
+  - Enforces `--save-exact` for npm install
+
+#### Enhanced Commands
+- **/handoff** - Added Teleport integration section
+  - When to use `/teleport` vs `/handoff` vs `/resume`
+  - Workflow for moving sessions to claude.ai/code
+  - Limitations of teleported sessions
+
+### Documentation
+- Added thinking mode token budgets and best practices
+- Added plansDirectory configuration guide
+- Added project-scoped MCP security considerations
+- Added input modification hook patterns
+
+### Changed
+- Updated plugin to **64 commands** (was 60) - Added: /checkpoint, /think, /plan-init, /mcp-init
+- Updated plugin to **15 hooks** (was 14) - Added: input-modifier
+- Bumped version to 1.20.0
+
+### Claude Code v2.1 Features Supported
+- Checkpoints and `/rewind` (documented in /checkpoint)
+- Thinking modes: think, megathink, ultrathink
+- `plansDirectory` setting
+- Project-scoped `.mcp.json`
+- Input modification hooks (`updatedInput` field)
+- `/teleport` awareness in handoffs
+- `SubagentStop` and `PreCompact` hook events (added in v1.19.0)
+
+### Sources
+- [Claude Code Checkpointing Docs](https://code.claude.com/docs/en/checkpointing)
+- [Claude Code Hooks Reference](https://code.claude.com/docs/en/hooks)
+- [Claude Code MCP Configuration](https://code.claude.com/docs/en/mcp)
+- [Claude Code v2.1.0 Release Notes](https://github.com/anthropics/claude-code/releases)
+
 ## [1.19.0] - 2026-01-23
 
 ### Added
