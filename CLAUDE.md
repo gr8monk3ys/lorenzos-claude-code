@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Overview
 
-This is a Claude Code plugin repository providing **62 slash commands**, **25 specialized AI agents**, **19 auto-activating skills**, **4 multi-agent orchestrators**, **4 MCP servers** (minimal profile, CLI-first approach), **15 hooks**, and **3 context modes** for modern web development (Next.js 15, TypeScript, React, Vue, Angular, Svelte, Supabase). Current version: **2.0.0**.
+This is a Claude Code plugin repository providing **63 slash commands**, **25 specialized AI agents**, **19 auto-activating skills**, **4 multi-agent orchestrators**, **4 MCP servers** (minimal profile, CLI-first approach), **15 hooks**, and **3 context modes** for modern web development (Next.js 15, TypeScript, React, Vue, Angular, Svelte, Supabase). Current version: **2.1.0**.
 
 ### Context Efficiency Philosophy
 
@@ -18,9 +18,9 @@ Most services (Vercel, AWS, Docker, databases) are accessed via CLI instead of M
 ## Key Files
 
 - [.claude-plugin/plugin.json](.claude-plugin/plugin.json) - Plugin manifest (version, commands, agents, skills, orchestrators, MCP servers). **All components must be registered here.**
-- `.claude/commands/` - Slash command markdown files organized by category (api/, ui/, supabase/, misc/, frameworks/)
+- `.claude/commands/` - Slash command markdown files organized by category (api/, context/, planning/, quality/, testing/, workflow/, devops/, generation/, utility/, frameworks/, supabase/, ui/)
 - `.claude/agents/` - Specialized AI agent prompt files
-- `.claude/skills/` - Auto-activating skill files organized by category (api/, frontend/, database/, devops/)
+- `.claude/skills/` - Auto-activating skill files (flat structure, 19 skills)
 - `.claude/orchestrators/` - Multi-agent workflow orchestrators
 - `.claude/hooks/` - Pre-configured automation hooks (15 total)
 - `.claude/profiles/` - MCP server profiles (minimal, fullstack, enterprise)
@@ -70,7 +70,7 @@ triggers:  # optional activation hints
 ---
 ```
 
-**Skills by category (18 total):**
+**Skills by category (19 total):**
 - **Development**: `api-development`, `frontend-development`, `database-operations`, `devops-automation`
 - **Quality**: `code-quality`, `verification-first`, `spec-compliance`, `eval-harness`
 - **Workflow**: `micro-tasking`, `root-cause-analysis`, `git-worktree`, `parallel-dispatch`
@@ -172,7 +172,7 @@ Located in `.claude/hooks/`:
 - **notify-completion.sh** (Stop) - Desktop notification on completion
 - **skill-activator.sh** (UserPromptSubmit) - Injects skill activation hints
 
-See [HOOKS.md](HOOKS.md) for detailed hook configuration.
+See [HOOKS.md](.claude/docs/HOOKS.md) for detailed hook configuration.
 
 ## Development Workflow
 
@@ -242,14 +242,14 @@ Add to `mcpServers` in [plugin.json](.claude-plugin/plugin.json):
 
 ### New Hook
 1. Create executable script in `.claude/hooks/` (use existing hooks as templates)
-2. Document in [HOOKS.md](HOOKS.md) with example configuration
+2. Document in [HOOKS.md](.claude/docs/HOOKS.md) with example configuration
 3. Test with local settings: `.claude/settings.local.json`
 
 ### New Skill
-1. Create `.claude/skills/<category>/<name>.md` with frontmatter including triggers
+1. Create `.claude/skills/<name>.md` with frontmatter including triggers
 2. Add to `skills` array in [plugin.json](.claude-plugin/plugin.json):
    ```json
-   { "name": "skill-name", "path": ".claude/skills/category/skill-name.md", "description": "..." }
+   { "name": "skill-name", "path": ".claude/skills/skill-name.md", "description": "..." }
    ```
 3. Test activation by working in contexts that match the triggers
 
@@ -263,22 +263,21 @@ Add to `mcpServers` in [plugin.json](.claude-plugin/plugin.json):
 
 ## Command & Agent Inventory
 
-### Commands by Category (62 total)
-- **API** (3): `/api-new`, `/api-test`, `/api-protect`
-- **UI** (2): `/component-new`, `/page-new`
-- **Frameworks** (3): `/component-vue`, `/component-angular`, `/component-svelte`
-- **Supabase** (2): `/types-gen`, `/edge-function-new`
-- **Context & Memory** (9): `/memory`, `/memory-init`, `/context`, `/context-prime`, `/context-budget`, `/context-mode`, `/architect`, `/ask`, `/map`
-- **Planning & RIPER** (7): `/plan`, `/execute-plan`, `/create-prd`, `/brainstorm`, `/riper`, `/research`, `/innovate`
-- **Code Quality** (6): `/code-explain`, `/code-optimize`, `/code-cleanup`, `/lint`, `/new-task`, `/review`
-- **Testing & TDD** (4): `/test-new`, `/tdd`, `/fix-issue`, `/verify`
-- **Generation** (5): `/hook-new`, `/migration-new`, `/deploy`, `/docs-generate`, `/scaffold`
-- **Workflow & Session** (8): `/wizard`, `/fix-pr`, `/handoff`, `/resume`, `/ledger`, `/chain`, `/harness`, `/wiggum`
-- **DevOps & CI** (3): `/ci-review`, `/worktree`, `/parallel-spawn`
-- **Learning & Eval** (2): `/learn`, `/eval`
-- **Utility** (5): `/rules`, `/suggest`, `/summarize`, `/github-setup`, `/think`
+### Commands by Category (63 total, 12 categories)
+- **api/** (3): `/api-new`, `/api-test`, `/api-protect`
+- **context/** (6): `/context`, `/context-prime`, `/context-budget`, `/context-mode`, `/memory`, `/memory-init`
+- **planning/** (7): `/plan`, `/execute-plan`, `/create-prd`, `/brainstorm`, `/riper`, `/research`, `/innovate`
+- **quality/** (6): `/code-explain`, `/code-optimize`, `/code-cleanup`, `/lint`, `/new-task`, `/review`
+- **testing/** (4): `/test-new`, `/tdd`, `/fix-issue`, `/verify`
+- **workflow/** (14): `/wizard`, `/fix-pr`, `/handoff`, `/resume`, `/ledger`, `/chain`, `/harness`, `/wiggum`, `/architect`, `/map`, `/plan-init`, `/checkpoint`, `/eval`, `/learn`
+- **devops/** (5): `/deploy`, `/ci-review`, `/worktree`, `/parallel-spawn`, `/mcp-init`
+- **generation/** (5): `/hook-new`, `/migration-new`, `/scaffold`, `/docs-generate`, `/docs-codemap`
+- **utility/** (6): `/rules`, `/suggest`, `/summarize`, `/github-setup`, `/think`, `/ask`
+- **frameworks/** (3): `/component-vue`, `/component-angular`, `/component-svelte`
+- **supabase/** (2): `/types-gen`, `/edge-function-new`
+- **ui/** (2): `/component-new`, `/page-new`
 
-**Note:** `/feature-plan` and `/write-plan` consolidated into `/plan` in v2.0.0.
+**Note:** `/feature-plan` and `/write-plan` consolidated into `/plan` in v2.0.0. Commands reorganized from misc/ into logical categories in v2.1.0.
 
 ### Agents by Domain (25 total)
 - **Architecture** (4): system-architect, backend-architect, frontend-architect, api-architect
@@ -311,12 +310,19 @@ Add to `mcpServers` in [plugin.json](.claude-plugin/plugin.json):
 - Edge Runtime compatible code
 - User-configurable preferences via [plugin-settings.json](.claude/plugin-settings.json)
 
-### Command Categories
-- **api/** - API endpoint generation, testing, protection (Next.js route handlers)
-- **ui/** - React component and Next.js page generation
-- **frameworks/** - Vue, Angular, Svelte component generation
+### Command Categories (12 total)
+- **api/** - API endpoint generation, testing, protection
+- **context/** - Memory and context management
+- **planning/** - Implementation planning, RIPER workflow, research
+- **quality/** - Code quality, linting, optimization, review
+- **testing/** - TDD, test generation, verification
+- **workflow/** - Session management, chaining, handoffs
+- **devops/** - Deployment, CI/CD, worktrees
+- **generation/** - Scaffolding, hooks, migrations, documentation
+- **utility/** - Rules, suggestions, general utilities
+- **frameworks/** - Vue, Angular, Svelte components
 - **supabase/** - Type generation, Edge Functions
-- **misc/** - General development utilities (testing, migrations, hooks, docs, optimization)
+- **ui/** - React components and Next.js pages
 
 ## Pre-Publish Checklist
 - [ ] Valid JSON syntax in [plugin.json](.claude-plugin/plugin.json) (no trailing commas)
