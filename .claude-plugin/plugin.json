@@ -1,7 +1,7 @@
 {
   "name": "lorenzos-claude-code",
-  "version": "1.20.0",
-  "description": "Lorenzo's Claude Code setup: 64 commands, 26 agents, 19 skills, 4 orchestrators, 29 MCP servers, 15 hooks, 3 context modes for 10x end-to-end development",
+  "version": "2.0.0",
+  "description": "Lorenzo's Claude Code setup: 62 commands, 25 agents, 19 skills, 4 orchestrators, 4 MCP servers (minimal profile), 15 hooks, 3 context modes. Optimized for context efficiency.",
   "author": {
     "name": "Lorenzo",
     "email": "gr8monk3ys@gmail.com",
@@ -17,148 +17,109 @@
     "supabase",
     "commands",
     "agents",
-    "skills"
+    "skills",
+    "cli-first"
   ],
+  "profiles": {
+    "minimal": ".claude/profiles/mcp-minimal.json",
+    "fullstack": ".claude/profiles/mcp-fullstack.json",
+    "enterprise": ".claude/profiles/mcp-enterprise.json"
+  },
   "mcpServers": {
     "context7": {
       "command": "npx",
       "args": ["-y", "@upstash/context7-mcp"],
-      "description": "Access up-to-date documentation for any library"
-    },
-    "playwright": {
-      "command": "npx",
-      "args": ["@playwright/mcp@latest"],
-      "description": "Browser automation and web testing capabilities"
-    },
-    "supabase": {
-      "command": "npx",
-      "args": ["-y", "@supabase/mcp-server-supabase"],
-      "description": "Supabase database operations and management"
-    },
-    "stripe": {
-      "command": "npx",
-      "args": ["-y", "@stripe/mcp", "--tools=all"],
-      "description": "Stripe payment processing and API operations"
-    },
-    "chrome-devtools": {
-      "command": "npx",
-      "args": ["-y", "chrome-devtools-mcp@latest"],
-      "description": "Chrome DevTools debugging and performance analysis"
-    },
-    "vercel": {
-      "command": "npx",
-      "args": ["-y", "@vercel/mcp"],
-      "description": "Vercel deployment management and project operations"
-    },
-    "github": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-github"],
-      "description": "GitHub repository operations, issues, PRs, and CI/CD (requires GITHUB_PERSONAL_ACCESS_TOKEN)"
-    },
-    "sequential-thinking": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"],
-      "description": "Structured problem-solving with step-by-step reasoning and hypothesis verification"
-    },
-    "postgres": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-postgres", "postgresql://localhost/mydb"],
-      "description": "PostgreSQL read-only database access and schema inspection (update connection string)"
-    },
-    "redis": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-redis", "redis://localhost:6379"],
-      "description": "Redis key-value store operations (update connection URL)"
-    },
-    "mongodb": {
-      "command": "npx",
-      "args": ["-y", "@mongodb-js/mongodb-mcp-server"],
-      "description": "MongoDB database operations and Atlas management (requires MDB_MCP_CONNECTION_STRING)"
-    },
-    "figma": {
-      "command": "npx",
-      "args": ["-y", "@anthropic/mcp-server-figma"],
-      "description": "Figma design file access and component inspection (requires FIGMA_ACCESS_TOKEN)"
-    },
-    "notion": {
-      "command": "npx",
-      "args": ["-y", "@anthropic/mcp-server-notion"],
-      "description": "Notion workspace access for docs and knowledge bases (requires NOTION_API_KEY)"
-    },
-    "linear": {
-      "command": "npx",
-      "args": ["-y", "@linear/mcp-server"],
-      "description": "Linear issue tracking and project management (requires LINEAR_API_KEY)"
-    },
-    "slack": {
-      "command": "npx",
-      "args": ["-y", "@anthropic/mcp-server-slack"],
-      "description": "Slack workspace access for channel and message operations (requires SLACK_BOT_TOKEN)"
+      "description": "Up-to-date library documentation lookup (no CLI alternative)"
     },
     "memory": {
       "command": "npx",
       "args": ["-y", "@modelcontextprotocol/server-memory"],
-      "description": "Persistent knowledge graph for cross-session context retention (set MEMORY_FILE_PATH env var)"
+      "description": "Persistent knowledge graph for cross-session context (no CLI alternative)"
     },
-    "terraform": {
+    "playwright": {
       "command": "npx",
-      "args": ["-y", "@anthropic/mcp-server-terraform"],
-      "description": "Terraform infrastructure as code operations (requires TERRAFORM_CLOUD_TOKEN for Terraform Cloud)"
+      "args": ["@playwright/mcp@latest"],
+      "description": "Browser automation and E2E testing (MCP preferred over CLI)"
     },
-    "kubernetes": {
+    "github": {
       "command": "npx",
-      "args": ["-y", "@anthropic/mcp-server-kubernetes"],
-      "description": "Kubernetes cluster management and kubectl operations (uses current kubeconfig context)"
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "description": "GitHub PRs, issues, and repository operations (CLI alternative: gh)"
+    }
+  },
+  "cliAlternatives": {
+    "vercel": {
+      "cli": "vercel",
+      "install": "npm i -g vercel",
+      "description": "Deployment management"
     },
     "docker": {
-      "command": "npx",
-      "args": ["-y", "@anthropic/mcp-server-docker"],
-      "description": "Docker container and image management operations (requires Docker daemon access)"
+      "cli": "docker",
+      "install": "Built-in with Docker Desktop",
+      "description": "Container management"
     },
-    "sentry": {
-      "command": "npx",
-      "args": ["-y", "@anthropic/mcp-server-sentry"],
-      "description": "Sentry error tracking and performance monitoring (requires SENTRY_AUTH_TOKEN)"
-    },
-    "datadog": {
-      "command": "npx",
-      "args": ["-y", "@anthropic/mcp-server-datadog"],
-      "description": "Datadog observability, metrics, and log analysis (requires DD_API_KEY and DD_APP_KEY)"
+    "kubernetes": {
+      "cli": "kubectl",
+      "install": "brew install kubectl",
+      "description": "Cluster management"
     },
     "aws": {
-      "command": "npx",
-      "args": ["-y", "@anthropic/mcp-server-aws"],
-      "description": "AWS services including S3, Lambda, DynamoDB, and CloudWatch (uses AWS credentials from environment)"
+      "cli": "aws",
+      "install": "brew install awscli",
+      "description": "AWS services"
     },
-    "atlassian": {
-      "command": "npx",
-      "args": ["-y", "@atlassian/mcp-server"],
-      "description": "Jira and Confluence integration via OAuth 2.0 for issue tracking and documentation (requires Atlassian Cloud account)"
+    "terraform": {
+      "cli": "terraform",
+      "install": "brew install terraform",
+      "description": "Infrastructure as code"
     },
-    "firecrawl": {
-      "command": "npx",
-      "args": ["-y", "@firecrawl/mcp"],
-      "description": "Web scraping and crawling with LLM-powered extraction for research tasks (requires FIRECRAWL_API_KEY)"
+    "postgres": {
+      "cli": "psql",
+      "install": "brew install postgresql",
+      "description": "PostgreSQL database"
     },
-    "semgrep": {
-      "command": "npx",
-      "args": ["-y", "@semgrep/mcp"],
-      "description": "Security vulnerability scanning with 5000+ rules for SAST analysis"
+    "redis": {
+      "cli": "redis-cli",
+      "install": "brew install redis",
+      "description": "Redis key-value store"
     },
-    "tavily": {
-      "command": "npx",
-      "args": ["-y", "@tavily/mcp"],
-      "description": "AI-optimized web search for RAG workflows and research (requires TAVILY_API_KEY)"
+    "mongodb": {
+      "cli": "mongosh",
+      "install": "brew install mongosh",
+      "description": "MongoDB operations"
     },
-    "duckdb": {
-      "command": "npx",
-      "args": ["-y", "@motherduckdb/mcp-server-motherduck"],
-      "description": "Local analytics engine for CSV, Parquet, and SQL analysis without external database"
+    "supabase": {
+      "cli": "supabase",
+      "install": "brew install supabase/tap/supabase",
+      "description": "Supabase operations"
+    },
+    "stripe": {
+      "cli": "stripe",
+      "install": "brew install stripe/stripe-cli/stripe",
+      "description": "Stripe payments"
     },
     "gitlab": {
-      "command": "npx",
-      "args": ["-y", "@gitlab/mcp-server"],
-      "description": "GitLab merge requests, pipelines, and issue tracking (requires GITLAB_TOKEN)"
+      "cli": "glab",
+      "install": "brew install glab",
+      "description": "GitLab operations"
+    },
+    "linear": {
+      "cli": "linear",
+      "install": "npm i -g @linear/cli",
+      "description": "Linear issue tracking"
     }
+  },
+  "removedMcps": {
+    "sequential-thinking": "Claude does this natively - unnecessary overhead",
+    "chrome-devtools": "Use playwright instead - more reliable",
+    "firecrawl": "Use WebFetch tool instead - built-in to Claude Code",
+    "tavily": "Use WebSearch tool instead - built-in to Claude Code",
+    "semgrep": "Run as CLI in CI/CD - not needed in context",
+    "duckdb": "Use postgres or sqlite CLI - redundant"
+  },
+  "contextOptimization": {
+    "enableToolSearch": true,
+    "recommendedProfile": "minimal",
+    "documentation": ".claude/docs/CLI-ALTERNATIVES.md"
   }
 }

@@ -4,7 +4,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Overview
 
-This is a Claude Code plugin repository providing **59 slash commands**, **24 specialized AI agents**, **18 auto-activating skills**, **4 multi-agent orchestrators**, **22 MCP servers**, **12 hooks**, and **3 context modes** for modern web development (Next.js 15, TypeScript, React, Vue, Angular, Svelte, Supabase). Current version: **1.18.0**.
+This is a Claude Code plugin repository providing **62 slash commands**, **25 specialized AI agents**, **19 auto-activating skills**, **4 multi-agent orchestrators**, **4 MCP servers** (minimal profile, CLI-first approach), **15 hooks**, and **3 context modes** for modern web development (Next.js 15, TypeScript, React, Vue, Angular, Svelte, Supabase). Current version: **2.0.0**.
+
+### Context Efficiency Philosophy
+
+This plugin follows a **CLI-first approach** to minimize context overhead:
+- **Minimal profile (default):** 4 MCP servers (~16K tokens, 8% of context)
+- **Fullstack profile:** 10 MCP servers (~40K tokens, 20% of context)
+- **Enterprise profile:** 22 MCP servers (~142K tokens, 71% of context - requires Tool Search)
+
+Most services (Vercel, AWS, Docker, databases) are accessed via CLI instead of MCP to preserve context for actual work. See `.claude/docs/CLI-ALTERNATIVES.md` for the full guide.
 
 ## Key Files
 
@@ -13,7 +22,8 @@ This is a Claude Code plugin repository providing **59 slash commands**, **24 sp
 - `.claude/agents/` - Specialized AI agent prompt files
 - `.claude/skills/` - Auto-activating skill files organized by category (api/, frontend/, database/, devops/)
 - `.claude/orchestrators/` - Multi-agent workflow orchestrators
-- `.claude/hooks/` - Pre-configured automation hooks (12 total)
+- `.claude/hooks/` - Pre-configured automation hooks (15 total)
+- `.claude/profiles/` - MCP server profiles (minimal, fullstack, enterprise)
 - `.claude/contexts/` - Dynamic system prompts for different work modes (dev, review, research)
 - `.claude/docs/` - Research and design documentation
 - `.claude/plugin-settings.json` - User preference schema for framework, styling, testing, database, API style, deployment platform
@@ -43,7 +53,7 @@ color: green   # optional
 
 **Agent activation descriptions** are critical - they determine when agents automatically engage. Write clear, specific activation criteria with examples.
 
-### Skill Format (18 skills)
+### Skill Format (19 skills)
 Skills are auto-activating context-aware enhancements in `.claude/skills/`:
 ```yaml
 ---
@@ -97,46 +107,47 @@ triggers:
 - **refactoring-workflow** - Safe refactoring (analyze → plan → execute → verify)
 - **parallel-build-workflow** - Concurrent development using git worktrees with multiple Claude agents
 
-### MCP Servers (22 configured)
-Pre-configured in [plugin.json](.claude-plugin/plugin.json) under `mcpServers`:
+### MCP Servers (Minimal Profile - 4 servers)
 
-**Documentation & AI:**
-- **context7** - Up-to-date library documentation (no config needed)
-- **sequential-thinking** - Structured problem-solving with step-by-step reasoning (no config needed)
-- **memory** - Persistent knowledge graph for cross-session context (set MEMORY_FILE_PATH)
+Default configuration optimized for context efficiency:
 
-**Testing & Debugging:**
-- **playwright** - Browser automation and E2E testing (no config needed)
-- **chrome-devtools** - Browser debugging and performance analysis (no config needed)
+| Server | Purpose | CLI Alternative |
+|--------|---------|-----------------|
+| **context7** | Library documentation | None (MCP required) |
+| **memory** | Cross-session context | None (MCP required) |
+| **playwright** | Browser automation | MCP preferred |
+| **github** | PRs, issues, repos | `gh` CLI |
 
-**Databases:**
-- **supabase** - Supabase database operations (**requires credentials**)
-- **postgres** - PostgreSQL read-only access (**requires connection string**)
-- **mongodb** - MongoDB operations and Atlas (**requires connection string**)
-- **redis** - Redis key-value operations (**requires connection URL**)
+### MCP Profiles
 
-**Development & Deployment:**
-- **github** - Repository operations, PRs, issues (**requires GITHUB_PERSONAL_ACCESS_TOKEN**)
-- **stripe** - Payment processing (**requires API key**)
-- **vercel** - Deployment management (**requires token**)
+Three profiles available in `.claude/profiles/`:
 
-**Design & Project Management:**
-- **figma** - Design file access (**requires FIGMA_ACCESS_TOKEN**)
-- **notion** - Workspace access (**requires NOTION_API_KEY**)
-- **linear** - Issue tracking (**requires LINEAR_API_KEY**)
-- **slack** - Channel operations (**requires SLACK_BOT_TOKEN**)
+| Profile | Servers | Context Used | Best For |
+|---------|---------|--------------|----------|
+| **minimal** | 4 | 8% (~16K) | Daily development |
+| **fullstack** | 10 | 20% (~40K) | Full-stack projects |
+| **enterprise** | 22 | 71% (~142K) | Multi-project work |
 
-**Infrastructure & DevOps:**
-- **terraform** - Infrastructure as code (**requires TERRAFORM_CLOUD_TOKEN**)
-- **kubernetes** - Cluster management (uses kubeconfig)
-- **docker** - Container management (requires Docker daemon)
-- **aws** - S3, Lambda, DynamoDB, CloudWatch (uses AWS credentials)
+### CLI Alternatives (Zero Context Tax)
 
-**Monitoring:**
-- **sentry** - Error tracking (**requires SENTRY_AUTH_TOKEN**)
-- **datadog** - Observability (**requires DD_API_KEY**)
+Instead of MCP servers, use CLIs for these services:
 
-See README.md for credential configuration.
+| Service | CLI | Install |
+|---------|-----|---------|
+| Vercel | `vercel` | `npm i -g vercel` |
+| AWS | `aws` | `brew install awscli` |
+| Docker | `docker` | Built-in |
+| Kubernetes | `kubectl` | `brew install kubectl` |
+| PostgreSQL | `psql` | `brew install postgresql` |
+| MongoDB | `mongosh` | `brew install mongosh` |
+| Redis | `redis-cli` | `brew install redis` |
+| Supabase | `supabase` | `brew install supabase/tap/supabase` |
+| Stripe | `stripe` | `brew install stripe/stripe-cli/stripe` |
+| Terraform | `terraform` | `brew install terraform` |
+| GitLab | `glab` | `brew install glab` |
+| Linear | `linear` | `npm i -g @linear/cli` |
+
+See `.claude/docs/CLI-ALTERNATIVES.md` for complete documentation.
 
 ### Hooks System (12 pre-configured)
 Located in `.claude/hooks/`:
@@ -252,32 +263,37 @@ Add to `mcpServers` in [plugin.json](.claude-plugin/plugin.json):
 
 ## Command & Agent Inventory
 
-### Commands by Category (59 total)
+### Commands by Category (62 total)
 - **API** (3): `/api-new`, `/api-test`, `/api-protect`
 - **UI** (2): `/component-new`, `/page-new`
 - **Frameworks** (3): `/component-vue`, `/component-angular`, `/component-svelte`
 - **Supabase** (2): `/types-gen`, `/edge-function-new`
 - **Context & Memory** (9): `/memory`, `/memory-init`, `/context`, `/context-prime`, `/context-budget`, `/context-mode`, `/architect`, `/ask`, `/map`
-- **Planning & RIPER** (8): `/feature-plan`, `/write-plan`, `/execute-plan`, `/create-prd`, `/brainstorm`, `/riper`, `/research`, `/innovate`
+- **Planning & RIPER** (7): `/plan`, `/execute-plan`, `/create-prd`, `/brainstorm`, `/riper`, `/research`, `/innovate`
 - **Code Quality** (6): `/code-explain`, `/code-optimize`, `/code-cleanup`, `/lint`, `/new-task`, `/review`
 - **Testing & TDD** (4): `/test-new`, `/tdd`, `/fix-issue`, `/verify`
 - **Generation** (5): `/hook-new`, `/migration-new`, `/deploy`, `/docs-generate`, `/scaffold`
 - **Workflow & Session** (8): `/wizard`, `/fix-pr`, `/handoff`, `/resume`, `/ledger`, `/chain`, `/harness`, `/wiggum`
 - **DevOps & CI** (3): `/ci-review`, `/worktree`, `/parallel-spawn`
 - **Learning & Eval** (2): `/learn`, `/eval`
-- **Utility** (4): `/rules`, `/suggest`, `/summarize`, `/github-setup`
+- **Utility** (5): `/rules`, `/suggest`, `/summarize`, `/github-setup`, `/think`
 
-### Agents by Domain (24 total)
+**Note:** `/feature-plan` and `/write-plan` consolidated into `/plan` in v2.0.0.
+
+### Agents by Domain (25 total)
 - **Architecture** (4): system-architect, backend-architect, frontend-architect, api-architect
 - **Planning** (3): tech-stack-researcher, requirements-analyst, database-architect
-- **Quality** (4): code-reviewer, refactoring-expert, performance-engineer, performance-profiler
+- **Quality** (3): code-reviewer, refactoring-expert, performance-engineer
 - **Security** (2): security-engineer, accessibility-auditor
-- **Testing** (2): test-strategist, migration-planner
+- **Testing** (3): test-strategist, migration-planner, e2e-runner
 - **DevOps** (2): devops-engineer, chaos-engineer
 - **AI/ML** (2): llm-architect, mcp-developer
 - **Documentation** (2): technical-writer, learning-guide
 - **Research** (2): deep-research-agent, competitive-analyst
 - **Domain** (1): fintech-engineer
+- **Build** (1): build-error-resolver
+
+**Note:** `performance-profiler` merged into `performance-engineer` in v2.0.0.
 
 ## Design Philosophy
 
