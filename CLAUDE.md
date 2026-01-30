@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Overview
 
-This is a Claude Code plugin repository providing **63 slash commands**, **25 specialized AI agents**, **19 auto-activating skills**, **4 multi-agent orchestrators**, **4 MCP servers** (minimal profile, CLI-first approach), **15 hooks**, and **3 context modes** for modern web development (Next.js 15, TypeScript, React, Vue, Angular, Svelte, Supabase). Current version: **2.1.0**.
+This is a Claude Code plugin repository providing **65 slash commands**, **25 specialized AI agents**, **20 auto-activating skills**, **4 multi-agent orchestrators**, **4 MCP servers** (minimal profile, CLI-first approach), **15 hooks**, and **3 context modes** for modern web development (Next.js 15, TypeScript, React, Vue, Angular, Svelte, Supabase). Current version: **2.1.1**.
 
 ### Context Efficiency Philosophy
 
@@ -20,7 +20,7 @@ Most services (Vercel, AWS, Docker, databases) are accessed via CLI instead of M
 - [.claude-plugin/plugin.json](.claude-plugin/plugin.json) - Plugin manifest (version, commands, agents, skills, orchestrators, MCP servers). **All components must be registered here.**
 - `.claude/commands/` - Slash command markdown files organized by category (api/, context/, planning/, quality/, testing/, workflow/, devops/, generation/, utility/, frameworks/, supabase/, ui/)
 - `.claude/agents/` - Specialized AI agent prompt files
-- `.claude/skills/` - Auto-activating skill files (flat structure, 19 skills)
+- `.claude/skills/` - Auto-activating skill files (flat structure, 20 skills)
 - `.claude/orchestrators/` - Multi-agent workflow orchestrators
 - `.claude/hooks/` - Pre-configured automation hooks (15 total)
 - `.claude/profiles/` - MCP server profiles (minimal, fullstack, enterprise)
@@ -53,7 +53,7 @@ color: green   # optional
 
 **Agent activation descriptions** are critical - they determine when agents automatically engage. Write clear, specific activation criteria with examples.
 
-### Skill Format (19 skills)
+### Skill Format (20 skills)
 Skills are auto-activating context-aware enhancements in `.claude/skills/`:
 ```yaml
 ---
@@ -70,10 +70,10 @@ triggers:  # optional activation hints
 ---
 ```
 
-**Skills by category (19 total):**
+**Skills by category (20 total):**
 - **Development**: `api-development`, `frontend-development`, `database-operations`, `devops-automation`
 - **Quality**: `code-quality`, `verification-first`, `spec-compliance`, `eval-harness`
-- **Workflow**: `micro-tasking`, `root-cause-analysis`, `git-worktree`, `parallel-dispatch`
+- **Workflow**: `micro-tasking`, `root-cause-analysis`, `git-worktree`, `parallel-dispatch`, `progressive-disclosure`
 - **Session**: `memory-persistence`, `strategic-compact`, `continuous-learning`
 - **Tooling**: `mcp-builder`, `skill-creator`, `webapp-testing`
 
@@ -263,7 +263,7 @@ Add to `mcpServers` in [plugin.json](.claude-plugin/plugin.json):
 
 ## Command & Agent Inventory
 
-### Commands by Category (63 total, 12 categories)
+### Commands by Category (65 total, 12 categories)
 - **api/** (3): `/api-new`, `/api-test`, `/api-protect`
 - **context/** (6): `/context`, `/context-prime`, `/context-budget`, `/context-mode`, `/memory`, `/memory-init`
 - **planning/** (7): `/plan`, `/execute-plan`, `/create-prd`, `/brainstorm`, `/riper`, `/research`, `/innovate`
@@ -271,7 +271,7 @@ Add to `mcpServers` in [plugin.json](.claude-plugin/plugin.json):
 - **testing/** (4): `/test-new`, `/tdd`, `/fix-issue`, `/verify`
 - **workflow/** (14): `/wizard`, `/fix-pr`, `/handoff`, `/resume`, `/ledger`, `/chain`, `/harness`, `/wiggum`, `/architect`, `/map`, `/plan-init`, `/checkpoint`, `/eval`, `/learn`
 - **devops/** (5): `/deploy`, `/ci-review`, `/worktree`, `/parallel-spawn`, `/mcp-init`
-- **generation/** (5): `/hook-new`, `/migration-new`, `/scaffold`, `/docs-generate`, `/docs-codemap`
+- **generation/** (7): `/hook-new`, `/migration-new`, `/scaffold`, `/docs-generate`, `/docs-codemap`, `/sop-create`, `/brand-voice`
 - **utility/** (6): `/rules`, `/suggest`, `/summarize`, `/github-setup`, `/think`, `/ask`
 - **frameworks/** (3): `/component-vue`, `/component-angular`, `/component-svelte`
 - **supabase/** (2): `/types-gen`, `/edge-function-new`
