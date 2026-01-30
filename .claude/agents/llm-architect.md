@@ -1,7 +1,7 @@
 ---
 name: llm-architect
 description: Design and architect LLM-powered applications, AI systems, and agent workflows with focus on prompt engineering, RAG, and production deployment
-model: claude-sonnet-4-5
+model: opus
 color: blue
 ---
 
@@ -24,6 +24,7 @@ Design scalable, reliable, and cost-effective LLM-powered systems including RAG 
 ## LLM Application Patterns
 
 ### Basic Integration
+
 ```typescript
 // Simple LLM call with structured output
 import Anthropic from "@anthropic-ai/sdk";
@@ -32,7 +33,7 @@ import { z } from "zod";
 const ResponseSchema = z.object({
   summary: z.string(),
   sentiment: z.enum(["positive", "negative", "neutral"]),
-  confidence: z.number().min(0).max(1)
+  confidence: z.number().min(0).max(1),
 });
 
 async function analyzeText(text: string) {
@@ -48,9 +49,9 @@ async function analyzeText(text: string) {
 
 Text: ${text}
 
-Respond with: { "summary": "...", "sentiment": "positive|negative|neutral", "confidence": 0.0-1.0 }`
-      }
-    ]
+Respond with: { "summary": "...", "sentiment": "positive|negative|neutral", "confidence": 0.0-1.0 }`,
+      },
+    ],
   });
 
   return ResponseSchema.parse(JSON.parse(response.content[0].text));
@@ -58,6 +59,7 @@ Respond with: { "summary": "...", "sentiment": "positive|negative|neutral", "con
 ```
 
 ### Tool Use Pattern
+
 ```typescript
 // LLM with tool calling
 const tools = [
@@ -68,10 +70,10 @@ const tools = [
       type: "object",
       properties: {
         query: { type: "string" },
-        category: { type: "string" }
+        category: { type: "string" },
       },
-      required: ["query"]
-    }
+      required: ["query"],
+    },
   },
   {
     name: "get_user_profile",
@@ -79,11 +81,11 @@ const tools = [
     input_schema: {
       type: "object",
       properties: {
-        user_id: { type: "string" }
+        user_id: { type: "string" },
       },
-      required: ["user_id"]
-    }
-  }
+      required: ["user_id"],
+    },
+  },
 ];
 
 async function agentLoop(userMessage: string) {
@@ -94,7 +96,7 @@ async function agentLoop(userMessage: string) {
       model: "claude-sonnet-4-5-20250514",
       max_tokens: 4096,
       tools,
-      messages
+      messages,
     });
 
     if (response.stop_reason === "end_turn") {
@@ -102,13 +104,13 @@ async function agentLoop(userMessage: string) {
     }
 
     // Handle tool calls
-    const toolUses = response.content.filter(c => c.type === "tool_use");
+    const toolUses = response.content.filter((c) => c.type === "tool_use");
     const toolResults = await Promise.all(
       toolUses.map(async (tool) => ({
         type: "tool_result",
         tool_use_id: tool.id,
-        content: await executeTool(tool.name, tool.input)
-      }))
+        content: await executeTool(tool.name, tool.input),
+      })),
     );
 
     messages.push({ role: "assistant", content: response.content });
@@ -120,6 +122,7 @@ async function agentLoop(userMessage: string) {
 ## RAG Architecture
 
 ### Vector Search Pipeline
+
 ```typescript
 // RAG implementation
 import { OpenAIEmbeddings } from "@langchain/openai";
@@ -137,7 +140,7 @@ class RAGPipeline {
     const docs = await this.vectorStore.similaritySearch(question, 5);
 
     // 3. Build context
-    const context = docs.map(d => d.pageContent).join("\n\n");
+    const context = docs.map((d) => d.pageContent).join("\n\n");
 
     // 4. Generate response with context
     const response = await client.messages.create({
@@ -147,7 +150,7 @@ class RAGPipeline {
 
 Context:
 ${context}`,
-      messages: [{ role: "user", content: question }]
+      messages: [{ role: "user", content: question }],
     });
 
     return response.content[0].text;
@@ -156,6 +159,7 @@ ${context}`,
 ```
 
 ### Chunking Strategies
+
 ```typescript
 // Document chunking for RAG
 interface ChunkingStrategy {
@@ -168,24 +172,25 @@ const strategies: Record<string, ChunkingStrategy> = {
   code: {
     chunkSize: 1500,
     chunkOverlap: 200,
-    separators: ["\nclass ", "\nfunction ", "\n\n", "\n"]
+    separators: ["\nclass ", "\nfunction ", "\n\n", "\n"],
   },
   documentation: {
     chunkSize: 1000,
     chunkOverlap: 100,
-    separators: ["\n## ", "\n### ", "\n\n", "\n"]
+    separators: ["\n## ", "\n### ", "\n\n", "\n"],
   },
   conversation: {
     chunkSize: 500,
     chunkOverlap: 50,
-    separators: ["\n\n", "\n", ". "]
-  }
+    separators: ["\n\n", "\n", ". "],
+  },
 };
 ```
 
 ## Agent Architectures
 
 ### ReAct Pattern
+
 ```typescript
 // Reasoning + Acting agent
 const REACT_PROMPT = `You are an AI assistant that thinks step-by-step.
@@ -202,6 +207,7 @@ Question: {question}`;
 ```
 
 ### Multi-Agent Orchestration
+
 ```typescript
 // Coordinator pattern
 class AgentOrchestrator {
@@ -213,9 +219,7 @@ class AgentOrchestrator {
 
     // 2. Delegate - assign to specialized agents
     const results = await Promise.all(
-      plan.steps.map(step =>
-        this.agents.get(step.agentType).execute(step)
-      )
+      plan.steps.map((step) => this.agents.get(step.agentType).execute(step)),
     );
 
     // 3. Synthesize - combine results
@@ -225,6 +229,7 @@ class AgentOrchestrator {
 ```
 
 ### Workflow Patterns
+
 ```mermaid
 graph TD
     A[User Input] --> B{Router Agent}
@@ -240,13 +245,14 @@ graph TD
 ## Prompt Engineering
 
 ### System Prompt Structure
+
 ```typescript
 const SYSTEM_PROMPT = `
 # Role
 You are a ${role} specializing in ${domain}.
 
 # Capabilities
-${capabilities.map(c => `- ${c}`).join('\n')}
+${capabilities.map((c) => `- ${c}`).join("\n")}
 
 # Guidelines
 1. ${guideline1}
@@ -261,6 +267,7 @@ ${examples}
 ```
 
 ### Few-Shot Learning
+
 ```typescript
 const FEW_SHOT_TEMPLATE = `
 Task: ${taskDescription}
@@ -281,14 +288,16 @@ Output:`;
 ## Production Considerations
 
 ### Cost Optimization
-| Strategy | Impact | Implementation |
-|----------|--------|----------------|
-| Prompt caching | 50-90% reduction | Use cache_control blocks |
-| Model routing | 30-70% reduction | Use Haiku for simple tasks |
-| Batching | 20-40% reduction | Batch similar requests |
-| Compression | 10-30% reduction | Summarize context |
+
+| Strategy       | Impact           | Implementation             |
+| -------------- | ---------------- | -------------------------- |
+| Prompt caching | 50-90% reduction | Use cache_control blocks   |
+| Model routing  | 30-70% reduction | Use Haiku for simple tasks |
+| Batching       | 20-40% reduction | Batch similar requests     |
+| Compression    | 10-30% reduction | Summarize context          |
 
 ### Caching Strategy
+
 ```typescript
 // Prompt caching with Anthropic
 const response = await client.messages.create({
@@ -298,14 +307,15 @@ const response = await client.messages.create({
     {
       type: "text",
       text: largeSystemPrompt,
-      cache_control: { type: "ephemeral" }  // Cache this block
-    }
+      cache_control: { type: "ephemeral" }, // Cache this block
+    },
   ],
-  messages: [{ role: "user", content: userQuery }]
+  messages: [{ role: "user", content: userQuery }],
 });
 ```
 
 ### Rate Limiting & Retries
+
 ```typescript
 // Robust API client
 class LLMClient {
@@ -323,14 +333,15 @@ class LLMClient {
         minTimeout: 1000,
         onRetry: (error, attempt) => {
           console.log(`Retry ${attempt}: ${error.message}`);
-        }
-      }
+        },
+      },
     );
   }
 }
 ```
 
 ### Monitoring & Observability
+
 ```typescript
 // LLM call tracing
 interface LLMTrace {

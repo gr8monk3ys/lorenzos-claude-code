@@ -45,6 +45,7 @@ To enable hooks, add them to your `.claude/settings.json` or `.claude/settings.l
 Prevents Claude from accidentally modifying sensitive files like `.env`, credentials, and secrets.
 
 **Protected Patterns:**
+
 - `.env`, `.env.local`, `.env.production`
 - `secrets.*`, `credentials.*`
 - `.pem`, `.key`, `.p12`, `.pfx` files
@@ -53,6 +54,7 @@ Prevents Claude from accidentally modifying sensitive files like `.env`, credent
 - Token files (`token.json`)
 
 **Example Configuration:**
+
 ```json
 {
   "PreToolUse": [
@@ -79,11 +81,13 @@ Prevents Claude from accidentally modifying sensitive files like `.env`, credent
 Automatically formats files after Claude edits them, maintaining consistent code style.
 
 **Supported Formatters (in priority order):**
+
 1. Prettier (recommended)
 2. Biome
 3. ESLint (for JS/TS files)
 
 **Supported File Types:**
+
 - JavaScript/TypeScript (`.js`, `.jsx`, `.ts`, `.tsx`)
 - JSON (`.json`)
 - CSS/SCSS (`.css`, `.scss`, `.less`)
@@ -92,6 +96,7 @@ Automatically formats files after Claude edits them, maintaining consistent code
 - YAML (`.yml`, `.yaml`)
 
 **Example Configuration:**
+
 ```json
 {
   "PostToolUse": [
@@ -118,11 +123,13 @@ Automatically formats files after Claude edits them, maintaining consistent code
 Runs TypeScript type checking after Claude modifies `.ts` or `.tsx` files.
 
 **Features:**
+
 - Automatically finds `tsconfig.json`
 - Shows only errors related to the modified file
 - Non-blocking (reports errors but doesn't prevent changes)
 
 **Example Configuration:**
+
 ```json
 {
   "PostToolUse": [
@@ -149,6 +156,7 @@ Runs TypeScript type checking after Claude modifies `.ts` or `.tsx` files.
 Validates JSON syntax before Claude writes to `.json` files, preventing invalid JSON from being saved.
 
 **Example Configuration:**
+
 ```json
 {
   "PreToolUse": [
@@ -175,12 +183,14 @@ Validates JSON syntax before Claude writes to `.json` files, preventing invalid 
 Automatically commits changes when Claude completes a task.
 
 **Features:**
+
 - Detects add/update/remove actions
 - Generates descriptive commit messages
 - Includes "Co-Authored-By: Claude" attribution
 - Skips if no changes detected
 
 **Example Configuration:**
+
 ```json
 {
   "Stop": [
@@ -206,11 +216,13 @@ Automatically commits changes when Claude completes a task.
 Sends a desktop notification when Claude completes a task.
 
 **Supported Platforms:**
+
 - macOS (via osascript)
 - Linux (via notify-send)
 - Windows (via PowerShell)
 
 **Example Configuration:**
+
 ```json
 {
   "Stop": [
@@ -224,6 +236,54 @@ Sends a desktop notification when Claude completes a task.
     }
   ]
 }
+```
+
+---
+
+### 7. Circuit Breaker (`circuit-breaker.sh`)
+
+**Type:** PostToolUse
+**Matcher:** `.*` (all tools)
+
+Detects and prevents "thrashing" - when Claude gets stuck in loops trying the same failing approaches repeatedly.
+
+**Detection Triggers:**
+
+- Same error appearing 3+ times
+- Same file edited 3+ times without progress
+- Identical tool calls repeated
+- High failure rate (7+ errors in last 10 operations)
+
+**Features:**
+
+- Tracks error patterns using signature matching
+- Monitors file edit frequency
+- Detects identical tool call sequences
+- Provides recovery guidance when triggered
+- State persisted in `~/.claude/.circuit-breaker/`
+
+**Example Configuration:**
+
+```json
+{
+  "PostToolUse": [
+    {
+      "matcher": ".*",
+      "hooks": [
+        {
+          "type": "command",
+          "command": ".claude/hooks/circuit-breaker.sh"
+        }
+      ]
+    }
+  ]
+}
+```
+
+**Reset State:**
+
+```bash
+rm -rf ~/.claude/.circuit-breaker
 ```
 
 ---
@@ -268,6 +328,15 @@ Here's a full configuration using all available hooks:
             "command": ".claude/hooks/typecheck.sh"
           }
         ]
+      },
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/circuit-breaker.sh"
+          }
+        ]
       }
     ],
     "Stop": [
@@ -286,27 +355,27 @@ Here's a full configuration using all available hooks:
 
 ## Hook Types Reference
 
-| Hook Type | When It Runs | Can Block? |
-|-----------|--------------|------------|
-| `PreToolUse` | Before tool execution | Yes (exit code 2) |
-| `PostToolUse` | After tool completes | No |
-| `Stop` | When Claude finishes | No |
-| `UserPromptSubmit` | When user sends message | Yes |
-| `PermissionRequest` | When Claude requests permission | Yes |
-| `SessionEnd` | When session terminates | No |
+| Hook Type           | When It Runs                    | Can Block?        |
+| ------------------- | ------------------------------- | ----------------- |
+| `PreToolUse`        | Before tool execution           | Yes (exit code 2) |
+| `PostToolUse`       | After tool completes            | No                |
+| `Stop`              | When Claude finishes            | No                |
+| `UserPromptSubmit`  | When user sends message         | Yes               |
+| `PermissionRequest` | When Claude requests permission | Yes               |
+| `SessionEnd`        | When session terminates         | No                |
 
 ## Matchers
 
 Matchers filter which tools trigger a hook:
 
-| Matcher | Description |
-|---------|-------------|
-| `Write` | Matches Write tool only |
-| `Edit` | Matches Edit tool only |
-| `Write\|Edit` | Matches either tool |
-| `Bash` | Matches Bash tool |
+| Matcher           | Description                     |
+| ----------------- | ------------------------------- |
+| `Write`           | Matches Write tool only         |
+| `Edit`            | Matches Edit tool only          |
+| `Write\|Edit`     | Matches either tool             |
+| `Bash`            | Matches Bash tool               |
 | `Bash(npm test*)` | Matches Bash with specific args |
-| `*` | Matches all tools |
+| `*`               | Matches all tools               |
 
 ## Creating Custom Hooks
 
@@ -316,6 +385,7 @@ Matchers filter which tools trigger a hook:
 4. Exit with code 0 to allow, code 2 to deny
 
 **Example Custom Hook:**
+
 ```bash
 #!/bin/bash
 INPUT=$(cat)
@@ -330,6 +400,7 @@ exit 0  # Allow
 ## Dependencies
 
 These hooks require:
+
 - `jq` - JSON processor (install via `brew install jq` or `apt install jq`)
 - `git` - For auto-commit hook
 - `node/npx` - For auto-format and typecheck hooks
@@ -337,14 +408,17 @@ These hooks require:
 ## Troubleshooting
 
 **Hook not executing:**
+
 - Ensure script is executable (`chmod +x`)
 - Check the matcher matches your tool
 - Verify the path is correct in settings
 
 **"Permission denied" errors:**
+
 - Run `chmod +x .claude/hooks/*.sh`
 
 **Formatting not working:**
+
 - Ensure prettier/eslint/biome is installed in your project
 - Check that `npx` is available
 
