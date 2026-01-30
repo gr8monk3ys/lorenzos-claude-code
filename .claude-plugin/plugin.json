@@ -1,7 +1,7 @@
 {
   "name": "lorenzos-claude-code",
-  "version": "2.1.1",
-  "description": "Lorenzo's Claude Code setup: 65 commands (12 categories), 25 agents, 20 skills, 4 orchestrators, 4 MCP servers (minimal profile), 15 hooks, 3 context modes. CLI-first, context-efficient.",
+  "version": "2.2.0",
+  "description": "Lorenzo's Claude Code setup: 66 commands (12 categories), 25 agents, 23 skills, 4 orchestrators, 4 MCP servers (minimal profile), 18 hooks, 3 context modes. CLI-first, context-efficient.",
   "author": {
     "name": "Lorenzo",
     "email": "gr8monk3ys@gmail.com",

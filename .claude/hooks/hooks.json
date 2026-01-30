@@ -46,6 +46,22 @@
       "description": "Runs TypeScript type checking after code changes"
     },
     {
+      "event": "PostToolUse",
+      "matcher": {
+        "tool_name": ["Edit", "Write"]
+      },
+      "command": "./.claude/hooks/detect-duplication.sh",
+      "description": "Detects code duplication using jscpd after file edits"
+    },
+    {
+      "event": "PostToolUse",
+      "matcher": {
+        "tool_name": ["Edit", "Write"]
+      },
+      "command": "./.claude/hooks/detect-deadcode.sh",
+      "description": "Detects unused exports using knip after file edits"
+    },
+    {
       "event": "Stop",
       "command": "./.claude/hooks/session-end.sh",
       "description": "Persists session state when sessions complete (memory persistence)"
@@ -77,6 +93,12 @@
       "event": "UserPromptSubmit",
       "command": "./.claude/hooks/skill-activator.sh",
       "description": "Injects skill activation hints based on trigger words"
+    },
+    {
+      "event": "PostToolUse",
+      "matcher": ".*",
+      "command": "./.claude/hooks/circuit-breaker.sh",
+      "description": "Detects thrashing patterns and prevents stuck loops"
     }
   ]
 }

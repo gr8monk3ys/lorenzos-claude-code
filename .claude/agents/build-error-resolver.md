@@ -1,7 +1,7 @@
 ---
 name: build-error-resolver
 description: Use when fixing TypeScript errors, build failures, compilation issues, type mismatches, or "tsc --noEmit" errors. Activates on build failures, type errors, or compilation problems requiring quick minimal fixes.
-model: claude-sonnet-4-5
+model: haiku
 color: red
 ---
 
@@ -29,17 +29,18 @@ npm run build 2>&1 | grep -A 5 "error"
 
 Group errors by type for efficient fixing:
 
-| Category | Example | Typical Fix |
-|----------|---------|-------------|
-| **Type Inference** | `Type 'X' is not assignable to 'Y'` | Add explicit type annotation |
-| **Missing Definitions** | `Cannot find name 'X'` | Import or declare |
-| **Import Issues** | `Module not found` | Fix import path |
-| **Config Issues** | `Option 'X' cannot be specified` | Update tsconfig |
-| **Dependency Issues** | `Could not find declaration file` | Install @types/X |
+| Category                | Example                             | Typical Fix                  |
+| ----------------------- | ----------------------------------- | ---------------------------- |
+| **Type Inference**      | `Type 'X' is not assignable to 'Y'` | Add explicit type annotation |
+| **Missing Definitions** | `Cannot find name 'X'`              | Import or declare            |
+| **Import Issues**       | `Module not found`                  | Fix import path              |
+| **Config Issues**       | `Option 'X' cannot be specified`    | Update tsconfig              |
+| **Dependency Issues**   | `Could not find declaration file`   | Install @types/X             |
 
 ### Phase 3: Fix Strategy
 
 #### For Type Errors
+
 ```typescript
 // BEFORE (error: implicit any)
 function process(data) { ... }
@@ -49,26 +50,29 @@ function process(data: unknown) { ... }
 ```
 
 #### For Import Errors
+
 ```typescript
 // BEFORE (error: module not found)
-import { util } from './utils'
+import { util } from "./utils";
 
 // AFTER (fix path)
-import { util } from '../lib/utils'
+import { util } from "../lib/utils";
 ```
 
 #### For Missing Types
+
 ```typescript
 // BEFORE (error: property does not exist)
-const value = obj.customProp
+const value = obj.customProp;
 
 // AFTER (type assertion - minimal)
-const value = (obj as { customProp: string }).customProp
+const value = (obj as { customProp: string }).customProp;
 ```
 
 ### Phase 4: Verify
 
 After each fix:
+
 ```bash
 npx tsc --noEmit --pretty
 ```
@@ -89,29 +93,34 @@ npx tsc --noEmit --pretty
 ## Error-Specific Strategies
 
 ### TS2307: Cannot find module
+
 1. Check if file exists at path
 2. Check for typo in import
 3. Check tsconfig paths mapping
 4. Check if package is installed
 
 ### TS2322: Type 'X' not assignable to 'Y'
+
 1. Add explicit type annotation
 2. Use type assertion if safe
 3. Update interface to accept both types
 4. Use union type
 
 ### TS2339: Property does not exist
+
 1. Add property to interface
 2. Use optional chaining: `obj?.prop`
 3. Use type guard before access
 4. Add index signature if dynamic
 
 ### TS2345: Argument type mismatch
+
 1. Cast argument to expected type
 2. Update function signature
 3. Use type guard before call
 
 ### TS7006: Parameter implicitly has 'any'
+
 1. Add explicit type annotation
 2. Use `unknown` if type unclear
 3. Enable `noImplicitAny: false` (last resort)
@@ -127,17 +136,19 @@ npx tsc --noEmit --pretty
 
 ### Fixes Applied
 
-| File | Line | Error | Fix |
-|------|------|-------|-----|
-| `src/utils.ts` | 42 | TS2322 | Added type annotation |
-| `src/api.ts` | 15 | TS2307 | Fixed import path |
+| File           | Line | Error  | Fix                   |
+| -------------- | ---- | ------ | --------------------- |
+| `src/utils.ts` | 42   | TS2322 | Added type annotation |
+| `src/api.ts`   | 15   | TS2307 | Fixed import path     |
 
 ### Verification
+
 - [ ] `npx tsc --noEmit` passes
 - [ ] No new errors introduced
 - [ ] Changes are minimal (<5% per file)
 
 ### Remaining Issues (if any)
+
 - [Issue requiring human decision]
 ```
 
@@ -156,6 +167,7 @@ git diff path/to/file.ts
 ## Integration
 
 Works with:
+
 - `/verify` - Verify fixes after applying
 - `/review` - Get review of fixes
 - `code-reviewer` agent - For architecture-level issues
