@@ -1,0 +1,189 @@
+name: Scheduled Quality Check
+
+on:
+  schedule:
+    # Run weekly on Sundays at 00:00 UTC
+    - cron: '0 0 * * 0'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  quality-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Plugin structure validation
+        id: structure
+        run: |
+          echo "## Plugin Structure Validation" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          ERRORS=0
+
+          # Check required directories
+          REQUIRED_DIRS=".claude/commands .claude/agents .claude/skills .claude/hooks .claude/docs"
+          for dir in $REQUIRED_DIRS; do
+            if [ -d "$dir" ]; then
+              COUNT=$(find "$dir" -type f | wc -l)
+              echo "- ✅ $dir ($COUNT files)" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "- ❌ $dir (missing)" >> $GITHUB_STEP_SUMMARY
+              ERRORS=$((ERRORS + 1))
+            fi
+          done
+
+          # Check required files
+          REQUIRED_FILES=".mcp.json CLAUDE.md README.md .claude-plugin/plugin.json"
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Required Files" >> $GITHUB_STEP_SUMMARY
+          for file in $REQUIRED_FILES; do
+            if [ -f "$file" ]; then
+              echo "- ✅ $file" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "- ❌ $file (missing)" >> $GITHUB_STEP_SUMMARY
+              ERRORS=$((ERRORS + 1))
+            fi
+          done
+
+          echo "errors=$ERRORS" >> $GITHUB_OUTPUT
+
+      - name: Validate plugin.json
+        id: plugin_json
+        run: |
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## plugin.json Validation" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [ -f ".claude-plugin/plugin.json" ]; then
+            # Check JSON syntax
+            if jq empty .claude-plugin/plugin.json 2>/dev/null; then
+              echo "- ✅ Valid JSON syntax" >> $GITHUB_STEP_SUMMARY
+
+              # Extract and display key info
+              NAME=$(jq -r '.name' .claude-plugin/plugin.json)
+              VERSION=$(jq -r '.version' .claude-plugin/plugin.json)
+              DESCRIPTION=$(jq -r '.description' .claude-plugin/plugin.json | head -c 100)
+
+              echo "- Name: $NAME" >> $GITHUB_STEP_SUMMARY
+              echo "- Version: $VERSION" >> $GITHUB_STEP_SUMMARY
+              echo "- Description: ${DESCRIPTION}..." >> $GITHUB_STEP_SUMMARY
+
+              # Check MCP server count
+              MCP_COUNT=$(jq '.mcpServers | length' .claude-plugin/plugin.json 2>/dev/null || echo "0")
+              echo "- MCP Servers: $MCP_COUNT" >> $GITHUB_STEP_SUMMARY
+
+              echo "valid=true" >> $GITHUB_OUTPUT
+            else
+              echo "- ❌ Invalid JSON syntax" >> $GITHUB_STEP_SUMMARY
+              echo "valid=false" >> $GITHUB_OUTPUT
+            fi
+          else
+            echo "- ❌ File not found" >> $GITHUB_STEP_SUMMARY
+            echo "valid=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check command categories
+        run: |
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## Command Categories" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Category | Count |" >> $GITHUB_STEP_SUMMARY
+          echo "|----------|-------|" >> $GITHUB_STEP_SUMMARY
+
+          TOTAL=0
+          for dir in .claude/commands/*/; do
+            if [ -d "$dir" ]; then
+              CATEGORY=$(basename "$dir")
+              COUNT=$(find "$dir" -name "*.md" -type f | wc -l)
+              TOTAL=$((TOTAL + COUNT))
+              echo "| $CATEGORY | $COUNT |" >> $GITHUB_STEP_SUMMARY
+            fi
+          done
+
+          echo "| **Total** | **$TOTAL** |" >> $GITHUB_STEP_SUMMARY
+
+      - name: Check for common issues
+        id: issues
+        run: |
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## Common Issues Check" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          ISSUES=0
+
+          # Check for TODO comments in code
+          TODO_COUNT=$(grep -r "TODO" .claude/commands .claude/agents .claude/skills --include="*.md" 2>/dev/null | wc -l || echo "0")
+          if [ "$TODO_COUNT" -gt 0 ]; then
+            echo "- ⚠️ Found $TODO_COUNT TODO comments" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "- ✅ No TODO comments found" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          # Check for empty files
+          EMPTY_COUNT=$(find .claude/commands .claude/agents .claude/skills -name "*.md" -empty 2>/dev/null | wc -l || echo "0")
+          if [ "$EMPTY_COUNT" -gt 0 ]; then
+            echo "- ⚠️ Found $EMPTY_COUNT empty files" >> $GITHUB_STEP_SUMMARY
+            ISSUES=$((ISSUES + EMPTY_COUNT))
+          else
+            echo "- ✅ No empty files found" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          # Check for duplicate command names
+          DUPES=$(find .claude/commands -name "*.md" -type f -exec basename {} .md \; | sort | uniq -d | wc -l || echo "0")
+          if [ "$DUPES" -gt 0 ]; then
+            echo "- ⚠️ Found $DUPES duplicate command names" >> $GITHUB_STEP_SUMMARY
+            ISSUES=$((ISSUES + DUPES))
+          else
+            echo "- ✅ No duplicate command names" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          echo "issues=$ISSUES" >> $GITHUB_OUTPUT
+
+      - name: Generate quality score
+        run: |
+          STRUCTURE_ERRORS=${{ steps.structure.outputs.errors }}
+          PLUGIN_VALID=${{ steps.plugin_json.outputs.valid }}
+          ISSUES=${{ steps.issues.outputs.issues }}
+
+          SCORE=100
+
+          # Deduct for structure errors
+          SCORE=$((SCORE - STRUCTURE_ERRORS * 10))
+
+          # Deduct for invalid plugin.json
+          if [ "$PLUGIN_VALID" != "true" ]; then
+            SCORE=$((SCORE - 20))
+          fi
+
+          # Deduct for issues
+          SCORE=$((SCORE - ISSUES * 2))
+
+          # Ensure minimum of 0
+          if [ $SCORE -lt 0 ]; then
+            SCORE=0
+          fi
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "---" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## Quality Score: $SCORE/100" >> $GITHUB_STEP_SUMMARY
+
+          if [ $SCORE -ge 90 ]; then
+            echo "🟢 Excellent" >> $GITHUB_STEP_SUMMARY
+          elif [ $SCORE -ge 70 ]; then
+            echo "🟡 Good" >> $GITHUB_STEP_SUMMARY
+          elif [ $SCORE -ge 50 ]; then
+            echo "🟠 Needs Improvement" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "🔴 Poor" >> $GITHUB_STEP_SUMMARY
+          fi

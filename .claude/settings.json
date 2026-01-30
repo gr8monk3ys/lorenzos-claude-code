@@ -1,6 +1,5 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
-  "_comment": "Copy this to ~/.claude/settings.json or .claude/settings.local.json and customize",
 
   "permissions": {
     "allow": [
@@ -13,14 +12,7 @@
       "Bash(git diff *)",
       "Bash(git log *)",
       "Bash(gh pr *)",
-      "Bash(gh issue *)",
-      "Read(~/.zshrc)",
-      "Read(~/.bashrc)"
-    ],
-    "ask": [
-      "Bash(git push *)",
-      "Bash(git commit *)",
-      "Bash(npm publish *)"
+      "Bash(gh issue *)"
     ],
     "deny": [
       "Read(./.env)",
@@ -35,13 +27,12 @@
       "Bash(rm -rf *)",
       "Bash(curl * | sh)",
       "Bash(curl * | bash)"
-    ],
-    "additionalDirectories": []
+    ]
   },
 
   "env": {
-    "NODE_ENV": "development",
-    "_comment": "Add your environment variables here"
+    "CLAUDE_CODE_ENABLE_TELEMETRY": "0",
+    "NODE_ENV": "development"
   },
 
   "attribution": {
@@ -49,21 +40,7 @@
     "pr": "This PR was generated with assistance from Claude Code."
   },
 
-  "model": "claude-sonnet-4-5-20250514",
-  "_modelComment": "Options: claude-sonnet-4-5-20250514, claude-opus-4-5-20250514",
-
-  "alwaysThinkingEnabled": false,
-  "_thinkingComment": "Set to true for deeper reasoning on complex tasks",
-
-  "sandbox": {
-    "enabled": true,
-    "autoAllowBashIfSandboxed": false,
-    "excludedCommands": ["git", "gh", "docker", "kubectl"],
-    "_comment": "Sandbox provides additional security for bash commands"
-  },
-
   "hooks": {
-    "_comment": "See .claude/hooks/ for available hook scripts",
     "PreToolUse": [
       {
         "matcher": "Write|Edit",
@@ -71,6 +48,15 @@
           {
             "type": "command",
             "command": ".claude/hooks/block-sensitive-files.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/validate-json.sh"
           }
         ]
       }
@@ -82,6 +68,10 @@
           {
             "type": "command",
             "command": ".claude/hooks/auto-format.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/typecheck.sh"
           }
         ]
       }
@@ -109,19 +99,5 @@
   },
 
   "enableAllProjectMcpServers": false,
-  "enabledMcpjsonServers": ["context7", "memory", "playwright", "github"],
-  "_mcpComment": "Enable additional MCP servers from .mcp.json as needed",
-
-  "cleanupPeriodDays": 30,
-  "_cleanupComment": "Delete inactive sessions after N days",
-
-  "respectGitignore": true,
-  "_gitignoreComment": "Respect .gitignore in file picker",
-
-  "_usage": {
-    "step1": "Copy this file to ~/.claude/settings.json (global) or .claude/settings.local.json (project)",
-    "step2": "Remove underscore-prefixed comment fields",
-    "step3": "Customize permissions, env vars, and hooks for your workflow",
-    "step4": "Restart Claude Code to apply changes"
-  }
+  "enabledMcpjsonServers": ["context7", "memory", "playwright", "github"]
 }
