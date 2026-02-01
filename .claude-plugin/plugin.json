@@ -1,7 +1,7 @@
 {
   "name": "lorenzos-claude-code",
-  "version": "2.2.0",
-  "description": "Lorenzo's Claude Code setup: 66 commands (12 categories), 25 agents, 23 skills, 4 orchestrators, 4 MCP servers (minimal profile), 18 hooks, 3 context modes. CLI-first, context-efficient.",
+  "version": "3.0.0",
+  "description": "Lorenzo's Claude Code setup: 15 commands, 6 agents, 8 skills, 9 hooks. Minimal, focused, CLI-first.",
   "author": {
     "name": "Lorenzo",
     "email": "gr8monk3ys@gmail.com",
@@ -15,111 +15,182 @@
     "react",
     "typescript",
     "supabase",
-    "commands",
-    "agents",
-    "skills",
-    "cli-first"
+    "minimal"
   ],
   "profiles": {
-    "minimal": ".claude/profiles/mcp-minimal.json",
-    "fullstack": ".claude/profiles/mcp-fullstack.json",
-    "enterprise": ".claude/profiles/mcp-enterprise.json"
+    "minimal": ".claude/profiles/mcp-minimal.json"
   },
+  "commands": [
+    {
+      "name": "api-new",
+      "path": ".claude/commands/api/api-new.md",
+      "description": "Create a new Next.js API route with validation"
+    },
+    {
+      "name": "api-test",
+      "path": ".claude/commands/api/api-test.md",
+      "description": "Test API endpoints with automated tests"
+    },
+    {
+      "name": "component-new",
+      "path": ".claude/commands/ui/component-new.md",
+      "description": "Create a new React component with TypeScript"
+    },
+    {
+      "name": "page-new",
+      "path": ".claude/commands/ui/page-new.md",
+      "description": "Create a new Next.js page with App Router"
+    },
+    {
+      "name": "hook-new",
+      "path": ".claude/commands/generation/hook-new.md",
+      "description": "Create custom React hooks"
+    },
+    {
+      "name": "test-new",
+      "path": ".claude/commands/testing/test-new.md",
+      "description": "Generate test files for components and functions"
+    },
+    {
+      "name": "verify",
+      "path": ".claude/commands/testing/verify.md",
+      "description": "Run 6-phase verification before PR"
+    },
+    {
+      "name": "plan",
+      "path": ".claude/commands/planning/plan.md",
+      "description": "Create implementation plan for a feature"
+    },
+    {
+      "name": "lint",
+      "path": ".claude/commands/quality/lint.md",
+      "description": "Run linting and fix code quality issues"
+    },
+    {
+      "name": "review",
+      "path": ".claude/commands/quality/review.md",
+      "description": "Quality review before PR"
+    },
+    {
+      "name": "deploy",
+      "path": ".claude/commands/devops/deploy.md",
+      "description": "Generate deployment configurations"
+    },
+    {
+      "name": "types-gen",
+      "path": ".claude/commands/supabase/types-gen.md",
+      "description": "Generate TypeScript types from Supabase"
+    },
+    {
+      "name": "edge-function-new",
+      "path": ".claude/commands/supabase/edge-function-new.md",
+      "description": "Create a new Supabase Edge Function"
+    },
+    {
+      "name": "handoff",
+      "path": ".claude/commands/workflow/handoff.md",
+      "description": "Create session handoff document"
+    },
+    {
+      "name": "memory",
+      "path": ".claude/commands/context/memory.md",
+      "description": "View or update persistent project memory"
+    }
+  ],
+  "agents": [
+    {
+      "name": "code-reviewer",
+      "path": ".claude/agents/code-reviewer.md",
+      "description": "Code quality, PR reviews, security analysis"
+    },
+    {
+      "name": "backend-architect",
+      "path": ".claude/agents/backend-architect.md",
+      "description": "API design, database architecture, security"
+    },
+    {
+      "name": "frontend-architect",
+      "path": ".claude/agents/frontend-architect.md",
+      "description": "React/Next.js patterns, accessibility, performance"
+    },
+    {
+      "name": "build-error-resolver",
+      "path": ".claude/agents/build-error-resolver.md",
+      "description": "Fix TypeScript and build errors"
+    },
+    {
+      "name": "test-strategist",
+      "path": ".claude/agents/test-strategist.md",
+      "description": "Test planning and coverage strategy"
+    },
+    {
+      "name": "devops-engineer",
+      "path": ".claude/agents/devops-engineer.md",
+      "description": "CI/CD, deployment, infrastructure"
+    }
+  ],
+  "skills": [
+    {
+      "name": "api-development",
+      "path": ".claude/skills/api-development.md",
+      "description": "Next.js API patterns and validation"
+    },
+    {
+      "name": "frontend-development",
+      "path": ".claude/skills/frontend-development.md",
+      "description": "React best practices"
+    },
+    {
+      "name": "database-operations",
+      "path": ".claude/skills/database-operations.md",
+      "description": "Supabase and database patterns"
+    },
+    {
+      "name": "verification-first",
+      "path": ".claude/skills/verification-first.md",
+      "description": "Quality gates before completion"
+    },
+    {
+      "name": "memory-persistence",
+      "path": ".claude/skills/memory-persistence.md",
+      "description": "Session context preservation"
+    },
+    {
+      "name": "code-quality",
+      "path": ".claude/skills/code-quality.md",
+      "description": "Code review patterns"
+    },
+    {
+      "name": "circuit-breaker",
+      "path": ".claude/skills/circuit-breaker.md",
+      "description": "Prevent stuck loops"
+    },
+    {
+      "name": "micro-tasking",
+      "path": ".claude/skills/micro-tasking.md",
+      "description": "Break work into small tasks"
+    }
+  ],
   "mcpServers": {
     "context7": {
       "command": "npx",
       "args": ["-y", "@upstash/context7-mcp"],
-      "description": "Up-to-date library documentation lookup (no CLI alternative)"
+      "description": "Library documentation lookup"
     },
     "memory": {
       "command": "npx",
       "args": ["-y", "@modelcontextprotocol/server-memory"],
-      "description": "Persistent knowledge graph for cross-session context (no CLI alternative)"
+      "description": "Cross-session memory"
     },
     "playwright": {
       "command": "npx",
-      "args": ["@playwright/mcp@latest"],
-      "description": "Browser automation and E2E testing (MCP preferred over CLI)"
+      "args": ["-y", "@anthropic/mcp-server-playwright"],
+      "description": "Browser automation"
     },
     "github": {
       "command": "npx",
       "args": ["-y", "@modelcontextprotocol/server-github"],
-      "description": "GitHub PRs, issues, and repository operations (CLI alternative: gh)"
+      "description": "GitHub integration"
     }
-  },
-  "cliAlternatives": {
-    "vercel": {
-      "cli": "vercel",
-      "install": "npm i -g vercel",
-      "description": "Deployment management"
-    },
-    "docker": {
-      "cli": "docker",
-      "install": "Built-in with Docker Desktop",
-      "description": "Container management"
-    },
-    "kubernetes": {
-      "cli": "kubectl",
-      "install": "brew install kubectl",
-      "description": "Cluster management"
-    },
-    "aws": {
-      "cli": "aws",
-      "install": "brew install awscli",
-      "description": "AWS services"
-    },
-    "terraform": {
-      "cli": "terraform",
-      "install": "brew install terraform",
-      "description": "Infrastructure as code"
-    },
-    "postgres": {
-      "cli": "psql",
-      "install": "brew install postgresql",
-      "description": "PostgreSQL database"
-    },
-    "redis": {
-      "cli": "redis-cli",
-      "install": "brew install redis",
-      "description": "Redis key-value store"
-    },
-    "mongodb": {
-      "cli": "mongosh",
-      "install": "brew install mongosh",
-      "description": "MongoDB operations"
-    },
-    "supabase": {
-      "cli": "supabase",
-      "install": "brew install supabase/tap/supabase",
-      "description": "Supabase operations"
-    },
-    "stripe": {
-      "cli": "stripe",
-      "install": "brew install stripe/stripe-cli/stripe",
-      "description": "Stripe payments"
-    },
-    "gitlab": {
-      "cli": "glab",
-      "install": "brew install glab",
-      "description": "GitLab operations"
-    },
-    "linear": {
-      "cli": "linear",
-      "install": "npm i -g @linear/cli",
-      "description": "Linear issue tracking"
-    }
-  },
-  "removedMcps": {
-    "sequential-thinking": "Claude does this natively - unnecessary overhead",
-    "chrome-devtools": "Use playwright instead - more reliable",
-    "firecrawl": "Use WebFetch tool instead - built-in to Claude Code",
-    "tavily": "Use WebSearch tool instead - built-in to Claude Code",
-    "semgrep": "Run as CLI in CI/CD - not needed in context",
-    "duckdb": "Use postgres or sqlite CLI - redundant"
-  },
-  "contextOptimization": {
-    "enableToolSearch": true,
-    "recommendedProfile": "minimal",
-    "documentation": ".claude/docs/CLI-ALTERNATIVES.md"
   }
 }
