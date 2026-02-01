@@ -5,11 +5,125 @@ All notable changes to Lorenzo's Claude Code plugin will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.0] - 2026-01-31
+
+### BREAKING - Aggressive Simplification
+
+Reduced plugin by ~73% to focus on what matters. This is a breaking change.
+
+#### Before → After
+
+| Component | Before | After | Removed |
+| --------- | ------ | ----- | ------- |
+| Commands  | 66     | 15    | 51      |
+| Agents    | 25     | 6     | 19      |
+| Skills    | 24     | 8     | 16      |
+| Hooks     | 19     | 9     | 10      |
+
+#### Removed Commands (51)
+
+- **Framework-specific**: Vue, Angular, Svelte components
+- **Planning variants**: brainstorm, riper, research, innovate, create-prd, execute-plan
+- **Context bloat**: context, context-budget, context-mode, context-prime, memory-init
+- **Workflow over-engineering**: wizard, chain, harness, wiggum, ledger, checkpoint, eval, learn, blast-radius, resume, plan-init, fix-pr
+- **DevOps niche**: parallel-spawn, worktree, mcp-init, ci-review
+- **Generation niche**: scaffold, brand-voice, sop-create, docs-generate, docs-codemap, migration-new
+- **Quality variants**: code-cleanup, code-optimize, code-explain, new-task, tdd, fix-issue
+- **Utility**: ask, think, summarize, rules, suggest, architect, map, github-setup, api-protect
+
+#### Removed Agents (19)
+
+- **Redundant**: system-architect, api-architect, refactoring-expert
+- **Domain-specific**: fintech-engineer, chaos-engineer, llm-architect, mcp-developer
+- **Rarely needed**: competitive-analyst, technical-writer, learning-guide, deep-research-agent
+- **Consolidated**: security-engineer, performance-engineer, database-architect, accessibility-auditor, e2e-runner, migration-planner, requirements-analyst, tech-stack-researcher
+
+#### Removed Hooks (10)
+
+- **Broken**: context-budget.sh, subagent-logger.sh, continuous-learning.sh
+- **Risky**: auto-commit.sh (auto-commits without review)
+- **Slow**: typecheck.sh, detect-deadcode.sh, detect-duplication.sh (run on every edit)
+- **Incomplete**: input-modifier.sh, test-gate.sh
+- **Spam**: strategic-compact.sh
+
+#### Removed Skills (16)
+
+- python-refactoring, strategic-compact, continuous-learning, three-tier-memory
+- mcp-builder, skill-creator, webapp-testing, git-worktree, parallel-dispatch
+- progressive-disclosure, root-cause-analysis, spec-compliance, eval-harness
+- auto-test-prompt, devops-automation, systematic-debugging
+
+### Kept (Core Essentials)
+
+**Commands (15)**: component-new, page-new, hook-new, api-new, api-test, test-new, verify, plan, lint, review, deploy, types-gen, edge-function-new, handoff, memory
+
+**Agents (6)**: code-reviewer, backend-architect, frontend-architect, build-error-resolver, test-strategist, devops-engineer
+
+**Skills (8)**: api-development, frontend-development, database-operations, verification-first, memory-persistence, code-quality, circuit-breaker, micro-tasking
+
+**Hooks (9)**: session-start, session-end, block-sensitive-files, validate-json, auto-format, circuit-breaker, pre-compact, notify-completion, skill-activator
+
+### Why
+
+- Reduced cognitive load by 73%
+- Removed broken/theoretical code
+- Focused on Next.js + React + Supabase workflow
+- Quality over quantity
+
+---
+
+## [2.2.0] - 2026-01-31
+
+### Added - Context Efficiency & Superpower Enhancements
+
+#### Plugin Structure Overhaul
+
+- **Complete plugin.json manifest** - Added explicit arrays for all 66 commands, 25 agents, 23 skills, 4 orchestrators
+- Previously relied on auto-discovery; now properly declared for compatibility with official Claude Code plugin loader
+
+#### Context Optimization Features (NEW)
+
+- **Tool Search configuration** - `enableToolSearch: true` for 85% token reduction
+- **Deferred tool loading** - `deferToolLoading: true` for on-demand MCP tool definitions
+- **Context thresholds** - `maxContextUsage: 0.85`, `compactionThreshold: 0.70`
+- **Thinking profiles** - Four tiers: light (1K), medium (8K), deep (32K), ultra (64K) token budgets
+
+#### Missing Hooks Added (3)
+
+- **input-modifier.sh** (PreToolUse) - Modifies tool inputs, auto-approves docs, adds timeouts
+- **pre-compact.sh** (PreCompact) - Saves critical context before compaction
+- **subagent-logger.sh** (SubagentStop) - Logs subagent completions for orchestrator debugging
+
+### Fixed
+
+- **hooks.json** - Now includes all 18 hooks (was 15, missing 3)
+- **Version synchronization** - All documentation now matches v2.2.0
+
+### Changed
+
+- Plugin now at **66 commands**, **25 agents**, **23 skills**, **4 orchestrators**, **18 hooks**
+- Updated plugin description to accurately reflect CLI-first, context-efficient approach
+- Removed incorrect MCP counts from README (was claiming 29, now correctly shows 4 minimal profile)
+
+### Documentation
+
+- Synchronized all component counts across CLAUDE.md, README.md, plugin.json
+- Added context optimization documentation to plugin.json
+- Added thinking profiles for extended thinking mode allocation
+
+### Sources
+
+- [Claude Code Best Practices](https://www.anthropic.com/engineering/claude-code-best-practices)
+- [Tool Search Token Reduction](https://medium.com/@joe.njenga/claude-code-just-cut-mcp-context-bloat-by-46-9-51k-tokens-down-to-8-5k-with-new-tool-search-ddf9e905f734)
+- [everything-claude-code](https://github.com/affaan-m/everything-claude-code)
+- [claude-flow Multi-Agent Framework](https://github.com/ruvnet/claude-flow)
+
 ## [1.20.0] - 2026-01-23
 
 ### Added - Claude Code v2.1 Features
 
 #### New Commands (4)
+
 - **/checkpoint** - Named checkpoint management for save/restore workflows
   - `save`, `list`, `restore`, `delete` actions
   - Complements built-in `/rewind` and `Esc+Esc`
@@ -31,6 +145,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Security best practices for credentials
 
 #### New Hook (1)
+
 - **input-modifier.sh** (PreToolUse) - Input modification hook example
   - Demonstrates modifying tool inputs before execution
   - Auto-approves documentation files
@@ -38,23 +153,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Enforces `--save-exact` for npm install
 
 #### Enhanced Commands
+
 - **/handoff** - Added Teleport integration section
   - When to use `/teleport` vs `/handoff` vs `/resume`
   - Workflow for moving sessions to claude.ai/code
   - Limitations of teleported sessions
 
 ### Documentation
+
 - Added thinking mode token budgets and best practices
 - Added plansDirectory configuration guide
 - Added project-scoped MCP security considerations
 - Added input modification hook patterns
 
 ### Changed
+
 - Updated plugin to **64 commands** (was 60) - Added: /checkpoint, /think, /plan-init, /mcp-init
 - Updated plugin to **15 hooks** (was 14) - Added: input-modifier
 - Bumped version to 1.20.0
 
 ### Claude Code v2.1 Features Supported
+
 - Checkpoints and `/rewind` (documented in /checkpoint)
 - Thinking modes: think, megathink, ultrathink
 - `plansDirectory` setting
@@ -64,6 +183,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `SubagentStop` and `PreCompact` hook events (added in v1.19.0)
 
 ### Sources
+
 - [Claude Code Checkpointing Docs](https://code.claude.com/docs/en/checkpointing)
 - [Claude Code Hooks Reference](https://code.claude.com/docs/en/hooks)
 - [Claude Code MCP Configuration](https://code.claude.com/docs/en/mcp)
@@ -74,6 +194,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 #### New Agents (2)
+
 - **build-error-resolver** - TypeScript/build error specialist with minimal-diff approach
   - Categorizes errors by type (inference, imports, config, dependencies)
   - Applies <5% line change constraint per file
@@ -89,6 +210,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Source: [everything-claude-code](https://github.com/affaan-m/everything-claude-code)
 
 #### New Skills (1)
+
 - **systematic-debugging** - Evidence-based debugging methodology
   - Iron Law: 5-step verification before any claim (IDENTIFY → RUN → READ → VERIFY → CLAIM)
   - Rationalization counters table for common debugging excuses
@@ -97,6 +219,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Source: [obra/superpowers](https://github.com/obra/superpowers)
 
 #### New Hooks (2)
+
 - **pre-compact.sh** (PreCompact event) - Saves critical context before compaction
   - Archives recent file changes and git status
   - Preserves working context to `~/.claude/memory/pre-compact-context.md`
@@ -108,6 +231,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Special handling for review and test agents
 
 #### New MCP Servers (7)
+
 - **Atlassian** (`@atlassian/mcp-server`) - Jira/Confluence integration via OAuth 2.0
 - **Firecrawl** (`@firecrawl/mcp`) - Web scraping with LLM-powered extraction
 - **Semgrep** (`@semgrep/mcp`) - SAST security scanning with 5000+ rules
@@ -117,6 +241,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Source: [awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers)
 
 #### New Command (1)
+
 - `/docs-codemap` - Generate structured CODEMAPS documentation
   - Creates INDEX.md, frontend.md, backend.md, database.md, integrations.md, workers.md
   - ASCII architecture diagrams
@@ -155,6 +280,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Added Session & Context skills section
 
 ### Changed
+
 - Updated plugin to **60 commands** (was 59) - Added: /docs-codemap
 - Updated plugin to **26 agents** (was 24) - Added: build-error-resolver, e2e-runner
 - Updated plugin to **19 skills** (was 18) - Added: systematic-debugging
@@ -163,6 +289,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Bumped version to 1.19.0
 
 ### Research Sources
+
 - [everything-claude-code](https://github.com/affaan-m/everything-claude-code) - Build error resolver, E2E runner, CODEMAPS
 - [obra/superpowers](https://github.com/obra/superpowers) - Verification gates, rationalization counters, systematic debugging
 - [Continuous-Claude-v3](https://github.com/parcadei/Continuous-Claude-v3) - Circuit breaker pattern
@@ -172,6 +299,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.18.0] - 2026-01-22
 
 ### Added
+
 - **Memory Persistence System** (HIGH VALUE) - Cross-session continuity
   - `session-start.sh` hook - Restores previous context when sessions begin
   - `session-end.sh` hook - Persists session state when sessions complete
@@ -214,6 +342,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Source: Anthropic x Forum Ventures Hackathon Winner (Sep 2025)
 
 ### Changed
+
 - Updated plugin to **59 commands** (was 55) - Added: /verify, /learn, /eval, /context-mode
 - Updated plugin to **18 skills** (was 14) - Added: memory-persistence, strategic-compact, continuous-learning, eval-harness
 - Updated plugin to **12 hooks** (was 8) - Added: session-start, session-end, strategic-compact, continuous-learning
@@ -221,12 +350,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Bumped version to 1.18.0
 
 ### Architecture
+
 - New `.claude/contexts/` directory for dynamic system prompts
 - New hooks in `.claude/hooks/`: session-start.sh, session-end.sh, strategic-compact.sh, continuous-learning.sh
 - New skills: memory-persistence, strategic-compact, continuous-learning, eval-harness
 - New commands: verify.md, learn.md, eval.md, context-mode.md
 
 ### Sources
+
 - [everything-claude-code](https://github.com/affaan-m/everything-claude-code) - Anthropic Hackathon Winner
 - Memory persistence patterns from hackathon-winning implementation
 - Strategic compaction from workflow optimization research
@@ -235,6 +366,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.17.0] - 2026-01-15
 
 ### Added
+
 - **6 New Commands** (56 total)
   - `/harness` - Configure safety guardrails for autonomous development (Principal Skinner Harness)
   - `/chain` - Chain multiple commands together for automated workflows
@@ -246,12 +378,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `DEVCONTAINER.md` - Comprehensive guide for DevContainer benefits and usage
 
 ### Changed
+
 - Updated plugin to **56 commands** (was 50)
 - Marked several TODO items as complete
 
 ## [1.16.0] - 2026-01-15
 
 ### Added
+
 - **4 New Commands** (50 total)
   - `/ci-review` - Run Claude Code in headless mode for CI/CD automated code review
   - `/worktree` - Git worktree management for isolated parallel development
@@ -267,12 +401,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - **AWS** (`@anthropic/mcp-server-aws`) - S3, Lambda, DynamoDB, CloudWatch operations
 
 ### Changed
+
 - Updated plugin to **50 commands** (was 46)
 - Updated plugin to **22 MCP servers** (was 16)
 
 ## [1.15.0] - 2026-01-15
 
 ### Added
+
 - **DevContainer Configuration** - Sandboxed development environment matching official anthropics/claude-code
   - `.devcontainer/devcontainer.json` - Container config with Claude Code feature, VS Code extensions
   - `.devcontainer/Dockerfile` - Node.js 20 base with Claude Code, TypeScript, Playwright pre-installed
@@ -293,10 +429,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Added `@modelcontextprotocol/server-memory` to plugin.json
 
 ### Changed
+
 - Updated plugin to **16 MCP servers** (was 15)
 - Updated TODO.md with research from official anthropics/claude-code repository
 
 ### Sources
+
 - [anthropics/claude-code DevContainer](https://github.com/anthropics/claude-code/tree/main/.devcontainer)
 - [anthropics/devcontainer-features](https://github.com/anthropics/devcontainer-features)
 - [anthropics/claude-code-action](https://github.com/anthropics/claude-code-action)
@@ -306,6 +444,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.13.0] - 2026-01-14
 
 ### Added
+
 - **Ralph Wiggum Pattern** - Autonomous iterative development
   - `/wiggum` - Autonomous development loops with stateless resampling and safety guardrails
   - State management via `.claude/wiggum/` directory (TASK.md, PROGRESS.md, DONE.md, STATUS)
@@ -326,6 +465,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - **Slack** (`@anthropic/mcp-server-slack`) - Workspace access for channel and message operations
 
 ### Changed
+
 - Updated plugin to **59 commands** (was 58)
 - Updated plugin to **14 skills** (was 8)
 - Updated plugin to **15 MCP servers** (was 11)
@@ -334,6 +474,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.12.0] - 2026-01-14
 
 ### Added
+
 - **5 New MCP Servers** (11 total)
   - **GitHub** (`@modelcontextprotocol/server-github`) - Repository operations, issues, PRs, CI/CD workflows
   - **Sequential Thinking** (`@modelcontextprotocol/server-sequential-thinking`) - Structured problem-solving with step-by-step reasoning
@@ -357,6 +498,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `.claude/ledger/` - Session progress ledger
 
 ### Changed
+
 - Updated plugin to **58 commands** (was 51)
 - Updated plugin to **11 MCP servers** (was 6)
 - Updated all documentation to reflect new counts
@@ -364,16 +506,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.11.1] - 2026-01-13
 
 ### Fixed
+
 - Registered 6 missing commands in plugin.json (`/map`, `/architect`, `/context`, `/memory`, `/rules`, `/ask`)
 - Fixed "L" prefix typo in `.claude/commands/api/api-new.md`
 - Removed redundant `.env.local` and `.env.production` patterns in `block-sensitive-files.sh` hook
 
 ### Changed
+
 - Updated command count from 45 to 51 in plugin description and documentation
 
 ## [1.11.0] - 2026-01-13
 
 ### Added
+
 - **Fintech Specialist** - New agent for financial technology
   - `fintech-engineer` - Payment systems, compliance (PCI-DSS, KYC/AML), fraud detection
 
@@ -387,6 +532,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `/execute-plan` - Step-by-step execution with verification at each stage
 
 ### Changed
+
 - Plugin now includes 45 commands (was 42)
 - Plugin now includes 24 agents (was 23)
 - Plugin now includes 8 skills (was 6)
@@ -394,15 +540,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.10.0] - 2026-01-13
 
 ### Added
+
 - **Community-Inspired Features** - Based on awesome-claude ecosystem research
 
 **New Specialized Agents (4):**
+
 - `chaos-engineer` - System resilience testing, failure injection, gameday planning
 - `mcp-developer` - Build MCP servers to extend Claude with custom tools
 - `llm-architect` - Design LLM applications, RAG systems, agent workflows
 - `competitive-analyst` - Market research, competitor analysis, strategic insights
 
 **New Workflow Commands (7):**
+
 - `/context-prime` (+ `/prime` alias) - Load comprehensive project context
 - `/tdd` - Test-Driven Development workflow (Red-Green-Refactor)
 - `/fix-issue` - Analyze GitHub issue and implement complete fix
@@ -410,14 +559,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `/create-prd` (+ `/prd` alias) - Generate Product Requirements Document
 
 **New Skills:**
+
 - `mcp-builder` - Create MCP servers for API integration
 
 ### Changed
+
 - Plugin now includes 42 commands (was 35)
 - Plugin now includes 23 agents (was 19)
 - Plugin now includes 6 skills (was 5)
 
 ### Sources
+
 - [awesome-claude](https://github.com/tonysurfly/awesome-claude)
 - [VoltAgent/awesome-claude-code-subagents](https://github.com/VoltAgent/awesome-claude-code-subagents)
 - [awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code)
@@ -426,6 +578,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.8.0] - 2026-01-13
 
 ### Added
+
 - **Agent Skills System** - 5 auto-invoked skills that Claude uses based on context
   - `api-development` - REST API creation, testing, authentication, rate limiting
   - `frontend-development` - React/Vue/Angular/Svelte components, pages, accessibility
@@ -436,10 +589,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Skills Directory** - `.claude/skills/` with 5 skill bundles
 
 ### Changed
+
 - Removed unsupported "tags" field from plugin.json (schema compliance)
 - Plugin description updated to highlight skills feature
 
 ### Documentation
+
 - Complete skills guide with usage examples
 - Comparison table: Skills vs Commands vs Agents
 - Custom skill creation guide
@@ -447,6 +602,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.9.0] - 2026-01-13
 
 ### Added
+
 - **Context Management System** - Persistent memory and context optimization
   - `/memory` command - View, update, or manage Claude's persistent project memory
   - `/context` command - Summarize, compact, or load files just-in-time
@@ -462,10 +618,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `.claude/rules/PROJECT-RULES.md` - Comprehensive rules template (like .cursorrules)
 
 ### Changed
+
 - Updated plugin to **41 commands** (was 35)
 - Updated all documentation to reflect new features
 
 ### Architecture
+
 - New `.claude/memory/` directory for persistent memory
 - New `.claude/rules/` directory for project rules
 - 6 new command files in `.claude/commands/misc/`
@@ -473,6 +631,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.8.0] - 2026-01-13
 
 ### Added
+
 - **Agent Skills System** - 8 auto-activating context-aware skills
   - **API Bundle (3 skills)**:
     - `api-creation` - Auto-applies Next.js 15 patterns, Zod validation, consistent error handling
@@ -510,6 +669,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Implementation roadmap
 
 ### Changed
+
 - Updated plugin version to 1.8.0
 - Updated plugin description to include skills and orchestrators
 - Added `skills`, `orchestrators`, `multi-agent` tags to plugin.json
@@ -517,6 +677,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated [README.md](README.md) with new features section
 
 ### Architecture
+
 - New `.claude/skills/` directory structure (api/, frontend/, database/, devops/)
 - New `.claude/orchestrators/` directory for workflow definitions
 - New `.claude/docs/` directory for research and design documents
@@ -526,6 +687,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.7.2] - 2026-01-13
 
 ### Added
+
 - **Command Template Test Suite** (`scripts/test-commands.js`) - Comprehensive automated testing for command markdown files
   - Validates frontmatter structure and required fields
   - Checks for $ARGUMENTS placeholders
@@ -534,9 +696,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Quality checks for TODO markers, broken links, and formatting
 
 ### Fixed
+
 - Fixed missing `description` field in [code-explain.md](.claude/commands/misc/code-explain.md)
 
 ### Testing
+
 - Added automated command template validation
 - 102 test assertions passing across 22 command files
 - Validates command structure, frontmatter, placeholders, and quality
@@ -544,6 +708,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.7.1] - 2026-01-13
 
 ### Documentation
+
 - Comprehensive documentation overhaul
 - Updated README.md to accurately reflect 35 commands and 19 agents
 - Updated CLAUDE.md to include hooks system and MCP servers
@@ -554,6 +719,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.7.0] - 2026-01-12
 
 ### Added
+
 - **Hooks & Automation System** - 6 pre-configured hook scripts for workflow automation
   - `block-sensitive-files.sh` - PreToolUse hook to prevent edits to .env, credentials, secrets
   - `auto-format.sh` - PostToolUse hook for auto-formatting with prettier/eslint/biome
@@ -565,10 +731,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Updated settings.template.json** - Now includes full hooks configuration
 
 ### Changed
+
 - Plugin description now highlights hooks as a key feature
 - Added "hooks" and "automation" tags to plugin.json
 
 ### Documentation
+
 - Complete hooks reference with configuration examples
 - Custom hook creation guide
 - Troubleshooting section for common hook issues
@@ -576,6 +744,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.6.0] - 2026-01-12
 
 ### Added
+
 - **code-reviewer** agent - Multi-aspect code review covering security, performance, quality, and maintainability with severity scoring
 - **test-strategist** agent - Plan comprehensive testing strategies, analyze coverage gaps, and design test architectures
 - **migration-planner** agent - Plan safe database schema migrations with zero-downtime strategies and rollback procedures
@@ -583,10 +752,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **performance-profiler** agent - Profile application performance, analyze Core Web Vitals, and identify optimization opportunities
 
 ### Changed
+
 - Updated plugin to 19 agents total (was 14)
 - Added STEROIDS roadmap to TODO.md with 50+ research-based improvements
 
 ### Research
+
 - Hooks & Automation patterns from Claude Code Hooks Guide
 - Agent Skills System from official documentation
 - MCP Server expansion research (Notion, Linear, GitHub, MongoDB, AWS, etc.)
@@ -597,16 +768,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.5.1] - 2026-01-12
 
 ### Added
+
 - **Wizard command** (`/wizard`) - Interactive guide to choose commands and build specifications
 - **Interactive options tables** - Added to `/component-new`, `/test-new`, `/migration-new` to prompt for preferences
 
 ### Changed
+
 - Updated plugin to 35 commands (22 unique + 13 aliases)
 - Commands now prompt for clarification when options are unclear
 
 ## [1.5.0] - 2026-01-12
 
 ### Added
+
 - **Vue 3 component command** (`/component-vue`) - Create Vue 3 components with Composition API and TypeScript
 - **Angular component command** (`/component-angular`) - Create Angular 17+ standalone components with signals
 - **Svelte 5 component command** (`/component-svelte`) - Create Svelte 5 components with runes
@@ -614,11 +788,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **13 command aliases** for shorter command invocation (e.g., `/api` → `/api-new`)
 
 ### Changed
+
 - Updated plugin to 34 commands total (21 unique + 13 aliases)
 - Plugin now supports Vue, Angular, and Svelte in addition to React/Next.js
 - API commands now include "Next Steps" suggestions for command chaining
 
 ### Research & Documentation
+
 - **Alternative approaches research** ([RESEARCH-alternative-approaches.md](.claude/docs/RESEARCH-alternative-approaches.md)) exploring:
   - Command composition patterns (workflow commands, suggestions, compound arguments)
   - Plugin extension system for community commands
@@ -629,6 +805,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.4.0] - 2026-01-12
 
 ### Added
+
 - **Stripe MCP server** (`@stripe/mcp`) - Payment processing and Stripe API operations
 - **Chrome DevTools MCP server** (`chrome-devtools-mcp`) - Browser debugging and performance analysis
 - **Vercel MCP server** (`@vercel/mcp`) - Deployment management and project operations
@@ -640,6 +817,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Agent quality test suite (`scripts/test-agents.js`) for prompt validation
 
 ### Changed
+
 - Updated plugin to 6 MCP servers total (was 3)
 - Enhanced MCP-SERVERS.md with comprehensive documentation for all 6 servers
 - CI workflow now includes test script execution
@@ -647,30 +825,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.3.0] - 2026-01-12
 
 ### Added
+
 - **database-architect** agent - Design optimal database schemas with focus on scalability, performance, and data integrity
 - **devops-engineer** agent - Design CI/CD pipelines, infrastructure as code, and deployment strategies
 - **api-architect** agent - Design RESTful and GraphQL APIs with focus on consistency and developer experience
 - MCP server environment variable configuration documentation in MCP-SERVERS.md
 
 ### Changed
+
 - Updated plugin to 14 agents total (was 11)
 - Improved CLAUDE.md with concise development guidance
 
 ### Fixed
+
 - Registered previously unregistered database-architect agent in plugin.json
 
 ## [1.2.0] - 2025-01-12
 
 ### Added
+
 - `/deploy` command - Generate deployment configurations and CI/CD workflows for Vercel, Netlify, AWS, Docker
 - Comprehensive troubleshooting section in README with 6 common issue categories and solutions
 
 ### Changed
+
 - Updated all command models from `claude-sonnet-4-5` to `claude-opus-4-5` for improved performance
 - Updated license from MIT to GPL-3.0 to ensure derivatives remain open source
 - Updated plugin description to reflect 18 commands (was 17)
 
 ### Improved
+
 - Enhanced deployment workflow documentation with multiple platform support
 - Better error handling guidance in troubleshooting section
 - Consistent model usage across all commands for better reliability
@@ -678,15 +862,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.1.0] - 2025-01-12
 
 ### Added
+
 - `/test-new` command - Generate test files for Jest, Vitest, or Playwright with comprehensive test patterns
 - `/migration-new` command - Create database migration files with support for Prisma, Drizzle, Supabase, Knex
 - `/hook-new` command - Create custom React hooks with TypeScript and modern patterns
 
 ### Changed
+
 - Generalized tech-stack-researcher agent to be framework-agnostic (removed app-specific references)
 - Updated plugin description to reflect 17 commands (was 14)
 
 ### Improved
+
 - Better support for multiple testing frameworks and ORMs
 - Enhanced TypeScript patterns in generated code
 - Comprehensive best practices documentation in new commands
@@ -694,6 +881,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.0] - 2025-01-12
 
 ### Added
+
 - Initial release of lorenzos-claude-code plugin
 - 14 slash commands for development workflows:
   - 7 general development commands (`/new-task`, `/code-explain`, `/code-optimize`, `/code-cleanup`, `/feature-plan`, `/lint`, `/docs-generate`)
@@ -712,6 +900,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - MIT License
 
 ### Philosophy
+
 - Type Safety: Never uses `any` types
 - Best Practices: Follows modern Next.js/React patterns
 - Productivity: Reduces repetitive scaffolding
@@ -724,6 +913,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Changes will be documented here as new versions are released.
 
 ### Version Guidelines
+
 - **MAJOR** (X.0.0) - Breaking changes or major restructuring
 - **MINOR** (x.Y.0) - New commands, agents, or significant features
 - **PATCH** (x.y.Z) - Bug fixes, documentation updates, minor improvements
