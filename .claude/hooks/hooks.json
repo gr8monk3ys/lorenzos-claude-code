@@ -3,7 +3,7 @@
     {
       "event": "SessionStart",
       "command": "./.claude/hooks/session-start.sh",
-      "description": "Restores previous context when sessions begin (memory persistence)"
+      "description": "Restores previous context when sessions begin"
     },
     {
       "event": "PreToolUse",
@@ -11,7 +11,7 @@
         "tool_name": ["Edit", "Write"]
       },
       "command": "./.claude/hooks/block-sensitive-files.sh",
-      "description": "Prevents editing .env, credentials, keys, and other sensitive files"
+      "description": "Prevents editing .env, credentials, and secret files"
     },
     {
       "event": "PreToolUse",
@@ -19,15 +19,7 @@
         "tool_name": ["Write"]
       },
       "command": "./.claude/hooks/validate-json.sh",
-      "description": "Validates JSON syntax before writing JSON files"
-    },
-    {
-      "event": "PreToolUse",
-      "matcher": {
-        "tool_name": ["Edit", "Write"]
-      },
-      "command": "./.claude/hooks/strategic-compact.sh",
-      "description": "Monitors edit operations and suggests compaction at natural breakpoints"
+      "description": "Validates JSON syntax before writing"
     },
     {
       "event": "PostToolUse",
@@ -35,46 +27,23 @@
         "tool_name": ["Edit", "Write"]
       },
       "command": "./.claude/hooks/auto-format.sh",
-      "description": "Auto-formats code with Prettier/Biome/ESLint after edits"
+      "description": "Auto-formats code with Prettier/Biome/ESLint"
     },
     {
       "event": "PostToolUse",
-      "matcher": {
-        "tool_name": ["Edit", "Write"]
-      },
-      "command": "./.claude/hooks/typecheck.sh",
-      "description": "Runs TypeScript type checking after code changes"
+      "matcher": ".*",
+      "command": "./.claude/hooks/circuit-breaker.sh",
+      "description": "Detects thrashing patterns and prevents stuck loops"
     },
     {
-      "event": "PostToolUse",
-      "matcher": {
-        "tool_name": ["Edit", "Write"]
-      },
-      "command": "./.claude/hooks/detect-duplication.sh",
-      "description": "Detects code duplication using jscpd after file edits"
-    },
-    {
-      "event": "PostToolUse",
-      "matcher": {
-        "tool_name": ["Edit", "Write"]
-      },
-      "command": "./.claude/hooks/detect-deadcode.sh",
-      "description": "Detects unused exports using knip after file edits"
+      "event": "PreCompact",
+      "command": "./.claude/hooks/pre-compact.sh",
+      "description": "Saves critical context before compaction"
     },
     {
       "event": "Stop",
       "command": "./.claude/hooks/session-end.sh",
-      "description": "Persists session state when sessions complete (memory persistence)"
-    },
-    {
-      "event": "Stop",
-      "command": "./.claude/hooks/continuous-learning.sh",
-      "description": "Analyzes session patterns and extracts reusable skills"
-    },
-    {
-      "event": "Stop",
-      "command": "./.claude/hooks/auto-commit.sh",
-      "description": "Auto-commits changes when task completes"
+      "description": "Persists session state when sessions complete"
     },
     {
       "event": "Stop",
@@ -82,23 +51,9 @@
       "description": "Desktop notification on completion"
     },
     {
-      "event": "PreToolUse",
-      "matcher": {
-        "tool_name": ["Bash"]
-      },
-      "command": "./.claude/hooks/test-gate.sh",
-      "description": "Blocks git commits until tests pass"
-    },
-    {
       "event": "UserPromptSubmit",
       "command": "./.claude/hooks/skill-activator.sh",
-      "description": "Injects skill activation hints based on trigger words"
-    },
-    {
-      "event": "PostToolUse",
-      "matcher": ".*",
-      "command": "./.claude/hooks/circuit-breaker.sh",
-      "description": "Detects thrashing patterns and prevents stuck loops"
+      "description": "Injects skill activation hints based on context"
     }
   ]
 }
