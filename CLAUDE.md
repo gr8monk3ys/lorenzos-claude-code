@@ -4,9 +4,9 @@ This file provides guidance to Claude Code when working with code in this reposi
 
 ## Repository Overview
 
-Minimal Claude Code plugin: **15 commands**, **6 agents**, **8 skills**, **9 hooks**, **4 MCP servers**. Focused on Next.js + React + Supabase development.
+Minimal Claude Code plugin: **18 commands**, **6 agents**, **10 skills**, **9 hooks**, **4 MCP servers**. Focused on Next.js + React + Supabase development.
 
-## Commands (15)
+## Commands (18)
 
 | Command              | Description             |
 | -------------------- | ----------------------- |
@@ -25,6 +25,9 @@ Minimal Claude Code plugin: **15 commands**, **6 agents**, **8 skills**, **9 hoo
 | `/edge-function-new` | Edge functions          |
 | `/handoff`           | Session handoff         |
 | `/memory`            | Persistent memory       |
+| `/learn`             | Extract session patterns|
+| `/evolve`            | Evolve instincts→skills |
+| `/research`          | Deep topic exploration  |
 
 ## Agents (6)
 
@@ -37,7 +40,7 @@ Minimal Claude Code plugin: **15 commands**, **6 agents**, **8 skills**, **9 hoo
 | `test-strategist`      | Test planning                  |
 | `devops-engineer`      | CI/CD, deployment              |
 
-## Skills (8)
+## Skills (10)
 
 Auto-activating context enhancements:
 
@@ -49,20 +52,22 @@ Auto-activating context enhancements:
 - `code-quality` - Review patterns
 - `circuit-breaker` - Prevent loops
 - `micro-tasking` - Task breakdown
+- `continuous-learning` - Pattern extraction & evolution
+- `research` - Structured exploration workflow
 
 ## Hooks (9)
 
 | Hook                       | Event            | Purpose              |
 | -------------------------- | ---------------- | -------------------- |
-| `session-start.sh`         | SessionStart     | Context restoration  |
-| `session-end.sh`           | Stop             | Session persistence  |
-| `block-sensitive-files.sh` | PreToolUse       | Security             |
-| `validate-json.sh`         | PreToolUse       | Prevent corruption   |
-| `auto-format.sh`           | PostToolUse      | Code formatting      |
-| `circuit-breaker.sh`       | PostToolUse      | Loop prevention      |
-| `pre-compact.sh`           | PreCompact       | Context preservation |
-| `notify-completion.sh`     | Stop             | Notifications        |
-| `skill-activator.sh`       | UserPromptSubmit | Skill hints          |
+| `session-start.js`         | SessionStart     | Context + instincts  |
+| `session-end.js`           | Stop             | Session persistence  |
+| `block-sensitive-files.js` | PreToolUse       | Security             |
+| `validate-json.js`         | PreToolUse       | Prevent corruption   |
+| `auto-format.js`           | PostToolUse      | Code formatting      |
+| `circuit-breaker.js`       | PostToolUse      | Loop prevention      |
+| `pre-compact.js`           | PreCompact       | Context preservation |
+| `notify-completion.js`     | Stop             | Notifications        |
+| `skill-activator.js`       | UserPromptSubmit | 5D skill evaluation  |
 
 ## MCP Servers (4)
 
@@ -83,9 +88,10 @@ Auto-activating context enhancements:
 ## Key Directories
 
 ```
-.claude/commands/   # 15 commands (api/, context/, devops/, generation/, planning/, quality/, supabase/, testing/, ui/, workflow/)
+.claude/commands/   # 18 commands (api/, context/, devops/, generation/, planning/, quality/, supabase/, testing/, ui/, workflow/)
 .claude/agents/     # 6 agents
-.claude/skills/     # 8 skills
-.claude/hooks/      # 9 hooks
+.claude/skills/     # 10 skills
+.claude/hooks/      # 9 hooks (Node.js, cross-platform)
+.claude/instincts/  # Learned patterns
 .claude/memory/     # Project memory
 ```

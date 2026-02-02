@@ -1,0 +1,158 @@
+{
+  "version": "1.1",
+  "lastUpdated": "2026-02-01T00:00:00Z",
+  "description": "Learned patterns that guide Claude's behavior. High-confidence instincts (>=0.6) are surfaced at session start.",
+  "confidenceScoring": {
+    "description": "Confidence increases when instinct leads to successful outcomes, decreases on failures",
+    "formula": "confidence = (successes / applications) * 0.9 + 0.1 * (min(applications, 10) / 10)",
+    "minConfidence": 0.1,
+    "maxConfidence": 0.95,
+    "displayThreshold": 0.6
+  },
+  "instincts": [
+    {
+      "id": "instinct_circuit_001",
+      "pattern": "When the same error appears 3+ times, STOP immediately. The approach is fundamentally flawed - trying again won't help.",
+      "action": "Invoke circuit-breaker skill and switch to root-cause analysis",
+      "context": "debugging",
+      "confidence": 0.90,
+      "source": "circuit-breaker-skill",
+      "applications": 47,
+      "successes": 42,
+      "created": "2025-06-15T00:00:00Z",
+      "lastUsed": "2026-01-30T14:30:00Z"
+    },
+    {
+      "id": "instinct_circuit_002",
+      "pattern": "When editing the same file 3+ times without solving the problem, step back and read related files first.",
+      "action": "Pause edits, read imports and dependent files, understand the full context",
+      "context": "file-editing",
+      "confidence": 0.85,
+      "source": "circuit-breaker-skill",
+      "applications": 32,
+      "successes": 27,
+      "created": "2025-06-15T00:00:00Z",
+      "lastUsed": "2026-01-28T10:15:00Z"
+    },
+    {
+      "id": "instinct_verify_001",
+      "pattern": "Never claim 'this should work' or 'the fix is complete' without running verification commands first.",
+      "action": "Run: npm run build, npm test, or relevant verification command. Read output. Only then claim success.",
+      "context": "verification",
+      "confidence": 0.92,
+      "source": "verification-first-skill",
+      "applications": 89,
+      "successes": 82,
+      "created": "2025-07-01T00:00:00Z",
+      "lastUsed": "2026-02-01T09:00:00Z"
+    },
+    {
+      "id": "instinct_verify_002",
+      "pattern": "Hedging language ('probably', 'should', 'might') indicates uncertainty. Convert to verification steps.",
+      "action": "Replace hedging with specific verification: 'Let me verify by running X' instead of 'This probably works'",
+      "context": "communication",
+      "confidence": 0.88,
+      "source": "verification-first-skill",
+      "applications": 56,
+      "successes": 49,
+      "created": "2025-07-01T00:00:00Z",
+      "lastUsed": "2026-01-29T16:45:00Z"
+    },
+    {
+      "id": "instinct_micro_001",
+      "pattern": "Tasks taking >10 minutes are too large. Decompose into 2-5 minute subtasks.",
+      "action": "Break task into atomic steps, each with a clear verification condition",
+      "context": "planning",
+      "confidence": 0.80,
+      "source": "micro-tasking-skill",
+      "applications": 24,
+      "successes": 19,
+      "created": "2025-08-01T00:00:00Z",
+      "lastUsed": "2026-01-25T11:30:00Z"
+    },
+    {
+      "id": "instinct_bootstrap_001",
+      "pattern": "When encountering repeated failures in the same file, step back and read the entire file before making more changes",
+      "action": "Use Read tool on the full file, understand structure before editing",
+      "context": "debugging",
+      "confidence": 0.75,
+      "source": "bootstrap",
+      "applications": 15,
+      "successes": 11,
+      "created": "2025-02-01T00:00:00Z",
+      "lastUsed": "2026-01-20T08:00:00Z"
+    },
+    {
+      "id": "instinct_bootstrap_002",
+      "pattern": "Before implementing a feature, search for existing patterns in the codebase to maintain consistency",
+      "action": "Use Glob/Grep to find similar implementations, follow existing patterns",
+      "context": "architecture",
+      "confidence": 0.80,
+      "source": "bootstrap",
+      "applications": 28,
+      "successes": 22,
+      "created": "2025-02-01T00:00:00Z",
+      "lastUsed": "2026-01-27T13:15:00Z"
+    },
+    {
+      "id": "instinct_bootstrap_003",
+      "pattern": "When a TypeScript error mentions 'undefined', prefer optional chaining (?.) over explicit null checks for cleaner code",
+      "action": "Use obj?.prop instead of obj && obj.prop, use ?? for defaults",
+      "context": "TypeScript",
+      "confidence": 0.70,
+      "source": "bootstrap",
+      "applications": 12,
+      "successes": 8,
+      "created": "2025-02-01T00:00:00Z",
+      "lastUsed": "2026-01-18T15:30:00Z"
+    },
+    {
+      "id": "instinct_bootstrap_004",
+      "pattern": "After writing code, run the build/tests immediately rather than writing more code to catch errors early",
+      "action": "Run verification after each logical change, not after all changes",
+      "context": "workflow",
+      "confidence": 0.85,
+      "source": "bootstrap",
+      "applications": 41,
+      "successes": 35,
+      "created": "2025-02-01T00:00:00Z",
+      "lastUsed": "2026-01-31T17:00:00Z"
+    },
+    {
+      "id": "instinct_bootstrap_005",
+      "pattern": "When creating a new React component, check if a similar component exists that can be extended or composed",
+      "action": "Search for components in src/components before creating new ones",
+      "context": "React",
+      "confidence": 0.75,
+      "source": "bootstrap",
+      "applications": 18,
+      "successes": 13,
+      "created": "2025-02-01T00:00:00Z",
+      "lastUsed": "2026-01-22T09:45:00Z"
+    },
+    {
+      "id": "instinct_api_001",
+      "pattern": "All API endpoints must validate input with Zod before processing",
+      "action": "Add z.object() schema validation at the start of every route handler",
+      "context": "api-development",
+      "confidence": 0.82,
+      "source": "api-development-skill",
+      "applications": 33,
+      "successes": 27,
+      "created": "2025-09-01T00:00:00Z",
+      "lastUsed": "2026-01-26T14:00:00Z"
+    },
+    {
+      "id": "instinct_error_001",
+      "pattern": "When an error contains a file path and line number, read that exact location before attempting to fix",
+      "action": "Parse error message, read file at specified line with context (-B 5 -A 10)",
+      "context": "debugging",
+      "confidence": 0.88,
+      "source": "learned",
+      "applications": 45,
+      "successes": 39,
+      "created": "2025-10-15T00:00:00Z",
+      "lastUsed": "2026-01-31T11:30:00Z"
+    }
+  ]
+}

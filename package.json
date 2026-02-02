@@ -1,0 +1,56 @@
+{
+  "name": "@gr8monk3ys/claude-code-plugin",
+  "version": "3.2.0",
+  "description": "Minimal Claude Code plugin for Next.js + React + Supabase. 18 commands, 6 agents, 10 skills, 9 hooks. Beat the competition with circuit-breaker, verification-first, and micro-tasking.",
+  "keywords": [
+    "claude-code",
+    "claude",
+    "ai",
+    "nextjs",
+    "react",
+    "typescript",
+    "supabase",
+    "productivity",
+    "agents",
+    "skills",
+    "hooks"
+  ],
+  "author": {
+    "name": "Lorenzo",
+    "email": "gr8monk3ys@gmail.com",
+    "url": "https://github.com/gr8monk3ys"
+  },
+  "license": "GPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gr8monk3ys/lorenzos-claude-code.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gr8monk3ys/lorenzos-claude-code/issues"
+  },
+  "homepage": "https://github.com/gr8monk3ys/lorenzos-claude-code#readme",
+  "main": "scripts/install.js",
+  "bin": {
+    "lorenzo-claude": "./bin/cli.js",
+    "lcc": "./bin/cli.js"
+  },
+  "files": [
+    "bin/",
+    "scripts/",
+    ".claude/",
+    ".claude-plugin/",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "test": "node tests/run-all.js",
+    "install:local": "node bin/cli.js install",
+    "doctor": "node bin/cli.js doctor",
+    "prepublishOnly": "npm test"
+  },
+  "devDependencies": {},
+  "peerDependencies": {}
+}

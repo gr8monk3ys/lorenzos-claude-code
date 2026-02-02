@@ -1,0 +1,97 @@
+{
+  "version": "1.0",
+  "description": "Multi-dimensional skill evaluation rules with weighted confidence scoring",
+  "confidenceThreshold": {
+    "activate": 8,
+    "suggest": 5
+  },
+  "weights": {
+    "keyword": 2,
+    "pattern": 3,
+    "filePath": 4,
+    "directory": 5,
+    "intent": 4
+  },
+  "skills": [
+    {
+      "name": "api-development",
+      "priority": 0,
+      "keywords": ["api", "endpoint", "route", "rest", "graphql", "trpc", "fetch", "request", "response"],
+      "patterns": ["\\bapi[/\\\\]", "route\\.ts", "\\.handler\\b", "\\bGET\\b", "\\bPOST\\b", "\\bPUT\\b", "\\bDELETE\\b"],
+      "directories": ["app/api", "pages/api", "src/api", "api/", "routes/"],
+      "intents": ["create.*api", "add.*endpoint", "build.*route", "fetch.*data", "call.*api", "make.*request"]
+    },
+    {
+      "name": "frontend-development",
+      "priority": 0,
+      "keywords": ["component", "react", "vue", "svelte", "frontend", "ui", "ux", "button", "form", "modal", "layout", "page", "css", "style", "tailwind"],
+      "patterns": ["page\\.tsx", "layout\\.tsx", "\\.component\\.", "use[A-Z]\\w+\\(", "className="],
+      "directories": ["src/components", "components/", "app/", "pages/", "src/ui", "ui/"],
+      "intents": ["create.*component", "build.*page", "add.*button", "style.*", "design.*ui", "make.*responsive"]
+    },
+    {
+      "name": "database-operations",
+      "priority": 0,
+      "keywords": ["database", "schema", "migration", "query", "sql", "prisma", "drizzle", "supabase", "postgres", "mysql", "table", "column", "index"],
+      "patterns": ["schema\\.prisma", "\\.sql$", "migration", "\\bSELECT\\b", "\\bINSERT\\b", "\\bUPDATE\\b", "\\bDELETE\\b"],
+      "directories": ["prisma/", "drizzle/", "supabase/", "migrations/", "db/", "database/"],
+      "intents": ["create.*table", "add.*migration", "query.*", "update.*schema", "add.*column", "create.*index"]
+    },
+    {
+      "name": "code-quality",
+      "priority": 0,
+      "keywords": ["review", "refactor", "clean", "lint", "optimize", "performance", "quality", "improve", "simplify"],
+      "patterns": ["eslint", "prettier", "biome", "\\.lint"],
+      "directories": [],
+      "intents": ["review.*code", "refactor.*", "clean.*up", "improve.*performance", "optimize.*", "simplify.*"]
+    },
+    {
+      "name": "verification-first",
+      "priority": 90,
+      "keywords": ["verify", "test", "check", "confirm", "ensure", "validate", "done", "complete", "finish", "works"],
+      "patterns": ["npm\\s+test", "npm\\s+run\\s+build", "tsc", "jest", "vitest"],
+      "directories": [],
+      "intents": ["verify.*works", "make\\s+sure.*", "confirm.*", "test.*works", "check.*if", "ensure.*"]
+    },
+    {
+      "name": "circuit-breaker",
+      "priority": 95,
+      "keywords": ["stuck", "loop", "failing", "error", "broken", "not working", "keeps", "again", "still", "same"],
+      "patterns": ["same\\s+error", "still\\s+failing", "keeps\\s+failing", "tried\\s+\\d+\\s+times"],
+      "directories": [],
+      "intents": ["stuck.*", "keeps\\s+failing", "same\\s+error", "not\\s+working", "tried.*again", "why.*failing"]
+    },
+    {
+      "name": "micro-tasking",
+      "priority": 0,
+      "keywords": ["plan", "breakdown", "steps", "tasks", "decompose", "implement", "feature", "roadmap"],
+      "patterns": ["how\\s+to\\s+implement", "steps\\s+for", "break.*down"],
+      "directories": [],
+      "intents": ["plan.*", "break.*down", "steps\\s+for.*", "how\\s+to\\s+implement", "create.*roadmap"]
+    },
+    {
+      "name": "memory-persistence",
+      "priority": 0,
+      "keywords": ["memory", "remember", "session", "context", "previous", "last time", "before"],
+      "patterns": ["remember.*", "last\\s+session", "previous.*context"],
+      "directories": [".claude/memory", ".claude/sessions"],
+      "intents": ["remember.*", "recall.*", "what.*before", "last\\s+time.*"]
+    },
+    {
+      "name": "continuous-learning",
+      "priority": 0,
+      "keywords": ["learn", "pattern", "instinct", "evolve", "improve", "lesson"],
+      "patterns": ["/learn", "/evolve"],
+      "directories": [".claude/instincts"],
+      "intents": ["learn.*from", "extract.*pattern", "evolve.*skill"]
+    },
+    {
+      "name": "research",
+      "priority": 0,
+      "keywords": ["research", "explore", "investigate", "understand", "analyze", "study", "deep dive"],
+      "patterns": ["/research"],
+      "directories": [],
+      "intents": ["research.*", "explore.*", "investigate.*", "understand.*how", "analyze.*"]
+    }
+  ]
+}

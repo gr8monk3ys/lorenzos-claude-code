@@ -1,7 +1,7 @@
 {
   "name": "lorenzos-claude-code",
   "version": "3.0.0",
-  "description": "Lorenzo's Claude Code setup: 15 commands, 6 agents, 8 skills, 9 hooks. Minimal, focused, CLI-first.",
+  "description": "Minimal Claude Code plugin for Next.js + React + Supabase. Features circuit-breaker (thrashing prevention), verification-first (evidence-based completion), and micro-tasking (2-5 min chunks).",
   "author": {
     "name": "Lorenzo",
     "email": "gr8monk3ys@gmail.com",
@@ -9,13 +9,17 @@
   },
   "license": "GPL-3.0",
   "repository": "https://github.com/gr8monk3ys/lorenzos-claude-code",
+  "homepage": "https://github.com/gr8monk3ys/lorenzos-claude-code#readme",
+  "npm": "@gr8monk3ys/claude-code-plugin",
   "keywords": [
     "claude-code",
     "nextjs",
     "react",
     "typescript",
     "supabase",
-    "minimal"
+    "minimal",
+    "circuit-breaker",
+    "verification-first"
   ],
   "profiles": {
     "minimal": ".claude/profiles/mcp-minimal.json"

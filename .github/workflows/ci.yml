@@ -1,5 +1,5 @@
 # CI Pipeline for lorenzos-claude-code Plugin
-# Validates plugin structure, syntax, and documentation
+# Validates plugin structure, runs tests, and publishes to npm
 
 name: CI
 
@@ -8,46 +8,84 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  release:
+    types: [published]
 
 jobs:
+  test:
+    name: Test (Node ${{ matrix.node-version }}, ${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        node-version: [18, 20, 22]
+      fail-fast: false
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
+
+      - name: Test CLI help
+        run: node bin/cli.js help
+
+      - name: Test CLI version
+        run: node bin/cli.js version
+
   validate:
     name: Validate Plugin
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: "20"
 
-      - name: Validate plugin.json
+      - name: Validate JSON files
         run: |
-          echo "Validating plugin.json syntax..."
-          node -e "JSON.parse(require('fs').readFileSync('.claude-plugin/plugin.json'))"
-          echo "plugin.json is valid JSON"
+          echo "Validating JSON files..."
+          for file in $(find . -name "*.json" -not -path "./node_modules/*"); do
+            echo "Checking $file"
+            node -e "JSON.parse(require('fs').readFileSync('$file', 'utf8'))"
+          done
+          echo "All JSON files valid!"
 
       - name: Validate plugin structure
         run: |
           echo "Checking required files..."
           test -f .claude-plugin/plugin.json && echo "plugin.json exists"
+          test -f package.json && echo "package.json exists"
           test -f CLAUDE.md && echo "CLAUDE.md exists"
           test -d .claude/commands && echo "commands directory exists"
           test -d .claude/agents && echo "agents directory exists"
           test -d .claude/skills && echo "skills directory exists"
+          test -d .claude/hooks && echo "hooks directory exists"
+          test -f bin/cli.js && echo "CLI exists"
           echo "All required files present!"
 
       - name: Count components
         run: |
-          echo "Plugin Component Summary:"
-          echo "========================="
+          echo ""
+          echo "Plugin Component Summary"
+          echo "========================"
           echo "Commands: $(find .claude/commands -name '*.md' | wc -l | tr -d ' ')"
           echo "Agents: $(find .claude/agents -name '*.md' | wc -l | tr -d ' ')"
           echo "Skills: $(find .claude/skills -name '*.md' | wc -l | tr -d ' ')"
-          echo "Orchestrators: $(find .claude/orchestrators -name '*.md' 2>/dev/null | wc -l | tr -d ' ')"
-          echo "Hooks: $(find .claude/hooks -name '*.sh' 2>/dev/null | wc -l | tr -d ' ')"
+          echo "Hooks: $(find .claude/hooks -name '*.sh' -o -name '*.js' 2>/dev/null | wc -l | tr -d ' ')"
 
       - name: Validate frontmatter
         run: |
@@ -62,21 +100,48 @@ jobs:
           done
           echo "All commands have valid frontmatter!"
 
+      - name: Check package.json validity
+        run: npm pkg fix --dry-run
+
   markdown-lint:
     name: Lint Markdown
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: "20"
 
       - name: Install markdownlint
         run: npm install -g markdownlint-cli
 
       - name: Lint documentation
-        run: markdownlint README.md CLAUDE.md CHANGELOG.md --disable MD013 MD033 MD041 || true
+        run: markdownlint README.md CLAUDE.md --disable MD013 MD033 MD041 || true
+
+  publish:
+    name: Publish to npm
+    needs: [test, validate]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Publish to npm
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -4,18 +4,42 @@
     "name": "Lorenzo",
     "contact": "github.com/gr8monk3ys"
   },
-  "description": "Lorenzo's curated Claude Code setup for productive development",
+  "description": "Minimal Claude Code plugin for Next.js + React + Supabase development with innovative failure prevention",
   "plugins": [
     {
       "name": "lorenzos-claude-code",
       "source": "./",
-      "description": "Personal Claude Code configuration with 18 productivity commands and 11 specialized AI agents for modern web development",
-      "version": "1.2.0",
+      "description": "15 commands, 6 agents, 8 skills, 9 hooks. Features circuit-breaker (thrashing prevention), verification-first (evidence-based completion), and micro-tasking (2-5 min task chunks).",
+      "version": "3.0.0",
       "author": {
         "name": "Lorenzo",
-        "email": "lorenzosca7@protonmail.ch"
+        "email": "gr8monk3ys@gmail.com",
+        "url": "https://github.com/gr8monk3ys"
       },
-      "tags": ["productivity", "nextjs", "supabase", "typescript", "react", "development"]
+      "npm": "@gr8monk3ys/claude-code-plugin",
+      "tags": [
+        "productivity",
+        "nextjs",
+        "supabase",
+        "typescript",
+        "react",
+        "circuit-breaker",
+        "verification-first",
+        "minimal"
+      ],
+      "features": {
+        "commands": 15,
+        "agents": 6,
+        "skills": 8,
+        "hooks": 9,
+        "mcpServers": 4
+      },
+      "highlights": [
+        "Circuit Breaker - Detects and prevents thrashing loops",
+        "Verification First - Evidence-based completion gates",
+        "Micro-Tasking - 2-5 minute task enforcement",
+        "Minimal Footprint - Only 4 MCP servers"
+      ]
     }
   ]
 }
