@@ -1,6 +1,6 @@
 ---
-name: learn
 description: Extract reusable patterns from the current session
+model: claude-sonnet-4-5
 ---
 
 # Pattern Learning

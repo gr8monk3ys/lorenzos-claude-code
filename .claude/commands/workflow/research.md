@@ -1,6 +1,6 @@
 ---
-name: research
 description: Deep exploration workflow for researching topics with structured output
+model: claude-sonnet-4-5
 ---
 
 # Research Workflow

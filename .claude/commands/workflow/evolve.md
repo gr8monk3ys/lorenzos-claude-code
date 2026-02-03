@@ -1,6 +1,6 @@
 ---
-name: evolve
 description: Evolve high-confidence instincts into reusable skills
+model: claude-sonnet-4-5
 ---
 
 # Instinct Evolution
