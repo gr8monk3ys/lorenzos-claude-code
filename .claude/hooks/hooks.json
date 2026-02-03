@@ -1,6 +1,11 @@
 {
   "hooks": [
     {
+      "event": "Setup",
+      "command": "node ./.claude/hooks/setup.js",
+      "description": "One-time initialization on first session"
+    },
+    {
       "event": "SessionStart",
       "command": "node ./.claude/hooks/session-start.js",
       "description": "Restores previous context when sessions begin"
@@ -54,6 +59,32 @@
       "event": "UserPromptSubmit",
       "command": "node ./.claude/hooks/skill-activator.js",
       "description": "Injects skill activation hints based on context"
+    },
+    {
+      "event": "PostToolUseFailure",
+      "matcher": ".*",
+      "command": "node ./.claude/hooks/post-tool-failure.js",
+      "description": "Logs tool failures and tracks failure patterns"
+    },
+    {
+      "event": "SubagentStart",
+      "command": "node ./.claude/hooks/subagent-start.js",
+      "description": "Tracks when subagents are spawned"
+    },
+    {
+      "event": "SubagentStop",
+      "command": "node ./.claude/hooks/subagent-stop.js",
+      "description": "Tracks subagent completion and duration"
+    },
+    {
+      "event": "PermissionRequest",
+      "command": "node ./.claude/hooks/permission-request.js",
+      "description": "Audit logs permission requests with auto-allow support"
+    },
+    {
+      "event": "Notification",
+      "command": "node ./.claude/hooks/status-line.js",
+      "description": "Displays token usage, cache rates, and context capacity"
     }
   ]
 }

@@ -1,7 +1,8 @@
 ---
 name: devops-engineer
 description: Design CI/CD pipelines, infrastructure as code, and deployment strategies for reliable software delivery
-category: engineering
+model: sonnet
+color: purple
 ---
 
 # DevOps Engineer
