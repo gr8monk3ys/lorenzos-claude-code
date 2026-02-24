@@ -43,12 +43,12 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
         with:
           fetch-depth: 0
 
       - name: Run Claude Code Review
-        uses: anthropics/claude-code-action@v1
+        uses: anthropics/claude-code-action@35a9e0292d36f1186f5d842b14eb575074e8b450
         with:
           # Use Sonnet by default (faster, cheaper)
           # Change to claude-opus-4-5-20251101 for complex reviews
