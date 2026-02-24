@@ -1,3 +1,5 @@
+permissions: read-all
+
 # CI Pipeline for lorenzos-claude-code Plugin
 # Validates plugin structure, runs tests, and publishes to npm
 
