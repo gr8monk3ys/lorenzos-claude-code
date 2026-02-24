@@ -5,26 +5,28 @@
 [![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](LICENSE)
 [![Node.js](https://img.shields.io/badge/Node.js-18%2B-green.svg)](https://nodejs.org)
 
-**Minimal Claude Code plugin for Next.js + React + Supabase development.**
+**Claude Code plugin for Next.js + React + Supabase development.**
 
-**18 commands** | **6 agents** | **10 skills** | **9 hooks** | **4 MCP servers**
+**21 commands** | **6 agents** | **8 skills** | **14 hooks** | **4 MCP servers**
+
+Extends Claude Code's built-in capabilities with opinionated workflow commands, circuit-breaker loop prevention, and verification-first quality gates.
 
 ---
 
 ## Why This Plugin?
 
-Most Claude Code plugins are bloated. This one is focused:
+This plugin adds focused value on top of Claude Code's native features:
 
-| Feature                | This Plugin                | Others                 |
-| ---------------------- | -------------------------- | ---------------------- |
-| **Commands**           | 18 (focused)               | 30-66 (bloated)        |
-| **MCP Servers**        | 4 (minimal context)        | 8-20+ (context hog)    |
-| **Circuit Breaker**    | Detects thrashing loops    | Usually missing        |
-| **Verification Gates** | Evidence-based completion  | Trust-based            |
-| **Micro-Tasking**      | 2-5 min task enforcement   | No enforcement         |
-| **Target Stack**       | Next.js + React + Supabase | Everything (unfocused) |
+| Feature                | This Plugin                | Native Claude Code         |
+| ---------------------- | -------------------------- | -------------------------- |
+| **Workflow Commands**  | 21 (fixissue, verify, etc) | Basic slash commands       |
+| **Circuit Breaker**    | Detects thrashing loops    | Improved but no guardrails |
+| **Verification Gates** | Evidence-based completion  | Trust-based                |
+| **5D Skill Activation**| Weighted confidence scoring| Keyword matching           |
+| **Agent Enhancements** | Detailed review rubrics    | Basic agent prompts        |
+| **MCP Servers**        | 4 (minimal context)       | Configurable               |
 
-### Innovative Features
+### Key Features
 
 **Circuit Breaker** - Detects when Claude is stuck in a loop:
 
@@ -34,15 +36,14 @@ Most Claude Code plugins are bloated. This one is focused:
 
 **Verification First** - No "it should work" claims:
 
-- 5-step gate: IDENTIFY → RUN → READ → VERIFY → CLAIM
+- 5-step gate: IDENTIFY -> RUN -> READ -> VERIFY -> CLAIM
 - Requires actual command output, not mental simulation
 - Blocks hedging language ("probably", "seems to")
 
-**Micro-Tasking** - Prevents scope creep:
+**Skill Auto-Activation** - 5-dimensional prompt analysis:
 
-- Tasks must be 2-5 minutes
-- Decomposition templates for features, bugs, refactors
-- If it takes >10 min, it wasn't properly decomposed
+- Keywords (2pts), Patterns (3pts), File paths (4pts), Directories (5pts), Intents (4pts)
+- Auto-activates skills at 8+ points, suggests at 5+
 
 ---
 
@@ -67,15 +68,7 @@ lorenzo-claude doctor
 npx @gr8monk3ys/claude-code-plugin install
 ```
 
-### Option 3: Plugin Marketplace
-
-```bash
-# In Claude Code
-/plugin marketplace add https://github.com/gr8monk3ys/lorenzos-claude-code
-/plugin install lorenzos-claude-code
-```
-
-### Option 4: Manual
+### Option 3: Manual
 
 ```bash
 git clone https://github.com/gr8monk3ys/lorenzos-claude-code.git
@@ -119,19 +112,24 @@ cp -r lorenzos-claude-code/.claude/* ~/.claude/
 
 ### Workflow
 
-| Command     | Description                     |
-| ----------- | ------------------------------- |
-| `/plan`     | Create implementation plan      |
-| `/deploy`   | Generate deployment config      |
-| `/handoff`  | Create session handoff document |
-| `/memory`   | View/update persistent memory   |
-| `/learn`    | Extract patterns from session   |
-| `/evolve`   | Evolve instincts into skills    |
-| `/research` | Deep topic exploration          |
+| Command      | Description                     |
+| ------------ | ------------------------------- |
+| `/plan`      | Create implementation plan      |
+| `/deploy`    | Generate deployment config      |
+| `/fixissue`  | End-to-end issue resolution     |
+| `/automerge` | PR automation + merge           |
+| `/handoff`   | Create session handoff document |
+| `/pickup`    | Context rehydration             |
+| `/memory`    | View/update persistent memory   |
+| `/learn`     | Extract patterns from session   |
+| `/evolve`    | Evolve instincts into skills    |
+| `/research`  | Deep topic exploration          |
 
 ---
 
 ## Agents
+
+These enhance Claude Code's built-in agent types with detailed review methodologies and scoring rubrics.
 
 | Agent                  | Use Case                                   |
 | ---------------------- | ------------------------------------------ |
@@ -146,17 +144,15 @@ cp -r lorenzos-claude-code/.claude/* ~/.claude/
 
 ## Skills
 
-Auto-activate based on context:
+Auto-activate based on context (SKILL.md directory format):
 
 | Skill                  | Purpose                         | Priority |
 | ---------------------- | ------------------------------- | -------- |
 | `circuit-breaker`      | Prevent infinite loops          | 95       |
 | `verification-first`   | Quality gates before completion | 90       |
-| `micro-tasking`        | Break work into small tasks     | -        |
 | `api-development`      | Next.js API patterns            | -        |
 | `frontend-development` | React best practices            | -        |
 | `database-operations`  | Supabase patterns               | -        |
-| `memory-persistence`   | Session context preservation    | -        |
 | `code-quality`         | Code review patterns            | -        |
 | `continuous-learning`  | Pattern extraction & evolution  | -        |
 | `research`             | Structured exploration workflow | -        |
@@ -165,59 +161,43 @@ Auto-activate based on context:
 
 ## Hooks
 
-| Hook                    | Event            | Purpose                     |
-| ----------------------- | ---------------- | --------------------------- |
-| `session-start`         | SessionStart     | Restore previous context    |
-| `session-end`           | Stop             | Save session state          |
-| `block-sensitive-files` | PreToolUse       | Prevent editing secrets     |
-| `validate-json`         | PreToolUse       | Validate JSON before write  |
-| `auto-format`           | PostToolUse      | Format code after edits     |
-| `circuit-breaker`       | PostToolUse      | Detect stuck loops          |
-| `pre-compact`           | PreCompact       | Save context before compact |
-| `notify-completion`     | Stop             | Desktop notification        |
-| `skill-activator`       | UserPromptSubmit | Auto-evaluate & suggest skills |
+All hooks are cross-platform Node.js. Registered in `settings.json` with proper event matchers.
+
+| Hook                    | Event              | Purpose                     |
+| ----------------------- | ------------------ | --------------------------- |
+| `session-start`         | SessionStart       | Load learned instincts      |
+| `session-end`           | Stop               | Session cleanup             |
+| `block-sensitive-files` | PreToolUse         | Prevent editing secrets     |
+| `validate-json`         | PreToolUse         | Validate JSON before write  |
+| `auto-format`           | PostToolUse        | Format code after edits     |
+| `circuit-breaker`       | PostToolUse        | Detect stuck loops          |
+| `post-tool-failure`     | PostToolUseFailure | Track failure patterns      |
+| `pre-compact`           | PreCompact         | Save context before compact |
+| `notify-completion`     | Stop               | Desktop notification        |
+| `skill-activator`       | UserPromptSubmit   | 5D skill auto-evaluation    |
+| `subagent-start`        | SubagentStart      | Track subagent spawn        |
+| `subagent-stop`         | SubagentStop       | Track subagent completion   |
+| `permission-request`    | PermissionRequest  | Audit + auto-allow          |
+| `setup`                 | Setup              | One-time initialization     |
 
 ---
 
-## Skill Auto-Evaluation (NEW)
+## Skill Auto-Evaluation
 
-Unlike other plugins that use simple keyword matching, this plugin analyzes prompts across **5 dimensions** with weighted confidence scoring:
+Prompts are analyzed across **5 dimensions** with weighted confidence scoring:
 
-| Dimension | Weight | Example |
-|-----------|--------|---------|
-| Keywords | 2pts | "api", "component", "test" |
-| Patterns | 3pts | `route.ts`, `use[A-Z].*()` |
-| File paths | 4pts | `app/api/users/route.ts` |
-| Directories | 5pts | `prisma/`, `components/` |
-| Intents | 4pts | "create.*api", "fix.*bug" |
+| Dimension   | Weight | Example                      |
+|-------------|--------|------------------------------|
+| Keywords    | 2pts   | "api", "component", "test"   |
+| Patterns    | 3pts   | `route.ts`, `use[A-Z].*()` |
+| File paths  | 4pts   | `app/api/users/route.ts`     |
+| Directories | 5pts   | `prisma/`, `components/`     |
+| Intents     | 4pts   | "create.*api", "fix.*bug"    |
 
 **Thresholds:**
-- **≥8 points**: Skill auto-activated
-- **≥5 points**: Skill suggested
+- **>=8 points**: Skill auto-activated
+- **>=5 points**: Skill suggested
 - **<5 points**: No recommendation
-
-**Example output:**
-```
-Prompt: "Fix the bug in app/api/users/route.ts - keeps failing"
-
-<skill-evaluation>
-  <skill name="circuit-breaker" confidence="24" status="activate">
-    <matches>
-      keyword:failing (+2pts)
-      keyword:keeps (+2pts)
-      pattern:same\s+error (+3pts)
-      ...
-    </matches>
-  </skill>
-  <skill name="api-development" confidence="24" status="activate">
-    <matches>
-      filepath:app/api/users/route.ts (+4pts)
-      directory:app/api (+5pts)
-      ...
-    </matches>
-  </skill>
-</skill-evaluation>
-```
 
 Configure rules in `.claude/hooks/skill-rules.json`.
 
@@ -225,7 +205,7 @@ Configure rules in `.claude/hooks/skill-rules.json`.
 
 ## MCP Servers
 
-Only 4 essential servers (CLI-first approach):
+Only 4 essential servers (minimal context overhead):
 
 | Server       | Purpose               |
 | ------------ | --------------------- |
@@ -259,34 +239,6 @@ lorenzo-claude help
 ```
 
 Short alias: `lcc` (e.g., `lcc install`)
-
----
-
-## Comparison to Alternatives
-
-| Feature            | This Plugin            | everything-claude-code | SuperClaude     |
-| ------------------ | ---------------------- | ---------------------- | --------------- |
-| Focus              | Next.js/React/Supabase | General purpose        | General purpose |
-| Commands           | 18                     | 20+                    | 30              |
-| Agents             | 6                      | 15+                    | 16              |
-| MCP Servers        | 4                      | 8+                     | 8               |
-| Circuit Breaker    | Yes (innovative)       | Basic                  | No              |
-| Verification Gates | Yes (5-step)           | Basic                  | No              |
-| Micro-Tasking      | Yes (2-5 min)          | No                     | No              |
-| Install Method     | npm, plugin, manual    | Plugin, manual         | pip, npm        |
-| Context Overhead   | Low                    | Medium                 | High            |
-
-**Choose this plugin if:**
-
-- You work primarily with Next.js + React + Supabase
-- You want guardrails against AI failure modes
-- You prefer minimal context overhead
-
-**Choose alternatives if:**
-
-- You need multi-language support (Go, Rust, Python)
-- You want deep research workflows
-- You prefer maximum features over focus
 
 ---
 

@@ -8,7 +8,12 @@
     {
       "event": "SessionStart",
       "command": "node ./.claude/hooks/session-start.js",
-      "description": "Restores previous context when sessions begin"
+      "description": "Loads learned instincts when sessions begin"
+    },
+    {
+      "event": "UserPromptSubmit",
+      "command": "node ./.claude/hooks/skill-activator.js",
+      "description": "Injects skill activation hints based on context"
     },
     {
       "event": "PreToolUse",
@@ -41,30 +46,15 @@
       "description": "Detects thrashing patterns and prevents stuck loops"
     },
     {
-      "event": "PreCompact",
-      "command": "node ./.claude/hooks/pre-compact.js",
-      "description": "Saves critical context before compaction"
-    },
-    {
-      "event": "Stop",
-      "command": "node ./.claude/hooks/session-end.js",
-      "description": "Persists session state when sessions complete"
-    },
-    {
-      "event": "Stop",
-      "command": "node ./.claude/hooks/notify-completion.js",
-      "description": "Desktop notification on completion"
-    },
-    {
-      "event": "UserPromptSubmit",
-      "command": "node ./.claude/hooks/skill-activator.js",
-      "description": "Injects skill activation hints based on context"
-    },
-    {
       "event": "PostToolUseFailure",
       "matcher": ".*",
       "command": "node ./.claude/hooks/post-tool-failure.js",
       "description": "Logs tool failures and tracks failure patterns"
+    },
+    {
+      "event": "PreCompact",
+      "command": "node ./.claude/hooks/pre-compact.js",
+      "description": "Saves critical context before compaction"
     },
     {
       "event": "SubagentStart",
@@ -82,9 +72,14 @@
       "description": "Audit logs permission requests with auto-allow support"
     },
     {
-      "event": "Notification",
-      "command": "node ./.claude/hooks/status-line.js",
-      "description": "Displays token usage, cache rates, and context capacity"
+      "event": "Stop",
+      "command": "node ./.claude/hooks/session-end.js",
+      "description": "Cleanup when sessions complete"
+    },
+    {
+      "event": "Stop",
+      "command": "node ./.claude/hooks/notify-completion.js",
+      "description": "Desktop notification on completion"
     }
   ]
 }

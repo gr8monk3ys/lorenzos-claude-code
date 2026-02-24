@@ -45,12 +45,12 @@
   },
 
   "attribution": {
-    "commit": "🤖 Generated with Claude Code\n\nCo-authored-by: Claude <noreply@anthropic.com>",
+    "commit": "Generated with Claude Code\n\nCo-authored-by: Claude <noreply@anthropic.com>",
     "pr": "This PR was generated with assistance from Claude Code."
   },
 
-  "model": "claude-sonnet-4-5-20250514",
-  "_modelComment": "Options: claude-sonnet-4-5-20250514, claude-opus-4-5-20250514",
+  "model": "claude-sonnet-4-6",
+  "_modelComment": "Options: claude-sonnet-4-6, claude-opus-4-6",
 
   "alwaysThinkingEnabled": false,
   "_thinkingComment": "Set to true for deeper reasoning on complex tasks",
@@ -63,14 +63,14 @@
   },
 
   "hooks": {
-    "_comment": "See .claude/hooks/ for available hook scripts",
+    "_comment": "See .claude/hooks/ for available hook scripts. All hooks are Node.js (.js).",
     "PreToolUse": [
       {
         "matcher": "Write|Edit",
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/hooks/block-sensitive-files.sh"
+            "command": "node .claude/hooks/block-sensitive-files.js"
           }
         ]
       }
@@ -81,7 +81,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/hooks/auto-format.sh"
+            "command": "node .claude/hooks/auto-format.js"
           }
         ]
       }
@@ -91,7 +91,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/hooks/session-end.sh"
+            "command": "node .claude/hooks/session-end.js"
           }
         ]
       }
@@ -101,7 +101,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/hooks/session-start.sh"
+            "command": "node .claude/hooks/session-start.js"
           }
         ]
       }
