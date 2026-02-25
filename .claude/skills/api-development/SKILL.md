@@ -1,9 +1,10 @@
 ---
 name: api-development
-description: |
-  WHEN to auto-invoke: Creating API routes, building endpoints, adding route.ts files, implementing REST/GraphQL APIs, adding authentication to APIs, rate limiting, API validation with Zod, handling HTTP methods (GET/POST/PUT/DELETE).
-  WHEN NOT to invoke: Pure frontend work, styling, React components without API calls, documentation-only tasks, database migrations without API changes.
+description: Next.js API route patterns with Zod validation and error handling
 ---
+
+> **Auto-invoke when**: Creating API routes, building endpoints, adding route.ts files, implementing REST/GraphQL APIs, adding authentication to APIs, rate limiting, API validation with Zod, handling HTTP methods (GET/POST/PUT/DELETE).
+> **Skip when**: Pure frontend work, styling, React components without API calls, documentation-only tasks, database migrations without API changes.
 
 # API Development Skill
 

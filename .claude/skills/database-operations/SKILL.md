@@ -1,9 +1,10 @@
 ---
 name: database-operations
-description: |
-  WHEN to auto-invoke: Database schema design, creating migrations, writing SQL queries, query optimization, Supabase operations, Prisma/Drizzle schema changes, PostgreSQL tasks, RLS policies, indexes.
-  WHEN NOT to invoke: Pure frontend work, API logic without database, styling, React components, deployment tasks.
+description: Supabase and PostgreSQL patterns with schema design and query optimization
 ---
+
+> **Auto-invoke when**: Database schema design, creating migrations, writing SQL queries, query optimization, Supabase operations, Prisma/Drizzle schema changes, PostgreSQL tasks, RLS policies, indexes.
+> **Skip when**: Pure frontend work, API logic without database, styling, React components, deployment tasks.
 
 # Database Operations Skill
 

@@ -1,11 +1,10 @@
 ---
 name: continuous-learning
 description: Extract patterns from successful sessions and evolve into reusable instincts
-triggers:
-  - pattern extraction
-  - learning from mistakes
-  - skill evolution
 ---
+
+> **Auto-invoke when**: Pattern extraction after sessions, learning from mistakes, skill evolution requests, `/learn` or `/evolve` commands.
+> **Skip when**: Normal development, tasks without reusable patterns, one-off fixes.
 
 # Continuous Learning Skill
 

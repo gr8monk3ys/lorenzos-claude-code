@@ -1,10 +1,10 @@
 ---
 name: verification-first
-description: |
-  WHEN to auto-invoke: Finishing tasks, claiming "done" or "complete", before marking work finished, when asserting code works, wrapping up implementations.
-  WHEN NOT to invoke: During active development, exploration phases, planning discussions, research tasks.
-priority: 90
+description: Evidence-based completion gates requiring proof before claiming done
 ---
+
+> **Auto-invoke when**: Finishing tasks, claiming "done" or "complete", before marking work finished, when asserting code works, wrapping up implementations.
+> **Skip when**: During active development, exploration phases, planning discussions, research tasks.
 
 # Verification-First Skill
 

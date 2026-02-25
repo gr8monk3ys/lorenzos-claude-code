@@ -4,13 +4,13 @@
     "name": "Lorenzo",
     "contact": "github.com/gr8monk3ys"
   },
-  "description": "Minimal Claude Code plugin for Next.js + React + Supabase development with innovative failure prevention",
+  "description": "Claude Code plugin for Next.js + React + Supabase development with innovative failure prevention",
   "plugins": [
     {
       "name": "lorenzos-claude-code",
       "source": "./",
-      "description": "15 commands, 6 agents, 8 skills, 9 hooks. Features circuit-breaker (thrashing prevention), verification-first (evidence-based completion), and micro-tasking (2-5 min task chunks).",
-      "version": "3.0.0",
+      "description": "21 commands, 6 agents, 8 skills, 13 hooks. Features circuit-breaker (thrashing prevention), verification-first (evidence-based completion), and 5D skill auto-activation.",
+      "version": "3.2.0",
       "author": {
         "name": "Lorenzo",
         "email": "gr8monk3ys@gmail.com",
@@ -28,16 +28,16 @@
         "minimal"
       ],
       "features": {
-        "commands": 15,
+        "commands": 21,
         "agents": 6,
         "skills": 8,
-        "hooks": 9,
+        "hooks": 13,
         "mcpServers": 4
       },
       "highlights": [
         "Circuit Breaker - Detects and prevents thrashing loops",
         "Verification First - Evidence-based completion gates",
-        "Micro-Tasking - 2-5 minute task enforcement",
+        "5D Skill Activation - Auto-invokes skills based on context",
         "Minimal Footprint - Only 4 MCP servers"
       ]
     }

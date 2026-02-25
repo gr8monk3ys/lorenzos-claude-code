@@ -1,7 +1,7 @@
 {
   "name": "lorenzos-claude-code",
-  "version": "3.0.0",
-  "description": "Minimal Claude Code plugin for Next.js + React + Supabase. Features circuit-breaker (thrashing prevention), verification-first (evidence-based completion), and micro-tasking (2-5 min chunks).",
+  "version": "3.2.0",
+  "description": "Claude Code plugin for Next.js + React + Supabase. Features circuit-breaker (thrashing prevention), verification-first (evidence-based completion), and 5D skill auto-activation.",
   "author": {
     "name": "Lorenzo",
     "email": "gr8monk3ys@gmail.com",
@@ -96,9 +96,39 @@
       "description": "Create session handoff document"
     },
     {
+      "name": "pickup",
+      "path": ".claude/commands/workflow/pickup.md",
+      "description": "Rehydrate context from previous session"
+    },
+    {
+      "name": "fixissue",
+      "path": ".claude/commands/workflow/fixissue.md",
+      "description": "End-to-end issue resolution with PR"
+    },
+    {
+      "name": "automerge",
+      "path": ".claude/commands/workflow/automerge.md",
+      "description": "PR automation, validation, and merge"
+    },
+    {
       "name": "memory",
       "path": ".claude/commands/context/memory.md",
       "description": "View or update persistent project memory"
+    },
+    {
+      "name": "learn",
+      "path": ".claude/commands/workflow/learn.md",
+      "description": "Extract reusable patterns from session"
+    },
+    {
+      "name": "evolve",
+      "path": ".claude/commands/workflow/evolve.md",
+      "description": "Evolve high-confidence instincts into skills"
+    },
+    {
+      "name": "research",
+      "path": ".claude/commands/workflow/research.md",
+      "description": "Deep topic exploration with structured output"
     }
   ],
   "agents": [
@@ -136,43 +166,43 @@
   "skills": [
     {
       "name": "api-development",
-      "path": ".claude/skills/api-development.md",
+      "path": ".claude/skills/api-development/SKILL.md",
       "description": "Next.js API patterns and validation"
     },
     {
       "name": "frontend-development",
-      "path": ".claude/skills/frontend-development.md",
+      "path": ".claude/skills/frontend-development/SKILL.md",
       "description": "React best practices"
     },
     {
       "name": "database-operations",
-      "path": ".claude/skills/database-operations.md",
+      "path": ".claude/skills/database-operations/SKILL.md",
       "description": "Supabase and database patterns"
     },
     {
       "name": "verification-first",
-      "path": ".claude/skills/verification-first.md",
+      "path": ".claude/skills/verification-first/SKILL.md",
       "description": "Quality gates before completion"
     },
     {
-      "name": "memory-persistence",
-      "path": ".claude/skills/memory-persistence.md",
-      "description": "Session context preservation"
-    },
-    {
       "name": "code-quality",
-      "path": ".claude/skills/code-quality.md",
+      "path": ".claude/skills/code-quality/SKILL.md",
       "description": "Code review patterns"
     },
     {
       "name": "circuit-breaker",
-      "path": ".claude/skills/circuit-breaker.md",
+      "path": ".claude/skills/circuit-breaker/SKILL.md",
       "description": "Prevent stuck loops"
     },
     {
-      "name": "micro-tasking",
-      "path": ".claude/skills/micro-tasking.md",
-      "description": "Break work into small tasks"
+      "name": "continuous-learning",
+      "path": ".claude/skills/continuous-learning/SKILL.md",
+      "description": "Pattern extraction and skill evolution"
+    },
+    {
+      "name": "research",
+      "path": ".claude/skills/research/SKILL.md",
+      "description": "Deep exploration workflow"
     }
   ],
   "mcpServers": {
@@ -188,7 +218,7 @@
     },
     "playwright": {
       "command": "npx",
-      "args": ["-y", "@anthropic/mcp-server-playwright"],
+      "args": ["@playwright/mcp@latest"],
       "description": "Browser automation"
     },
     "github": {

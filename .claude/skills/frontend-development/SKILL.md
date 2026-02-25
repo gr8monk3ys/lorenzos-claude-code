@@ -1,9 +1,10 @@
 ---
 name: frontend-development
-description: |
-  WHEN to auto-invoke: Creating UI components, building React/Vue/Svelte components, Next.js pages, styling with Tailwind/CSS, state management setup, form handling, accessibility improvements, client-side interactivity.
-  WHEN NOT to invoke: API-only work, database operations, backend logic, DevOps/deployment, pure testing without UI.
+description: React and Next.js component patterns with accessibility and performance
 ---
+
+> **Auto-invoke when**: Creating UI components, building React/Vue/Svelte components, Next.js pages, styling with Tailwind/CSS, state management setup, form handling, accessibility improvements, client-side interactivity.
+> **Skip when**: API-only work, database operations, backend logic, DevOps/deployment, pure testing without UI.
 
 # Frontend Development Skill
 

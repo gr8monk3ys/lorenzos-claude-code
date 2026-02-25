@@ -4,7 +4,9 @@ This file provides guidance to Claude Code when working with code in this reposi
 
 ## Repository Overview
 
-Minimal Claude Code plugin: **21 commands**, **6 agents**, **10 skills**, **15 hooks**, **4 MCP servers**, **2 scripts**. Focused on Next.js + React + Supabase development.
+Claude Code plugin: **21 commands**, **6 agents**, **8 skills**, **13 hooks**, **4 MCP servers**, **2 scripts**. Focused on Next.js + React + Supabase development.
+
+Agents enhance Claude Code's built-in agent types with detailed domain-specific review methodologies.
 
 ## Commands (21)
 
@@ -29,10 +31,12 @@ Minimal Claude Code plugin: **21 commands**, **6 agents**, **10 skills**, **15 h
 | `/automerge`         | PR automation + merge    |
 | `/memory`            | Persistent memory        |
 | `/learn`             | Extract session patterns |
-| `/evolve`            | Evolve instincts→skills  |
+| `/evolve`            | Evolve instincts->skills |
 | `/research`          | Deep topic exploration   |
 
 ## Agents (6)
+
+These enhance Claude Code's built-in agent types with detailed review methodologies and scoring rubrics.
 
 | Agent                  | Use Case                       |
 | ---------------------- | ------------------------------ |
@@ -43,28 +47,25 @@ Minimal Claude Code plugin: **21 commands**, **6 agents**, **10 skills**, **15 h
 | `test-strategist`      | Test planning                  |
 | `devops-engineer`      | CI/CD, deployment              |
 
-## Skills (10)
+## Skills (8)
 
-Auto-activating context enhancements:
+Auto-activating context enhancements (SKILL.md format):
 
 - `api-development` - Next.js API patterns
 - `frontend-development` - React best practices
 - `database-operations` - Supabase patterns
 - `verification-first` - Quality gates
-- `memory-persistence` - Session continuity
 - `code-quality` - Review patterns
 - `circuit-breaker` - Prevent loops
-- `micro-tasking` - Task breakdown
 - `continuous-learning` - Pattern extraction & evolution
 - `research` - Structured exploration workflow
 
-## Hooks (15)
+## Hooks (13)
 
 | Hook                       | Event              | Purpose               |
 | -------------------------- | ------------------ | --------------------- |
-| `setup.js`                 | Setup              | One-time init         |
-| `session-start.js`         | SessionStart       | Context + instincts   |
-| `session-end.js`           | Stop               | Session persistence   |
+| `session-start.js`         | SessionStart       | Instinct loading      |
+| `session-end.js`           | Stop               | Cleanup               |
 | `block-sensitive-files.js` | PreToolUse         | Security              |
 | `validate-json.js`         | PreToolUse         | Prevent corruption    |
 | `auto-format.js`           | PostToolUse        | Code formatting       |
@@ -76,7 +77,6 @@ Auto-activating context enhancements:
 | `subagent-start.js`        | SubagentStart      | Track subagent spawn  |
 | `subagent-stop.js`         | SubagentStop       | Track subagent done   |
 | `permission-request.js`    | PermissionRequest  | Audit + auto-allow    |
-| `status-line.js`           | Notification       | Token/context display |
 
 ## MCP Servers (4)
 
@@ -105,9 +105,9 @@ Auto-activating context enhancements:
 
 ```
 .claude/commands/   # 21 commands (api/, context/, devops/, generation/, planning/, quality/, supabase/, testing/, ui/, workflow/)
-.claude/agents/     # 6 agents
-.claude/skills/     # 10 skills
-.claude/hooks/      # 15 hooks (Node.js, cross-platform)
+.claude/agents/     # 6 agents (enhance built-in agent types)
+.claude/skills/     # 8 skills (SKILL.md directory format)
+.claude/hooks/      # 13 hooks (Node.js, cross-platform)
 .claude/scripts/    # 2 utility scripts
 .claude/logs/       # JSON audit logs
 .claude/instincts/  # Learned patterns

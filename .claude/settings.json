@@ -36,18 +36,39 @@
   },
 
   "attribution": {
-    "commit": "🤖 Generated with Claude Code\n\nCo-authored-by: Claude <noreply@anthropic.com>",
+    "commit": "Generated with Claude Code\n\nCo-authored-by: Claude <noreply@anthropic.com>",
     "pr": "This PR was generated with assistance from Claude Code."
   },
 
   "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/session-start.js"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/skill-activator.js",
+            "timeout": 10000
+          }
+        ]
+      }
+    ],
     "PreToolUse": [
       {
         "matcher": "Write|Edit",
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/hooks/block-sensitive-files.sh"
+            "command": "node .claude/hooks/block-sensitive-files.js"
           }
         ]
       },
@@ -56,7 +77,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/hooks/validate-json.sh"
+            "command": "node .claude/hooks/validate-json.js"
           }
         ]
       }
@@ -67,11 +88,69 @@
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/hooks/auto-format.sh"
-          },
+            "command": "node .claude/hooks/auto-format.js"
+          }
+        ]
+      },
+      {
+        "matcher": ".*",
+        "hooks": [
           {
             "type": "command",
-            "command": ".claude/hooks/typecheck.sh"
+            "command": "node .claude/hooks/circuit-breaker.js",
+            "timeout": 10000
+          }
+        ]
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/post-tool-failure.js"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/pre-compact.js",
+            "timeout": 10000
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/permission-request.js"
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/subagent-start.js"
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/subagent-stop.js"
           }
         ]
       }
@@ -81,17 +160,11 @@
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/hooks/session-end.sh"
-          }
-        ]
-      }
-    ],
-    "SessionStart": [
-      {
-        "hooks": [
+            "command": "node .claude/hooks/session-end.js"
+          },
           {
             "type": "command",
-            "command": ".claude/hooks/session-start.sh"
+            "command": "node .claude/hooks/notify-completion.js"
           }
         ]
       }

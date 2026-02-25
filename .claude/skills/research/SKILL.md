@@ -1,11 +1,10 @@
 ---
 name: research
 description: Deep exploration workflow for researching topics, libraries, and solutions
-triggers:
-  - research requests
-  - technology evaluation
-  - best practices exploration
 ---
+
+> **Auto-invoke when**: Research requests, technology evaluation, best practices exploration, `/research` command, comparing libraries or frameworks.
+> **Skip when**: Implementation tasks, bug fixes, code review, deployment work.
 
 # Research Skill
 

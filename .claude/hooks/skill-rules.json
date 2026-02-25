@@ -1,5 +1,5 @@
 {
-  "version": "1.0",
+  "version": "1.1",
   "description": "Multi-dimensional skill evaluation rules with weighted confidence scoring",
   "confidenceThreshold": {
     "activate": 8,
@@ -60,22 +60,6 @@
       "patterns": ["same\\s+error", "still\\s+failing", "keeps\\s+failing", "tried\\s+\\d+\\s+times"],
       "directories": [],
       "intents": ["stuck.*", "keeps\\s+failing", "same\\s+error", "not\\s+working", "tried.*again", "why.*failing"]
-    },
-    {
-      "name": "micro-tasking",
-      "priority": 0,
-      "keywords": ["plan", "breakdown", "steps", "tasks", "decompose", "implement", "feature", "roadmap"],
-      "patterns": ["how\\s+to\\s+implement", "steps\\s+for", "break.*down"],
-      "directories": [],
-      "intents": ["plan.*", "break.*down", "steps\\s+for.*", "how\\s+to\\s+implement", "create.*roadmap"]
-    },
-    {
-      "name": "memory-persistence",
-      "priority": 0,
-      "keywords": ["memory", "remember", "session", "context", "previous", "last time", "before"],
-      "patterns": ["remember.*", "last\\s+session", "previous.*context"],
-      "directories": [".claude/memory", ".claude/sessions"],
-      "intents": ["remember.*", "recall.*", "what.*before", "last\\s+time.*"]
     },
     {
       "name": "continuous-learning",
