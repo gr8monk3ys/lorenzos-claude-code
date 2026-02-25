@@ -7,7 +7,7 @@
 
 **Claude Code plugin for Next.js + React + Supabase development.**
 
-**21 commands** | **6 agents** | **8 skills** | **14 hooks** | **4 MCP servers**
+**21 commands** | **6 agents** | **8 skills** | **13 hooks** | **4 MCP servers**
 
 Extends Claude Code's built-in capabilities with opinionated workflow commands, circuit-breaker loop prevention, and verification-first quality gates.
 

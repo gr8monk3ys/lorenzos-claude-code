@@ -91,7 +91,7 @@ function runFormatter(filePath, formatType) {
       return true;
     }
   } catch (err) {
-    // Prettier failed, try next formatter
+    logError(`prettier(${path.basename(filePath)})`, err);
   }
 
   // Check for biome
@@ -104,7 +104,7 @@ function runFormatter(filePath, formatType) {
       return true;
     }
   } catch (err) {
-    // Biome failed, try next formatter
+    logError(`biome(${path.basename(filePath)})`, err);
   }
 
   // Check for eslint (JS/TS only)
@@ -116,7 +116,7 @@ function runFormatter(filePath, formatType) {
         return true;
       }
     } catch (err) {
-      // ESLint failed
+      logError(`eslint(${path.basename(filePath)})`, err);
     }
   }
 

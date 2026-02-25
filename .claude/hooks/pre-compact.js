@@ -114,8 +114,12 @@ function main() {
   // Archive previous context if exists
   if (fs.existsSync(CONTEXT_FILE)) {
     const archivePath = path.join(ARCHIVE_DIR, `context_${timestamp}.md`);
-    fs.renameSync(CONTEXT_FILE, archivePath);
-    console.error("[Pre-Compact] Archived previous context");
+    try {
+      fs.renameSync(CONTEXT_FILE, archivePath);
+      console.error("[Pre-Compact] Archived previous context");
+    } catch (err) {
+      logError("archive rename", err);
+    }
   }
 
   // Build context file content

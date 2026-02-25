@@ -9,7 +9,7 @@
     {
       "name": "lorenzos-claude-code",
       "source": "./",
-      "description": "21 commands, 6 agents, 8 skills, 14 hooks. Features circuit-breaker (thrashing prevention), verification-first (evidence-based completion), and 5D skill auto-activation.",
+      "description": "21 commands, 6 agents, 8 skills, 13 hooks. Features circuit-breaker (thrashing prevention), verification-first (evidence-based completion), and 5D skill auto-activation.",
       "version": "3.2.0",
       "author": {
         "name": "Lorenzo",
@@ -31,7 +31,7 @@
         "commands": 21,
         "agents": 6,
         "skills": 8,
-        "hooks": 14,
+        "hooks": 13,
         "mcpServers": 4
       },
       "highlights": [

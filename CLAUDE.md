@@ -4,7 +4,7 @@ This file provides guidance to Claude Code when working with code in this reposi
 
 ## Repository Overview
 
-Claude Code plugin: **21 commands**, **6 agents**, **8 skills**, **14 hooks**, **4 MCP servers**, **2 scripts**. Focused on Next.js + React + Supabase development.
+Claude Code plugin: **21 commands**, **6 agents**, **8 skills**, **13 hooks**, **4 MCP servers**, **2 scripts**. Focused on Next.js + React + Supabase development.
 
 Agents enhance Claude Code's built-in agent types with detailed domain-specific review methodologies.
 
@@ -60,11 +60,10 @@ Auto-activating context enhancements (SKILL.md format):
 - `continuous-learning` - Pattern extraction & evolution
 - `research` - Structured exploration workflow
 
-## Hooks (14)
+## Hooks (13)
 
 | Hook                       | Event              | Purpose               |
 | -------------------------- | ------------------ | --------------------- |
-| `setup.js`                 | Setup              | One-time init         |
 | `session-start.js`         | SessionStart       | Instinct loading      |
 | `session-end.js`           | Stop               | Cleanup               |
 | `block-sensitive-files.js` | PreToolUse         | Security              |
@@ -108,7 +107,7 @@ Auto-activating context enhancements (SKILL.md format):
 .claude/commands/   # 21 commands (api/, context/, devops/, generation/, planning/, quality/, supabase/, testing/, ui/, workflow/)
 .claude/agents/     # 6 agents (enhance built-in agent types)
 .claude/skills/     # 8 skills (SKILL.md directory format)
-.claude/hooks/      # 14 hooks (Node.js, cross-platform)
+.claude/hooks/      # 13 hooks (Node.js, cross-platform)
 .claude/scripts/    # 2 utility scripts
 .claude/logs/       # JSON audit logs
 .claude/instincts/  # Learned patterns
