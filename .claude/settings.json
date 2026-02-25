@@ -56,7 +56,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node .claude/hooks/skill-activator.js"
+            "command": "node .claude/hooks/skill-activator.js",
+            "timeout": 10000
           }
         ]
       }
@@ -96,7 +97,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node .claude/hooks/circuit-breaker.js"
+            "command": "node .claude/hooks/circuit-breaker.js",
+            "timeout": 10000
           }
         ]
       }
@@ -117,7 +119,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node .claude/hooks/pre-compact.js"
+            "command": "node .claude/hooks/pre-compact.js",
+            "timeout": 10000
           }
         ]
       }

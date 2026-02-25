@@ -1,13 +1,10 @@
 ---
 name: circuit-breaker
-description: |
-  WHEN to auto-invoke: Same error appearing multiple times, repeated file edits without progress, identical tool calls in sequence, declining success rate, getting stuck in loops, "this should work but doesn't" situations, repeated test failures.
-  WHEN NOT to invoke: Normal iterative development, intentional retry attempts, expected failure patterns during testing, debugging with deliberate approach changes.
-priority: 95
-triggers:
-  - patterns: ["error", "failed", "failure"]
-  - keywords: ["not working", "still failing", "same error", "again", "stuck"]
+description: Detect and prevent thrashing loops with automatic strategy pivots
 ---
+
+> **Auto-invoke when**: Same error appearing multiple times, repeated file edits without progress, identical tool calls in sequence, declining success rate, getting stuck in loops, "this should work but doesn't" situations, repeated test failures.
+> **Skip when**: Normal iterative development, intentional retry attempts, expected failure patterns during testing, debugging with deliberate approach changes.
 
 # Circuit Breaker Skill
 

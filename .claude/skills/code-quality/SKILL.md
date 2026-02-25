@@ -1,9 +1,10 @@
 ---
 name: code-quality
-description: |
-  WHEN to auto-invoke: Code review requests, refactoring code, cleaning up code, performance optimization, security audits, linting issues, reducing technical debt.
-  WHEN NOT to invoke: Building new features (use domain-specific skills), initial implementation, documentation-only work.
+description: Code review patterns with security audits and performance optimization
 ---
+
+> **Auto-invoke when**: Code review requests, refactoring code, cleaning up code, performance optimization, security audits, linting issues, reducing technical debt.
+> **Skip when**: Building new features (use domain-specific skills), initial implementation, documentation-only work.
 
 # Code Quality Skill
 
