@@ -1,3 +1,5 @@
+permissions: read-all
+
 # Claude Code Security Review
 # Source: https://github.com/anthropics/claude-code-security-review
 #

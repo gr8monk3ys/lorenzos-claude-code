@@ -1,3 +1,5 @@
+permissions: read-all
+
 # Claude Code Automated PR Review
 # Source: https://github.com/anthropics/claude-code-action
 #
