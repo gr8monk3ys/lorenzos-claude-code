@@ -5,7 +5,7 @@
 ARG CLAUDE_CODE_VERSION=latest
 
 # Use Node.js 20 LTS as base (same as official)
-FROM node:20-bookworm
+FROM node:20-bookworm@sha256:65b74d0fb42134c49530a8c34e9f3e4a2fb8e1f99ac4a0eb4e6f314b426183a2
 
 # Set build arguments
 ARG CLAUDE_CODE_VERSION
