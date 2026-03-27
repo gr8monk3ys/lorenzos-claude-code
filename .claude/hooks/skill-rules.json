@@ -1,0 +1,49 @@
+{
+  "version": "1.0",
+  "description": "Multi-dimensional skill evaluation rules with weighted confidence scoring",
+  "confidenceThreshold": {
+    "activate": 8,
+    "suggest": 5
+  },
+  "weights": {
+    "keyword": 2,
+    "pattern": 3,
+    "filePath": 4,
+    "directory": 5,
+    "intent": 4
+  },
+  "skills": [
+    {
+      "name": "api-development",
+      "priority": 0,
+      "keywords": ["api", "endpoint", "route", "rest", "graphql", "trpc", "fetch", "request", "response"],
+      "patterns": ["\\bapi[/\\\\]", "route\\.ts", "\\.handler\\b", "\\bGET\\b", "\\bPOST\\b", "\\bPUT\\b", "\\bDELETE\\b"],
+      "directories": ["app/api", "pages/api", "src/api", "api/", "routes/"],
+      "intents": ["create.*api", "add.*endpoint", "build.*route", "fetch.*data", "call.*api", "make.*request"]
+    },
+    {
+      "name": "frontend-development",
+      "priority": 0,
+      "keywords": ["component", "react", "vue", "svelte", "frontend", "ui", "ux", "button", "form", "modal", "layout", "page", "css", "style", "tailwind"],
+      "patterns": ["page\\.tsx", "layout\\.tsx", "\\.component\\.", "use[A-Z]\\w+\\(", "className="],
+      "directories": ["src/components", "components/", "app/", "pages/", "src/ui", "ui/"],
+      "intents": ["create.*component", "build.*page", "add.*button", "style.*", "design.*ui", "make.*responsive"]
+    },
+    {
+      "name": "database-operations",
+      "priority": 0,
+      "keywords": ["database", "schema", "migration", "query", "sql", "prisma", "drizzle", "supabase", "postgres", "mysql", "table", "column", "index"],
+      "patterns": ["schema\\.prisma", "\\.sql$", "migration", "\\bSELECT\\b", "\\bINSERT\\b", "\\bUPDATE\\b", "\\bDELETE\\b"],
+      "directories": ["prisma/", "drizzle/", "supabase/", "migrations/", "db/", "database/"],
+      "intents": ["create.*table", "add.*migration", "query.*", "update.*schema", "add.*column", "create.*index"]
+    },
+    {
+      "name": "background-automation",
+      "priority": 0,
+      "keywords": ["loop", "monitor", "watch", "babysit", "background", "recurring", "schedule", "poll", "ci", "deploy", "cron", "subscribe", "heartbeat"],
+      "patterns": ["\\bevery \\d+\\s*(s|m|h|d|min|hour)", "/loop\\b", "monitors\\.json", "run_in_background", "subscribe.*pr"],
+      "directories": ["monitors/", ".claude/monitors/"],
+      "intents": ["watch.*ci", "watch.*deploy", "babysit.*pr", "keep.*running", "run.*background", "check.*every", "monitor.*for", "poll.*until"]
+    }
+  ]
+}
