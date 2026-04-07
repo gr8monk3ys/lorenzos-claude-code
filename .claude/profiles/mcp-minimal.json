@@ -1,0 +1,39 @@
+{
+  "$schema": "../plugin-settings.schema.json",
+  "name": "Minimal MCP Profile",
+  "description": "4 essential MCPs for daily development. ~16K token overhead (8% of context). Recommended for most users.",
+  "tokenOverhead": "~16,000 tokens",
+  "contextUsage": "8%",
+  "mcpServers": {
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp"],
+      "description": "Up-to-date library documentation lookup"
+    },
+    "memory": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-memory"],
+      "description": "Persistent knowledge graph for cross-session context"
+    },
+    "playwright": {
+      "command": "npx",
+      "args": ["@playwright/mcp@latest"],
+      "description": "Browser automation and E2E testing"
+    },
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "description": "GitHub PRs, issues, and repository operations"
+    }
+  },
+  "cliAlternatives": {
+    "vercel": "vercel CLI (npm i -g vercel)",
+    "docker": "docker CLI (built-in)",
+    "kubernetes": "kubectl CLI (brew install kubectl)",
+    "aws": "aws CLI (brew install awscli)",
+    "postgres": "psql CLI (brew install postgresql)",
+    "redis": "redis-cli (brew install redis)",
+    "mongodb": "mongosh CLI (brew install mongosh)",
+    "terraform": "terraform CLI (brew install terraform)"
+  }
+}
