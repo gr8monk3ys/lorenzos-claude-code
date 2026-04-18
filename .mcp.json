@@ -1,0 +1,28 @@
+{
+  "mcpServers": {
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp"],
+      "description": "Up-to-date library documentation lookup (no CLI alternative)"
+    },
+    "memory": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-memory"],
+      "description": "Persistent knowledge graph for cross-session context (no CLI alternative)"
+    },
+    "playwright": {
+      "command": "npx",
+      "args": ["@playwright/mcp@latest"],
+      "description": "Browser automation and E2E testing (MCP preferred over CLI)"
+    },
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "description": "GitHub PRs, issues, and repository operations (CLI alternative: gh)"
+    }
+  },
+  "_profile": "minimal",
+  "_contextUsage": "~16K tokens (8% of context)",
+  "_documentation": "See .claude/profiles/ for fullstack and enterprise profiles",
+  "_cliAlternatives": "See .claude/docs/CLI-ALTERNATIVES.md for services available via CLI"
+}
