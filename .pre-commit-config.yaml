@@ -30,14 +30,8 @@ repos:
     hooks:
       - id: validate-plugin-paths
         name: Validate plugin.json paths
-        entry: node -e "
-          const plugin = JSON.parse(require('fs').readFileSync('.claude-plugin/plugin.json', 'utf8'));
-          const fs = require('fs');
-          let ok = true;
-          plugin.commands.forEach(c => { if (!fs.existsSync(c.path)) { console.error('Missing:', c.path); ok = false; }});
-          plugin.agents.forEach(a => { if (!fs.existsSync(a.path)) { console.error('Missing:', a.path); ok = false; }});
-          process.exit(ok ? 0 : 1);
-          "
+        entry: >-
+          node -e "const p=JSON.parse(require('fs').readFileSync('.claude-plugin/plugin.json','utf8'));const fs=require('fs');let ok=true;for(const k of ['commands','agents','skills']){for(const x of (p[k]||[])){if(!fs.existsSync(x.path)){console.error('Missing:',x.path);ok=false;}}};process.exit(ok?0:1);"
         language: system
         files: ^\.claude-plugin/plugin\.json$
         pass_filenames: false
