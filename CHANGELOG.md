@@ -5,6 +5,29 @@ All notable changes to Lorenzo's Claude Code plugin will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 1.0.0 (2026-05-07)
+
+
+### Features
+
+* Add 4 new commands and 6 MCP servers for DevOps completeness ([a565ad6](https://github.com/gr8monk3ys/lorenzos-claude-code/commit/a565ad6b3951bbc942588d6a66b3b29cba7359ad))
+* Add 6 new commands for workflow automation and intelligence ([3ce78f6](https://github.com/gr8monk3ys/lorenzos-claude-code/commit/3ce78f65d4b908a0485cd9d89de77cf61d42d79d))
+* Add 6 new workflow enhancement skills ([cd52970](https://github.com/gr8monk3ys/lorenzos-claude-code/commit/cd529709e09dce5bb3461caf7223004f6b9f0278))
+* Add DevContainer, GitHub Actions, VS Code config, Memory MCP ([2919f1f](https://github.com/gr8monk3ys/lorenzos-claude-code/commit/2919f1f6561f3a775b3b6292f6ced1bccfceebc8))
+* Add high-impact improvements for end-to-end development ([038cb99](https://github.com/gr8monk3ys/lorenzos-claude-code/commit/038cb99f440620d67192db740f27c0e9dcb07c88))
+* Add Ralph Wiggum Pattern for autonomous development ([2b24dde](https://github.com/gr8monk3ys/lorenzos-claude-code/commit/2b24dde3de3ae057f0e0d8b86e135e7001f5f5c2))
+* Add RIPER workflow commands ([dfb6d2c](https://github.com/gr8monk3ys/lorenzos-claude-code/commit/dfb6d2c44ffd6841192a172fea8725a24af6544b))
+* Add session management commands ([8af4b87](https://github.com/gr8monk3ys/lorenzos-claude-code/commit/8af4b87a0dd7797359ab8f89faf02ca4f7a939b4))
+* add skill auto-evaluation system and quality improvements (v3.2.0) ([c952c11](https://github.com/gr8monk3ys/lorenzos-claude-code/commit/c952c11ee64fc9af24fc020dafdc7fd6161e609b))
+* implement Steinberger agentic engineering recommendations ([#9](https://github.com/gr8monk3ys/lorenzos-claude-code/issues/9)) ([17df909](https://github.com/gr8monk3ys/lorenzos-claude-code/commit/17df90924b40dfba95211c32c14c73d4aa8a58e6))
+* Release v1.13.0 with MCP servers and documentation ([3974cc9](https://github.com/gr8monk3ys/lorenzos-claude-code/commit/3974cc9a8581b8b2d881db640e73afaa81d32773))
+
+
+### Bug Fixes
+
+* Resolve documentation inconsistencies found in code review ([196a2cb](https://github.com/gr8monk3ys/lorenzos-claude-code/commit/196a2cb6680df693d06d2f1ed79d85b2ae10f078))
+* Update plugin.json to official Claude Code schema ([7f85aa5](https://github.com/gr8monk3ys/lorenzos-claude-code/commit/7f85aa5e3c8b9c412d325f92a2df5b550f4ea239))
+
 ## [4.0.0] - 2026-05-07
 
 ### BREAKING — Rescope to Stack Scaffolding
