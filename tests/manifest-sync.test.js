@@ -156,3 +156,10 @@ test('buildPluginJson assembles a manifest with arrays and preserves mcpServers'
   assert.deepEqual(out.mcpServers, { context7: { command: 'npx', args: [] } })
   assert.deepEqual(out.profiles, { minimal: '.claude/profiles/mcp-minimal.json' })
 })
+
+const { execFileSync } = require('node:child_process')
+
+test('sync-manifest --check passes against committed state', () => {
+  const repoRoot = path.join(__dirname, '..')
+  execFileSync('node', ['scripts/sync-manifest.js', '--check'], { cwd: repoRoot, stdio: 'pipe' })
+})
