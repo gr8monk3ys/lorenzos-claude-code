@@ -76,6 +76,10 @@ function buildPluginJson({ base, version, commands, agents, skills, repoRoot }) 
 }
 function replaceMarker(content, name, replacement) {
   const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  // `escaped` only contains literal AUTOGEN section names from this repo's own
+  // markdown files (commands, agents, skills, hooks, counts) — not user input.
+  // Regex metachars are pre-escaped; the pattern is fully bounded.
+  // nosemgrep: javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp
   const re = new RegExp(
     `(<!-- AUTOGEN:${escaped} -->)([\\s\\S]*?)(<!-- /AUTOGEN:${escaped} -->)`,
     'g'
