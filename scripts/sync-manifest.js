@@ -40,7 +40,7 @@ function main() {
       repository: basePlugin.repository,
       homepage: basePlugin.homepage,
       npm: basePlugin.npm,
-      keywords: basePlugin.keywords,
+      keywords: pkg.keywords,
       profiles: basePlugin.profiles,
       mcpServers: basePlugin.mcpServers,
     },

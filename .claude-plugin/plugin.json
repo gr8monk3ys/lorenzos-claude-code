@@ -12,13 +12,16 @@
   "npm": "@gr8monk3ys/claude-code-plugin",
   "keywords": [
     "claude-code",
+    "claude",
+    "ai",
     "nextjs",
     "react",
     "typescript",
     "supabase",
-    "minimal",
-    "circuit-breaker",
-    "verification-first"
+    "productivity",
+    "agents",
+    "skills",
+    "hooks"
   ],
   "profiles": {
     "minimal": ".claude/profiles/mcp-minimal.json"
