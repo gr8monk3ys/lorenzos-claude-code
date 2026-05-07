@@ -87,7 +87,7 @@ function replaceMarker(content, name, replacement) {
   return content.replace(re, `$1\n${replacement}\n$3`)
 }
 function renderTable(rows) {
-  const esc = s => String(s).replace(/\|/g, '\\|')
+  const esc = s => String(s).replace(/\\/g, '\\\\').replace(/\|/g, '\\|')
   const lines = ['| Name | Description |', '| --- | --- |']
   for (const row of rows) {
     lines.push(`| \`${esc(row.name)}\` | ${esc(row.description)} |`)
