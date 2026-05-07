@@ -10,7 +10,9 @@ repos:
         files: \.(json)$
       - id: pretty-format-json
         args: [--autofix, --indent, "2"]
-        files: ^\.claude-plugin/.*\.json$
+        # Only marketplace.json — plugin.json is owned by sync-manifest
+        # which writes its own deterministic key order
+        files: ^\.claude-plugin/marketplace\.json$
       - id: end-of-file-fixer
       - id: trailing-whitespace
         args: [--markdown-linebreak-ext=md]

@@ -22,7 +22,8 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@45580472a5bb82c4681c4ac726cfdb60060c2ee1
         with:
-          languages: python,javascript-typescript
+          # No Python in this repo; including it triggers "no source code seen" fatal.
+          languages: javascript-typescript
 
       - name: Autobuild
         uses: github/codeql-action/autobuild@45580472a5bb82c4681c4ac726cfdb60060c2ee1

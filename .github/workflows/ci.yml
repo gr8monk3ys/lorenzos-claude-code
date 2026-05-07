@@ -60,7 +60,8 @@ jobs:
       - name: Validate JSON files
         run: |
           echo "Validating JSON files..."
-          for file in $(find . -name "*.json" -not -path "./node_modules/*"); do
+          # .vscode/ holds JSONC (with comments) which JSON.parse can't read
+          for file in $(find . -name "*.json" -not -path "./node_modules/*" -not -path "./.vscode/*"); do
             echo "Checking $file"
             node -e "JSON.parse(require('fs').readFileSync('$file', 'utf8'))"
           done

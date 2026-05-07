@@ -30,6 +30,8 @@ jobs:
       contents: read
       pull-requests: write
       security-events: write
+      # Required by anthropics/claude-code-action for OIDC token exchange
+      id-token: write
 
     steps:
       - name: Checkout repository
