@@ -48,7 +48,18 @@ function scanCategory(dir) {
   out.sort((a, b) => a.name.localeCompare(b.name))
   return out
 }
-function scanHooks(_dir) { throw new Error('not implemented') }
+function scanHooks(dir) {
+  if (!fs.existsSync(dir)) return []
+  const out = []
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (!entry.isFile()) continue
+    if (!entry.name.endsWith('.js')) continue
+    const name = path.basename(entry.name, '.js')
+    out.push({ name, path: path.join(dir, entry.name) })
+  }
+  out.sort((a, b) => a.name.localeCompare(b.name))
+  return out
+}
 function buildPluginJson(_inputs) { throw new Error('not implemented') }
 function replaceMarker(_content, _name, _replacement) { throw new Error('not implemented') }
 function renderTable(_rows) { throw new Error('not implemented') }

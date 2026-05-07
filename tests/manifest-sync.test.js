@@ -62,3 +62,11 @@ test('scanCategory results are stable-sorted by name', () => {
   assert.deepEqual(a, b)
   assert.deepEqual(a, [...a].sort())
 })
+
+test('scanHooks lists .js hook scripts but skips .json config', () => {
+  const fixtures = path.join(__dirname, 'fixtures/manifest/hooks')
+  const hooks = manifest.scanHooks(fixtures)
+  assert.equal(hooks.length, 1)
+  assert.equal(hooks[0].name, 'auto-format')
+  assert.match(hooks[0].path.replace(/\\/g, '/'), /hooks\/auto-format\.js$/)
+})
