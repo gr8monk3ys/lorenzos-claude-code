@@ -36,62 +36,6 @@
       "patterns": ["schema\\.prisma", "\\.sql$", "migration", "\\bSELECT\\b", "\\bINSERT\\b", "\\bUPDATE\\b", "\\bDELETE\\b"],
       "directories": ["prisma/", "drizzle/", "supabase/", "migrations/", "db/", "database/"],
       "intents": ["create.*table", "add.*migration", "query.*", "update.*schema", "add.*column", "create.*index"]
-    },
-    {
-      "name": "code-quality",
-      "priority": 0,
-      "keywords": ["review", "refactor", "clean", "lint", "optimize", "performance", "quality", "improve", "simplify"],
-      "patterns": ["eslint", "prettier", "biome", "\\.lint"],
-      "directories": [],
-      "intents": ["review.*code", "refactor.*", "clean.*up", "improve.*performance", "optimize.*", "simplify.*"]
-    },
-    {
-      "name": "verification-first",
-      "priority": 90,
-      "keywords": ["verify", "test", "check", "confirm", "ensure", "validate", "done", "complete", "finish", "works"],
-      "patterns": ["npm\\s+test", "npm\\s+run\\s+build", "tsc", "jest", "vitest"],
-      "directories": [],
-      "intents": ["verify.*works", "make\\s+sure.*", "confirm.*", "test.*works", "check.*if", "ensure.*"]
-    },
-    {
-      "name": "circuit-breaker",
-      "priority": 95,
-      "keywords": ["stuck", "loop", "failing", "error", "broken", "not working", "keeps", "again", "still", "same"],
-      "patterns": ["same\\s+error", "still\\s+failing", "keeps\\s+failing", "tried\\s+\\d+\\s+times"],
-      "directories": [],
-      "intents": ["stuck.*", "keeps\\s+failing", "same\\s+error", "not\\s+working", "tried.*again", "why.*failing"]
-    },
-    {
-      "name": "micro-tasking",
-      "priority": 0,
-      "keywords": ["plan", "breakdown", "steps", "tasks", "decompose", "implement", "feature", "roadmap"],
-      "patterns": ["how\\s+to\\s+implement", "steps\\s+for", "break.*down"],
-      "directories": [],
-      "intents": ["plan.*", "break.*down", "steps\\s+for.*", "how\\s+to\\s+implement", "create.*roadmap"]
-    },
-    {
-      "name": "memory-persistence",
-      "priority": 0,
-      "keywords": ["memory", "remember", "session", "context", "previous", "last time", "before"],
-      "patterns": ["remember.*", "last\\s+session", "previous.*context"],
-      "directories": [".claude/memory", ".claude/sessions"],
-      "intents": ["remember.*", "recall.*", "what.*before", "last\\s+time.*"]
-    },
-    {
-      "name": "continuous-learning",
-      "priority": 0,
-      "keywords": ["learn", "pattern", "instinct", "evolve", "improve", "lesson"],
-      "patterns": ["/learn", "/evolve"],
-      "directories": [".claude/instincts"],
-      "intents": ["learn.*from", "extract.*pattern", "evolve.*skill"]
-    },
-    {
-      "name": "research",
-      "priority": 0,
-      "keywords": ["research", "explore", "investigate", "understand", "analyze", "study", "deep dive"],
-      "patterns": ["/research"],
-      "directories": [],
-      "intents": ["research.*", "explore.*", "investigate.*", "understand.*how", "analyze.*"]
     }
   ]
 }
