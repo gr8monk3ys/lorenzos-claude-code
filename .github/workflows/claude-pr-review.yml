@@ -52,7 +52,7 @@ jobs:
           fetch-depth: 0
 
       - name: Run Claude Code Review
-        uses: anthropics/claude-code-action@35a9e0292d36f1186f5d842b14eb575074e8b450
+        uses: anthropics/claude-code-action@64c7a0ef71df67b14cb4471f4d9c8565c61042bf
         with:
           # Use Sonnet by default (faster, cheaper)
           # Change to claude-opus-4-5-20251101 for complex reviews
