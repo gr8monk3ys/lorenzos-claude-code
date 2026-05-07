@@ -73,6 +73,13 @@ function replaceMarker(content, name, replacement) {
   re.lastIndex = 0
   return content.replace(re, `$1\n${replacement}\n$3`)
 }
-function renderTable(_rows) { throw new Error('not implemented') }
+function renderTable(rows) {
+  const esc = s => String(s).replace(/\|/g, '\\|')
+  const lines = ['| Name | Description |', '| --- | --- |']
+  for (const row of rows) {
+    lines.push(`| \`${esc(row.name)}\` | ${esc(row.description)} |`)
+  }
+  return lines.join('\n')
+}
 
 module.exports = { parseFrontmatter, scanCategory, scanHooks, buildPluginJson, replaceMarker, renderTable }

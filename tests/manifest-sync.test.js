@@ -105,3 +105,21 @@ test('replaceMarker leaves other markers untouched', () => {
   assert.match(out, /oldB/)
   assert.match(out, /NEW_A/)
 })
+
+test('renderTable produces a 2-column markdown table', () => {
+  const out = manifest.renderTable([
+    { name: '/api-new', description: 'Create API route' },
+    { name: '/component-new', description: 'Create component' },
+  ])
+  assert.equal(out, [
+    '| Name | Description |',
+    '| --- | --- |',
+    '| `/api-new` | Create API route |',
+    '| `/component-new` | Create component |',
+  ].join('\n'))
+})
+
+test('renderTable escapes pipe characters in descriptions', () => {
+  const out = manifest.renderTable([{ name: 'x', description: 'a | b' }])
+  assert.match(out, /a \\\| b/)
+})
