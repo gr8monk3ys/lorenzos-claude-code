@@ -4,13 +4,13 @@
     "name": "Lorenzo",
     "contact": "github.com/gr8monk3ys"
   },
-  "description": "Minimal Claude Code plugin for Next.js + React + Supabase development with innovative failure prevention",
+  "description": "Stack-focused Claude Code plugin for Next.js + React + Supabase. Composes with superpowers.",
   "plugins": [
     {
       "name": "lorenzos-claude-code",
       "source": "./",
-      "description": "15 commands, 6 agents, 8 skills, 9 hooks. Features circuit-breaker (thrashing prevention), verification-first (evidence-based completion), and micro-tasking (2-5 min task chunks).",
-      "version": "3.0.0",
+      "description": "14 commands, 6 agents, 3 skills, 14 hooks. Scaffolds Next.js + React + Supabase code; composes with the superpowers plugin for process discipline.",
+      "version": "3.2.0",
       "author": {
         "name": "Lorenzo",
         "email": "gr8monk3ys@gmail.com",
@@ -23,21 +23,20 @@
         "supabase",
         "typescript",
         "react",
-        "circuit-breaker",
-        "verification-first",
+        "scaffolding",
         "minimal"
       ],
       "features": {
-        "commands": 15,
+        "commands": 14,
         "agents": 6,
-        "skills": 8,
-        "hooks": 9,
+        "skills": 3,
+        "hooks": 14,
         "mcpServers": 4
       },
       "highlights": [
-        "Circuit Breaker - Detects and prevents thrashing loops",
-        "Verification First - Evidence-based completion gates",
-        "Micro-Tasking - 2-5 minute task enforcement",
+        "Stack-focused scaffolding for Next.js + React + Supabase",
+        "Composes with superpowers — process discipline lives there",
+        "5-dimensional skill auto-routing across this plugin and superpowers",
         "Minimal Footprint - Only 4 MCP servers"
       ]
     }
