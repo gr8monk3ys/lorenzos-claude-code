@@ -105,6 +105,9 @@ jobs:
       - name: Check package.json validity
         run: npm pkg fix --dry-run
 
+      - name: Verify manifest is in sync with disk
+        run: node scripts/sync-manifest.js --check
+
   markdown-lint:
     name: Lint Markdown
     runs-on: ubuntu-latest
