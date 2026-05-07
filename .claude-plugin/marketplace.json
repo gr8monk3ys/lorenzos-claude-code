@@ -10,7 +10,7 @@
       "name": "lorenzos-claude-code",
       "source": "./",
       "description": "14 commands, 6 agents, 3 skills, 14 hooks. Scaffolds Next.js + React + Supabase code; composes with the superpowers plugin for process discipline.",
-      "version": "3.2.0",
+      "version": "4.0.0",
       "author": {
         "name": "Lorenzo",
         "email": "gr8monk3ys@gmail.com",
