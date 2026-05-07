@@ -35,12 +35,6 @@
       "description": "Auto-formats code with Prettier/Biome/ESLint"
     },
     {
-      "event": "PostToolUse",
-      "matcher": ".*",
-      "command": "node ./.claude/hooks/circuit-breaker.js",
-      "description": "Detects thrashing patterns and prevents stuck loops"
-    },
-    {
       "event": "PreCompact",
       "command": "node ./.claude/hooks/pre-compact.js",
       "description": "Saves critical context before compaction"
