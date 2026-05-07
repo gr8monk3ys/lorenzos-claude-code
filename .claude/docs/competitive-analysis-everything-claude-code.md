@@ -1,7 +1,7 @@
 # Competitive Analysis: everything-claude-code
 
 > Research conducted: January 2026
-> Repository: https://github.com/affaan-m/everything-claude-code
+> Repository: <https://github.com/affaan-m/everything-claude-code>
 > Notable: **Anthropic x Forum Ventures Hackathon Winner (Sep 2025)** - Built zenith.chat entirely with Claude Code
 
 ---
@@ -28,6 +28,7 @@ The `everything-claude-code` repository represents a lean, battle-tested approac
 ### 1. 🧠 Memory Persistence System (HIGH VALUE)
 
 **What they have:**
+
 - `session-start.sh` hook - Restores previous context when sessions begin
 - `session-end.sh` hook - Persists state when sessions complete
 - Sessions stored in `~/.claude/sessions/` with 7-day retention
@@ -38,6 +39,7 @@ The `everything-claude-code` repository represents a lean, battle-tested approac
 **Our gap:** We have no cross-session memory persistence. Each session starts fresh.
 
 **Recommendation:** Implement memory persistence hooks:
+
 ```bash
 # .claude/hooks/session-start.sh
 # .claude/hooks/session-end.sh
@@ -48,6 +50,7 @@ The `everything-claude-code` repository represents a lean, battle-tested approac
 ### 2. 📊 Strategic Compaction (HIGH VALUE)
 
 **What they have:**
+
 - Hook that monitors Edit/Write operations
 - Suggests compaction at meaningful workflow junctures
 - Prevents auto-compaction from triggering mid-task
@@ -56,6 +59,7 @@ The `everything-claude-code` repository represents a lean, battle-tested approac
 **Why it matters:** Auto-compaction can trigger at the worst times, losing critical context mid-implementation. Strategic compaction preserves workflow coherence.
 
 **Configuration:**
+
 ```json
 {
   "event": "PreToolUse",
@@ -93,12 +97,14 @@ A comprehensive 6-phase verification process:
 ### 4. 📚 Continuous Learning System (MEDIUM-HIGH VALUE)
 
 **What they have:**
+
 - Stop hook that analyzes session transcripts
 - Extracts patterns: error resolutions, user corrections, workarounds, debugging techniques
 - Automatically saves learned skills for future sessions
 - Minimum 10 messages threshold for analysis
 
 **Pattern categories:**
+
 - Error resolution methods
 - User correction insights
 - Framework workarounds
@@ -123,6 +129,7 @@ Eval-driven development (EDD) framework with three grader types:
 3. **Human Graders** - Flags changes needing manual review
 
 **Metrics tracked:**
+
 - `pass@k` - At least one success in k attempts (target: >90% at k=3)
 - `pass^k` - All k trials succeed (stricter)
 
@@ -144,6 +151,7 @@ Dynamic system prompts for different work modes:
 - **research.md** - Investigation (exploration, analysis)
 
 **Dev mode priorities:**
+
 1. Get it working (functional)
 2. Get it right (correct)
 3. Get it clean (polished)
@@ -159,6 +167,7 @@ Dynamic system prompts for different work modes:
 ### 7. 🔧 Token Optimization Philosophy (MEDIUM VALUE)
 
 **Their approach:**
+
 - Maintain 20-30 configured MCPs
 - Keep fewer than 10 enabled per project
 - Stay under 80 active tools
@@ -169,6 +178,7 @@ Dynamic system prompts for different work modes:
 **Our gap:** We have 22 MCP servers, 55 commands, 24 agents. May be over-tooled.
 
 **Recommendation:**
+
 - Add per-project tool selection
 - Document tool subset recommendations by project type
 - Consider "tool profiles" feature
@@ -178,6 +188,7 @@ Dynamic system prompts for different work modes:
 ### 8. 🏗️ Focused Agent Architecture (LOW-MEDIUM VALUE)
 
 **Their 9 agents (focused):**
+
 1. planner - Implementation planning
 2. architect - System design
 3. tdd-guide - Test-driven development

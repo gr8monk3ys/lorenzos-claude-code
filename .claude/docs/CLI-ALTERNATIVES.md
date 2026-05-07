@@ -29,6 +29,7 @@ This guide provides CLI alternatives to MCP servers, allowing you to maintain fu
 ## Version Control & Git
 
 ### GitHub CLI (`gh`)
+
 Replaces: `github` MCP server
 
 ```bash
@@ -54,6 +55,7 @@ gh run view 789                      # View specific run
 ```
 
 ### GitLab CLI (`glab`)
+
 Replaces: `gitlab` MCP server
 
 ```bash
@@ -77,6 +79,7 @@ glab ci status                       # Current pipeline status
 ## Cloud & Infrastructure
 
 ### AWS CLI (`aws`)
+
 Replaces: `aws` MCP server
 
 ```bash
@@ -105,6 +108,7 @@ aws cloudwatch get-metric-statistics # Get metrics
 ```
 
 ### Terraform CLI (`terraform`)
+
 Replaces: `terraform` MCP server
 
 ```bash
@@ -121,6 +125,7 @@ terraform output                     # Show outputs
 ```
 
 ### Kubernetes CLI (`kubectl`)
+
 Replaces: `kubernetes` MCP server
 
 ```bash
@@ -145,12 +150,14 @@ kubectl port-forward pod-name 8080:80 # Port forward
 ```
 
 **Enhanced alternative: `k9s`**
+
 ```bash
 brew install k9s
 k9s                                  # Interactive TUI for Kubernetes
 ```
 
 ### Docker CLI (`docker`)
+
 Replaces: `docker` MCP server
 
 ```bash
@@ -180,6 +187,7 @@ docker compose logs -f               # Follow all logs
 ```
 
 **Enhanced alternative: `lazydocker`**
+
 ```bash
 brew install lazydocker
 lazydocker                           # Interactive TUI for Docker
@@ -190,6 +198,7 @@ lazydocker                           # Interactive TUI for Docker
 ## Databases
 
 ### PostgreSQL (`psql`)
+
 Replaces: `postgres` MCP server
 
 ```bash
@@ -212,12 +221,14 @@ SELECT * FROM users LIMIT 10;        # Query data
 ```
 
 **Enhanced alternative: `pgcli`**
+
 ```bash
 brew install pgcli
 pgcli postgresql://...               # Postgres with autocomplete
 ```
 
 ### MongoDB (`mongosh`)
+
 Replaces: `mongodb` MCP server
 
 ```bash
@@ -242,6 +253,7 @@ db.users.updateOne(                  # Update document
 ```
 
 ### Redis (`redis-cli`)
+
 Replaces: `redis` MCP server
 
 ```bash
@@ -267,6 +279,7 @@ MONITOR                              # Real-time commands
 ```
 
 **Enhanced alternative: `iredis`**
+
 ```bash
 pip install iredis
 iredis                               # Redis with autocomplete
@@ -277,6 +290,7 @@ iredis                               # Redis with autocomplete
 ## Deployment & Hosting
 
 ### Vercel CLI (`vercel`)
+
 Replaces: `vercel` MCP server
 
 ```bash
@@ -299,6 +313,7 @@ vercel domains ls                    # List domains
 ```
 
 ### Supabase CLI (`supabase`)
+
 Replaces: `supabase` MCP server (partially)
 
 ```bash
@@ -331,6 +346,7 @@ supabase gen types typescript --local > types/supabase.ts
 ## Productivity & Project Management
 
 ### Linear CLI (`linear`)
+
 Replaces: `linear` MCP server
 
 ```bash
@@ -345,6 +361,7 @@ linear issue view ISSUE-123          # View issue
 ```
 
 ### Task Management (`taskwarrior`)
+
 Alternative for issue tracking
 
 ```bash
@@ -364,6 +381,7 @@ task project:web list                # Filter by project
 ## HTTP & API Testing
 
 ### HTTPie (`http`)
+
 Better than curl for API testing
 
 ```bash
@@ -384,6 +402,7 @@ http --download https://example.com/file.zip
 ```
 
 ### cURL (built-in)
+
 ```bash
 # GET request
 curl https://api.example.com/users
@@ -402,6 +421,7 @@ curl -H "Authorization: Bearer TOKEN" https://api.example.com/protected
 ## File Search & Management
 
 ### ripgrep (`rg`)
+
 Fast code search (Claude uses this internally)
 
 ```bash
@@ -418,6 +438,7 @@ rg -C 3 "pattern"                    # With context
 ```
 
 ### fd
+
 Modern `find` alternative
 
 ```bash
@@ -433,6 +454,7 @@ fd -H "pattern"                      # Include hidden
 ```
 
 ### fzf
+
 Fuzzy finder for everything
 
 ```bash
@@ -450,6 +472,7 @@ git branch | fzf                     # Select branch
 ## Monitoring & Observability
 
 ### Sentry CLI (`sentry-cli`)
+
 Replaces: `sentry` MCP server
 
 ```bash
@@ -469,6 +492,7 @@ sentry-cli releases finalize VERSION
 ## Usage Patterns
 
 ### Pattern 1: Direct CLI in Prompts
+
 ```
 "Run `gh pr list --state open` and show me the results"
 "Execute `kubectl get pods -n production` to check pod status"
@@ -476,6 +500,7 @@ sentry-cli releases finalize VERSION
 ```
 
 ### Pattern 2: Wrapper Scripts
+
 Create simple scripts for common operations:
 
 ```bash
@@ -485,6 +510,7 @@ vercel --prod && gh pr comment --body "Deployed to production"
 ```
 
 ### Pattern 3: Aliases
+
 Add to your `.bashrc` or `.zshrc`:
 
 ```bash
@@ -510,11 +536,13 @@ alias tf='terraform'
 ### Recommended Minimal Setup
 
 **Keep as MCP:**
+
 - `context7` - Documentation (no good CLI alternative)
 - `memory` - Session persistence (no CLI equivalent)
 - `playwright` - Browser automation (CLI exists but MCP is better)
 
 **Use CLI instead:**
+
 - Everything else
 
 ---

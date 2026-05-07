@@ -29,6 +29,7 @@ python -m py_compile **/*.py
 **Stop criteria**: Build fails = STOP and fix before proceeding
 
 **Report format**:
+
 ```
 Phase 1 - Build: [PASS/FAIL]
 - Build command: npm run build
@@ -49,6 +50,7 @@ mypy . 2>&1 | head -30
 ```
 
 **Report format**:
+
 ```
 Phase 2 - Types: [PASS/WARN/FAIL]
 - Type errors found: [count]
@@ -71,6 +73,7 @@ ruff check . 2>&1 | head -30
 ```
 
 **Report format**:
+
 ```
 Phase 3 - Lint: [PASS/WARN/FAIL]
 - Errors: [count]
@@ -95,6 +98,7 @@ pytest --cov=. --cov-report=term-missing 2>&1
 **Target**: 80% minimum coverage
 
 **Report format**:
+
 ```
 Phase 4 - Tests: [PASS/FAIL]
 - Total tests: [count]
@@ -119,6 +123,7 @@ grep -rn "TODO\|FIXME\|HACK\|XXX" --include="*.ts" --include="*.tsx" --include="
 ```
 
 **Report format**:
+
 ```
 Phase 5 - Security: [PASS/WARN/FAIL]
 - Potential secrets found: [count]
@@ -141,6 +146,7 @@ git diff HEAD~1 2>/dev/null | head -100 || git diff | head -100
 ```
 
 **Report format**:
+
 ```
 Phase 6 - Diff Review: [REVIEWED]
 - Files changed: [count]
@@ -209,6 +215,7 @@ After all phases, generate a summary:
 ## Integration
 
 This command integrates with:
+
 - **verification-first skill** - Enforces verification before completion claims
 - **test-gate hook** - Blocks commits if tests fail
 - **continuous-learning** - Records verification patterns for improvement

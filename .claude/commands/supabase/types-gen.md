@@ -84,6 +84,7 @@ type Post = Tables<'posts'>
 ### 4. **When to Regenerate**
 
 Run `npm run gen-types` after:
+
 - Creating new tables
 - Adding/removing columns
 - Changing column types
@@ -112,11 +113,13 @@ git add lib/database.types.ts
 ## Troubleshooting
 
 **Issue**: `supabase` command not found
+
 ```bash
 npm install -g supabase
 ```
 
 **Issue**: Missing project ID
+
 ```bash
 # Find your project ID in Supabase dashboard
 # Or set in .env
@@ -124,6 +127,7 @@ SUPABASE_PROJECT_ID=your-project-id
 ```
 
 **Issue**: Types not updating
+
 ```bash
 # Clear cache and regenerate
 rm lib/database.types.ts

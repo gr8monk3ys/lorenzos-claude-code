@@ -261,10 +261,10 @@ function doctor() {
 
   // Check components
   const components = [
-    { name: "commands", expected: 18 },
+    { name: "commands", expected: 14 },
     { name: "agents", expected: 6 },
-    { name: "skills", expected: 10 },
-    { name: "hooks", expected: 10 }, // hooks.json + 9 hook scripts
+    { name: "skills", expected: 3 },
+    { name: "hooks", expected: 15 }, // hooks.json + 14 hook scripts
   ];
 
   for (const component of components) {

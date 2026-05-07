@@ -1,7 +1,6 @@
 {
   "name": "lorenzos-claude-code",
-  "version": "3.0.0",
-  "description": "Minimal Claude Code plugin for Next.js + React + Supabase. Features circuit-breaker (thrashing prevention), verification-first (evidence-based completion), and micro-tasking (2-5 min chunks).",
+  "description": "Stack-focused Claude Code plugin for Next.js + React + Supabase. Scaffolds components, API routes, hooks, Supabase types, and Edge Functions. Composes with superpowers.",
   "author": {
     "name": "Lorenzo",
     "email": "gr8monk3ys@gmail.com",
@@ -13,57 +12,95 @@
   "npm": "@gr8monk3ys/claude-code-plugin",
   "keywords": [
     "claude-code",
+    "claude",
+    "ai",
     "nextjs",
     "react",
     "typescript",
     "supabase",
-    "minimal",
-    "circuit-breaker",
-    "verification-first"
+    "productivity",
+    "agents",
+    "skills",
+    "hooks"
   ],
   "profiles": {
     "minimal": ".claude/profiles/mcp-minimal.json"
   },
+  "mcpServers": {
+    "context7": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@upstash/context7-mcp"
+      ],
+      "description": "Library documentation lookup"
+    },
+    "memory": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ],
+      "description": "Cross-session memory"
+    },
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@anthropic/mcp-server-playwright"
+      ],
+      "description": "Browser automation"
+    },
+    "github": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "description": "GitHub integration"
+    }
+  },
+  "version": "4.0.0",
   "commands": [
     {
       "name": "api-new",
       "path": ".claude/commands/api/api-new.md",
-      "description": "Create a new Next.js API route with validation"
+      "description": "Create a new Next.js API route with validation, error handling, and TypeScript"
     },
     {
       "name": "api-test",
       "path": ".claude/commands/api/api-test.md",
-      "description": "Test API endpoints with automated tests"
+      "description": "Test API endpoints with automated test generation"
+    },
+    {
+      "name": "automerge",
+      "path": ".claude/commands/workflow/automerge.md",
+      "description": "PR automation - validate, merge, cleanup, and sync"
     },
     {
       "name": "component-new",
       "path": ".claude/commands/ui/component-new.md",
-      "description": "Create a new React component with TypeScript"
+      "description": "Create a new React component with TypeScript and modern best practices"
     },
     {
-      "name": "page-new",
-      "path": ".claude/commands/ui/page-new.md",
-      "description": "Create a new Next.js page with App Router"
+      "name": "deploy",
+      "path": ".claude/commands/devops/deploy.md",
+      "description": "Generate deployment configurations and workflows"
+    },
+    {
+      "name": "edge-function-new",
+      "path": ".claude/commands/supabase/edge-function-new.md",
+      "description": "Create a new Supabase Edge Function with Deno"
+    },
+    {
+      "name": "fixissue",
+      "path": ".claude/commands/workflow/fixissue.md",
+      "description": "End-to-end issue resolution - fetch, branch, fix, test, commit, PR, close"
     },
     {
       "name": "hook-new",
       "path": ".claude/commands/generation/hook-new.md",
-      "description": "Create custom React hooks"
-    },
-    {
-      "name": "test-new",
-      "path": ".claude/commands/testing/test-new.md",
-      "description": "Generate test files for components and functions"
-    },
-    {
-      "name": "verify",
-      "path": ".claude/commands/testing/verify.md",
-      "description": "Run 6-phase verification before PR"
-    },
-    {
-      "name": "plan",
-      "path": ".claude/commands/planning/plan.md",
-      "description": "Create implementation plan for a feature"
+      "description": "Create custom React hooks with TypeScript and best practices"
     },
     {
       "name": "lint",
@@ -71,130 +108,78 @@
       "description": "Run linting and fix code quality issues"
     },
     {
-      "name": "review",
-      "path": ".claude/commands/quality/review.md",
-      "description": "Quality review before PR"
+      "name": "page-new",
+      "path": ".claude/commands/ui/page-new.md",
+      "description": "Create a new Next.js page with App Router best practices"
     },
     {
-      "name": "deploy",
-      "path": ".claude/commands/devops/deploy.md",
-      "description": "Generate deployment configurations"
+      "name": "review",
+      "path": ".claude/commands/quality/review.md",
+      "description": "RIPER Review Phase - Quality gates before considering work complete"
+    },
+    {
+      "name": "test-new",
+      "path": ".claude/commands/testing/test-new.md",
+      "description": "Generate test files for Jest, Vitest, or Playwright"
     },
     {
       "name": "types-gen",
       "path": ".claude/commands/supabase/types-gen.md",
-      "description": "Generate TypeScript types from Supabase"
+      "description": "Generate TypeScript types from Supabase database schema"
     },
     {
-      "name": "edge-function-new",
-      "path": ".claude/commands/supabase/edge-function-new.md",
-      "description": "Create a new Supabase Edge Function"
-    },
-    {
-      "name": "handoff",
-      "path": ".claude/commands/workflow/handoff.md",
-      "description": "Create session handoff document"
-    },
-    {
-      "name": "memory",
-      "path": ".claude/commands/context/memory.md",
-      "description": "View or update persistent project memory"
+      "name": "verify",
+      "path": ".claude/commands/testing/verify.md",
+      "description": "Run comprehensive 6-phase verification loop (build, types, lint, tests, security, diff)"
     }
   ],
   "agents": [
     {
-      "name": "code-reviewer",
-      "path": ".claude/agents/code-reviewer.md",
-      "description": "Code quality, PR reviews, security analysis"
-    },
-    {
       "name": "backend-architect",
       "path": ".claude/agents/backend-architect.md",
-      "description": "API design, database architecture, security"
-    },
-    {
-      "name": "frontend-architect",
-      "path": ".claude/agents/frontend-architect.md",
-      "description": "React/Next.js patterns, accessibility, performance"
+      "description": "Design reliable backend systems with focus on data integrity, security, and fault tolerance"
     },
     {
       "name": "build-error-resolver",
       "path": ".claude/agents/build-error-resolver.md",
-      "description": "Fix TypeScript and build errors"
+      "description": "Use when fixing TypeScript errors, build failures, compilation issues, type mismatches, or \"tsc --noEmit\" errors. Activates on build failures, type errors, or compilation problems requiring quick minimal fixes."
     },
     {
-      "name": "test-strategist",
-      "path": ".claude/agents/test-strategist.md",
-      "description": "Test planning and coverage strategy"
+      "name": "code-reviewer",
+      "path": ".claude/agents/code-reviewer.md",
+      "description": "Use this agent when reviewing code for quality, performing PR reviews, or analyzing code for security vulnerabilities, performance issues, or style problems. Activates on code review requests or quality assessments."
     },
     {
       "name": "devops-engineer",
       "path": ".claude/agents/devops-engineer.md",
-      "description": "CI/CD, deployment, infrastructure"
+      "description": "Design CI/CD pipelines, infrastructure as code, and deployment strategies for reliable software delivery"
+    },
+    {
+      "name": "frontend-architect",
+      "path": ".claude/agents/frontend-architect.md",
+      "description": "Create accessible, performant user interfaces with focus on user experience and modern frameworks"
+    },
+    {
+      "name": "test-strategist",
+      "path": ".claude/agents/test-strategist.md",
+      "description": "Use this agent when planning test strategies, analyzing test coverage, or designing comprehensive testing approaches. Activates on test planning, coverage analysis, or when asking about what to test."
     }
   ],
   "skills": [
     {
       "name": "api-development",
       "path": ".claude/skills/api-development.md",
-      "description": "Next.js API patterns and validation"
-    },
-    {
-      "name": "frontend-development",
-      "path": ".claude/skills/frontend-development.md",
-      "description": "React best practices"
+      "description": "WHEN to auto-invoke: Creating API routes, building endpoints, adding route.ts files, implementing REST/GraphQL APIs, adding authentication to APIs, rate limiting, API validation with Zod, handling HTTP methods (GET/POST/PUT/DELETE)."
     },
     {
       "name": "database-operations",
       "path": ".claude/skills/database-operations.md",
-      "description": "Supabase and database patterns"
+      "description": "WHEN to auto-invoke: Database schema design, creating migrations, writing SQL queries, query optimization, Supabase operations, Prisma/Drizzle schema changes, PostgreSQL tasks, RLS policies, indexes."
     },
     {
-      "name": "verification-first",
-      "path": ".claude/skills/verification-first.md",
-      "description": "Quality gates before completion"
-    },
-    {
-      "name": "memory-persistence",
-      "path": ".claude/skills/memory-persistence.md",
-      "description": "Session context preservation"
-    },
-    {
-      "name": "code-quality",
-      "path": ".claude/skills/code-quality.md",
-      "description": "Code review patterns"
-    },
-    {
-      "name": "circuit-breaker",
-      "path": ".claude/skills/circuit-breaker.md",
-      "description": "Prevent stuck loops"
-    },
-    {
-      "name": "micro-tasking",
-      "path": ".claude/skills/micro-tasking.md",
-      "description": "Break work into small tasks"
+      "name": "frontend-development",
+      "path": ".claude/skills/frontend-development.md",
+      "description": "WHEN to auto-invoke: Creating UI components, building React/Vue/Svelte components, Next.js pages, styling with Tailwind/CSS, state management setup, form handling, accessibility improvements, client-side interactivity."
     }
-  ],
-  "mcpServers": {
-    "context7": {
-      "command": "npx",
-      "args": ["-y", "@upstash/context7-mcp"],
-      "description": "Library documentation lookup"
-    },
-    "memory": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-memory"],
-      "description": "Cross-session memory"
-    },
-    "playwright": {
-      "command": "npx",
-      "args": ["-y", "@anthropic/mcp-server-playwright"],
-      "description": "Browser automation"
-    },
-    "github": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-github"],
-      "description": "GitHub integration"
-    }
-  }
+  ]
 }

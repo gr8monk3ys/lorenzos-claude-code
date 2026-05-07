@@ -15,10 +15,7 @@ const os = require("os");
 const CLAUDE_DIR = process.env.CLAUDE_HOME || path.join(os.homedir(), ".claude");
 const SESSIONS_DIR = path.join(CLAUDE_DIR, "sessions");
 const LEARNED_SKILLS_DIR = path.join(CLAUDE_DIR, "skills", "learned");
-const INSTINCTS_DIR = path.join(CLAUDE_DIR, "instincts");
-const INSTINCTS_FILE = path.join(INSTINCTS_DIR, "instincts.json");
 const MAX_AGE_DAYS = 7;
-const MIN_INSTINCT_CONFIDENCE = 0.6;
 
 // Error logging utility
 function logError(context, err) {
@@ -112,31 +109,6 @@ function main() {
   // Check for project-specific memory
   if (fs.existsSync(".claude/memory.json")) {
     console.error("[Memory] Project-specific memory file found");
-  }
-
-  // Load and display relevant instincts
-  ensureDir(INSTINCTS_DIR);
-  const instinctsData = readJson(INSTINCTS_FILE);
-
-  if (instinctsData && instinctsData.instincts) {
-    const highConfidence = instinctsData.instincts.filter(
-      (i) => i.confidence >= MIN_INSTINCT_CONFIDENCE,
-    );
-
-    if (highConfidence.length > 0) {
-      console.error(
-        `[Learning] ${highConfidence.length} high-confidence instinct(s) available:`,
-      );
-      // Show top 3 by confidence
-      highConfidence
-        .sort((a, b) => b.confidence - a.confidence)
-        .slice(0, 3)
-        .forEach((i) => {
-          console.error(
-            `  - [${(i.confidence * 100).toFixed(0)}%] ${i.pattern.slice(0, 60)}...`,
-          );
-        });
-    }
   }
 
   // Output nothing to stdout (success)

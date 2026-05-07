@@ -180,6 +180,7 @@ export async function POST(request: NextRequest) {
   }
 }
 ```
+
 ```
 
 #### Skill: api-testing
@@ -234,6 +235,7 @@ describe('API /api/[route]', () => {
   });
 });
 ```
+
 ```
 
 ### Bundle: Frontend Development
@@ -577,6 +579,7 @@ const codeReviewTasks = [
 ### Phase 1: Skill Infrastructure (Week 1)
 
 1. **Create Skills Directory Structure**
+
    ```
    .claude/
    ├── skills/

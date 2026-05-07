@@ -14,12 +14,14 @@ $ARGUMENTS
 Create practical, maintainable tests using modern tools:
 
 ### 1. **Testing Approach**
+
 - Unit tests for validation logic
 - Integration tests for full API flow
 - Edge case coverage
 - Error scenario testing
 
 ### 2. **Tools** (choose based on project)
+
 - **Vitest** - Fast, modern (recommended for new projects)
 - **Jest** - Established, widely used
 - **Supertest** - HTTP assertions
@@ -28,11 +30,13 @@ Create practical, maintainable tests using modern tools:
 ### 3. **Test Coverage**
 
 **Happy Paths**
+
 - Valid inputs return expected results
 - Proper status codes
 - Correct response structure
 
 **Error Paths**
+
 - Invalid input validation
 - Authentication failures
 - Rate limiting
@@ -40,6 +44,7 @@ Create practical, maintainable tests using modern tools:
 - Missing required fields
 
 **Edge Cases**
+
 - Empty requests
 - Malformed JSON
 - Large payloads
@@ -118,6 +123,7 @@ Generate production-ready tests I can run immediately with `npm test`.
 ## Next Steps
 
 After generating tests, consider running:
+
 - `/api-protect` - Add authentication and security if not already done
 - `/lint` - Run linting to ensure test code quality
 - `/docs` - Generate or update API documentation

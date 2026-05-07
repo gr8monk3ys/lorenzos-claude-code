@@ -14,6 +14,7 @@ The final phase of the RIPER workflow: ensure quality before considering work co
 ### Step 1: Self-Review
 
 Before any other checks:
+
 - Does the code match the original plan?
 - Are there any shortcuts or hacks?
 - Would you be proud to show this code?
@@ -22,6 +23,7 @@ Before any other checks:
 ### Step 2: Automated Checks
 
 Run all automated quality gates:
+
 ```bash
 # Type checking
 npx tsc --noEmit
@@ -39,6 +41,7 @@ npm run build
 ### Step 3: Manual Testing
 
 Verify functionality:
+
 - Happy path works as expected
 - Edge cases handled gracefully
 - Error states display correctly
@@ -47,6 +50,7 @@ Verify functionality:
 ### Step 4: Final Verification
 
 Cross-check against requirements:
+
 - All acceptance criteria met
 - Non-functional requirements satisfied
 - No regressions introduced
@@ -55,6 +59,7 @@ Cross-check against requirements:
 ## Review Checklist
 
 ### Code Quality
+
 ```
 - [ ] No TODO/FIXME comments left unaddressed
 - [ ] No console.log or debugging statements
@@ -67,6 +72,7 @@ Cross-check against requirements:
 ```
 
 ### Testing
+
 ```
 - [ ] Unit tests passing
 - [ ] Integration tests passing (if applicable)
@@ -78,6 +84,7 @@ Cross-check against requirements:
 ```
 
 ### Security
+
 ```
 - [ ] No secrets/credentials in code
 - [ ] No SQL injection vulnerabilities
@@ -89,6 +96,7 @@ Cross-check against requirements:
 ```
 
 ### Performance
+
 ```
 - [ ] No N+1 query issues
 - [ ] No unnecessary re-renders
@@ -99,6 +107,7 @@ Cross-check against requirements:
 ```
 
 ### Accessibility
+
 ```
 - [ ] Keyboard navigation works
 - [ ] Screen reader compatible
@@ -109,6 +118,7 @@ Cross-check against requirements:
 ```
 
 ### Documentation
+
 ```
 - [ ] Code comments where needed
 - [ ] README updated if needed
@@ -169,6 +179,7 @@ Cross-check against requirements:
 ## Quality Grades
 
 ### Grade A (Excellent)
+
 - All automated checks pass
 - All manual tests pass
 - No issues found
@@ -176,24 +187,28 @@ Cross-check against requirements:
 - Ready for immediate merge
 
 ### Grade B (Good)
+
 - All automated checks pass
 - Minor issues found but fixed
 - Documentation adequate
 - Ready for merge after minor polish
 
 ### Grade C (Acceptable)
+
 - Most checks pass
 - Some issues deferred
 - Basic documentation present
 - Merge with known limitations
 
 ### Grade D (Needs Work)
+
 - Some checks failing
 - Significant issues found
 - Missing documentation
 - Requires revision before merge
 
 ### Grade F (Not Ready)
+
 - Multiple checks failing
 - Critical issues found
 - Not meeting requirements
@@ -202,6 +217,7 @@ Cross-check against requirements:
 ## Review Anti-Patterns
 
 ### Avoid
+
 - ❌ Rubber-stamping without actually checking
 - ❌ Only running automated tests
 - ❌ Skipping manual verification
@@ -209,6 +225,7 @@ Cross-check against requirements:
 - ❌ Deferring everything to "later"
 
 ### Instead
+
 - ✅ Take time to actually review
 - ✅ Verify both automated and manual
 - ✅ Fix issues before they accumulate
@@ -218,6 +235,7 @@ Cross-check against requirements:
 ## When to Block
 
 Block the work if:
+
 - Security vulnerability found
 - Critical functionality broken
 - Data loss possible
@@ -248,6 +266,7 @@ Ready for: merge / PR / deployment
 ## Post-Review Actions
 
 After approved review:
+
 ```
 /ledger update TASK-XXX status: completed
 /memory note: Completed auth feature with approach X

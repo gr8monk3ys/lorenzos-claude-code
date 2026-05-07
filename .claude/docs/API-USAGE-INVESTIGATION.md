@@ -97,6 +97,7 @@ ENABLE_TOOL_SEARCH=auto:5 claude
 ### Tier Your MCPs by Actual Usage
 
 **Tier 1: Keep Always Active (Daily Use)**
+
 ```json
 "context7": {},     // Documentation lookup
 "github": {},       // PR/issue work
@@ -105,6 +106,7 @@ ENABLE_TOOL_SEARCH=auto:5 claude
 ```
 
 **Tier 2: Project-Specific (Use .mcp.json)**
+
 ```json
 // Create .mcp.json in project roots
 {
@@ -131,6 +133,7 @@ ENABLE_TOOL_SEARCH=auto:5 claude
 | gitlab | `glab` CLI |
 
 **Tier 4: Remove Entirely (Redundant or Rarely Used)**
+
 ```
 chrome-devtools   → Use playwright instead
 sequential-thinking → Claude does this natively
@@ -256,12 +259,14 @@ cd ../feature-api && claude
 ```
 
 **Tools for this:**
+
 - **Claude Squad**: Manages multiple terminal agents with tmux
 - **CCManager**: CLI for multiple coding assistant sessions
 
 ### 2. Blast Radius Management
 
 Before assigning any task, evaluate:
+
 - How many files will it touch?
 - Is it isolated or does it span the codebase?
 
@@ -282,6 +287,7 @@ Before assigning any task, evaluate:
 ### 4. Session Management
 
 Use the existing hooks in your plugin:
+
 - `session-start.sh` - Restores previous context
 - `session-end.sh` - Persists session state
 - `strategic-compact.sh` - Suggests compaction at breakpoints
@@ -293,17 +299,20 @@ Use the existing hooks in your plugin:
 ### Immediate (Today)
 
 1. **Enable Tool Search**
+
    ```bash
    export ENABLE_TOOL_SEARCH=true
    ```
 
 2. **Audit your active MCPs**
+
    ```
    /context
    /mcp
    ```
 
 3. **Disable unused MCPs for this session**
+
    ```
    /mcp disable [server-name]
    ```
@@ -328,21 +337,25 @@ Use the existing hooks in your plugin:
 ## References
 
 ### Anthropic Documentation
+
 - [Tool Search Documentation](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool)
 - [Claude Code MCP Documentation](https://code.claude.com/docs/en/mcp)
 - [Claude Code Best Practices](https://www.anthropic.com/engineering/claude-code-best-practices)
 
 ### GitHub Issues
+
 - [Issue #7336](https://github.com/anthropics/claude-code/issues/7336) - Lazy loading with 95% reduction POC
 - [Issue #7172](https://github.com/anthropics/claude-code/issues/7172) - Token management improvements
 - [Issue #3406](https://github.com/anthropics/claude-code/issues/3406) - Built-in tools overhead
 
 ### Community Resources
+
 - [Peter Steinberger's Blog](https://steipete.me) - AI-native development workflow
 - [Simon Willison: Parallel Coding Agents](https://simonwillison.net/2025/Oct/5/parallel-coding-agents/)
 - [Medium: 46.9% Token Reduction with Tool Search](https://medium.com/@joe.njenga/claude-code-just-cut-mcp-context-bloat-by-46-9-51k-tokens-down-to-8-5k-with-new-tool-search-ddf9e905f734)
 
 ### Tools
+
 - [Claude Squad](https://github.com/smtg-ai/claude-squad) - Multi-agent management
 - [agent-rules](https://github.com/steipete/agent-rules) - Reusable configuration rules
 - [CCManager](https://github.com/kbwo/ccmanager) - Multiple session management

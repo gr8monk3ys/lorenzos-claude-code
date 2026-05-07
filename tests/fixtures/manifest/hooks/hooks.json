@@ -1,0 +1,5 @@
+{
+  "hooks": [
+    { "event": "PostToolUse", "command": "node ./.claude/hooks/auto-format.js", "description": "Auto-formats code" }
+  ]
+}

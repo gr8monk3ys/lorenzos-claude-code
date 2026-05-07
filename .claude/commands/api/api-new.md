@@ -12,31 +12,37 @@ API Endpoint: $ARGUMENTS
 ## Implementation Guidelines
 
 ### 1. **Next.js 15 App Router** (Recommended)
+
 Use Route Handlers in `app/api/` directory with TypeScript
 
 ### 2. **Validation**
+
 - Use Zod for runtime type validation
 - Validate input early (before DB/API calls)
 - Return clear validation error messages
 
 ### 3. **Error Handling**
+
 - Global error handling with try/catch
 - Consistent error response format
 - Appropriate HTTP status codes
 - Never expose sensitive error details
 
 ### 4. **TypeScript**
+
 - Strict typing for requests/responses
 - Shared type definitions
 - No `any` types
 
 ### 5. **Security**
+
 - Input sanitization
 - CORS configuration if needed
 - Rate limiting considerations
 - Authentication/authorization checks
 
 ### 6. **Response Format**
+
 ```typescript
 // Success
 { data: T, success: true }
@@ -73,6 +79,7 @@ Generate production-ready code that I can immediately use in my Next.js project.
 ## Next Steps
 
 After creating your API endpoint, consider running:
+
 - `/api-test` - Generate comprehensive tests for this endpoint
 - `/api-protect` - Add authentication, rate limiting, and security
 - `/docs` - Generate API documentation

@@ -12,28 +12,33 @@ $ARGUMENTS
 ## Supported Platforms
 
 ### Vercel (Next.js Optimized)
+
 - Zero-config deployments for Next.js
 - Automatic previews for pull requests
 - Edge Network deployment
 - Environment variables management
 
 ### Netlify
+
 - Static sites and serverless functions
 - Deploy previews
 - Forms and identity services
 - Build plugins
 
 ### AWS (EC2, ECS, Lambda)
+
 - Full infrastructure control
 - Scalable containerized deployments
 - Serverless functions
 
 ### Docker + Docker Compose
+
 - Containerized applications
 - Multi-service orchestration
 - Local and production parity
 
 ### GitHub Actions CI/CD
+
 - Automated testing and deployment
 - Multi-platform support
 - Secrets management
@@ -43,6 +48,7 @@ $ARGUMENTS
 ### Vercel Deployment
 
 **vercel.json**
+
 ```json
 {
   "version": 2,
@@ -62,6 +68,7 @@ $ARGUMENTS
 ```
 
 **GitHub Actions (.github/workflows/deploy.yml)**
+
 ```yaml
 name: Deploy to Vercel
 
@@ -106,6 +113,7 @@ jobs:
 ### Docker Deployment
 
 **Dockerfile**
+
 ```dockerfile
 # Multi-stage build for Next.js
 FROM node:20-alpine AS base
@@ -157,6 +165,7 @@ CMD ["node", "server.js"]
 ```
 
 **docker-compose.yml**
+
 ```yaml
 version: '3.8'
 
@@ -194,6 +203,7 @@ volumes:
 ```
 
 **.dockerignore**
+
 ```
 node_modules
 .next
@@ -209,6 +219,7 @@ coverage
 ### AWS ECS Deployment
 
 **buildspec.yml** (AWS CodeBuild)
+
 ```yaml
 version: 0.2
 
@@ -286,6 +297,7 @@ jobs:
 ## Best Practices
 
 ### Environment Variables
+
 ```bash
 # .env.example (commit this)
 DATABASE_URL=postgresql://user:pass@localhost:5432/db
@@ -297,6 +309,7 @@ NEXT_PUBLIC_API_URL=https://api.example.com
 ```
 
 ### Pre-deployment Checklist
+
 - [ ] All tests passing
 - [ ] Environment variables configured
 - [ ] Database migrations run
@@ -309,6 +322,7 @@ NEXT_PUBLIC_API_URL=https://api.example.com
 - [ ] Rollback plan ready
 
 ### Zero-Downtime Deployment
+
 ```yaml
 # Blue-Green Deployment
 steps:
@@ -320,6 +334,7 @@ steps:
 ```
 
 ### Database Migrations
+
 ```bash
 # Run migrations before deploying code
 npm run migrate:production
@@ -329,6 +344,7 @@ npm run migrate:rollback
 ```
 
 ### Health Checks
+
 ```typescript
 // pages/api/health.ts
 export default function handler(req, res) {
@@ -340,6 +356,7 @@ export default function handler(req, res) {
 ```
 
 ### Monitoring & Logging
+
 ```typescript
 // Add to production config
 import * as Sentry from '@sentry/nextjs'
@@ -354,6 +371,7 @@ Sentry.init({
 ## Platform-Specific Commands
 
 ### Vercel CLI
+
 ```bash
 # Install Vercel CLI
 npm i -g vercel
@@ -370,6 +388,7 @@ vercel env ls
 ```
 
 ### Docker Commands
+
 ```bash
 # Build image
 docker build -t myapp:latest .
@@ -385,6 +404,7 @@ docker-compose logs -f app
 ```
 
 ### AWS CLI
+
 ```bash
 # Update ECS service
 aws ecs update-service \
@@ -399,6 +419,7 @@ aws logs tail /aws/ecs/my-service --follow
 ## Rollback Procedures
 
 ### Vercel
+
 ```bash
 # List deployments
 vercel ls
@@ -408,6 +429,7 @@ vercel promote [deployment-url]
 ```
 
 ### Docker
+
 ```bash
 # Rollback to previous image
 docker tag myapp:previous myapp:latest
@@ -415,6 +437,7 @@ docker-compose up -d
 ```
 
 ### GitHub Actions
+
 ```yaml
 # Manual rollback workflow
 on:
@@ -428,6 +451,7 @@ on:
 ## Output Format
 
 Generate:
+
 1. **Deployment Configuration** - Platform-specific config files
 2. **CI/CD Pipeline** - Automated deployment workflow
 3. **Environment Setup** - Environment variables template

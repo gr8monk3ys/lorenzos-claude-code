@@ -168,44 +168,8 @@ const skillsDir = path.join(__dirname, "..", ".claude", "skills");
 const skillFiles = fs.readdirSync(skillsDir).filter((f) => f.endsWith(".md"));
 
 test(`Found ${skillFiles.length} skill files`, () => {
-  if (skillFiles.length < 5) {
-    throw new Error(`Expected at least 5 skills, found ${skillFiles.length}`);
-  }
-});
-
-test("circuit-breaker skill exists", () => {
-  assertExists(path.join(skillsDir, "circuit-breaker.md"));
-});
-
-test("verification-first skill exists", () => {
-  assertExists(path.join(skillsDir, "verification-first.md"));
-});
-
-test("continuous-learning skill exists", () => {
-  assertExists(path.join(skillsDir, "continuous-learning.md"));
-});
-
-// Test: Learning System
-console.log("\nLearning System:");
-const instinctsDir = path.join(__dirname, "..", ".claude", "instincts");
-
-test("instincts directory exists", () => {
-  assertExists(instinctsDir);
-});
-
-test("instincts.json exists and is valid", () => {
-  assertValidJson(path.join(instinctsDir, "instincts.json"));
-});
-
-test("instincts.json has correct structure", () => {
-  const instincts = JSON.parse(
-    fs.readFileSync(path.join(instinctsDir, "instincts.json"), "utf8"),
-  );
-  if (!instincts.version) {
-    throw new Error("instincts.json missing version field");
-  }
-  if (!Array.isArray(instincts.instincts)) {
-    throw new Error("instincts.json missing instincts array");
+  if (skillFiles.length < 3) {
+    throw new Error(`Expected at least 3 skills, found ${skillFiles.length}`);
   }
 });
 

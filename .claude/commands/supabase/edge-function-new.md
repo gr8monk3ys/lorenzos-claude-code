@@ -12,6 +12,7 @@ $ARGUMENTS
 ## Supabase Edge Functions Overview
 
 Edge Functions run on Deno Deploy (not Node.js):
+
 - TypeScript/JavaScript support
 - Run globally at the edge
 - Access to Supabase client
@@ -93,6 +94,7 @@ serve(async (req: Request) => {
 ### 3. **Common Use Cases**
 
 **Webhook Handler**
+
 ```typescript
 serve(async (req) => {
   const signature = req.headers.get('stripe-signature')
@@ -103,6 +105,7 @@ serve(async (req) => {
 ```
 
 **Scheduled Function** (with pg_cron)
+
 ```typescript
 serve(async () => {
   // Run daily cleanup, send emails, etc.
@@ -113,6 +116,7 @@ serve(async () => {
 ```
 
 **API Proxy/Transform**
+
 ```typescript
 serve(async (req) => {
   const apiKey = Deno.env.get('THIRD_PARTY_API_KEY')
@@ -179,6 +183,7 @@ const response = await fetch(
 ### 7. **Best Practices**
 
 **Security**
+
 -  Verify user authentication
 -  Use RLS policies
 -  Validate all inputs
@@ -186,18 +191,21 @@ const response = await fetch(
 -  Set CORS headers correctly
 
 **Performance**
+
 -  Keep functions small and focused
 -  Use streaming for large responses
 -  Cache when possible
 -  Handle timeouts (max 150s)
 
 **Error Handling**
+
 -  Proper HTTP status codes
 -  Consistent error format
 -  Log errors for debugging
 -  Don't expose sensitive info
 
 **Code Organization**
+
 -  One function per file
 -  Extract utilities to shared folder
 -  Use TypeScript for type safety
@@ -219,6 +227,7 @@ const apiKey = Deno.env.get('API_KEY')
 ### 9. **Common Patterns**
 
 **CORS Handling**
+
 ```typescript
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -235,6 +244,7 @@ serve(async (req) => {
 ```
 
 **Database Access**
+
 ```typescript
 // Read with RLS (uses user's token)
 const { data } = await supabaseClient

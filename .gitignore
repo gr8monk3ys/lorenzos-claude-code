@@ -13,3 +13,7 @@
 
 # Local settings (users should not commit these)
 .claude/settings.local.json
+
+# Node
+node_modules/
+package-lock.json

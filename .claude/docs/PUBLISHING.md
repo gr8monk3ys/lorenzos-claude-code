@@ -13,7 +13,7 @@ Complete step-by-step instructions for publishing your Claude Code plugin to Git
 
 ### 1.1 Create New Repository on GitHub
 
-1. Go to https://github.com/new
+1. Go to <https://github.com/new>
 2. Fill in the details:
    - **Repository name**: `lorenzos-claude-code`
    - **Description**: "Lorenzo's personal Claude Code setup with 14 productivity commands and 11 specialized AI agents for modern web development"
@@ -36,8 +36,9 @@ git push -u origin main
 ```
 
 If you encounter authentication issues:
+
 - Use a Personal Access Token instead of password
-- Or set up SSH keys (recommended): https://docs.github.com/en/authentication/connecting-to-github-with-ssh
+- Or set up SSH keys (recommended): <https://docs.github.com/en/authentication/connecting-to-github-with-ssh>
 
 ## Step 2: Verify Installation Works
 
@@ -55,6 +56,7 @@ Test that your plugin can be installed:
 ```
 
 To uninstall and test again:
+
 ```bash
 /plugin uninstall lorenzos-claude-code
 ```
@@ -74,12 +76,14 @@ Share this command with others:
 ### Option B: Submit to Community Marketplaces
 
 #### Claude Code Plugins Marketplace
-1. Visit https://claudecodemarketplace.com/
+
+1. Visit <https://claudecodemarketplace.com/>
 2. Follow their submission guidelines
 3. Share your plugin details
 
 #### CC Plugins Curated Marketplace
-1. Visit https://github.com/ccplugins/marketplace
+
+1. Visit <https://github.com/ccplugins/marketplace>
 2. Fork the repository
 3. Add your plugin to their `marketplace.json`
 4. Create a Pull Request with this format:
@@ -96,7 +100,8 @@ Share this command with others:
 ```
 
 #### Claude Code Plugins Plus
-1. Visit https://github.com/jeremylongshore/claude-code-plugins-plus
+
+1. Visit <https://github.com/jeremylongshore/claude-code-plugins-plus>
 2. Follow their contribution guidelines
 3. Submit your plugin details
 
@@ -150,6 +155,7 @@ git push
 ```
 
 Users can update to the latest version:
+
 ```bash
 /plugin update lorenzos-claude-code
 ```
@@ -165,6 +171,7 @@ Users can update to the latest version:
 ### Issue: Plugin Won't Install
 
 Check:
+
 - Repository is public on GitHub
 - `.claude-plugin/plugin.json` exists in the repo root
 - JSON files have valid syntax (no trailing commas, proper quotes)
@@ -172,6 +179,7 @@ Check:
 ### Issue: Commands Don't Appear
 
 Check:
+
 - Command file paths in `plugin.json` match actual file locations
 - Command files have `.md` extension
 - Command files are not empty
@@ -179,6 +187,7 @@ Check:
 ### Issue: Agents Don't Activate
 
 Check:
+
 - Agent file paths in `plugin.json` match actual file locations
 - Agent files have proper frontmatter with `name` and `description`
 - Agents activate based on context, not commands
@@ -187,7 +196,7 @@ Check:
 
 For major versions, create GitHub releases:
 
-1. Go to your repo: https://github.com/gr8monk3ys/lorenzos-claude-code
+1. Go to your repo: <https://github.com/gr8monk3ys/lorenzos-claude-code>
 2. Click "Releases" → "Create a new release"
 3. Tag version: `v1.0.0`
 4. Release title: `v1.0.0 - Initial Release`
@@ -195,6 +204,7 @@ For major versions, create GitHub releases:
 6. Click "Publish release"
 
 Users can install specific versions:
+
 ```bash
 /plugin install gr8monk3ys/lorenzos-claude-code@v1.0.0
 ```
@@ -202,6 +212,7 @@ Users can install specific versions:
 ## Success Metrics
 
 Track your plugin's success:
+
 - ⭐ GitHub stars
 - 👁️ GitHub watchers
 - 🍴 GitHub forks
@@ -211,8 +222,9 @@ Track your plugin's success:
 ## Getting Help
 
 If you run into issues:
-- Claude Code Docs: https://docs.claude.com/en/docs/claude-code/plugin-marketplaces
-- GitHub Issues: https://github.com/anthropics/claude-code/issues
+
+- Claude Code Docs: <https://docs.claude.com/en/docs/claude-code/plugin-marketplaces>
+- GitHub Issues: <https://github.com/anthropics/claude-code/issues>
 - Community: Search for Claude Code plugins on GitHub
 
 ---

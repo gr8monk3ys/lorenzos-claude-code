@@ -5,6 +5,48 @@ All notable changes to Lorenzo's Claude Code plugin will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.0.0] - 2026-05-07
+
+### BREAKING — Rescope to Stack Scaffolding
+
+Repositioned from a general-purpose toolkit into a focused Next.js + React + Supabase scaffolding plugin that composes with [superpowers](https://github.com/obra/superpowers). Documentation and manifest drift fixed at the source: filesystem is now the single source of truth, generated outputs are checked in CI.
+
+#### Before → After
+
+| Component | v3 (on disk) | v4 |
+| --- | --- | --- |
+| Commands | 21 | 14 |
+| Skills | 10 | 3 |
+| Hooks | 15 | 14 |
+| Manifest sources of truth | 5 (drifted) | 1 (filesystem) |
+| Published to npm | promised, missing | yes |
+
+#### Removed (use superpowers replacements)
+
+- **Skills**: `circuit-breaker` → `superpowers:systematic-debugging`; `verification-first` → `superpowers:verification-before-completion`; `micro-tasking` → `superpowers:executing-plans`; `memory-persistence` → Claude Code built-in memory; `code-quality` → `superpowers:requesting-code-review`; `continuous-learning` and `research` → no direct superpowers replacement (`superpowers:brainstorming` and `superpowers:writing-skills` cover overlapping ground).
+- **Commands**: `/plan` → `superpowers:writing-plans`; `/research`, `/learn`, `/evolve`, `/pickup`, `/handoff` → covered by `superpowers:brainstorming`, `superpowers:executing-plans`, and built-in session continuity; `/memory` → Claude Code built-in memory.
+- **Hook**: `circuit-breaker.js` (use `superpowers:systematic-debugging`).
+- **Files**: `.claude/TODO.md` (replaced by `ROADMAP.md`), `.claude/instincts/`, `.claude/ledger/` (orphan data dirs).
+
+### Added
+
+- `scripts/sync-manifest.js` — regenerates `plugin.json` and AUTOGEN sections of `README.md` / `CLAUDE.md` from the filesystem.
+- `npm run sync` and `npm run sync:check`. The `--check` mode is wired into `prepublishOnly`, pre-commit, and CI.
+- `tests/manifest-sync.test.js` — node:test unit tests for the sync logic.
+- `ROADMAP.md` — concrete near-term work.
+
+### Changed
+
+- `README.md` — full rewrite. New pitch focuses on stack scaffolding and explicit superpowers composition. The "vs. competition" framing is removed.
+- `CLAUDE.md` — slimmed to project memory.
+- `bin/cli.js doctor` — expected counts updated.
+
+### Why
+
+The v3.0.0 "innovations" (circuit-breaker, verification-first, micro-tasking) now have direct counterparts in the official superpowers skill system. Continuing to ship them as differentiators is no longer credible. This release positions the plugin where it adds genuine value — Next.js / React / Supabase scaffolding — and fixes the documentation/manifest drift that had accumulated since v3.0.0.
+
+---
+
 ## [3.0.0] - 2026-01-31
 
 ### BREAKING - Aggressive Simplification
