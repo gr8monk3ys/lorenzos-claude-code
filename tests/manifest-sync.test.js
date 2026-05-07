@@ -41,3 +41,24 @@ Body.`
 test('parseFrontmatter throws when frontmatter block is missing', () => {
   assert.throws(() => manifest.parseFrontmatter('no frontmatter here\n'), /frontmatter/i)
 })
+
+const path = require('node:path')
+
+test('scanCategory walks subdirectories and parses each .md', () => {
+  const fixtures = path.join(__dirname, 'fixtures/manifest/commands')
+  const entries = manifest.scanCategory(fixtures)
+  assert.equal(entries.length, 2)
+  const names = entries.map(e => e.name).sort()
+  assert.deepEqual(names, ['api-new', 'component-new'])
+  const apiNew = entries.find(e => e.name === 'api-new')
+  assert.equal(apiNew.description, 'Create a new Next.js API route with validation')
+  assert.match(apiNew.path.replace(/\\/g, '/'), /commands\/api\/api-new\.md$/)
+})
+
+test('scanCategory results are stable-sorted by name', () => {
+  const fixtures = path.join(__dirname, 'fixtures/manifest/commands')
+  const a = manifest.scanCategory(fixtures).map(e => e.name)
+  const b = manifest.scanCategory(fixtures).map(e => e.name)
+  assert.deepEqual(a, b)
+  assert.deepEqual(a, [...a].sort())
+})

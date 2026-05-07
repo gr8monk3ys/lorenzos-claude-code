@@ -1,5 +1,8 @@
 'use strict'
 
+const fs = require('node:fs')
+const path = require('node:path')
+
 function parseFrontmatter(content) {
   const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---/)
   if (!match) {
@@ -26,7 +29,25 @@ function parseFrontmatter(content) {
   }
   return out
 }
-function scanCategory(_dir) { throw new Error('not implemented') }
+function scanCategory(dir) {
+  const out = []
+  function walk(current) {
+    if (!fs.existsSync(current)) return
+    for (const entry of fs.readdirSync(current, { withFileTypes: true })) {
+      const full = path.join(current, entry.name)
+      if (entry.isDirectory()) walk(full)
+      else if (entry.isFile() && entry.name.endsWith('.md')) {
+        const content = fs.readFileSync(full, 'utf8')
+        const fm = parseFrontmatter(content)
+        const name = fm.name || path.basename(entry.name, '.md')
+        out.push({ name, description: fm.description || '', path: full })
+      }
+    }
+  }
+  walk(dir)
+  out.sort((a, b) => a.name.localeCompare(b.name))
+  return out
+}
 function scanHooks(_dir) { throw new Error('not implemented') }
 function buildPluginJson(_inputs) { throw new Error('not implemented') }
 function replaceMarker(_content, _name, _replacement) { throw new Error('not implemented') }
