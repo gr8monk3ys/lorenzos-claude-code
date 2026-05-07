@@ -23,8 +23,8 @@ Repositioned from a general-purpose toolkit into a focused Next.js + React + Sup
 
 #### Removed (use superpowers replacements)
 
-- **Skills**: `circuit-breaker` → `superpowers:systematic-debugging`; `verification-first` → `superpowers:verification-before-completion`; `micro-tasking` → `superpowers:executing-plans`; `memory-persistence` → Claude Code built-in memory; `code-quality` → `superpowers:requesting-code-review`; `continuous-learning`, `research` → `superpowers:learn`, `superpowers:research`.
-- **Commands**: `/plan`, `/research`, `/learn`, `/evolve`, `/pickup`, `/handoff`, `/memory` — all covered by superpowers skills or built-in features.
+- **Skills**: `circuit-breaker` → `superpowers:systematic-debugging`; `verification-first` → `superpowers:verification-before-completion`; `micro-tasking` → `superpowers:executing-plans`; `memory-persistence` → Claude Code built-in memory; `code-quality` → `superpowers:requesting-code-review`; `continuous-learning` and `research` → no direct superpowers replacement (`superpowers:brainstorming` and `superpowers:writing-skills` cover overlapping ground).
+- **Commands**: `/plan` → `superpowers:writing-plans`; `/research`, `/learn`, `/evolve`, `/pickup`, `/handoff` → covered by `superpowers:brainstorming`, `superpowers:executing-plans`, and built-in session continuity; `/memory` → Claude Code built-in memory.
 - **Hook**: `circuit-breaker.js` (use `superpowers:systematic-debugging`).
 - **Files**: `.claude/TODO.md` (replaced by `ROADMAP.md`), `.claude/instincts/`, `.claude/ledger/` (orphan data dirs).
 
