@@ -1,7 +1,7 @@
 {
   "name": "@gr8monk3ys/claude-code-plugin",
-  "version": "3.2.0",
-  "description": "Minimal Claude Code plugin for Next.js + React + Supabase. 18 commands, 6 agents, 10 skills, 9 hooks. Beat the competition with circuit-breaker, verification-first, and micro-tasking.",
+  "version": "4.0.0",
+  "description": "Stack-focused Claude Code plugin for Next.js + React + Supabase. Scaffolds components, API routes, hooks, Supabase types, and Edge Functions. Composes with superpowers.",
   "keywords": [
     "claude-code",
     "claude",

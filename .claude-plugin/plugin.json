@@ -1,6 +1,6 @@
 {
   "name": "lorenzos-claude-code",
-  "description": "Minimal Claude Code plugin for Next.js + React + Supabase. 18 commands, 6 agents, 10 skills, 9 hooks. Beat the competition with circuit-breaker, verification-first, and micro-tasking.",
+  "description": "Stack-focused Claude Code plugin for Next.js + React + Supabase. Scaffolds components, API routes, hooks, Supabase types, and Edge Functions. Composes with superpowers.",
   "author": {
     "name": "Lorenzo",
     "email": "gr8monk3ys@gmail.com",
@@ -60,7 +60,7 @@
       "description": "GitHub integration"
     }
   },
-  "version": "3.2.0",
+  "version": "4.0.0",
   "commands": [
     {
       "name": "api-new",
