@@ -23,6 +23,7 @@ If the test framework is unclear, ask: "Which testing framework should I use: Je
 ## Testing Framework Selection
 
 Automatically detect or ask which framework to use:
+
 - **Jest** - Popular React/Node.js testing (most common)
 - **Vitest** - Fast Vite-native testing framework
 - **Playwright** - E2E and browser testing
@@ -97,6 +98,7 @@ test.describe('Feature Name', () => {
 ### What to Test
 
 **Components**:
+
 - ✅ Rendering with different props
 - ✅ User interactions (clicks, typing, etc.)
 - ✅ State changes and updates
@@ -105,12 +107,14 @@ test.describe('Feature Name', () => {
 - ✅ Accessibility (a11y) requirements
 
 **Functions/Utils**:
+
 - ✅ Expected inputs and outputs
 - ✅ Edge cases (null, undefined, empty)
 - ✅ Error conditions
 - ✅ Type safety validation
 
 **API Routes**:
+
 - ✅ Success responses with valid data
 - ✅ Error responses (400, 401, 404, 500)
 - ✅ Input validation
@@ -118,6 +122,7 @@ test.describe('Feature Name', () => {
 - ✅ Rate limiting
 
 **E2E Flows**:
+
 - ✅ Happy path user journeys
 - ✅ Form submissions and validation
 - ✅ Navigation and routing
@@ -134,17 +139,20 @@ test.describe('Feature Name', () => {
 ## Best Practices
 
 ### Test Organization
+
 - Use `describe` blocks to group related tests
 - Use clear, descriptive test names: "should [expected behavior] when [condition]"
 - Follow Arrange-Act-Assert pattern
 - One assertion per test when possible
 
 ### Test Data
+
 - Use factories or fixtures for complex test data
 - Mock external dependencies (APIs, databases)
 - Use meaningful test data that reflects real usage
 
 ### Mocking
+
 ```typescript
 // Mock external modules
 vi.mock('./api', () => ({
@@ -157,6 +165,7 @@ mockFetchUser.mockResolvedValue({ id: 1, name: 'Test' })
 ```
 
 ### Async Testing
+
 ```typescript
 // Wait for elements
 await waitFor(() => {
@@ -168,6 +177,7 @@ await expect(asyncFunction()).resolves.toBe(expected)
 ```
 
 ### Accessibility Testing
+
 ```typescript
 // Check for accessible names
 expect(screen.getByRole('button', { name: 'Submit' })).toBeInTheDocument()
@@ -179,6 +189,7 @@ expect(button).toHaveAttribute('aria-label', 'Close dialog')
 ## Test Utilities
 
 ### Common Testing Library Queries (Preferred Order)
+
 1. `getByRole` - Most accessible
 2. `getByLabelText` - Form elements
 3. `getByPlaceholderText` - Inputs
@@ -186,6 +197,7 @@ expect(button).toHaveAttribute('aria-label', 'Close dialog')
 5. `getByTestId` - Last resort
 
 ### User Event Simulation
+
 ```typescript
 import { userEvent } from '@testing-library/user-event'
 
@@ -198,6 +210,7 @@ await user.selectOptions(select, 'value')
 ## Output Format
 
 Generate:
+
 1. **Test File** - Complete test file with proper imports
 2. **Test Cases** - Comprehensive coverage of functionality
 3. **Mocks** - Necessary mocks for external dependencies

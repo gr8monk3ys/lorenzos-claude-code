@@ -13,6 +13,7 @@ This file defines project-specific rules that Claude should follow when working 
 ## Code Style Rules
 
 ### TypeScript
+
 ```yaml
 typescript:
   strict: true
@@ -23,6 +24,7 @@ typescript:
 ```
 
 ### Formatting
+
 ```yaml
 formatting:
   indent: 2 spaces
@@ -33,6 +35,7 @@ formatting:
 ```
 
 ### Naming Conventions
+
 ```yaml
 naming:
   components: PascalCase
@@ -48,6 +51,7 @@ naming:
 ## Architecture Rules
 
 ### File Organization
+
 ```yaml
 structure:
   components: src/components/
@@ -59,6 +63,7 @@ structure:
 ```
 
 ### Component Rules
+
 ```yaml
 components:
   max_lines: 200
@@ -69,6 +74,7 @@ components:
 ```
 
 ### API Rules
+
 ```yaml
 api:
   validation: zod_required
@@ -80,6 +86,7 @@ api:
 ## Framework-Specific Rules
 
 ### Next.js
+
 ```yaml
 nextjs:
   version: 15
@@ -90,6 +97,7 @@ nextjs:
 ```
 
 ### React
+
 ```yaml
 react:
   hooks_only: true
@@ -101,6 +109,7 @@ react:
 ## Testing Rules
 
 ### Unit Tests
+
 ```yaml
 testing:
   framework: vitest
@@ -110,6 +119,7 @@ testing:
 ```
 
 ### Test Structure
+
 ```yaml
 test_structure:
   describe_component: true
@@ -121,6 +131,7 @@ test_structure:
 ## Security Rules
 
 ### General
+
 ```yaml
 security:
   no_secrets_in_code: true
@@ -130,6 +141,7 @@ security:
 ```
 
 ### Authentication
+
 ```yaml
 auth:
   jwt_in_httponly_cookies: true
@@ -140,6 +152,7 @@ auth:
 ## Documentation Rules
 
 ### Code Comments
+
 ```yaml
 comments:
   when: non_obvious_logic_only
@@ -149,6 +162,7 @@ comments:
 ```
 
 ### README
+
 ```yaml
 readme:
   required_sections:
@@ -161,6 +175,7 @@ readme:
 ## Git Rules
 
 ### Commits
+
 ```yaml
 commits:
   conventional_commits: true
@@ -170,6 +185,7 @@ commits:
 ```
 
 ### Branches
+
 ```yaml
 branches:
   main: protected
@@ -180,6 +196,7 @@ branches:
 ## Performance Rules
 
 ### General
+
 ```yaml
 performance:
   lazy_load_routes: true
@@ -189,6 +206,7 @@ performance:
 ```
 
 ### Database
+
 ```yaml
 database:
   no_n_plus_one: true
@@ -202,6 +220,7 @@ database:
 ## Rule Priorities
 
 When rules conflict, follow this priority:
+
 1. Security rules (highest)
 2. Correctness rules
 3. Performance rules
@@ -210,6 +229,7 @@ When rules conflict, follow this priority:
 ## Exceptions
 
 Document any exceptions to rules here:
+
 ```yaml
 exceptions:
   - file: legacy/old-component.tsx

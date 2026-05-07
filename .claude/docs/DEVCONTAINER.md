@@ -5,6 +5,7 @@ This guide explains how to use the DevContainer configuration for secure, isolat
 ## What is a DevContainer?
 
 A DevContainer (Development Container) is a Docker-based development environment that:
+
 - **Isolates** your development from your host system
 - **Standardizes** the environment across team members
 - **Secures** file access to only your project
@@ -15,11 +16,13 @@ A DevContainer (Development Container) is a Docker-based development environment
 ### 1. Security Isolation
 
 **File System Sandboxing**
+
 - Claude Code can only access files within your project
 - No access to `~/.ssh`, `~/.aws`, or other sensitive directories
 - Prevents accidental modification of system files
 
 **Network Restrictions**
+
 - Optional firewall limits outbound connections
 - Whitelist-only access to approved services
 - Prevents data exfiltration
@@ -27,12 +30,14 @@ A DevContainer (Development Container) is a Docker-based development environment
 ### 2. Reproducible Environment
 
 **Consistent Setup**
+
 - Same Node.js version (20 LTS)
 - Same Claude Code version
 - Same development tools
 - Works identically on any machine
 
 **No "Works on My Machine"**
+
 - New team members get identical setup
 - CI/CD uses same environment
 - Debugging is consistent
@@ -40,6 +45,7 @@ A DevContainer (Development Container) is a Docker-based development environment
 ### 3. Pre-installed Tools
 
 The DevContainer includes:
+
 - **Node.js 20** - JavaScript runtime
 - **Claude Code** - Latest version
 - **TypeScript** - Type checking
@@ -51,6 +57,7 @@ The DevContainer includes:
 ### 4. VS Code Integration
 
 **Recommended Extensions**
+
 - Claude Code extension
 - ESLint + Prettier
 - Playwright test runner
@@ -58,6 +65,7 @@ The DevContainer includes:
 - GitLens
 
 **Pre-configured Settings**
+
 - Format on save
 - TypeScript strict mode
 - Consistent code style
@@ -73,14 +81,17 @@ The DevContainer includes:
 ### Opening in DevContainer
 
 **Option 1: VS Code Command**
+
 1. Open project in VS Code
 2. Press `F1` → "Dev Containers: Reopen in Container"
 3. Wait for container to build (~2-5 minutes first time)
 
 **Option 2: Click Notification**
+
 - VS Code will prompt "Reopen in Container" when detecting `.devcontainer/`
 
 **Option 3: Command Line**
+
 ```bash
 code --folder-uri vscode-remote://dev-container+$(pwd)
 ```
@@ -88,6 +99,7 @@ code --folder-uri vscode-remote://dev-container+$(pwd)
 ### First Time Setup
 
 On first launch:
+
 1. Container image builds (cached for future use)
 2. VS Code extensions install
 3. Claude Code authenticates (if not cached)
@@ -150,6 +162,7 @@ Key settings explained:
 ### Dockerfile
 
 The Dockerfile:
+
 1. Starts from `node:20-bookworm`
 2. Installs system dependencies
 3. Installs Claude Code globally
@@ -161,10 +174,12 @@ The Dockerfile:
 The `init-firewall.sh` script can restrict network access:
 
 **Permissive Mode** (Default)
+
 - All outbound traffic allowed
 - Good for development
 
 **Strict Mode** (Uncomment rules)
+
 - Only approved destinations allowed:
   - GitHub (git operations)
   - Anthropic API (Claude)
@@ -173,6 +188,7 @@ The `init-firewall.sh` script can restrict network access:
   - Vercel (deployments)
 
 To enable strict mode:
+
 ```bash
 # Edit .devcontainer/init-firewall.sh
 # Uncomment the iptables rules
@@ -196,6 +212,7 @@ To enable strict mode:
 ### Persisting Additional Data
 
 Add mounts in `devcontainer.json`:
+
 ```json
 "mounts": [
   "source=claude-config,target=/home/node/.claude,type=volume",
@@ -208,12 +225,14 @@ Add mounts in `devcontainer.json`:
 ### Container Won't Start
 
 **Docker not running**
+
 ```bash
 # Start Docker Desktop or:
 sudo systemctl start docker
 ```
 
 **Port conflict**
+
 ```bash
 # Check what's using port 3000
 lsof -i :3000
@@ -223,12 +242,14 @@ lsof -i :3000
 ### Claude Code Not Working
 
 **Authentication required**
+
 ```bash
 # In container terminal:
 claude auth login
 ```
 
 **Version mismatch**
+
 ```bash
 # Rebuild with latest:
 # F1 → "Dev Containers: Rebuild Container"
@@ -237,9 +258,11 @@ claude auth login
 ### Slow Performance
 
 **Increase Docker memory**
+
 - Docker Desktop → Settings → Resources → Memory: 8GB+
 
 **Use faster file sync**
+
 ```json
 // In devcontainer.json
 "mounts": [
@@ -250,9 +273,11 @@ claude auth login
 ### Extensions Not Loading
 
 **Rebuild container**
+
 - F1 → "Dev Containers: Rebuild Container"
 
 **Check extension compatibility**
+
 - Some extensions don't work in containers
 - Check extension's "Remote" support
 

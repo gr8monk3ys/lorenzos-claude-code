@@ -20,6 +20,7 @@ Complete end-to-end workflow for resolving GitHub issues from identification thr
 **When to use**: When you need to fully resolve a GitHub issue with proper git workflow, testing, and documentation.
 
 **Prerequisites**:
+
 - GitHub CLI authenticated (`gh auth status`)
 - Clean working tree (no uncommitted changes)
 - Write access to repository
@@ -39,6 +40,7 @@ gh issue view [NUMBER]
 ```
 
 Parse the issue to understand:
+
 - **Problem**: What needs to be fixed?
 - **Acceptance criteria**: How do we know it's fixed?
 - **Scope**: What files/components are affected?
@@ -61,6 +63,7 @@ git checkout -b fix/[issue-number]-[short-description]
 ```
 
 **Branch naming conventions**:
+
 - `fix/` - Bug fixes
 - `feat/` - New features
 - `bug/` - Bug reports
@@ -72,6 +75,7 @@ git checkout -b fix/[issue-number]-[short-description]
 Based on issue analysis:
 
 1. **Locate affected files**:
+
    ```bash
    # Search codebase for relevant code
    grep -r "relevant_term" src/
@@ -84,6 +88,7 @@ Based on issue analysis:
    - Keep changes focused on the issue
 
 3. **Verify changes compile**:
+
    ```bash
    npm run build
    # OR
@@ -101,6 +106,7 @@ npm test
 ```
 
 **Test requirements**:
+
 - [ ] Unit tests for changed functions
 - [ ] Edge cases covered
 - [ ] Error scenarios tested
@@ -166,6 +172,7 @@ Fixes #123"
 ```
 
 **Conventional commit types**:
+
 - `fix:` - Bug fixes
 - `feat:` - New features
 - `docs:` - Documentation only
@@ -206,6 +213,7 @@ Fixes #[issue-number]
 ```
 
 **PR options**:
+
 - `--draft` - Create as draft PR
 - `--reviewer @username` - Request specific reviewer
 - `--label bug` - Add labels
@@ -290,24 +298,28 @@ git branch -d fix/[issue-number]-[short-description]
 ## Error Handling
 
 ### Issue Not Found
+
 ```
 Error: Issue #123 not found
 Action: Verify issue number and repository
 ```
 
 ### Dirty Working Tree
+
 ```
 Error: Uncommitted changes detected
 Action: Commit or stash changes before proceeding
 ```
 
 ### Tests Failing
+
 ```
 Error: Test suite failed
 Action: Fix failing tests before creating PR
 ```
 
 ### Branch Already Exists
+
 ```
 Error: Branch fix/123-description already exists
 Action: Delete existing branch or use different name
@@ -316,6 +328,7 @@ Action: Delete existing branch or use different name
 ## Integration
 
 This command works with:
+
 - **verify** - Runs verification before commit
 - **review** - Prepares code for review
 - **automerge** - Merges PR after approval

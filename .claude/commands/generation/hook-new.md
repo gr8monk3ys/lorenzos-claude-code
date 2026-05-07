@@ -323,31 +323,37 @@ export function useAsync<T>() {
 ## Hook Best Practices
 
 ### Naming Convention
+
 - Always prefix with `use` (e.g., `useCustomHook`)
 - Use descriptive names that explain what the hook does
 - Follow React naming conventions
 
 ### TypeScript
+
 - Use generic types for reusability
 - Provide clear type definitions
 - Never use `any` - use `unknown` if type is truly unknown
 
 ### Dependencies
+
 - List all dependencies in useEffect/useCallback
 - Use ESLint rule `react-hooks/exhaustive-deps`
 - Be careful with object/array dependencies (use refs if needed)
 
 ### Performance
+
 - Use `useCallback` for functions passed to children
 - Use `useMemo` for expensive calculations
 - Avoid unnecessary re-renders
 
 ### Error Handling
+
 - Always handle errors in async hooks
 - Provide meaningful error messages
 - Allow consumers to handle errors
 
 ### Side Effects
+
 - Clean up side effects in useEffect return
 - Handle component unmounting
 - Cancel pending requests when component unmounts
@@ -355,6 +361,7 @@ export function useAsync<T>() {
 ## Common Hook Patterns
 
 ### Cleanup Pattern
+
 ```typescript
 useEffect(() => {
   const controller = new AbortController()
@@ -368,6 +375,7 @@ useEffect(() => {
 ```
 
 ### Ref Pattern (Avoid Stale Closures)
+
 ```typescript
 const latestCallback = useRef(callback)
 
@@ -382,6 +390,7 @@ useEffect(() => {
 ```
 
 ### Reducer Pattern (Complex State)
+
 ```typescript
 type State = { /* ... */ }
 type Action = { type: 'ACTION'; payload: any }
@@ -415,6 +424,7 @@ hooks/
 ## Output Format
 
 Generate:
+
 1. **Hook Implementation** - Complete TypeScript hook
 2. **Type Definitions** - Full type safety
 3. **Usage Example** - How to use the hook

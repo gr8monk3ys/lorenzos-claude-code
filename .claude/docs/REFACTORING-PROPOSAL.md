@@ -11,6 +11,7 @@ This proposal consolidates documentation and reorganizes commands from a catch-a
 ### Issue 1: Root-Level Documentation Sprawl
 
 **Current (9 files):**
+
 ```
 /
 ├── CHANGELOG.md      # Keep - standard
@@ -25,6 +26,7 @@ This proposal consolidates documentation and reorganizes commands from a catch-a
 ```
 
 **Proposed (4 files at root):**
+
 ```
 /
 ├── CHANGELOG.md
@@ -36,6 +38,7 @@ This proposal consolidates documentation and reorganizes commands from a catch-a
 ### Issue 2: commands/misc Dumping Ground (55 files)
 
 **Current:**
+
 ```
 .claude/commands/
 ├── api/           (3 files)
@@ -46,6 +49,7 @@ This proposal consolidates documentation and reorganizes commands from a catch-a
 ```
 
 **Proposed reorganization:**
+
 ```
 .claude/commands/
 ├── api/           (3) - api-new, api-test, api-protect
@@ -66,6 +70,7 @@ This proposal consolidates documentation and reorganizes commands from a catch-a
 ### Issue 3: Over-Granular Skill Folders
 
 **Current (19 folders, each with 1 file):**
+
 ```
 .claude/skills/
 ├── api-development/
@@ -78,6 +83,7 @@ This proposal consolidates documentation and reorganizes commands from a catch-a
 ```
 
 **Proposed (flat structure):**
+
 ```
 .claude/skills/
 ├── api-development.md
@@ -104,6 +110,7 @@ This proposal consolidates documentation and reorganizes commands from a catch-a
 ### Issue 4: Scattered Documentation
 
 **Current:**
+
 ```
 /HOOKS.md
 /PUBLISHING.md
@@ -115,6 +122,7 @@ This proposal consolidates documentation and reorganizes commands from a catch-a
 ```
 
 **Proposed (consolidated in docs/):**
+
 ```
 /docs/
 ├── HOOKS.md
@@ -127,6 +135,7 @@ This proposal consolidates documentation and reorganizes commands from a catch-a
 ```
 
 Or alternatively, keep `.claude/docs/` for Claude-specific docs:
+
 ```
 /.claude/docs/
 ├── CLI-ALTERNATIVES.md
@@ -143,6 +152,7 @@ Or alternatively, keep `.claude/docs/` for Claude-specific docs:
 ## Comparison with Similar Repos
 
 ### steipete/agent-rules (5.1k stars)
+
 ```
 /
 ├── docs/           # All documentation
@@ -151,24 +161,29 @@ Or alternatively, keep `.claude/docs/` for Claude-specific docs:
 ├── README.md
 └── LICENSE
 ```
+
 **Takeaway:** Simple 3-folder structure, all docs in one place.
 
 ### Anthropic Official Conventions
+
 ```
 .claude/
 ├── commands/       # Custom commands
 ├── settings.json   # Local settings
 └── CLAUDE.md       # Project instructions (can be at root)
 ```
+
 **Takeaway:** Minimal, flat structure preferred.
 
 ### cursor-boost (popular Cursor config)
+
 ```
 /
 ├── .cursorrules    # Main rules file
 ├── rules/          # Additional rule files
 └── README.md
 ```
+
 **Takeaway:** Single entry point, rules in dedicated folder.
 
 ---

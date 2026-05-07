@@ -45,14 +45,14 @@ jobs:
           model: claude-opus-4-5-20251101
           prompt: |
             Perform a comprehensive security review of this PR.
-            
+
             Check for:
             - Injection attacks (SQL, XSS, Command injection)
             - Authentication/Authorization issues
             - Data exposure (hardcoded secrets, PII)
             - Cryptographic weaknesses
             - OWASP Top 10 vulnerabilities
-            
+
             For each issue:
             - Severity: CRITICAL/HIGH/MEDIUM/LOW
             - File and line number

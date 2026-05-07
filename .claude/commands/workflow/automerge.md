@@ -21,6 +21,7 @@ Automated pull request validation, merging, and cleanup with full verification g
 **When to use**: After PR is approved and ready to merge, to ensure all gates pass before merging.
 
 **Prerequisites**:
+
 - GitHub CLI authenticated (`gh auth status`)
 - PR has required approvals
 - Write access to repository
@@ -41,6 +42,7 @@ gh pr view [NUMBER]
 ```
 
 Parse to understand:
+
 - **State**: Open, closed, merged
 - **Mergeable**: Can it be merged?
 - **Reviews**: Approval status
@@ -115,6 +117,7 @@ If changelog exists and not already updated:
 ```
 
 **Changelog categories**:
+
 - `Added` - New features
 - `Changed` - Changes to existing functionality
 - `Deprecated` - Soon-to-be removed features
@@ -141,6 +144,7 @@ Determine appropriate merge method:
 | **Merge** | Preserve all commits, feature branches |
 
 **Decision tree**:
+
 ```
 Commits > 3? → Squash
 Commits clean and atomic? → Rebase
@@ -162,6 +166,7 @@ gh pr merge [NUMBER] --merge --delete-branch
 ```
 
 **Merge options**:
+
 - `--squash` - Squash commits into one
 - `--rebase` - Rebase and merge
 - `--merge` - Standard merge commit
@@ -293,6 +298,7 @@ The following will **block** auto-merge:
 ## Error Handling
 
 ### PR Not Approved
+
 ```
 Error: PR requires at least 1 approval
 Action: Request review or wait for approval
@@ -300,6 +306,7 @@ Command: gh pr review [NUMBER] --request-review @reviewer
 ```
 
 ### CI Checks Failing
+
 ```
 Error: CI checks are failing
 Action: Fix failing checks
@@ -307,6 +314,7 @@ Command: gh pr checks [NUMBER]
 ```
 
 ### Merge Conflicts
+
 ```
 Error: PR has merge conflicts
 Action: Resolve conflicts
@@ -319,6 +327,7 @@ Commands:
 ```
 
 ### Branch Out of Date
+
 ```
 Error: Branch is behind base branch
 Action: Update branch
@@ -371,6 +380,7 @@ When using `--dry-run`, the command will:
 ## Integration
 
 This command works with:
+
 - **fixissue** - Create PRs that can be auto-merged
 - **verify** - Pre-merge validation
 - **review** - Code review before merge

@@ -31,6 +31,7 @@ You are an expert test strategist who helps teams design comprehensive testing s
 ```
 
 **Recommended Distribution:**
+
 - Static Analysis: Catches ~40% of bugs at zero runtime cost
 - Unit Tests: ~25% - Pure functions, utilities, edge cases
 - Integration Tests: ~30% - Component interactions, API contracts
@@ -70,6 +71,7 @@ Evaluate each feature/module:
 ### 3. Coverage Priorities
 
 **Always Test (Critical):**
+
 - Authentication and authorization flows
 - Payment and financial calculations
 - Data mutations (create, update, delete)
@@ -78,6 +80,7 @@ Evaluate each feature/module:
 - Security-sensitive operations
 
 **Usually Test (Important):**
+
 - Business logic functions
 - Data transformations
 - Component interactions
@@ -85,12 +88,14 @@ Evaluate each feature/module:
 - Form submissions
 
 **Sometimes Test (Nice to Have):**
+
 - Pure UI rendering (unless complex)
 - Third-party integrations (mock instead)
 - Simple CRUD operations
 - Configuration files
 
 **Rarely Test (Low Value):**
+
 - Framework internals
 - Getters/setters
 - Constants/enums
@@ -238,7 +243,8 @@ const adminUser = createTestUser({ role: 'admin' })
 
 ## Best Practices Guidance
 
-### DO:
+### DO
+
 - Test behavior, not implementation
 - Use realistic test data
 - Keep tests independent
@@ -246,7 +252,8 @@ const adminUser = createTestUser({ role: 'admin' })
 - Use meaningful test names
 - Mock external dependencies
 
-### DON'T:
+### DON'T
+
 - Test framework internals
 - Write brittle tests tied to implementation
 - Ignore flaky tests

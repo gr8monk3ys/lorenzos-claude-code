@@ -41,11 +41,13 @@ workflow:
 ```
 
 **Pros:**
+
 - Explicit workflow definition
 - Conditional execution based on previous results
 - Can skip steps if user requests
 
 **Cons:**
+
 - Requires workflow engine in Claude Code (not currently supported)
 - Complex error handling between steps
 
@@ -61,11 +63,13 @@ After each command completes, suggest related commands:
 ```
 
 **Pros:**
+
 - Works today without infrastructure changes
 - User maintains control
 - Educational (teaches workflow)
 
 **Cons:**
+
 - Manual execution required
 - No automation
 
@@ -94,11 +98,13 @@ Add authentication middleware...
 ```
 
 **Pros:**
+
 - Single command invocation
 - User opts into additional functionality
 - Could work with current infrastructure
 
 **Cons:**
+
 - Commands become bloated
 - Flag parsing complexity
 
@@ -271,6 +277,7 @@ Plugin is optimized for Next.js + React + Supabase. Other stacks require manual 
 #### How Presets Work
 
 1. User sets active preset in `plugin-settings.json`:
+
    ```json
    {
      "activePreset": "vue-nuxt-prisma"
@@ -278,6 +285,7 @@ Plugin is optimized for Next.js + React + Supabase. Other stacks require manual 
    ```
 
 2. Commands reference preset variables:
+
    ```markdown
    Create a new {{COMPONENT_STYLE}} component using {{STATE_MANAGEMENT}} for state.
    ```
@@ -298,6 +306,7 @@ Plugin is optimized for Next.js + React + Supabase. Other stacks require manual 
 ### Implementation
 
 Create preset files and a preset loader that:
+
 1. Reads active preset from settings
 2. Merges command overrides
 3. Injects variables into command templates
