@@ -41,3 +41,9 @@ repos:
         language: system
         files: ^\.claude-plugin/plugin\.json$
         pass_filenames: false
+      - id: sync-manifest-check
+        name: Verify manifest is in sync with disk
+        entry: node scripts/sync-manifest.js --check
+        language: system
+        files: ^(\.claude/(commands|agents|skills|hooks)/.*|\.claude-plugin/plugin\.json|package\.json|README\.md|CLAUDE\.md)$
+        pass_filenames: false
