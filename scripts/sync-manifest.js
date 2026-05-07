@@ -96,7 +96,12 @@ function toHookRows(items) {
   return m.renderTable(items.map(c => ({ name: c.name, description: '' })))
 }
 function renderCounts(commands, agents, skills, hooks) {
-  return `**${commands.length} commands** · **${agents.length} agents** · **${skills.length} skills** · **${hooks.length} hooks**`
+  return [
+    `**${commands.length} commands**`,
+    `**${agents.length} agents**`,
+    `**${skills.length} skills**`,
+    `**${hooks.length} hooks**`,
+  ].join(' · ')
 }
 
 main()
