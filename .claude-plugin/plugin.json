@@ -90,19 +90,9 @@
       "description": "Create a new Supabase Edge Function with Deno"
     },
     {
-      "name": "evolve",
-      "path": ".claude/commands/workflow/evolve.md",
-      "description": "Evolve high-confidence instincts into reusable skills"
-    },
-    {
       "name": "fixissue",
       "path": ".claude/commands/workflow/fixissue.md",
       "description": "End-to-end issue resolution - fetch, branch, fix, test, commit, PR, close"
-    },
-    {
-      "name": "handoff",
-      "path": ".claude/commands/workflow/handoff.md",
-      "description": "Create a session transfer document for seamless context handoff"
     },
     {
       "name": "hook-new",
@@ -110,39 +100,14 @@
       "description": "Create custom React hooks with TypeScript and best practices"
     },
     {
-      "name": "learn",
-      "path": ".claude/commands/workflow/learn.md",
-      "description": "Extract reusable patterns from the current session"
-    },
-    {
       "name": "lint",
       "path": ".claude/commands/quality/lint.md",
       "description": "Run linting and fix code quality issues"
     },
     {
-      "name": "memory",
-      "path": ".claude/commands/context/memory.md",
-      "description": "View, update, or manage Claude's persistent memory for this project"
-    },
-    {
       "name": "page-new",
       "path": ".claude/commands/ui/page-new.md",
       "description": "Create a new Next.js page with App Router best practices"
-    },
-    {
-      "name": "pickup",
-      "path": ".claude/commands/workflow/pickup.md",
-      "description": "Rehydrate context when starting work on a project"
-    },
-    {
-      "name": "plan",
-      "path": ".claude/commands/planning/plan.md",
-      "description": "Create a comprehensive implementation plan with phases, tasks, and milestones"
-    },
-    {
-      "name": "research",
-      "path": ".claude/commands/workflow/research.md",
-      "description": "Deep exploration workflow for researching topics with structured output"
     },
     {
       "name": "review",
@@ -204,21 +169,6 @@
       "description": "WHEN to auto-invoke: Creating API routes, building endpoints, adding route.ts files, implementing REST/GraphQL APIs, adding authentication to APIs, rate limiting, API validation with Zod, handling HTTP methods (GET/POST/PUT/DELETE)."
     },
     {
-      "name": "circuit-breaker",
-      "path": ".claude/skills/circuit-breaker.md",
-      "description": "WHEN to auto-invoke: Same error appearing multiple times, repeated file edits without progress, identical tool calls in sequence, declining success rate, getting stuck in loops, \"this should work but doesn't\" situations, repeated test failures."
-    },
-    {
-      "name": "code-quality",
-      "path": ".claude/skills/code-quality.md",
-      "description": "WHEN to auto-invoke: Code review requests, refactoring code, cleaning up code, performance optimization, security audits, linting issues, reducing technical debt."
-    },
-    {
-      "name": "continuous-learning",
-      "path": ".claude/skills/continuous-learning.md",
-      "description": "Extract patterns from successful sessions and evolve into reusable instincts"
-    },
-    {
       "name": "database-operations",
       "path": ".claude/skills/database-operations.md",
       "description": "WHEN to auto-invoke: Database schema design, creating migrations, writing SQL queries, query optimization, Supabase operations, Prisma/Drizzle schema changes, PostgreSQL tasks, RLS policies, indexes."
@@ -227,26 +177,6 @@
       "name": "frontend-development",
       "path": ".claude/skills/frontend-development.md",
       "description": "WHEN to auto-invoke: Creating UI components, building React/Vue/Svelte components, Next.js pages, styling with Tailwind/CSS, state management setup, form handling, accessibility improvements, client-side interactivity."
-    },
-    {
-      "name": "memory-persistence",
-      "path": ".claude/skills/memory-persistence.md",
-      "description": "WHEN to auto-invoke: Session start, session end, referencing previous work, asking \"what did we do before\", resuming work, continuing from previous sessions."
-    },
-    {
-      "name": "micro-tasking",
-      "path": ".claude/skills/micro-tasking.md",
-      "description": "Use this skill to break work into small, verifiable chunks. Activates when planning implementation, breaking down features, or when tasks seem too large."
-    },
-    {
-      "name": "research",
-      "path": ".claude/skills/research.md",
-      "description": "Deep exploration workflow for researching topics, libraries, and solutions"
-    },
-    {
-      "name": "verification-first",
-      "path": ".claude/skills/verification-first.md",
-      "description": "WHEN to auto-invoke: Finishing tasks, claiming \"done\" or \"complete\", before marking work finished, when asserting code works, wrapping up implementations."
     }
   ]
 }
