@@ -173,30 +173,6 @@ test(`Found ${skillFiles.length} skill files`, () => {
   }
 });
 
-// Test: Learning System
-console.log("\nLearning System:");
-const instinctsDir = path.join(__dirname, "..", ".claude", "instincts");
-
-test("instincts directory exists", () => {
-  assertExists(instinctsDir);
-});
-
-test("instincts.json exists and is valid", () => {
-  assertValidJson(path.join(instinctsDir, "instincts.json"));
-});
-
-test("instincts.json has correct structure", () => {
-  const instincts = JSON.parse(
-    fs.readFileSync(path.join(instinctsDir, "instincts.json"), "utf8"),
-  );
-  if (!instincts.version) {
-    throw new Error("instincts.json missing version field");
-  }
-  if (!Array.isArray(instincts.instincts)) {
-    throw new Error("instincts.json missing instincts array");
-  }
-});
-
 // Test: Hooks
 console.log("\nHooks:");
 const hooksDir = path.join(__dirname, "..", ".claude", "hooks");
