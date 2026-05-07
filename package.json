@@ -46,10 +46,12 @@
     "node": ">=18.0.0"
   },
   "scripts": {
-    "test": "node tests/run-all.js",
+    "test": "node tests/run-all.js && node --test tests/manifest-sync.test.js",
+    "sync": "node scripts/sync-manifest.js",
+    "sync:check": "node scripts/sync-manifest.js --check",
     "install:local": "node bin/cli.js install",
     "doctor": "node bin/cli.js doctor",
-    "prepublishOnly": "npm test"
+    "prepublishOnly": "npm run sync:check && npm test"
   },
   "devDependencies": {},
   "peerDependencies": {}
