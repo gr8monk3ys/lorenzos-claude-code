@@ -60,7 +60,20 @@ function scanHooks(dir) {
   out.sort((a, b) => a.name.localeCompare(b.name))
   return out
 }
-function buildPluginJson(_inputs) { throw new Error('not implemented') }
+function buildPluginJson({ base, version, commands, agents, skills, repoRoot }) {
+  const toEntry = item => ({
+    name: item.name,
+    path: path.relative(repoRoot, item.path).split(path.sep).join('/'),
+    description: item.description,
+  })
+  return {
+    ...base,
+    version,
+    commands: commands.map(toEntry),
+    agents: agents.map(toEntry),
+    skills: skills.map(toEntry),
+  }
+}
 function replaceMarker(content, name, replacement) {
   const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
   const re = new RegExp(

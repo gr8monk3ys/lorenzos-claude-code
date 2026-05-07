@@ -123,3 +123,36 @@ test('renderTable escapes pipe characters in descriptions', () => {
   const out = manifest.renderTable([{ name: 'x', description: 'a | b' }])
   assert.match(out, /a \\\| b/)
 })
+
+test('buildPluginJson assembles a manifest with arrays and preserves mcpServers', () => {
+  const inputs = {
+    base: {
+      name: 'lorenzos-claude-code',
+      author: { name: 'Lorenzo' },
+      mcpServers: { context7: { command: 'npx', args: [] } },
+      profiles: { minimal: '.claude/profiles/mcp-minimal.json' },
+    },
+    version: '4.0.0',
+    commands: [
+      { name: 'api-new', description: 'Create API', path: '/abs/.claude/commands/api/api-new.md' },
+    ],
+    agents: [
+      { name: 'code-reviewer', description: 'Reviews', path: '/abs/.claude/agents/code-reviewer.md' },
+    ],
+    skills: [
+      { name: 'api-development', description: 'API patterns', path: '/abs/.claude/skills/api-development.md' },
+    ],
+    repoRoot: '/abs',
+  }
+  const out = manifest.buildPluginJson(inputs)
+  assert.equal(out.name, 'lorenzos-claude-code')
+  assert.equal(out.version, '4.0.0')
+  assert.equal(out.commands.length, 1)
+  assert.equal(out.commands[0].name, 'api-new')
+  assert.equal(out.commands[0].path, '.claude/commands/api/api-new.md')
+  assert.equal(out.commands[0].description, 'Create API')
+  assert.equal(out.agents[0].name, 'code-reviewer')
+  assert.equal(out.skills[0].name, 'api-development')
+  assert.deepEqual(out.mcpServers, { context7: { command: 'npx', args: [] } })
+  assert.deepEqual(out.profiles, { minimal: '.claude/profiles/mcp-minimal.json' })
+})
