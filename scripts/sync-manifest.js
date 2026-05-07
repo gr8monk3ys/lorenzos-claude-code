@@ -55,24 +55,42 @@ function main() {
   const results = []
   results.push(diffOrWrite(PLUGIN_JSON, nextJson))
 
-  for (const target of [README, CLAUDE_MD]) {
+  const blocks = {
+    commands: toCommandRows(commands),
+    agents: toRows(agents),
+    skills: toRows(skills),
+    hooks: toHookRows(hooks),
+    counts: renderCounts(commands, agents, skills, hooks),
+  }
+  // Drift prevention only works if the markers themselves are present. Each
+  // target file declares the markers it must carry; missing markers are an
+  // error (not a silent skip), so deleting a marker is treated like any
+  // other drift and fails CI.
+  const required = [
+    [README, ['counts', 'commands', 'agents', 'skills', 'hooks']],
+    [CLAUDE_MD, ['counts', 'commands', 'agents', 'skills']],
+  ]
+
+  const missingMarkers = []
+  for (const [target, names] of required) {
     if (!fs.existsSync(target)) continue
     let content = fs.readFileSync(target, 'utf8')
-    let touched = false
-    const blocks = [
-      ['commands', toCommandRows(commands)],
-      ['agents', toRows(agents)],
-      ['skills', toRows(skills)],
-      ['hooks', toHookRows(hooks)],
-      ['counts', renderCounts(commands, agents, skills, hooks)],
-    ]
-    for (const [name, rendered] of blocks) {
-      if (!content.includes(`<!-- AUTOGEN:${name} -->`)) continue
-      const before = content
-      content = m.replaceMarker(content, name, rendered)
-      if (content !== before) touched = true
+    for (const name of names) {
+      if (!content.includes(`<!-- AUTOGEN:${name} -->`)) {
+        missingMarkers.push({ file: target, name })
+        continue
+      }
+      content = m.replaceMarker(content, name, blocks[name])
     }
-    if (touched) results.push(diffOrWrite(target, content))
+    results.push(diffOrWrite(target, content))
+  }
+
+  if (missingMarkers.length) {
+    console.error('Required AUTOGEN markers are missing:')
+    for (const { file, name } of missingMarkers) {
+      console.error(`  - ${path.relative(REPO_ROOT, file)}: <!-- AUTOGEN:${name} --> ... <!-- /AUTOGEN:${name} -->`)
+    }
+    process.exit(1)
   }
 
   const drifted = results.filter(r => r.drift)
