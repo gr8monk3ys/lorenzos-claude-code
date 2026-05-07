@@ -61,7 +61,18 @@ function scanHooks(dir) {
   return out
 }
 function buildPluginJson(_inputs) { throw new Error('not implemented') }
-function replaceMarker(_content, _name, _replacement) { throw new Error('not implemented') }
+function replaceMarker(content, name, replacement) {
+  const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  const re = new RegExp(
+    `(<!-- AUTOGEN:${escaped} -->)([\\s\\S]*?)(<!-- /AUTOGEN:${escaped} -->)`,
+    'g'
+  )
+  if (!re.test(content)) {
+    throw new Error(`Missing AUTOGEN markers for "${name}". Add <!-- AUTOGEN:${name} --> ... <!-- /AUTOGEN:${name} --> to the file.`)
+  }
+  re.lastIndex = 0
+  return content.replace(re, `$1\n${replacement}\n$3`)
+}
 function renderTable(_rows) { throw new Error('not implemented') }
 
 module.exports = { parseFrontmatter, scanCategory, scanHooks, buildPluginJson, replaceMarker, renderTable }

@@ -70,3 +70,38 @@ test('scanHooks lists .js hook scripts but skips .json config', () => {
   assert.equal(hooks[0].name, 'auto-format')
   assert.match(hooks[0].path.replace(/\\/g, '/'), /hooks\/auto-format\.js$/)
 })
+
+test('replaceMarker replaces content between paired markers', () => {
+  const input = `Top text.
+
+<!-- AUTOGEN:commands -->
+old content here
+<!-- /AUTOGEN:commands -->
+
+Bottom text.
+`
+  const out = manifest.replaceMarker(input, 'commands', '| Command | Description |\n| --- | --- |\n| /foo | Bar |')
+  assert.match(out, /Top text\./)
+  assert.match(out, /Bottom text\./)
+  assert.match(out, /\| \/foo \| Bar \|/)
+  assert.doesNotMatch(out, /old content here/)
+})
+
+test('replaceMarker is idempotent', () => {
+  const input = `<!-- AUTOGEN:x -->\nold\n<!-- /AUTOGEN:x -->`
+  const once = manifest.replaceMarker(input, 'x', 'NEW')
+  const twice = manifest.replaceMarker(once, 'x', 'NEW')
+  assert.equal(once, twice)
+})
+
+test('replaceMarker throws when markers missing', () => {
+  assert.throws(() => manifest.replaceMarker('no markers here', 'x', 'NEW'), /AUTOGEN:x/)
+})
+
+test('replaceMarker leaves other markers untouched', () => {
+  const input = `<!-- AUTOGEN:a -->\noldA\n<!-- /AUTOGEN:a -->
+<!-- AUTOGEN:b -->\noldB\n<!-- /AUTOGEN:b -->`
+  const out = manifest.replaceMarker(input, 'a', 'NEW_A')
+  assert.match(out, /oldB/)
+  assert.match(out, /NEW_A/)
+})
