@@ -8,6 +8,8 @@ repos:
     hooks:
       - id: check-json
         files: \.(json)$
+        # .vscode/ holds JSONC (with comments) which is not parseable as JSON
+        exclude: ^\.vscode/
       - id: pretty-format-json
         args: [--autofix, --indent, "2"]
         # Only marketplace.json — plugin.json is owned by sync-manifest
