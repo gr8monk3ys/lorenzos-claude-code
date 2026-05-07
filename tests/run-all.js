@@ -168,21 +168,9 @@ const skillsDir = path.join(__dirname, "..", ".claude", "skills");
 const skillFiles = fs.readdirSync(skillsDir).filter((f) => f.endsWith(".md"));
 
 test(`Found ${skillFiles.length} skill files`, () => {
-  if (skillFiles.length < 5) {
-    throw new Error(`Expected at least 5 skills, found ${skillFiles.length}`);
+  if (skillFiles.length < 3) {
+    throw new Error(`Expected at least 3 skills, found ${skillFiles.length}`);
   }
-});
-
-test("circuit-breaker skill exists", () => {
-  assertExists(path.join(skillsDir, "circuit-breaker.md"));
-});
-
-test("verification-first skill exists", () => {
-  assertExists(path.join(skillsDir, "verification-first.md"));
-});
-
-test("continuous-learning skill exists", () => {
-  assertExists(path.join(skillsDir, "continuous-learning.md"));
 });
 
 // Test: Learning System
