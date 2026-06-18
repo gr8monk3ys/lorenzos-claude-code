@@ -1,0 +1,16 @@
+[
+  {
+    "name": "zeta-watch",
+    "command": "echo z",
+    "description": "Last alphabetically, listed first to prove sorting"
+  },
+  {
+    "name": "alpha-watch",
+    "command": "echo a",
+    "description": "First alphabetically"
+  },
+  {
+    "command": "echo skip",
+    "description": "No name — must be filtered out"
+  }
+]

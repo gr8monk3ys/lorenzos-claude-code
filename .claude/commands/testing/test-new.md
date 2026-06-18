@@ -1,6 +1,6 @@
 ---
 description: Generate test files for Jest, Vitest, or Playwright
-model: claude-opus-4-5
+model: claude-opus-4-8
 ---
 
 Generate a comprehensive test file for the specified code.

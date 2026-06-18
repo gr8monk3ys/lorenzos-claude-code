@@ -5,6 +5,37 @@ All notable changes to Lorenzo's Claude Code plugin will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.1.0] - 2026-06-18
+
+Modernizes the plugin for mid-2026 Claude Code: current model IDs, background-automation
+primitives (loops, monitors, PR babysitting), and two scaffolders promised on the roadmap.
+
+### Added
+
+- **`/rls-new`** — scaffold Supabase Row Level Security policies from a plain-language
+  access description, with deny-by-default policies, a performance pass, and pgTAP tests.
+- **`/action-new`** — scaffold a Next.js 15 Server Action with `'use server'`, Zod
+  validation, an auth re-check, a typed result shape, and a `useActionState` client wiring.
+- **`/babysit`** — watch a PR in a loop and auto-fix CI failures and review comments,
+  wiring PR activity subscriptions, `/loop`, and monitors together.
+- **`background-automation` skill** — guidance on loops, monitors, background tasks, and
+  PR activity subscriptions, with rules (never `sleep` to wait on events) and recipes.
+  Registered in `skill-rules.json` for auto-routing.
+- **Monitors** — `.claude/monitors/monitors.json` background watchers (TypeScript and
+  Next.js dev-server output). Wired into the sync-manifest pipeline: `scanMonitors` plus a
+  new `monitors` count and README table, kept drift-free in CI like every other category.
+
+### Changed
+
+- Updated every command's `model` frontmatter to current IDs: `claude-opus-4-5` →
+  `claude-opus-4-8`, `claude-sonnet-4-5` → `claude-sonnet-4-6`.
+
+### Fixed
+
+- `/page-new` command was committed with embedded NUL/control bytes (corrupted
+  box-drawing characters in the file-tree and broken glyphs in the bullet lists). The
+  frontmatter was intact, so manifest sync never caught it. Restored to clean UTF-8.
+
 ## [4.0.0] - 2026-05-07
 
 ### BREAKING — Rescope to Stack Scaffolding

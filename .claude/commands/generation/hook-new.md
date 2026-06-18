@@ -1,6 +1,6 @@
 ---
 description: Create custom React hooks with TypeScript and best practices
-model: claude-opus-4-5
+model: claude-opus-4-8
 ---
 
 Generate a custom React hook following modern best practices.

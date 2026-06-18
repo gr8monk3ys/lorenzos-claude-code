@@ -36,6 +36,14 @@
       "patterns": ["schema\\.prisma", "\\.sql$", "migration", "\\bSELECT\\b", "\\bINSERT\\b", "\\bUPDATE\\b", "\\bDELETE\\b"],
       "directories": ["prisma/", "drizzle/", "supabase/", "migrations/", "db/", "database/"],
       "intents": ["create.*table", "add.*migration", "query.*", "update.*schema", "add.*column", "create.*index"]
+    },
+    {
+      "name": "background-automation",
+      "priority": 0,
+      "keywords": ["loop", "monitor", "watch", "babysit", "background", "recurring", "schedule", "poll", "ci", "deploy", "cron", "subscribe", "heartbeat"],
+      "patterns": ["\\bevery \\d+\\s*(s|m|h|d|min|hour)", "/loop\\b", "monitors\\.json", "run_in_background", "subscribe.*pr"],
+      "directories": ["monitors/", ".claude/monitors/"],
+      "intents": ["watch.*ci", "watch.*deploy", "babysit.*pr", "keep.*running", "run.*background", "check.*every", "monitor.*for", "poll.*until"]
     }
   ]
 }

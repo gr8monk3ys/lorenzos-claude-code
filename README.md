@@ -8,7 +8,7 @@
 Scaffolds components, API routes, hooks, Supabase types, and Edge Functions. Composes with [superpowers](https://github.com/obra/superpowers) — install both for the full toolkit.
 
 <!-- AUTOGEN:counts -->
-**14 commands** · **6 agents** · **3 skills** · **14 hooks**
+**17 commands** · **6 agents** · **4 skills** · **14 hooks** · **2 monitors**
 <!-- /AUTOGEN:counts -->
 
 ---
@@ -45,9 +45,11 @@ Or, from inside Claude Code:
 <!-- AUTOGEN:commands -->
 | Name | Description |
 | --- | --- |
+| `/action-new` | Scaffold a Next.js 15 Server Action with Zod validation and typed results |
 | `/api-new` | Create a new Next.js API route with validation, error handling, and TypeScript |
 | `/api-test` | Test API endpoints with automated test generation |
 | `/automerge` | PR automation - validate, merge, cleanup, and sync |
+| `/babysit` | Watch a PR in a loop and auto-fix CI failures and review comments |
 | `/component-new` | Create a new React component with TypeScript and modern best practices |
 | `/deploy` | Generate deployment configurations and workflows |
 | `/edge-function-new` | Create a new Supabase Edge Function with Deno |
@@ -56,6 +58,7 @@ Or, from inside Claude Code:
 | `/lint` | Run linting and fix code quality issues |
 | `/page-new` | Create a new Next.js page with App Router best practices |
 | `/review` | RIPER Review Phase - Quality gates before considering work complete |
+| `/rls-new` | Scaffold Supabase Row Level Security policies from a description, with tests |
 | `/test-new` | Generate test files for Jest, Vitest, or Playwright |
 | `/types-gen` | Generate TypeScript types from Supabase database schema |
 | `/verify` | Run comprehensive 6-phase verification loop (build, types, lint, tests, security, diff) |
@@ -80,6 +83,7 @@ Or, from inside Claude Code:
 | Name | Description |
 | --- | --- |
 | `api-development` | WHEN to auto-invoke: Creating API routes, building endpoints, adding route.ts files, implementing REST/GraphQL APIs, adding authentication to APIs, rate limiting, API validation with Zod, handling HTTP methods (GET/POST/PUT/DELETE). |
+| `background-automation` | WHEN to auto-invoke: Setting up recurring or self-paced tasks, watching CI or deploys, babysitting pull requests, configuring monitors, running long jobs in the background, scheduling check-ins, polling for a condition, or wiring Claude Code on the web/cloud sessions and PR activity subscriptions. |
 | `database-operations` | WHEN to auto-invoke: Database schema design, creating migrations, writing SQL queries, query optimization, Supabase operations, Prisma/Drizzle schema changes, PostgreSQL tasks, RLS policies, indexes. |
 | `frontend-development` | WHEN to auto-invoke: Creating UI components, building React/Vue/Svelte components, Next.js pages, styling with Tailwind/CSS, state management setup, form handling, accessibility improvements, client-side interactivity. |
 <!-- /AUTOGEN:skills -->
@@ -104,6 +108,17 @@ Or, from inside Claude Code:
 | `subagent-stop` |  |
 | `validate-json` |  |
 <!-- /AUTOGEN:hooks -->
+
+## Monitors
+
+Background watchers (`.claude/monitors/monitors.json`) stream long-running command output into the session as notifications — surfacing type and runtime errors before they reach CI. They are example defaults; adjust the commands and log paths to match your project.
+
+<!-- AUTOGEN:monitors -->
+| Name | Description |
+| --- | --- |
+| `next-dev` | Surfaces Next.js dev-server runtime errors and failed compilations |
+| `typecheck-watch` | Streams TypeScript type errors as you edit, before they reach CI |
+<!-- /AUTOGEN:monitors -->
 
 ## MCP Servers
 

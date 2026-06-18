@@ -7,7 +7,7 @@ Project memory for Claude when working in this repository.
 A Claude Code plugin that scaffolds Next.js + React + Supabase code, distributed via npm (`@gr8monk3ys/claude-code-plugin`) and the Claude Code plugin marketplace. Designed to compose with the [superpowers](https://github.com/obra/superpowers) plugin — superpowers handles process, this plugin handles stack-specific scaffolding.
 
 <!-- AUTOGEN:counts -->
-**14 commands** · **6 agents** · **3 skills** · **14 hooks**
+**17 commands** · **6 agents** · **4 skills** · **14 hooks** · **2 monitors**
 <!-- /AUTOGEN:counts -->
 
 ## Commands
@@ -15,9 +15,11 @@ A Claude Code plugin that scaffolds Next.js + React + Supabase code, distributed
 <!-- AUTOGEN:commands -->
 | Name | Description |
 | --- | --- |
+| `/action-new` | Scaffold a Next.js 15 Server Action with Zod validation and typed results |
 | `/api-new` | Create a new Next.js API route with validation, error handling, and TypeScript |
 | `/api-test` | Test API endpoints with automated test generation |
 | `/automerge` | PR automation - validate, merge, cleanup, and sync |
+| `/babysit` | Watch a PR in a loop and auto-fix CI failures and review comments |
 | `/component-new` | Create a new React component with TypeScript and modern best practices |
 | `/deploy` | Generate deployment configurations and workflows |
 | `/edge-function-new` | Create a new Supabase Edge Function with Deno |
@@ -26,6 +28,7 @@ A Claude Code plugin that scaffolds Next.js + React + Supabase code, distributed
 | `/lint` | Run linting and fix code quality issues |
 | `/page-new` | Create a new Next.js page with App Router best practices |
 | `/review` | RIPER Review Phase - Quality gates before considering work complete |
+| `/rls-new` | Scaffold Supabase Row Level Security policies from a description, with tests |
 | `/test-new` | Generate test files for Jest, Vitest, or Playwright |
 | `/types-gen` | Generate TypeScript types from Supabase database schema |
 | `/verify` | Run comprehensive 6-phase verification loop (build, types, lint, tests, security, diff) |
@@ -50,6 +53,7 @@ A Claude Code plugin that scaffolds Next.js + React + Supabase code, distributed
 | Name | Description |
 | --- | --- |
 | `api-development` | WHEN to auto-invoke: Creating API routes, building endpoints, adding route.ts files, implementing REST/GraphQL APIs, adding authentication to APIs, rate limiting, API validation with Zod, handling HTTP methods (GET/POST/PUT/DELETE). |
+| `background-automation` | WHEN to auto-invoke: Setting up recurring or self-paced tasks, watching CI or deploys, babysitting pull requests, configuring monitors, running long jobs in the background, scheduling check-ins, polling for a condition, or wiring Claude Code on the web/cloud sessions and PR activity subscriptions. |
 | `database-operations` | WHEN to auto-invoke: Database schema design, creating migrations, writing SQL queries, query optimization, Supabase operations, Prisma/Drizzle schema changes, PostgreSQL tasks, RLS policies, indexes. |
 | `frontend-development` | WHEN to auto-invoke: Creating UI components, building React/Vue/Svelte components, Next.js pages, styling with Tailwind/CSS, state management setup, form handling, accessibility improvements, client-side interactivity. |
 <!-- /AUTOGEN:skills -->
@@ -70,6 +74,7 @@ A Claude Code plugin that scaffolds Next.js + React + Supabase code, distributed
 .claude/agents/                # Subagent personas (.md with frontmatter)
 .claude/skills/                # Auto-activated skills (.md with frontmatter)
 .claude/hooks/                 # Lifecycle hooks (.js scripts + hooks.json + skill-rules.json)
+.claude/monitors/              # Background watchers (monitors.json) — counted by sync
 .claude/scripts/               # Plugin-internal helpers
 scripts/sync-manifest.js       # Regenerates plugin.json + AUTOGEN blocks
 scripts/lib/manifest.js        # Pure helpers used by sync-manifest

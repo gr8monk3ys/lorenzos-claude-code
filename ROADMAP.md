@@ -4,9 +4,8 @@ Concrete, near-term work for `lorenzos-claude-code`. Items here are scoped, not 
 
 ## v4.x
 
-- **Supabase RLS policy scaffolder** (`/rls-new`) — generate Row Level Security policies from a description, with tests.
-- **Server Action scaffolder** (`/action-new`) — Next.js 15 server actions with Zod input validation.
 - **Augment skill-rules with negative patterns** — add `excludePatterns` so e.g. `circuit` in a Supabase function name doesn't trigger debugging skills.
+- **Surface monitors in `plugin.json`** — once the plugin manifest schema documents a `monitors` field, emit it from `buildPluginJson` (today monitors are sync-counted and tabled in the README only).
 
 ## Maybe later
 
