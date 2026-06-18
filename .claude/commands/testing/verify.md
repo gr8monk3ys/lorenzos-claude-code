@@ -1,6 +1,6 @@
 ---
 description: Run comprehensive 6-phase verification loop (build, types, lint, tests, security, diff)
-model: claude-sonnet-4-5
+model: claude-sonnet-4-6
 ---
 
 # Verification Loop

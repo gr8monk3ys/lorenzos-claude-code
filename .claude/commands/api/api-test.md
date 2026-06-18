@@ -1,6 +1,6 @@
 ---
 description: Test API endpoints with automated test generation
-model: claude-opus-4-5
+model: claude-opus-4-8
 ---
 
 Generate comprehensive API tests for the specified endpoint.

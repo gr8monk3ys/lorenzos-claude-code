@@ -12,13 +12,14 @@
         "name": "Lorenzo",
         "url": "https://github.com/gr8monk3ys"
       },
-      "description": "14 commands, 6 agents, 3 skills, 14 hooks. Scaffolds Next.js + React + Supabase code; composes with the superpowers plugin for process discipline.",
+      "description": "17 commands, 6 agents, 4 skills, 14 hooks, 2 monitors. Scaffolds Next.js + React + Supabase code; composes with the superpowers plugin for process discipline.",
       "features": {
         "agents": 6,
-        "commands": 14,
+        "commands": 17,
         "hooks": 14,
         "mcpServers": 4,
-        "skills": 3
+        "monitors": 2,
+        "skills": 4
       },
       "highlights": [
         "Stack-focused scaffolding for Next.js + React + Supabase",
@@ -38,7 +39,7 @@
         "scaffolding",
         "minimal"
       ],
-      "version": "4.0.0"
+      "version": "4.1.0"
     }
   ]
 }

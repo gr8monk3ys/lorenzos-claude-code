@@ -60,6 +60,25 @@ function scanHooks(dir) {
   out.sort((a, b) => a.name.localeCompare(b.name))
   return out
 }
+function scanMonitors(dir) {
+  const file = path.join(dir, 'monitors.json')
+  if (!fs.existsSync(file)) return []
+  let parsed
+  try {
+    parsed = JSON.parse(fs.readFileSync(file, 'utf8'))
+  } catch (err) {
+    throw new Error(`Invalid monitors.json (${file}): ${err.message}`)
+  }
+  const list = Array.isArray(parsed) ? parsed : []
+  const out = list
+    .filter(entry => entry && typeof entry.name === 'string')
+    .map(entry => ({
+      name: entry.name,
+      description: typeof entry.description === 'string' ? entry.description : '',
+    }))
+  out.sort((a, b) => a.name.localeCompare(b.name))
+  return out
+}
 function buildPluginJson({ base, version, commands, agents, skills, repoRoot }) {
   const toEntry = item => ({
     name: item.name,
@@ -99,4 +118,4 @@ function renderTable(rows) {
   return lines.join('\n')
 }
 
-module.exports = { parseFrontmatter, scanCategory, scanHooks, buildPluginJson, replaceMarker, renderTable }
+module.exports = { parseFrontmatter, scanCategory, scanHooks, scanMonitors, buildPluginJson, replaceMarker, renderTable }

@@ -6,6 +6,7 @@ test('manifest module exports required helpers', () => {
   assert.equal(typeof manifest.parseFrontmatter, 'function')
   assert.equal(typeof manifest.scanCategory, 'function')
   assert.equal(typeof manifest.scanHooks, 'function')
+  assert.equal(typeof manifest.scanMonitors, 'function')
   assert.equal(typeof manifest.buildPluginJson, 'function')
   assert.equal(typeof manifest.replaceMarker, 'function')
   assert.equal(typeof manifest.renderTable, 'function')
@@ -69,6 +70,19 @@ test('scanHooks lists .js hook scripts but skips .json config', () => {
   assert.equal(hooks.length, 1)
   assert.equal(hooks[0].name, 'auto-format')
   assert.match(hooks[0].path.replace(/\\/g, '/'), /hooks\/auto-format\.js$/)
+})
+
+test('scanMonitors parses monitors.json, drops nameless entries, sorts by name', () => {
+  const fixtures = path.join(__dirname, 'fixtures/manifest/monitors')
+  const monitors = manifest.scanMonitors(fixtures)
+  assert.equal(monitors.length, 2)
+  assert.deepEqual(monitors.map(mon => mon.name), ['alpha-watch', 'zeta-watch'])
+  assert.equal(monitors[0].description, 'First alphabetically')
+})
+
+test('scanMonitors returns [] when monitors.json is absent', () => {
+  const missing = path.join(__dirname, 'fixtures/manifest/commands')
+  assert.deepEqual(manifest.scanMonitors(missing), [])
 })
 
 test('replaceMarker replaces content between paired markers', () => {

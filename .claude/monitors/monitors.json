@@ -1,0 +1,14 @@
+[
+  {
+    "name": "typecheck-watch",
+    "command": "npx tsc --noEmit --watch --pretty false",
+    "description": "Streams TypeScript type errors as you edit, before they reach CI",
+    "when": "always"
+  },
+  {
+    "name": "next-dev",
+    "command": "tail -F .next/trace 2>/dev/null || tail -F dev.log",
+    "description": "Surfaces Next.js dev-server runtime errors and failed compilations",
+    "when": "always"
+  }
+]

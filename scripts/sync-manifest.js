@@ -30,6 +30,7 @@ function main() {
   const agents = m.scanCategory(path.join(REPO_ROOT, '.claude/agents'))
   const skills = m.scanCategory(path.join(REPO_ROOT, '.claude/skills'))
   const hooks = m.scanHooks(path.join(REPO_ROOT, '.claude/hooks'))
+  const monitors = m.scanMonitors(path.join(REPO_ROOT, '.claude/monitors'))
 
   const next = m.buildPluginJson({
     base: {
@@ -60,14 +61,15 @@ function main() {
     agents: toRows(agents),
     skills: toRows(skills),
     hooks: toHookRows(hooks),
-    counts: renderCounts(commands, agents, skills, hooks),
+    monitors: toRows(monitors),
+    counts: renderCounts(commands, agents, skills, hooks, monitors),
   }
   // Drift prevention only works if the markers themselves are present. Each
   // target file declares the markers it must carry; missing markers are an
   // error (not a silent skip), so deleting a marker is treated like any
   // other drift and fails CI.
   const required = [
-    [README, ['counts', 'commands', 'agents', 'skills', 'hooks']],
+    [README, ['counts', 'commands', 'agents', 'skills', 'hooks', 'monitors']],
     [CLAUDE_MD, ['counts', 'commands', 'agents', 'skills']],
   ]
 
@@ -113,12 +115,13 @@ function toRows(items) {
 function toHookRows(items) {
   return m.renderTable(items.map(c => ({ name: c.name, description: '' })))
 }
-function renderCounts(commands, agents, skills, hooks) {
+function renderCounts(commands, agents, skills, hooks, monitors) {
   return [
     `**${commands.length} commands**`,
     `**${agents.length} agents**`,
     `**${skills.length} skills**`,
     `**${hooks.length} hooks**`,
+    `**${monitors.length} monitors**`,
   ].join(' · ')
 }
 
