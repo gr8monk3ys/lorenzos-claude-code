@@ -35,6 +35,10 @@ primitives (loops, monitors, PR babysitting), and two scaffolders promised on th
 - `/page-new` command was committed with embedded NUL/control bytes (corrupted
   box-drawing characters in the file-tree and broken glyphs in the bullet lists). The
   frontmatter was intact, so manifest sync never caught it. Restored to clean UTF-8.
+- The `Claude PR Review` and `Claude Security Scan` workflows hard-failed on every PR
+  when no `ANTHROPIC_API_KEY`/`CLAUDE_CODE_OAUTH_TOKEN` secret was configured, and passed
+  inputs (`model`, `timeout_minutes`, `allow_edits`) the current action rejects. They now
+  skip cleanly when no credentials are present and select the model via `claude_args`.
 
 ## [4.0.0] - 2026-05-07
 
